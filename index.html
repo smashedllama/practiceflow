@@ -151,7 +151,6 @@
     gap: 1.25rem;
     align-items: stretch;
   }
-  @media (max-width: 500px) { .exams-grid { grid-template-columns: 1fr; } }
 
   /* Exam Card */
   .exam-card {
@@ -274,6 +273,42 @@
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
   .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
+
+  /* ── Mobile responsive ─────────────────────────────── */
+  @media (max-width: 768px) {
+    .exams-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; height: 52px; }
+    .nav-brand span { display: none; }
+    .nav-right { gap: 0.5rem; }
+    .nav-link { display: none; }
+    .hero { padding: 2.5rem 1rem 2rem; }
+    .hero h1 { font-size: 1.85rem; }
+    .hero p { font-size: 0.9rem; }
+    .hero-stats { gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
+    .hero-stat-num { font-size: 1.3rem; }
+    .section-label { margin-left: 1rem; }
+    .exams-section { padding: 1.5rem 0.75rem 2rem; }
+    .exam-card { padding: 1.1rem; }
+    .exam-card-top { gap: 0.7rem; }
+    .exam-icon { width: 40px; height: 40px; font-size: 0.8rem; flex-shrink: 0; }
+    .exam-name { font-size: 0.95rem; }
+    .exam-tagline { font-size: 0.75rem; }
+    .exam-stats { gap: 0.5rem; }
+    .exam-stat .es-val { font-size: 1rem; }
+    .exam-btn { font-size: 0.88rem; padding: 0.7rem 1rem; }
+    .features-section { padding: 2rem 1rem; }
+    .features-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .feature-item { padding: 1rem; }
+    footer { padding: 1.5rem 1rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    .footer-links { gap: 1rem; }
+  }
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 1.55rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .exam-stats { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -301,8 +336,8 @@
   <h1>Practice like it's<br><span>exam day.</span></h1>
   <p>Proportionally weighted, fully explained practice exams for CompTIA certifications. Built to simulate the real thing: not to sell you a course.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="hero-stat-num">6</span><span class="hero-stat-lbl">Exams</span></div>
-    <div class="hero-stat"><span class="hero-stat-num">600+</span><span class="hero-stat-lbl">Questions</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-lbl">Exams</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">700+</span><span class="hero-stat-lbl">Questions</span></div>
     <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-lbl">Free</span></div>
     <div class="hero-stat"><span class="hero-stat-num">0</span><span class="hero-stat-lbl">Signups</span></div>
   </div>
@@ -412,6 +447,39 @@
       <div class="exam-cta">
         <a href="network-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">
           Start Network+ Assessment →
+        </a>
+      </div>
+    </div>
+
+    <!-- Linux+ -->
+    <div class="exam-card" style="--card-accent:#84cc16">
+      <div class="exam-card-top">
+        <div class="exam-icon" style="background:linear-gradient(135deg,#84cc16,#16a34a)">LX</div>
+        <div class="exam-header">
+          <div class="exam-cert-code" style="color:#d9f99d">XK0-005</div>
+          <div class="exam-name">CompTIA Linux+</div>
+          <div class="exam-tagline">Linux system administration, security, scripting, containers and troubleshooting.</div>
+        </div>
+        <span class="status-badge status-live">● Live</span>
+      </div>
+      <div class="exam-stats">
+        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">50</span><span class="es-lbl">Questions</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">4</span><span class="es-lbl">Domains</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">720</span><span class="es-lbl">Pass score</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">~60m</span><span class="es-lbl">Est. time</span></div>
+      </div>
+      <div class="exam-domains">
+        <div class="ed-label">Domain breakdown</div>
+        <div class="ed-list">
+          <div class="ed-row"><span class="ed-name">System Management</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:32%;background:#22c55e"></div></div><span class="ed-pct">32%</span></div>
+          <div class="ed-row"><span class="ed-name">Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:28%;background:#3b82f6"></div></div><span class="ed-pct">28%</span></div>
+          <div class="ed-row"><span class="ed-name">Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:21%;background:#ef4444"></div></div><span class="ed-pct">21%</span></div>
+          <div class="ed-row"><span class="ed-name">Scripting &amp; Automation</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#f97316"></div></div><span class="ed-pct">19%</span></div>
+        </div>
+      </div>
+      <div class="exam-cta">
+        <a href="linux-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#84cc16,#16a34a)">
+          Start Linux+ Assessment →
         </a>
       </div>
     </div>
