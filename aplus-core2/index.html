@@ -462,16 +462,29 @@
   }
 
   /* ── Mobile responsive ─────────────────────────────── */
+  /* logo-badge must never wrap – applies to all screen sizes */
+  .logo-badge { white-space: nowrap; }
+
   @media (max-width: 640px) {
     header {
-      padding: 0.9rem 1rem;
+      padding: 0.75rem 0.9rem;
+      gap: 0.5rem;
+      flex-wrap: nowrap;        /* keep timer on same row */
+      align-items: center;
+    }
+    .logo { gap: 0.5rem; min-width: 0; flex: 1; }
+    .logo-badge { font-size: 0.65rem; padding: 0.28rem 0.55rem; flex-shrink: 0; }
+    .logo h1 { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .logo p  { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .timer-box { padding: 0.3rem 0.65rem; flex-shrink: 0; }
+    .timer-val { font-size: 1.15rem; }
+    .progress-bar-wrap {
+      padding: 0.45rem 0.9rem;
+      overflow: hidden;         /* prevent Map button bleed */
       gap: 0.6rem;
     }
-    .logo h1 { font-size: 0.95rem; }
-    .logo p  { font-size: 0.7rem; }
-    .timer-box { padding: 0.4rem 0.75rem; }
-    .timer-val { font-size: 1.3rem; }
-    .progress-bar-wrap { padding: 0.5rem 1rem; }
+    .progress-label { font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+    .nav-toggle-btn { flex-shrink: 0; padding: 0.22rem 0.5rem; font-size: 0.65rem; }
     main { padding: 1.25rem 0.9rem 4rem; }
     #start-screen { padding: 1.75rem 0.25rem; }
     #start-screen h2 { font-size: 1.45rem; }
@@ -696,6 +709,18 @@ const questions = [
   {id:119,domain:4,q:"Which principle requires that no single individual can complete a high-risk transaction alone, requiring two people to review or approve?",opts:["Least privilege", "Defence in depth", "Separation of duties / dual control", "Need to know"],ans:2,exp:"Separation of duties (dual control) prevents any single person from having end-to-end control over a sensitive process, reducing fraud and error. For example, one person initiates a wire transfer, another approves it."},
   {id:120,domain:4,q:"A technician is asked to help a user whose computer was used for harassment of a colleague. What should the technician do?",opts:["Review and discuss the evidence with the user", "Immediately report the situation to the supervisor/management/HR and avoid touching or altering the system", "Delete the problematic files to help the user", "Pretend not to have noticed"],ans:1,exp:"Potential policy violations, illegal activity, or HR matters are not for the technician to investigate or resolve. Preserve the system unaltered, report to the appropriate authority (supervisor, HR, legal), and maintain confidentiality."}
 ];
+
+// Normalize question keys so prepareExam() and renderQuestion() always find
+// the short-form fields (d, q, opts, ans, exp) regardless of how the
+// question objects were originally serialized.
+questions.forEach(function(q){
+  if(q.domain    !==undefined && q.d   ===undefined) q.d   = q.domain;
+  if(q.question  !==undefined && q.q   ===undefined) q.q   = q.question;
+  if(q.options   !==undefined && q.opts===undefined) q.opts = q.options;
+  if(q.answer    !==undefined && q.ans ===undefined) q.ans  = q.answer;
+  if(q.explanation!==undefined&& q.exp ===undefined) q.exp  = q.explanation;
+});
+
 
 // ── Shuffle utilities ──────────────────────────────────────────────────────
 function shuffleArray(arr) {
