@@ -462,16 +462,29 @@
   }
 
   /* ── Mobile responsive ─────────────────────────────── */
+  /* logo-badge must never wrap – applies to all screen sizes */
+  .logo-badge { white-space: nowrap; }
+
   @media (max-width: 640px) {
     header {
-      padding: 0.9rem 1rem;
+      padding: 0.75rem 0.9rem;
+      gap: 0.5rem;
+      flex-wrap: nowrap;        /* keep timer on same row */
+      align-items: center;
+    }
+    .logo { gap: 0.5rem; min-width: 0; flex: 1; }
+    .logo-badge { font-size: 0.65rem; padding: 0.28rem 0.55rem; flex-shrink: 0; }
+    .logo h1 { font-size: 0.88rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .logo p  { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .timer-box { padding: 0.3rem 0.65rem; flex-shrink: 0; }
+    .timer-val { font-size: 1.15rem; }
+    .progress-bar-wrap {
+      padding: 0.45rem 0.9rem;
+      overflow: hidden;         /* prevent Map button bleed */
       gap: 0.6rem;
     }
-    .logo h1 { font-size: 0.95rem; }
-    .logo p  { font-size: 0.7rem; }
-    .timer-box { padding: 0.4rem 0.75rem; }
-    .timer-val { font-size: 1.3rem; }
-    .progress-bar-wrap { padding: 0.5rem 1rem; }
+    .progress-label { font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+    .nav-toggle-btn { flex-shrink: 0; padding: 0.22rem 0.5rem; font-size: 0.65rem; }
     main { padding: 1.25rem 0.9rem 4rem; }
     #start-screen { padding: 1.75rem 0.25rem; }
     #start-screen h2 { font-size: 1.45rem; }
@@ -1715,6 +1728,18 @@ const TOPIC_CONCEPTS = [
   { regex: /vxlan|sdn|overlay|underlay|virtualization.*network|nfv/,
     bullets: ['VXLAN encapsulates L2 frames in UDP (port 4789) — extends L2 across L3, supports 16M virtual networks vs 4096 VLANs', 'SDN: Control plane (intelligence/routing decisions) separated from Data plane (forwarding) — centralized controller', 'NFV = Network Functions Virtualization — runs routers, firewalls, load balancers as VMs instead of dedicated hardware'] },
 ];
+
+// Normalize question keys so prepareExam() and renderQuestion() always find
+// the short-form fields (d, q, opts, ans, exp) regardless of how the
+// question objects were originally serialized.
+questions.forEach(function(q){
+  if(q.domain    !==undefined && q.d   ===undefined) q.d   = q.domain;
+  if(q.question  !==undefined && q.q   ===undefined) q.q   = q.question;
+  if(q.options   !==undefined && q.opts===undefined) q.opts = q.options;
+  if(q.answer    !==undefined && q.ans ===undefined) q.ans  = q.answer;
+  if(q.explanation!==undefined&& q.exp ===undefined) q.exp  = q.explanation;
+});
+
 
 const MNEMONICS_MAP = [
   { regex: /osi|layer.*model|please do not/,
