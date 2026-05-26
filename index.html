@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PracticeFlow: CompTIA Practice Exams by altflow.dev</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  /* AltFlow design tokens */
+  :root {
+    --green:        #4CAF50;
+    --green-light:  #66BB6A;
+    --green-dark:   #388E3C;
+    --green-glow:   rgba(76,175,80,0.35);
+    --green-subtle: rgba(76,175,80,0.08);
+    --radius:       12px;
+    --radius-sm:    8px;
+    --radius-lg:    18px;
+    --transition:   0.25s ease;
+    --red:    #ef4444;
+    --blue:   #3b82f6;
+    --orange: #f97316;
+    --yellow: #eab308;
+  }
+  /* Light theme */
+  :root {
+    color-scheme: light dark;
+    --bg:          #FAFAFA;
+    --surface:     #F5F5F5;
+    --card:        #FFFFFF;
+    --border:      #E5E5E5;
+    --border-hover:#CCCCCC;
+    --accent:      #4CAF50;
+    --accent2:     #388E3C;
+    --text:        #1A1A1A;
+    --muted:       #6B6B6B;
+    --muted2:      #9E9E9E;
+    --shadow-card: 0 1px 4px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03);
+    --shadow-lg:   0 8px 40px rgba(0,0,0,0.08);
+    --nav-bg:      rgba(255,255,255,0.88);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:          #0E0E0E;
+      --surface:     #141414;
+      --card:        #1A1A1A;
+      --border:      #272727;
+      --border-hover:#3A3A3A;
+      --accent:      #66BB6A;
+      --accent2:     #4CAF50;
+      --text:        #ECECEC;
+      --muted:       #A0A0A0;
+      --muted2:      #5A5A5A;
+      --shadow-card: 0 1px 4px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.2);
+      --shadow-lg:   0 8px 40px rgba(0,0,0,0.4);
+      --nav-bg:      rgba(14,14,14,0.88);
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1rem; color: #fff;
+  }
+  .nav-name { font-weight: 800; font-size: 1rem; color: var(--text); }
+  .nav-by { font-size: 0.72rem; color: var(--muted); margin-left: 0.1rem; }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+  .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
+  .nav-link:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3);
+    color: var(--accent); font-size: 0.72rem; font-weight: 700;
+    padding: 0.3rem 0.8rem; border-radius: 99px;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A, #4CAF50);
+    background-size: 200%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 0% } 100% { background-position: 200% } }
+  .hero p {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+    max-width: 540px; margin: 0 auto;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 2rem;
+    margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 1.6rem; font-weight: 900; color: var(--accent); display: block; }
+  .hero-stat-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Exams Grid */
+  .exams-section {
+    max-width: 1000px; margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+  }
+  .section-label {
+    font-size: 0.72rem; font-weight: 800; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .exams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+  @media (max-width: 500px) { .exams-grid { grid-template-columns: 1fr; } }
+
+  /* Exam Card */
+  .exam-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .exam-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--card-accent);
+  }
+  .exam-card-top {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 1rem;
+    min-height: 120px;
+  }
+  .exam-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+  }
+  .exam-header { flex: 1; min-width: 0; }
+  .exam-cert-code {
+    font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.2rem;
+  }
+  .exam-name { font-size: 1.1rem; font-weight: 800; line-height: 1.25; margin-bottom: 0.3rem; }
+  .exam-tagline { font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
+  .status-badge {
+    font-size: 0.62rem; font-weight: 800; padding: 0.2rem 0.55rem;
+    border-radius: 99px; text-transform: uppercase; letter-spacing: 0.06em;
+    flex-shrink: 0; align-self: flex-start;
+  }
+  .status-live { background: rgba(34,197,94,0.12); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+  .status-soon { background: rgba(234,179,8,0.1); color: var(--yellow); border: 1px solid rgba(234,179,8,0.25); }
+
+  /* Card stats */
+  .exam-stats {
+    padding: 1rem 1.5rem;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem; border-bottom: 1px solid var(--border);
+    height: 72px; align-content: center;
+  }
+  .exam-stat { text-align: center; }
+  .es-val { font-size: 1rem; font-weight: 800; display: block; }
+  .es-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Domains */
+  .exam-domains { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex: 1; }
+  .ed-label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
+  .ed-list { display: flex; flex-direction: column; gap: 0.35rem; }
+  .ed-row { display: flex; align-items: center; gap: 0.5rem; }
+  .ed-name { font-size: 0.72rem; color: var(--text); flex: 1; }
+  .ed-bar-track { width: 60px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+  .ed-bar-fill { height: 4px; border-radius: 2px; }
+  .ed-pct { font-size: 0.65rem; font-weight: 700; color: var(--muted); width: 2rem; text-align: right; flex-shrink: 0; }
+
+  /* CTA */
+  .exam-cta { padding: 1.25rem 1.5rem; }
+  .exam-btn {
+    display: block; width: 100%; text-align: center;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem; font-weight: 800;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .exam-btn:hover { opacity: 0.88; transform: scale(1.01); }
+  .exam-btn-live { color: #fff; }
+  .exam-btn-soon {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--muted); cursor: default;
+  }
+  .exam-btn-soon:hover { opacity: 1; transform: none; }
+
+  /* Features strip */
+  .features-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3.5rem 2rem;
+  }
+  .features-inner { max-width: 900px; margin: 0 auto; }
+  .features-title {
+    text-align: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;
+  }
+  .features-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2.5rem; }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .feature-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.1rem;
+  }
+  .fi-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: rgba(76,175,80,0.12); border: 1px solid rgba(76,175,80,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); margin-bottom: 0.65rem;
+  }
+  .fi-title { font-size: 0.82rem; font-weight: 800; margin-bottom: 0.2rem; }
+  .fi-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 2.5rem 1rem;
+    font-size: 0.78rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo">P</div>
+    <div>
+      <span class="nav-name">PracticeFlow</span>
+      <span class="nav-by">by altflow.dev</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#exams">Exams</a>
+    <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="https://altflow.dev" target="_blank">altflow.dev ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <i data-lucide="zap" style="width:11px;height:11px"></i>
+    Free · No signup · No fluff
+  </div>
+  <h1>Practice like it's<br><span>exam day.</span></h1>
+  <p>Proportionally weighted, fully explained practice exams for CompTIA certifications. Built to simulate the real thing: not to sell you a course.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-lbl">Exams</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">200+</span><span class="hero-stat-lbl">Questions</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-lbl">Free</span></div>
+    <div class="hero-stat"><span class="hero-stat-num">0</span><span class="hero-stat-lbl">Signups</span></div>
+  </div>
+</section>
+
+<section class="exams-section" id="exams">
+  <div class="section-label">
+    <i data-lucide="book-open" style="width:13px;height:13px"></i>
+    Available Exams
+  </div>
+  <div class="exams-grid">
+
+    <!-- Project+ -->
+    <div class="exam-card" style="--card-accent:#3b82f6">
+      <div class="exam-card-top">
+        <div class="exam-icon" style="background:linear-gradient(135deg,#3b82f6,#4CAF50)">P+</div>
+        <div class="exam-header">
+          <div class="exam-cert-code" style="color:#60a5fa">PK0-005</div>
+          <div class="exam-name">CompTIA Project+</div>
+          <div class="exam-tagline">Project management, methodologies, lifecycle, tools and governance.</div>
+        </div>
+        <span class="status-badge status-live">● Live</span>
+      </div>
+      <div class="exam-stats">
+        <div class="exam-stat"><span class="es-val" style="color:#60a5fa">50</span><span class="es-lbl">Questions</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#60a5fa">4</span><span class="es-lbl">Domains</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#60a5fa">710</span><span class="es-lbl">Pass score</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#60a5fa">~60m</span><span class="es-lbl">Est. time</span></div>
+      </div>
+      <div class="exam-domains">
+        <div class="ed-label">Domain breakdown</div>
+        <div class="ed-list">
+          <div class="ed-row"><span class="ed-name">PM Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:33%;background:#3b82f6"></div></div><span class="ed-pct">33%</span></div>
+          <div class="ed-row"><span class="ed-name">Life Cycle Phases</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:30%;background:#22c55e"></div></div><span class="ed-pct">30%</span></div>
+          <div class="ed-row"><span class="ed-name">Tools &amp; Documents</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#f97316"></div></div><span class="ed-pct">19%</span></div>
+          <div class="ed-row"><span class="ed-name">IT &amp; Governance</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:18%;background:#66BB6A"></div></div><span class="ed-pct">18%</span></div>
+        </div>
+      </div>
+      <div class="exam-cta">
+        <a href="https://practiceflow.altflow.dev/project-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#3b82f6,#4CAF50)">
+          Start Project+ Assessment →
+        </a>
+      </div>
+    </div>
+
+    <!-- Security+ -->
+    <div class="exam-card" style="--card-accent:#ef4444">
+      <div class="exam-card-top">
+        <div class="exam-icon" style="background:linear-gradient(135deg,#ef4444,#f97316)">S+</div>
+        <div class="exam-header">
+          <div class="exam-cert-code" style="color:#fca5a5">SY0-701</div>
+          <div class="exam-name">CompTIA Security+</div>
+          <div class="exam-tagline">Cybersecurity fundamentals covering threats, architecture, operations and risk management.</div>
+        </div>
+        <span class="status-badge status-live">● Live</span>
+      </div>
+      <div class="exam-stats">
+        <div class="exam-stat"><span class="es-val" style="color:#fca5a5">50</span><span class="es-lbl">Questions</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#fca5a5">5</span><span class="es-lbl">Domains</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#fca5a5">750</span><span class="es-lbl">Pass score</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#fca5a5">~60m</span><span class="es-lbl">Est. time</span></div>
+      </div>
+      <div class="exam-domains">
+        <div class="ed-label">Domain breakdown</div>
+        <div class="ed-list">
+          <div class="ed-row"><span class="ed-name">General Security Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:12%;background:#4CAF50"></div></div><span class="ed-pct">12%</span></div>
+          <div class="ed-row"><span class="ed-name">Threats, Vulns &amp; Mitigations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#ef4444"></div></div><span class="ed-pct">22%</span></div>
+          <div class="ed-row"><span class="ed-name">Security Architecture</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:18%;background:#f97316"></div></div><span class="ed-pct">18%</span></div>
+          <div class="ed-row"><span class="ed-name">Security Operations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:28%;background:#22c55e"></div></div><span class="ed-pct">28%</span></div>
+          <div class="ed-row"><span class="ed-name">Security Program Mgmt</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#66BB6A"></div></div><span class="ed-pct">20%</span></div>
+        </div>
+      </div>
+      <div class="exam-cta">
+        <a href="https://practiceflow.altflow.dev/security-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#ef4444,#f97316)">
+          Start Security+ Assessment →
+        </a>
+      </div>
+    </div>
+
+    <!-- Network+ -->
+    <div class="exam-card" style="--card-accent:#8b5cf6">
+      <div class="exam-card-top">
+        <div class="exam-icon" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">N+</div>
+        <div class="exam-header">
+          <div class="exam-cert-code" style="color:#c4b5fd">N10-009</div>
+          <div class="exam-name">CompTIA Network+</div>
+          <div class="exam-tagline">Networking fundamentals covering infrastructure, protocols, security and troubleshooting.</div>
+        </div>
+        <span class="status-badge status-live">● Live</span>
+      </div>
+      <div class="exam-stats">
+        <div class="exam-stat"><span class="es-val" style="color:#c4b5fd">50</span><span class="es-lbl">Questions</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#c4b5fd">5</span><span class="es-lbl">Domains</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#c4b5fd">720</span><span class="es-lbl">Pass score</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#c4b5fd">~60m</span><span class="es-lbl">Est. time</span></div>
+      </div>
+      <div class="exam-domains">
+        <div class="ed-label">Domain breakdown</div>
+        <div class="ed-list">
+          <div class="ed-row"><span class="ed-name">Networking Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:23%;background:#3b82f6"></div></div><span class="ed-pct">23%</span></div>
+          <div class="ed-row"><span class="ed-name">Network Implementation</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#22c55e"></div></div><span class="ed-pct">19%</span></div>
+          <div class="ed-row"><span class="ed-name">Network Operations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:17%;background:#f97316"></div></div><span class="ed-pct">17%</span></div>
+          <div class="ed-row"><span class="ed-name">Network Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#a855f7"></div></div><span class="ed-pct">20%</span></div>
+          <div class="ed-row"><span class="ed-name">Network Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:21%;background:#14b8a6"></div></div><span class="ed-pct">21%</span></div>
+        </div>
+      </div>
+      <div class="exam-cta">
+        <a href="https://practiceflow.altflow.dev/network-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">
+          Start Network+ Assessment →
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <div class="features-title">Everything you need. Nothing you don't.</div>
+    <div class="features-sub">Every exam includes the same full feature set: no tiers, no paywalls.</div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="shuffle" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Weighted Randomisation</div>
+        <div class="fi-desc">Questions drawn proportionally from each domain: exactly like the real exam.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="toggle-left" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Exam &amp; Learning Modes</div>
+        <div class="fi-desc">Exam mode hides answers until the end. Learning mode explains every answer as you go.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="activity" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Domain Radar Chart</div>
+        <div class="fi-desc">Visual spider chart of your scores across all domains with the pass-line ring.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="target" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Priority Matrix</div>
+        <div class="fi-desc">Plots exam weight vs your score: tells you exactly where to spend study time.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="trending-up" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Score History</div>
+        <div class="fi-desc">Track improvement across attempts. Click any past run to replay its full report.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="refresh-cw" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Retry Missed Questions</div>
+        <div class="fi-desc">Inline mini-quiz of everything you got wrong or didn't learn: right in the report.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="lightbulb" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Study Panels</div>
+        <div class="fi-desc">Key concepts, mnemonics, Professor Messer links, personal notes, and flashcard export per question.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="bot" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">AI Study Guide Prompt</div>
+        <div class="fi-desc">Generates a personalised prompt to paste into any AI for a custom study guide based on your gaps.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">PracticeFlow</div>
+  <div>by <a href="https://altflow.dev" target="_blank">altflow.dev</a> · Free forever · No tracking · No accounts</div>
+  <div style="margin-top:0.4rem;font-size:0.7rem;opacity:0.6">CompTIA® is a registered trademark. PracticeFlow is not affiliated with or endorsed by CompTIA.</div>
+</footer>
+
+<script>
+  if (window.lucide) lucide.createIcons();
+  document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+</script>
+</body>
+</html>
