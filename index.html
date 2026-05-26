@@ -477,6 +477,41 @@
 <script>
   if (window.lucide) lucide.createIcons();
   document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+
+  function equalizeCards() {
+    const cards = [...document.querySelectorAll('.exam-card')];
+    if (!cards.length) return;
+
+    // Reset heights so we get natural sizes
+    cards.forEach(c => {
+      c.querySelector('.exam-card-top').style.height = 'auto';
+      c.querySelector('.exam-domains').style.height = 'auto';
+    });
+
+    // Group cards into rows by their vertical position
+    const rows = {};
+    cards.forEach(card => {
+      const key = Math.round(card.getBoundingClientRect().top);
+      if (!rows[key]) rows[key] = [];
+      rows[key].push(card);
+    });
+
+    // Equalize top section and domain section within each row
+    Object.values(rows).forEach(rowCards => {
+      const maxTop = Math.max(...rowCards.map(c => c.querySelector('.exam-card-top').scrollHeight));
+      const maxDom = Math.max(...rowCards.map(c => c.querySelector('.exam-domains').scrollHeight));
+      rowCards.forEach(c => {
+        c.querySelector('.exam-card-top').style.height = maxTop + 'px';
+        c.querySelector('.exam-domains').style.height = maxDom + 'px';
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', equalizeCards);
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.exam-card-top, .exam-domains').forEach(el => el.style.height = 'auto');
+    setTimeout(equalizeCards, 50);
+  });
 </script>
 </body>
 </html>
