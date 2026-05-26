@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CompTIA A+ Core 1 220-1101 — Pre-Exam Assessment</title>
+<style>
+  /* ── AltFlow design tokens ── */
+  :root {
+    color-scheme: light dark;
+
+    /* Brand greens */
+    --green: #4CAF50; --green-light: #66BB6A; --green-dark: #388E3C;
+
+    /* Quiz state colors */
+    --red: #ef4444; --blue: #3b82f6;
+
+    /* ── Light mode (default) ── */
+    --bg: #FAFAFA; --mid: #F5F5F5; --card: #FFFFFF;
+    --accent: #4CAF50; --accent-hover: #388E3C;
+    --text: #1A1A1A; --muted: #6B6B6B;
+    --border: #E5E5E5; --border-hover: #CCCCCC;
+    --shadow-card: 0 1px 4px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+
+    /* Domain tag colours – light */
+    --tag-d1-bg: #EBF3FF; --tag-d1-fg: #1565C0;
+    --tag-d2-bg: #E8F5E9; --tag-d2-fg: #2E7D32;
+    --tag-d3-bg: #FFF3E0; --tag-d3-fg: #E65100;
+    --tag-d4-bg: #F3E5F5; --tag-d4-fg: #7B1FA2;
+    --tag-d5-bg: #E0F7FA; --tag-d5-fg: #00695C;
+
+    /* Priority badge – light */
+    --pri-high-bg: rgba(239,68,68,0.1);   --pri-high-fg: #b91c1c;
+    --pri-med-bg:  rgba(217,119,6,0.1);   --pri-med-fg:  #b45309;
+    --pri-low-bg:  rgba(76,175,80,0.1);   --pri-low-fg:  #2E7D32;
+    --pri-ok-bg:   rgba(76,175,80,0.08);  --pri-ok-fg:   #388E3C;
+
+    /* "Not learned" yellow – light */
+    --yellow: #d97706;
+    --yellow-bg: rgba(217,119,6,0.07);
+    --yellow-border: rgba(217,119,6,0.35);
+
+    /* Adaptive colours */
+    --why-wrong-fg: #dc2626;
+    --exp-subtle-bg: rgba(0,0,0,0.03);
+    --nl-dash: #CCCCCC;
+    --opt-hover-bg: rgba(76,175,80,0.05);
+    --opt-hover-border: #4CAF50;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E0E0E; --mid: #141414; --card: #1A1A1A;
+      --accent: #66BB6A; --accent-hover: #4CAF50;
+      --text: #ECECEC; --muted: #A0A0A0;
+      --border: #272727; --border-hover: #3A3A3A;
+      --shadow-card: 0 1px 4px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.2);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+
+      /* Domain tag colours – dark */
+      --tag-d1-bg: #1a3a5c; --tag-d1-fg: #60a5fa;
+      --tag-d2-bg: #1a3d2e; --tag-d2-fg: #4ade80;
+      --tag-d3-bg: #3d2a1a; --tag-d3-fg: #fb923c;
+      --tag-d4-bg: #2d1a3d; --tag-d4-fg: #c084fc;
+      --tag-d5-bg: #0a2d2d; --tag-d5-fg: #2dd4bf;
+
+      /* Priority badge – dark */
+      --pri-high-bg: rgba(239,68,68,0.15);  --pri-high-fg: #f87171;
+      --pri-med-bg:  rgba(234,179,8,0.15);  --pri-med-fg:  #fde047;
+      --pri-low-bg:  rgba(76,175,80,0.15);  --pri-low-fg:  #4ade80;
+      --pri-ok-bg:   rgba(102,187,106,0.12); --pri-ok-fg:  #86efac;
+
+      /* "Not learned" yellow – dark */
+      --yellow: #eab308;
+      --yellow-bg: rgba(234,179,8,0.08);
+      --yellow-border: rgba(234,179,8,0.3);
+
+      /* Adaptive colours */
+      --why-wrong-fg: #fca5a5;
+      --exp-subtle-bg: rgba(255,255,255,0.03);
+      --nl-dash: #4a5270;
+      --opt-hover-bg: rgba(102,187,106,0.06);
+      --opt-hover-border: #66BB6A;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; min-height: 100vh; transition: background 0.2s, color 0.2s; }
+
+  header { background: var(--mid); border-bottom: 2px solid var(--accent); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .logo { display: flex; align-items: center; gap: 0.75rem; }
+  .logo-badge { background: var(--accent); color: #fff; font-weight: 800; font-size: 0.72rem; padding: 0.35rem 0.65rem; border-radius: 6px; letter-spacing: 0.05em; }
+  .logo h1 { font-size: 1.1rem; font-weight: 700; }
+  .logo p { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .timer-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem 1rem; text-align: center; display: none; box-shadow: var(--shadow-card); }
+  .timer-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .timer-val { font-size: 1.6rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+  .progress-bar-wrap { background: var(--mid); padding: 0.65rem 2rem; border-bottom: 1px solid var(--border); display: none; align-items: center; gap: 1rem; }
+  .progress-bar-wrap.show { display: flex; }
+  .progress-track { flex: 1; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green-dark), var(--accent)); border-radius: 99px; transition: width 0.3s; }
+  .progress-label { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+  main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  /* START */
+  #start-screen { text-align: center; padding: 3rem 1rem; }
+  #start-screen h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+  #start-screen p { color: var(--muted); font-size: 1rem; line-height: 1.6; max-width: 560px; margin: 0 auto 1.5rem; }
+  .domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 2rem 0; }
+  .domain-chip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: left; box-shadow: var(--shadow-card); }
+  .domain-chip .d-q { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+  .domain-chip .d-name { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .domain-chip .d-weight { font-size: 0.72rem; color: var(--muted); }
+
+  /* QUESTION */
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; display: none; box-shadow: var(--shadow-card); }
+  .q-card.active { display: block; }
+  .q-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .q-num { font-size: 0.73rem; color: var(--muted); }
+  .domain-tag { font-size: 0.68rem; font-weight: 700; padding: 0.18rem 0.55rem; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .tag-d1 { background: var(--tag-d1-bg); color: var(--tag-d1-fg); }
+  .tag-d2 { background: var(--tag-d2-bg); color: var(--tag-d2-fg); }
+  .tag-d3 { background: var(--tag-d3-bg); color: var(--tag-d3-fg); }
+  .tag-d4 { background: var(--tag-d4-bg); color: var(--tag-d4-fg); }
+  .tag-d5 { background: var(--tag-d5-bg); color: var(--tag-d5-fg); }
+  .q-text { font-size: 1.05rem; font-weight: 600; line-height: 1.55; margin-bottom: 1.25rem; }
+  .options { display: flex; flex-direction: column; gap: 0.6rem; }
+  .opt-btn { background: var(--mid); border: 1.5px solid var(--border); border-radius: 10px; padding: 0.8rem 1rem; text-align: left; cursor: pointer; font-size: 0.92rem; color: var(--text); transition: all 0.2s; display: flex; align-items: flex-start; gap: 0.7rem; width: 100%; }
+  .opt-btn:hover:not([disabled]) { border-color: var(--opt-hover-border); background: var(--opt-hover-bg); }
+  .opt-btn .opt-letter { font-weight: 800; font-size: 0.82rem; color: var(--muted); min-width: 16px; flex-shrink: 0; margin-top: 1px; }
+  .opt-btn.correct { border-color: var(--green) !important; background: rgba(76,175,80,0.09) !important; }
+  .opt-btn.correct .opt-letter { color: var(--green); }
+  .opt-btn.selected { border-color: var(--accent) !important; background: rgba(99,102,241,0.07) !important; }
+  .opt-btn.selected .opt-letter { color: var(--accent); }
+  .opt-btn.wrong { border-color: var(--red) !important; background: rgba(239,68,68,0.08) !important; }
+  .opt-btn.wrong .opt-letter { color: var(--red); }
+
+  /* NOT LEARNED BUTTON */
+  .not-learned-row { margin-top: 0.85rem; display: flex; justify-content: center; }
+  .not-learned-btn { background: transparent; border: 1.5px dashed var(--nl-dash); color: var(--muted); padding: 0.55rem 1.25rem; border-radius: 10px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+  .not-learned-btn:hover:not([disabled]) { border-color: var(--yellow); color: var(--yellow); }
+  .not-learned-btn.active { border-color: var(--yellow); color: var(--yellow); background: var(--yellow-bg); }
+  .not-learned-btn[disabled] { opacity: 0.4; cursor: default; }
+
+  /* EXPLANATION */
+  .explanation { margin-top: 1.25rem; border-radius: 10px; padding: 1rem; font-size: 0.85rem; line-height: 1.6; display: none; }
+  .explanation.show { display: block; }
+  .explanation.correct-exp { background: rgba(76,175,80,0.07); border-left: 3px solid var(--green); }
+  .explanation.wrong-exp { background: rgba(239,68,68,0.06); border-left: 3px solid var(--red); }
+  .explanation.notlearned-exp { background: var(--yellow-bg); border-left: 3px solid var(--yellow); }
+  .exp-your-answer { font-size: 0.8rem; margin-bottom: 0.5rem; padding: 0.4rem 0.7rem; border-radius: 6px; }
+  .exp-wrong-label { color: var(--red); font-weight: 700; }
+  .exp-why-wrong { color: var(--why-wrong-fg); font-style: italic; margin-bottom: 0.5rem; }
+  .exp-correct-label { color: var(--green); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.25rem; }
+  .explanation strong { color: var(--text); }
+  .explanation .exp-body { color: var(--muted); }
+
+  /* NAV */
+  .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+  .btn { padding: 0.7rem 1.4rem; border-radius: 10px; border: none; cursor: pointer; font-size: 0.88rem; font-weight: 700; transition: all 0.2s; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--mid); color: var(--text); border: 1.5px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--border-hover); }
+  .btn-lg { font-size: 1rem; padding: 0.9rem 2rem; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-danger { background: rgba(239,68,68,0.12); color: var(--red); border: 1.5px solid rgba(239,68,68,0.3); }
+
+  /* RESULTS */
+  #results { display: none; }
+  .results-hero { text-align: center; padding: 2rem 0 1.5rem; }
+  .score-rings { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .ring-wrap { text-align: center; }
+  .ring-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .ring-num { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+  .verdict { font-size: 1.5rem; font-weight: 800; margin: 0.5rem 0 0.25rem; }
+  .verdict-sub { font-size: 0.92rem; color: var(--muted); max-width: 500px; margin: 0 auto 1.5rem; line-height: 1.6; }
+
+  /* STAT PILLS */
+  .stat-pills { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .stat-pill { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem 1.25rem; text-align: center; min-width: 90px; box-shadow: var(--shadow-card); }
+  .stat-pill .sp-num { font-size: 1.6rem; font-weight: 900; }
+  .stat-pill .sp-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+  /* DOMAIN BREAKDOWN */
+  .section-header { font-size: 1.1rem; font-weight: 800; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .domain-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .dr-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem; box-shadow: var(--shadow-card); }
+  .dr-domain { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.4rem; }
+  .dr-score { font-size: 1.7rem; font-weight: 900; }
+  .dr-bar-track { height: 5px; background: var(--border); border-radius: 99px; margin: 0.4rem 0 0.25rem; overflow: hidden; }
+  .dr-bar-fill { height: 100%; border-radius: 99px; transition: width 0.8s cubic-bezier(.4,0,.2,1); width: 0; }
+  .dr-hint { font-size: 0.72rem; color: var(--muted); }
+  .dr-counts { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+
+  /* STUDY PLAN */
+  .study-plan-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
+  .study-plan-box h3 { font-size: 1rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .day-row { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+  .day-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .day-badge { font-size: 0.7rem; font-weight: 800; padding: 0.25rem 0.6rem; border-radius: 6px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .day-content .day-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .day-content .day-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .priority-high { background: var(--pri-high-bg); color: var(--pri-high-fg); }
+  .priority-med  { background: var(--pri-med-bg);  color: var(--pri-med-fg); }
+  .priority-low  { background: var(--pri-low-bg);  color: var(--pri-low-fg); }
+  .priority-ok   { background: var(--pri-ok-bg);   color: var(--pri-ok-fg); }
+
+  /* MISSED QUESTIONS */
+  .missed-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+  .missed-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; box-shadow: var(--shadow-card); }
+  .missed-item.not-learned-item { border-color: var(--yellow-border); background: var(--yellow-bg); }
+  .mi-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+  .mi-q { font-size: 0.9rem; font-weight: 600; line-height: 1.5; margin-bottom: 0.75rem; }
+  .mi-answers { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.75rem; }
+  .mi-answer-row { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; padding: 0.45rem 0.7rem; border-radius: 8px; }
+  .mi-answer-row.your-answer { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); }
+  .mi-answer-row.correct-answer { background: rgba(76,175,80,0.09); border: 1px solid rgba(76,175,80,0.25); }
+  .mi-answer-row.not-learned-answer { background: var(--yellow-bg); border: 1px solid var(--yellow-border); }
+  .mi-answer-label { font-weight: 800; font-size: 0.72rem; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
+  .label-wrong { color: var(--red); }
+  .label-correct { color: var(--green); }
+  .label-notlearned { color: var(--yellow); }
+  .mi-why-wrong { font-size: 0.8rem; color: var(--why-wrong-fg); font-style: italic; margin-bottom: 0.5rem; padding: 0.4rem 0.7rem; background: rgba(239,68,68,0.06); border-radius: 6px; }
+  .mi-exp { font-size: 0.8rem; color: var(--muted); line-height: 1.55; padding: 0.6rem 0.75rem; background: var(--exp-subtle-bg); border-radius: 8px; border-left: 2px solid var(--border); }
+  .mi-exp strong { color: var(--text); }
+
+  .results-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
+
+  /* FILTER TABS */
+  .filter-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .filter-tab { background: var(--mid); border: 1.5px solid var(--border); color: var(--muted); padding: 0.4rem 0.9rem; border-radius: 99px; cursor: pointer; font-size: 0.78rem; font-weight: 600; transition: all 0.2s; }
+  .filter-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* RESUME BANNER */
+  .resume-banner { background: var(--card); border: 2px solid var(--accent); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; text-align: left; box-shadow: var(--shadow-card); }
+  .resume-banner h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+  .resume-banner p { font-size: 0.83rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+  .resume-stats { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .resume-stat { background: var(--mid); border-radius: 8px; padding: 0.5rem 0.9rem; text-align: center; min-width: 70px; }
+  .resume-stat .rst-num { font-size: 1.2rem; font-weight: 900; }
+  .resume-stat .rst-label { font-size: 0.63rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .resume-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  /* FLAG BUTTON */
+  .flag-btn { background: transparent; border: 1.5px solid var(--border); color: var(--muted); padding: 0.28rem 0.65rem; border-radius: 8px; cursor: pointer; font-size: 0.76rem; font-weight: 600; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.3rem; line-height: 1; margin-left: auto; }
+  .flag-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+  .flag-btn.flagged { border-color: var(--yellow); color: var(--yellow); background: var(--yellow-bg); }
+
+  /* READINESS CARD */
+  .readiness-card { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+  .readiness-header-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 0.5rem; }
+  .readiness-verdict { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.3rem; }
+  .readiness-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; max-width: 600px; }
+  .readiness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(125px,1fr)); gap: 0.75rem; margin: 1.1rem 0; }
+  .r-stat { background: var(--mid); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem; text-align: center; }
+  .r-stat .rs-num { font-size: 1.3rem; font-weight: 900; line-height: 1.2; }
+  .r-stat .rs-label { font-size: 0.64rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; }
+  .r-bar-wrap { margin: 1rem 0 0.25rem; }
+  .r-bar-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); margin-bottom: 0.35rem; }
+  .r-bar-track { height: 11px; background: var(--border); border-radius: 99px; overflow: visible; position: relative; }
+  .r-bar-fill { height: 100%; border-radius: 99px; transition: width 1.1s cubic-bezier(.4,0,.2,1); }
+  .r-passing-marker { position: absolute; top: -5px; bottom: -5px; width: 2.5px; background: var(--text); border-radius: 2px; opacity: 0.6; }
+  .r-passing-label { position: absolute; top: -22px; font-size: 0.62rem; font-weight: 700; color: var(--text); transform: translateX(-50%); white-space: nowrap; }
+  .r-domain-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1rem; }
+  .r-domain-chip { background: var(--mid); border-radius: 8px; padding: 0.6rem 0.8rem; }
+  .r-domain-chip .rdc-label { font-size: 0.64rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; }
+  .r-domain-chip .rdc-val { font-size: 0.85rem; font-weight: 700; }
+  .readiness-note { margin-top: 1rem; font-size: 0.75rem; color: var(--muted); line-height: 1.55; padding: 0.7rem 0.9rem; background: var(--mid); border-radius: 8px; border-left: 3px solid var(--border); }
+
+  /* AI PROMPT BOX */
+  .ai-prompt-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
+  .apb-date-row { display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; margin-bottom:0.9rem; font-size:0.82rem; color:var(--muted); }
+  .apb-date-row label { display:flex; align-items:center; gap:0.35rem; font-weight:600; color:var(--text); white-space:nowrap; }
+  .apb-date-row input[type="date"] { background:var(--mid); border:1px solid var(--border); border-radius:7px; padding:0.3rem 0.6rem; color:var(--text); font-size:0.82rem; font-family:inherit; cursor:pointer; }
+  .apb-date-row input[type="date"]:focus { outline:2px solid var(--accent); border-color:var(--accent); }
+  .apb-days-away { color:var(--muted); font-size:0.78rem; }
+
+  .ai-prompt-box h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.35rem; }
+  .ai-prompt-box .apb-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+  .prompt-text { background: var(--mid); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.74rem; color: var(--text); line-height: 1.65; white-space: pre-wrap; font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; max-height: 200px; overflow-y: auto; cursor: text; }
+  .copy-row { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .copy-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 0.55rem 1.1rem; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: var(--accent-hover); }
+  .copy-btn.copied { background: var(--green-dark); color: #fff; }
+  .copy-hint { font-size: 0.74rem; color: var(--muted); }
+
+  /* ── Learning Mode Toggle ── */
+  .mode-row { margin: 1.25rem 0 0.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .mode-toggle { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; user-select: none; }
+  .mode-toggle input { display: none; }
+  .mode-track { width: 40px; height: 22px; background: var(--border); border-radius: 99px; position: relative; transition: background 0.2s; flex-shrink: 0; }
+  .mode-thumb { width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .mode-toggle input:checked ~ .mode-track { background: var(--accent); }
+  .mode-toggle input:checked ~ .mode-track .mode-thumb { transform: translateX(18px); }
+  .mode-badge { font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 99px; }
+  .mode-badge-exam { background: rgba(59,130,246,0.12); color: #3b82f6; }
+  .mode-badge-learn { background: rgba(76,175,80,0.12); color: var(--accent); }
+  .mode-desc { font-size: 0.78rem; color: var(--muted); max-width: 440px; text-align: center; line-height: 1.5; }
+
+  /* ── Question Navigator ── */
+  .nav-toggle-btn { background: var(--mid); border: 1px solid var(--border); border-radius: 8px; padding: 0.28rem 0.65rem; font-size: 0.7rem; font-weight: 700; cursor: pointer; color: var(--muted); display: inline-flex; align-items: center; gap: 0.3rem; transition: all 0.15s; white-space: nowrap; }
+  .nav-toggle-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .q-navigator { display: none; background: var(--card); border-bottom: 1px solid var(--border); padding: 0.75rem 1.5rem; }
+  .q-navigator.open { display: block; }
+  .nav-grid { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem; }
+  .nav-sq { width: 27px; height: 27px; border-radius: 5px; border: 1.5px solid var(--border); background: var(--mid); font-size: 0.62rem; font-weight: 700; cursor: pointer; color: var(--muted); display: flex; align-items: center; justify-content: center; transition: all 0.12s; padding: 0; }
+  .nav-sq:hover { border-color: var(--accent); color: var(--accent); }
+  .nav-sq.nav-ans  { background: rgba(59,130,246,0.15); border-color: #3b82f6; color: #3b82f6; }
+  .nav-sq.nav-nl   { background: var(--yellow-bg); border-color: var(--yellow); color: var(--yellow); }
+  .nav-sq.nav-flag { box-shadow: inset 0 0 0 2px #f59e0b; }
+  .nav-sq.nav-curr { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff !important; }
+  .nav-legend { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+  .nav-legend-item { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.65rem; color: var(--muted); }
+  .nav-legend-dot { width: 10px; height: 10px; border-radius: 3px; border: 1.5px solid; display: inline-block; }
+
+  /* ── Confidence Rating ── */
+  .conf-row { margin-top: 0.75rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  .conf-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .conf-btn { padding: 0.22rem 0.6rem; border-radius: 99px; border: 1.5px solid var(--border); background: transparent; font-size: 0.7rem; font-weight: 700; cursor: pointer; color: var(--muted); transition: all 0.15s; }
+  .conf-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .conf-btn.active.conf-guess { background: rgba(239,68,68,0.1); border-color: var(--red); color: var(--red); }
+  .conf-btn.active.conf-unsure { background: rgba(217,119,6,0.1); border-color: var(--yellow); color: var(--yellow); }
+  .conf-btn.active.conf-sure   { background: rgba(76,175,80,0.1); border-color: var(--green); color: var(--green); }
+
+  /* ── Review Screen ── */
+  .review-screen { background: var(--card); border: 2px solid var(--accent); border-radius: 16px; padding: 2rem; text-align: center; box-shadow: var(--shadow-lg); }
+  .review-screen h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .review-screen > p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .review-counts { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .review-count { background: var(--mid); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem 1.25rem; min-width: 90px; }
+  .rc-num { font-size: 1.6rem; font-weight: 900; }
+  .rc-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .review-flagged-list { text-align: left; background: var(--yellow-bg); border: 1px solid var(--yellow-border); border-radius: 10px; padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.8rem; max-height: 130px; overflow-y: auto; line-height: 1.6; }
+  .review-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── Radar Chart ── */
+  .radar-section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
+  .radar-section h3 { font-size: 1rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .radar-wrap { display: flex; justify-content: center; }
+
+  /* ── Priority Matrix ── */
+  .pmatrix-box { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
+  .pmatrix-box h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+  .pmatrix-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+  .pmatrix-wrap { display: flex; justify-content: center; }
+
+  /* ── Run History ── */
+  .history-section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
+  .history-section h3 { font-size: 1rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .history-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .history-table th { text-align: left; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--border); }
+  .history-table td { padding: 0.48rem 0.6rem; border-bottom: 1px solid var(--border); }
+  .history-table tr:last-child td { border-bottom: none; }
+  .hist-up { color: var(--green); font-weight: 700; }
+  .hist-dn { color: var(--red); font-weight: 700; }
+
+  /* ── Retry Mini-Quiz ── */
+  .retry-section { margin-bottom: 2rem; }
+  .retry-launch-btn { width: 100%; padding: 0.9rem; border-radius: 12px; background: rgba(59,130,246,0.08); border: 1.5px dashed #3b82f6; color: #3b82f6; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+  .retry-launch-btn:hover { background: rgba(59,130,246,0.15); }
+  .retry-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .retry-header h3 { font-size: 1rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem; }
+  .retry-badge { background: #3b82f6; color: #fff; border-radius: 99px; font-size: 0.7rem; font-weight: 700; padding: 0.18rem 0.6rem; }
+  .retry-score { font-size: 2.5rem; font-weight: 900; margin: 0.5rem 0; }
+
+  /* ── Studied Items ── */
+  .studied-btn { background: transparent; border: 1.5px dashed var(--border); color: var(--muted); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.7rem; border-radius: 99px; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.5rem; }
+  .studied-btn:hover { border-color: var(--green); color: var(--green); }
+  .studied-btn.studied { background: rgba(76,175,80,0.1); border-color: var(--green); color: var(--green); border-style: solid; }
+  .studied-progress { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; background: var(--mid); border-radius: 8px; padding: 0.5rem 0.75rem; }
+  .studied-progress strong { color: var(--text); }
+
+  /* ── Confident-but-wrong badge ── */
+  .conf-wrong-badge { background: rgba(239,68,68,0.12); color: var(--red); font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; white-space: nowrap; }
+  .slow-badge { background: rgba(217,119,6,0.1); color: var(--yellow); font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; white-space: nowrap; }
+
+  /* ── Study Panel ─────────────────────────────────────────────────── */
+  .study-panel { border-top: 1px solid var(--border); margin-top: 0.8rem; padding-top: 0.8rem; display:flex; flex-direction:column; gap:0.6rem; }
+  .study-chips-row { display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center; }
+  .messer-chip { display:inline-flex; align-items:center; gap:0.3rem; background:#7c3aed; color:#fff; font-size:0.72rem; font-weight:700; padding:0.25rem 0.65rem; border-radius:99px; text-decoration:none; transition:opacity 0.15s; }
+  .messer-chip:hover { opacity:0.8; }
+  .key-concepts-box { background:rgba(59,130,246,0.05); border:1px solid rgba(59,130,246,0.15); border-radius:8px; padding:0.55rem 0.7rem; }
+  .kc-header { font-size:0.68rem; font-weight:800; color:#60a5fa; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.35rem; display:flex; align-items:center; gap:0.3rem; }
+  .kc-list { margin:0; padding-left:1.1rem; list-style:disc; }
+  .kc-list li { font-size:0.78rem; color:var(--text); line-height:1.5; margin-bottom:0.1rem; }
+  .mnemonic-box { background:rgba(168,85,247,0.06); border:1px solid rgba(168,85,247,0.22); border-radius:8px; padding:0.55rem 0.7rem; }
+  .mnemonic-header { font-size:0.68rem; font-weight:800; color:#a855f7; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.25rem; display:flex; align-items:center; gap:0.3rem; }
+  .mnemonic-text { font-size:0.78rem; color:var(--text); line-height:1.5; }
+  .related-qs-box { }
+  .related-qs-header { font-size:0.68rem; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.3rem; display:flex; align-items:center; gap:0.3rem; }
+  .related-q-item { font-size:0.75rem; color:var(--muted); padding:0.2rem 0; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:0.45rem; }
+  .related-q-item:last-child { border-bottom:none; }
+  .note-row { display:flex; flex-direction:column; gap:0.25rem; }
+  .note-label { font-size:0.68rem; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.07em; display:flex; align-items:center; gap:0.3rem; }
+  .note-area { width:100%; box-sizing:border-box; background:var(--mid); border:1.5px solid var(--border); border-radius:8px; color:var(--text); font-size:0.8rem; font-family:inherit; padding:0.5rem 0.65rem; resize:vertical; min-height:58px; transition:border-color 0.15s; }
+  .note-area:focus { outline:none; border-color:var(--accent); }
+  .note-saved-msg { font-size:0.68rem; color:var(--green); opacity:0; transition:opacity 0.3s; height:0; overflow:hidden; }
+  .note-saved-msg.show { opacity:1; height:auto; }
+  .panel-bottom-row { display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
+  .flashcard-btn { background:transparent; border:1.5px solid var(--border); color:var(--muted); font-size:0.72rem; font-weight:700; padding:0.25rem 0.7rem; border-radius:99px; cursor:pointer; transition:all 0.15s; display:inline-flex; align-items:center; gap:0.35rem; }
+  .flashcard-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .flashcard-btn.copied { border-color:var(--green); color:var(--green); }
+
+  /* ── Start Screen History ────────────────────────────────────────── */
+  .start-history { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .start-history-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+  .start-history-title { font-size:0.78rem; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center; gap:0.4rem; }
+  .start-history-clear { background:none; border:none; color:var(--muted); font-size:0.72rem; cursor:pointer; padding:0.2rem 0.5rem; border-radius:6px; transition:color 0.15s; }
+  .start-history-clear:hover { color:var(--red); }
+  .sh-runs { display:flex; flex-direction:column; gap:0.75rem; }
+  /* Card */
+  .sh-run { display:flex; background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; cursor:pointer; transition:transform 0.15s, box-shadow 0.15s, border-color 0.15s; position:relative; text-align:left; width:100%; }
+  .sh-run:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.22); border-color:var(--accent); }
+  .sh-run:active { transform:translateY(0); }
+  .sh-accent-bar { width:6px; flex-shrink:0; }
+  .sh-body { flex:1; padding:0.9rem 1rem; min-width:0; }
+  .sh-top-row { display:flex; align-items:flex-start; justify-content:space-between; gap:0.5rem; margin-bottom:0.55rem; }
+  .sh-score-wrap { display:flex; align-items:baseline; gap:0.35rem; }
+  .sh-score { font-size:2.1rem; font-weight:900; line-height:1; }
+  .sh-score-label { font-size:0.72rem; color:var(--muted); font-weight:600; }
+  .sh-meta { font-size:0.72rem; color:var(--muted); line-height:1.5; }
+  .sh-meta strong { color:var(--text); font-weight:700; }
+  .sh-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.3rem; flex-shrink:0; }
+  .sh-trend { font-size:0.72rem; font-weight:800; padding:0.18rem 0.55rem; border-radius:99px; }
+  .sh-trend-up { background:rgba(34,197,94,0.12); color:var(--green); }
+  .sh-trend-dn { background:rgba(239,68,68,0.1); color:var(--red); }
+  .sh-trend-same { background:var(--mid); color:var(--muted); }
+  .sh-best-badge { font-size:0.6rem; font-weight:800; background:rgba(34,197,94,0.1); color:var(--green); border:1px solid rgba(34,197,94,0.25); border-radius:99px; padding:0.12rem 0.45rem; }
+  /* Domain mini-bars */
+  .sh-domains { display:flex; flex-direction:column; gap:0.22rem; }
+  .sh-domain-row { display:flex; align-items:center; gap:0.4rem; }
+  .sh-domain-lbl { font-size:0.62rem; color:var(--muted); width:5rem; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sh-bar-track { flex:1; height:5px; background:var(--mid); border-radius:3px; overflow:hidden; }
+  .sh-bar-fill { height:5px; border-radius:3px; }
+  .sh-domain-pct { font-size:0.62rem; font-weight:700; width:2.2rem; text-align:right; flex-shrink:0; }
+  /* Click hint */
+  .sh-click-hint { font-size:0.65rem; color:var(--muted); margin-top:0.55rem; display:flex; align-items:center; gap:0.3rem; opacity:0.7; }
+  /* History report back button */
+  .history-back-btn { display:inline-flex; align-items:center; gap:0.4rem; background:var(--mid); border:1px solid var(--border); color:var(--muted); font-size:0.82rem; font-weight:700; padding:0.5rem 1rem; border-radius:10px; cursor:pointer; margin-bottom:1.5rem; transition:all 0.15s; }
+  .history-back-btn:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* ── YouTube video chips ── */
+  .vid-resources { margin-top:0.75rem; padding-top:0.65rem; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center; }
+  .vid-label { font-size:0.72rem; color:var(--muted); font-weight:600; white-space:nowrap; }
+  .vid-chip { display:inline-flex; align-items:center; gap:0.35rem; background:#ff0000; color:#fff; border-radius:6px; padding:0.28rem 0.65rem; font-size:0.72rem; font-weight:700; text-decoration:none; transition:background 0.15s; line-height:1.3; }
+  .vid-chip:hover { background:#cc0000; color:#fff; }
+  .vid-chip svg { width:12px; height:12px; flex-shrink:0; }
+  .not-learned-item .vid-chip { background:#b45309; }
+  .not-learned-item .vid-chip:hover { background:#92400e; }
+
+  @media print {
+    header, .progress-bar-wrap, #start-screen, #question-area, .results-actions, .filter-tabs, .copy-row { display: none !important; }
+    body { background: #fff; color: #000; }
+    .readiness-card, .missed-item, .study-plan-box, .dr-card, .ai-prompt-box { border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
+    .prompt-text { max-height: none; }
+  }
+</style>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-badge">220-1101</div>
+    <div>
+      <h1>CompTIA A+ Core 1 Pre-Exam Assessment</h1>
+      <p>50 Questions · 5 Domains · Full Results Report · <a href="https://practiceflow-altdev.netlify.app" style="color:var(--accent);text-decoration:none;font-size:0.8rem">← All PracticeFlow Exams</a></p>
+    </div>
+  </div>
+  <div class="timer-box" id="timer-box">
+    <div class="timer-label">Elapsed</div>
+    <div class="timer-val" id="timer">0:00</div>
+  </div>
+</header>
+
+<div class="progress-bar-wrap" id="prog-wrap">
+  <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="progress-label" id="prog-label">Question 1 of 50</div>
+  <button class="nav-toggle-btn" id="nav-toggle-btn" onclick="toggleNavigator()" title="Question map">⊞ Map</button>
+</div>
+<div class="q-navigator" id="q-navigator">
+  <div class="nav-grid" id="nav-grid"></div>
+  <div class="nav-legend">
+    <span class="nav-legend-item"><span class="nav-legend-dot" style="background:rgba(59,130,246,0.15);border-color:#3b82f6;border-style:solid"></span>Answered</span>
+    <span class="nav-legend-item"><span class="nav-legend-dot" style="background:var(--yellow-bg);border-color:var(--yellow);border-style:solid"></span>Not Learned</span>
+    <span class="nav-legend-item"><span class="nav-legend-dot" style="background:var(--mid);border-color:var(--border);border-style:solid;box-shadow:inset 0 0 0 2px #f59e0b"></span>Flagged</span>
+    <span class="nav-legend-item"><span class="nav-legend-dot" style="background:var(--accent);border-color:var(--accent);border-style:solid"></span>Current</span>
+  </div>
+</div>
+
+<main>
+
+<div id="start-screen">
+  <h2>Know Where You Stand</h2>
+  <p>50 questions, proportionally weighted to the real 220-1101 exam. Each question has an <strong>"I haven't learned this yet"</strong> option — use it to flag topics you haven't studied. Your full results report at the end breaks down exactly what to focus on.</p>
+  <div class="domain-grid">
+    <div class="domain-chip"><div class="d-q">12</div><div class="d-name">Domain 1: Networking Concepts</div><div class="d-weight">23% · OSI, TCP/IP, ports, routing, wireless</div></div>
+    <div class="domain-chip"><div class="d-q">9</div><div class="d-name">Domain 2: Network Implementation</div><div class="d-weight">19% · Switching, VLANs, routing protocols, WAN</div></div>
+    <div class="domain-chip"><div class="d-q">9</div><div class="d-name">Domain 3: Network Operations</div><div class="d-weight">17% · Monitoring, HA, QoS, change management</div></div>
+    <div class="domain-chip"><div class="d-q">10</div><div class="d-name">Domain 4: Network Security</div><div class="d-weight">20% · Firewalls, AAA, attacks, VPN, hardening</div></div>
+    <div class="domain-chip"><div class="d-q">10</div><div class="d-name">Domain 5: Network Troubleshooting</div><div class="d-weight">21% · Tools, connectivity, wireless, routing</div></div>
+  </div>
+  <div class="mode-row">
+    <label class="mode-toggle" title="Toggle learning mode">
+      <span class="mode-badge mode-badge-exam">Exam Mode</span>
+      <input type="checkbox" id="learning-mode-toggle" onchange="learningMode=this.checked;document.getElementById('mode-desc').textContent=this.checked?'Explanations shown after every answer — great for building understanding as you go.':'Results only shown at the end — mirrors real exam conditions.'">
+      <div class="mode-track"><div class="mode-thumb"></div></div>
+      <span class="mode-badge mode-badge-learn">Learning Mode</span>
+    </label>
+    <p class="mode-desc" id="mode-desc">Results only shown at the end — mirrors real exam conditions.</p>
+  </div>
+  <button class="btn btn-primary btn-lg" id="start-btn" onclick="startExam()">Start Assessment →</button>
+  <div id="start-history"></div>
+</div>
+
+<div id="question-area"></div>
+<div id="results"></div>
+
+</main>
+
+<script>
+// ── Lucide icon helper ─────────────────────────────────────────────────────
+function ic(name, size) {
+  size = size || 14;
+  return '<i data-lucide="'+name+'" style="display:inline-block;vertical-align:middle;width:'+size+'px;height:'+size+'px;flex-shrink:0"></i>';
+}
+function renderIcons() { if (window.lucide) lucide.createIcons(); }
+
+const questions = [
+  {id:1,domain:1,q:"Which wireless charging standard is most commonly used across Android and iPhone devices?",opts:["Qi", "PMA", "AirFuel", "MagSafe"],ans:0,exp:"Qi (Wireless Power Consortium) is the universal wireless charging standard adopted by virtually all smartphones including iPhones (since iPhone 8) and Android devices."},
+  {id:2,domain:1,q:"A corporate IT team needs to remotely lock, wipe, and enforce PIN policies on employee smartphones from a central console. Which technology enables this?",opts:["GPS tracking", "Mobile Device Management (MDM)", "Remote Desktop Protocol", "VPN client"],ans:1,exp:"MDM software lets administrators centrally enforce security policies, push apps, remotely lock, and wipe managed mobile devices."},
+  {id:3,domain:1,q:"Which email protocol keeps messages stored on the server and synchronises them across multiple devices?",opts:["POP3", "SMTP", "IMAP", "MAPI"],ans:2,exp:"IMAP (Internet Message Access Protocol) leaves mail on the server and syncs state across all devices. POP3 downloads and typically deletes server copies."},
+  {id:4,domain:1,q:"The touch-sensitive layer on a smartphone that converts finger input into digital coordinates is called the:",opts:["LCD panel", "Digitizer", "GPU", "Haptic engine"],ans:1,exp:"The digitizer is the capacitive layer that detects touch and reports coordinates to the OS. On modern bonded displays it is fused to the glass."},
+  {id:5,domain:1,q:"Which mobile connector is reversible, carries USB 3.x data, and can output DisplayPort video?",opts:["Micro-USB", "Lightning", "USB-C", "Mini-USB"],ans:2,exp:"USB-C is fully reversible and supports USB 3.x speeds, DisplayPort Alt Mode, Thunderbolt (on compatible hardware), and USB Power Delivery."},
+  {id:6,domain:1,q:"A company needs corporate data on employee phones to be encrypted and isolated from personal content. Which MDM concept achieves this?",opts:["Full disk encryption", "Containerisation", "Remote wipe", "Geofencing"],ans:1,exp:"Containerisation (used in MDM solutions like Samsung Knox or Intune) creates an encrypted workspace on the device that is completely separated from personal data."},
+  {id:7,domain:1,q:"Which cellular generation introduced LTE (Long Term Evolution) as its data standard?",opts:["2G", "3G", "4G", "5G"],ans:2,exp:"LTE is a 4G standard that dramatically increased mobile data speeds compared to 3G technologies like HSPA."},
+  {id:8,domain:1,q:"A user wants to transfer a large video file directly between two Android phones without any internet connection or access point. Which technology is best suited?",opts:["NFC", "Bluetooth", "Wi-Fi Direct", "Infrared"],ans:2,exp:"Wi-Fi Direct creates a peer-to-peer Wi-Fi link at normal Wi-Fi speeds. Bluetooth is too slow for large files and NFC has very limited range and throughput."},
+  {id:9,domain:1,q:"Which feature allows a smartphone to share its cellular internet connection with a laptop via a local Wi-Fi network?",opts:["Wi-Fi Direct", "Personal hotspot / tethering", "Bluetooth PAN", "NFC"],ans:1,exp:"Personal hotspot (tethering) broadcasts the phone's cellular data as a Wi-Fi network that nearby devices can join."},
+  {id:10,domain:1,q:"Which OLED characteristic makes it preferable for dark-theme UIs compared to IPS LCD?",opts:["Higher peak brightness", "True blacks \u2014 individual pixels turn off completely", "Lower manufacturing cost", "Better outdoor visibility"],ans:1,exp:"OLED pixels emit their own light and turn off completely for black content, giving infinite contrast ratios and saving battery on dark UIs."},
+  {id:11,domain:1,q:"An organisation enforces a policy that all phones accessing corporate email must have a screen lock with a minimum PIN length. Which solution enforces this on both iOS and Android?",opts:["Two-factor authentication", "MDM with ActiveSync conditional access policy", "Biometric authentication alone", "Manual user agreement"],ans:1,exp:"MDM combined with Exchange ActiveSync policies can enforce device PIN/password requirements as a prerequisite for accessing corporate email on any platform."},
+  {id:12,domain:1,q:"Which protocol is specifically designed to synchronise email, calendar, contacts, and tasks between Microsoft Exchange and mobile devices?",opts:["IMAP", "POP3", "Exchange ActiveSync (EAS)", "SMTP"],ans:2,exp:"Exchange ActiveSync is Microsoft's proprietary push-sync protocol designed specifically for mobile devices accessing Exchange/Microsoft 365 data."},
+  {id:13,domain:1,q:"A smartphone becomes very hot and the battery drains in under two hours despite normal use. What is the MOST likely cause?",opts:["Screen brightness is too high", "A rogue app consuming excessive CPU in the background", "The device needs a software update", "The charging cable is faulty"],ans:1,exp:"Excessive heat and rapid battery drain almost always point to a process (often malware or a poorly coded app) consuming high CPU continuously in the background. Check battery usage stats."},
+  {id:14,domain:1,q:"Which term describes an enterprise deployment model where employees use personally-owned devices for work with an MDM-managed corporate workspace?",opts:["COPE (Corporate Owned, Personally Enabled)", "BYOD (Bring Your Own Device)", "CYOD (Choose Your Own Device)", "COBO (Corporate Owned, Business Only)"],ans:1,exp:"BYOD allows staff to use their own devices while MDM containerisation isolates and secures corporate data within a managed workspace."},
+  {id:15,domain:1,q:"Which short-range wireless technology embedded in most modern smartphones enables contactless payments at retail terminals?",opts:["GPS", "Bluetooth", "NFC", "Wi-Fi Direct"],ans:2,exp:"NFC (Near Field Communication) operates at ~13.56 MHz over ~4 cm range and is the technology behind Apple Pay, Google Pay, and contactless card payments."},
+  {id:16,domain:1,q:"After replacing a smartphone battery, the charge percentage jumps erratically between values. What should the technician do?",opts:["Replace the battery again", "Perform a battery calibration cycle (full discharge then full charge)", "Flash the firmware", "Replace the charging IC"],ans:1,exp:"The battery gauge IC learns the battery's capacity over a full charge/discharge cycle. Erratic percentages after a new battery installation are corrected by calibration."},
+  {id:17,domain:1,q:"A user's GPS works outdoors but is unreliable inside a building. Which additional positioning technologies improve indoor location accuracy?",opts:["Cell tower triangulation only", "Wi-Fi positioning and Bluetooth beacons in addition to cellular", "Satellite augmentation only", "Dead reckoning only"],ans:1,exp:"Modern devices use a hybrid approach: GPS outdoors, supplemented indoors by Wi-Fi positioning (using known AP locations) and Bluetooth beacons for finer accuracy."},
+  {id:18,domain:1,q:"A technician is deploying company iPhones and must prevent users from installing unapproved apps. Which solution enforces this?",opts:["Setting a strong passcode", "MDM supervised mode with app allowlist", "Disabling the App Store account", "Enabling Guided Access"],ans:1,exp:"MDM supervised mode on iOS gives IT full control including restricting the App Store, enforcing allowed apps only, and preventing configuration changes."},
+  {id:19,domain:2,q:"A workstation self-assigns a 169.254.x.x address. What does this indicate?",opts:["The device is using a static IP", "The DHCP server could not be reached \u2014 APIPA address assigned", "The subnet mask is incorrect", "The default gateway is down"],ans:1,exp:"169.254.0.0/16 is the APIPA (Automatic Private IP Addressing) range. Windows assigns an address here when DHCP discovery fails after several retries."},
+  {id:20,domain:2,q:"Which network device forwards frames at Layer 2 using a MAC address table, sending traffic only to the correct port?",opts:["Hub", "Router", "Switch", "Repeater"],ans:2,exp:"A switch learns MAC addresses and forwards frames only to the port where the destination device resides, unlike a hub which broadcasts to all ports."},
+  {id:21,domain:2,q:"Which command on a Windows workstation shows the IP address, subnet mask, and default gateway?",opts:["ipconfig", "ifconfig", "netstat -r", "arp -a"],ans:0,exp:"`ipconfig` (or `ipconfig /all` for full details) displays TCP/IP configuration on Windows. `ifconfig` is the Linux/macOS equivalent."},
+  {id:22,domain:2,q:"A user can ping 8.8.8.8 successfully but cannot open any websites by URL. What is the most likely problem?",opts:["The default gateway is down", "DNS resolution is failing", "The NIC driver is corrupt", "The firewall is blocking HTTP"],ans:1,exp:"Successful IP-level ping proves routing is working. Failure to resolve URLs points directly to DNS \u2014 the service that translates hostnames to IP addresses."},
+  {id:23,domain:2,q:"Which protocol dynamically assigns IP addresses and operates on UDP ports 67 (server) and 68 (client)?",opts:["DNS", "DHCP", "SNMP", "NTP"],ans:1,exp:"DHCP (Dynamic Host Configuration Protocol) uses UDP port 67 for server communication and port 68 for client communication to assign IP configuration automatically."},
+  {id:24,domain:2,q:"A small office has one public IP address from the ISP but has 30 devices that need internet access. Which technology makes this possible?",opts:["Subnetting", "NAT/PAT", "VLAN", "DNS forwarding"],ans:1,exp:"NAT (Network Address Translation) with PAT (Port Address Translation) maps many private IP:port combinations to a single public IP, allowing multiple devices to share one internet connection."},
+  {id:25,domain:2,q:"Which Wi-Fi standard operates on both 2.4 GHz and 5 GHz, supports MU-MIMO, and is marketed as Wi-Fi 6?",opts:["802.11ac", "802.11n", "802.11ax", "802.11g"],ans:2,exp:"802.11ax (Wi-Fi 6) operates on 2.4 and 5 GHz, introduces OFDMA, MU-MIMO improvements, and BSS Colouring to reduce interference in dense environments."},
+  {id:26,domain:2,q:"What is the maximum cable run for Cat5e or Cat6 Ethernet before signal degradation affects performance?",opts:["55 metres", "100 metres", "150 metres", "300 metres"],ans:1,exp:"IEEE 802.3 defines 100 metres as the maximum horizontal cable run for standard Ethernet. Cat6a supports 10 GbE over the full 100 m; Cat6 supports 10 GbE only up to 55 m."},
+  {id:27,domain:2,q:"Which DNS record type maps a hostname to an IPv4 address?",opts:["AAAA", "MX", "A", "CNAME"],ans:2,exp:"An A record maps a hostname to a 32-bit IPv4 address. AAAA maps to IPv6; MX specifies mail servers; CNAME creates an alias to another hostname."},
+  {id:28,domain:2,q:"Which port does HTTPS use by default?",opts:["80", "8080", "443", "8443"],ans:2,exp:"HTTPS (HTTP over TLS/SSL) uses TCP port 443. Plain HTTP uses port 80."},
+  {id:29,domain:2,q:"A technician needs to test connectivity and trace the path packets take to a remote host. Which command is correct for Windows?",opts:["ping", "tracert", "netstat", "nslookup"],ans:1,exp:"`tracert` (Windows) / `traceroute` (Linux/macOS) shows each router hop between source and destination with round-trip times, useful for isolating where packets are dropped."},
+  {id:30,domain:2,q:"Which cable category supports 10 Gigabit Ethernet over a full 100-metre run?",opts:["Cat5", "Cat5e", "Cat6", "Cat6a"],ans:3,exp:"Cat6a (Augmented Category 6) supports 10 GbE over the full 100-metre channel. Cat6 only supports 10 GbE up to approximately 55 metres."},
+  {id:31,domain:2,q:"A subnet is configured as 192.168.5.0/28. How many usable host addresses are available?",opts:["12", "14", "16", "30"],ans:1,exp:"/28 = 2^4 = 16 total addresses. Subtract network address and broadcast = 14 usable host addresses."},
+  {id:32,domain:2,q:"Which wireless security protocol is recommended for new deployments requiring the strongest available encryption?",opts:["WEP", "WPA", "WPA2-Personal", "WPA3"],ans:3,exp:"WPA3 (released 2018) uses SAE (Simultaneous Authentication of Equals), resists offline dictionary attacks, and offers 192-bit security in Enterprise mode."},
+  {id:33,domain:2,q:"Which command displays the ARP cache, showing the mapping of IP addresses to MAC addresses on the local network?",opts:["ipconfig /all", "netstat -a", "arp -a", "nslookup"],ans:2,exp:"`arp -a` displays the local ARP table showing IP-to-MAC mappings for recently communicated hosts on the local subnet."},
+  {id:34,domain:2,q:"Which protocol sends email from a client to a server, or between mail servers, and uses TCP port 25 or 587?",opts:["IMAP", "POP3", "SMTP", "HTTP"],ans:2,exp:"SMTP (Simple Mail Transfer Protocol) sends and relays email. Port 25 is for server-to-server relay; port 587 is used by clients for authenticated submission."},
+  {id:35,domain:2,q:"A company wants to logically separate guest Wi-Fi traffic from corporate traffic on the same physical infrastructure. What technology enables this?",opts:["WPA3", "VLAN", "NAT", "QoS"],ans:1,exp:"VLANs logically segment network traffic at Layer 2. Access points can map multiple SSIDs to different VLANs, keeping guest and corporate traffic isolated."},
+  {id:36,domain:2,q:"Which protocol automatically configures IPv6 addresses using router advertisements, without requiring a DHCPv6 server?",opts:["APIPA", "SLAAC", "DHCPv6", "ARP"],ans:1,exp:"SLAAC (Stateless Address Autoconfiguration) allows IPv6 hosts to generate their own addresses from the network prefix advertised in Router Advertisement messages."},
+  {id:37,domain:2,q:"Which network topology connects every device directly to a central switch or hub?",opts:["Bus", "Ring", "Star", "Mesh"],ans:2,exp:"Star topology has all devices connected to a central switch. It is the dominant topology for modern wired Ethernet networks."},
+  {id:38,domain:2,q:"A technician connects to a guest network and cannot reach internal company resources, but internet browsing works fine. What is the most likely reason?",opts:["DNS failure", "The guest VLAN has no route to internal resources \u2014 this is intentional", "IP address conflict", "Incorrect subnet mask"],ans:1,exp:"Guest networks are intentionally isolated via VLANs and firewall rules to prevent access to internal resources. This is expected, secure behaviour."},
+  {id:39,domain:2,q:"Which protocol uses TCP port 22 and provides encrypted remote command-line access to network devices and servers?",opts:["Telnet", "RDP", "SSH", "FTP"],ans:2,exp:"SSH (Secure Shell) encrypts the entire session including credentials. Telnet (port 23) is the unencrypted predecessor and should not be used."},
+  {id:40,domain:2,q:"A technician transfers files securely to a remote Linux server using an encrypted connection on port 22. Which protocol is being used?",opts:["FTP", "FTPS", "SFTP", "TFTP"],ans:2,exp:"SFTP (SSH File Transfer Protocol) runs over SSH (port 22) and encrypts both commands and file data. FTPS uses SSL/TLS on port 990; TFTP (port 69) is unencrypted."},
+  {id:41,domain:2,q:"What does pinging the loopback address 127.0.0.1 confirm?",opts:["The default gateway is reachable", "The DNS server is responding", "The local TCP/IP protocol stack is functional", "The physical NIC hardware is working"],ans:2,exp:"Pinging 127.0.0.1 tests the local TCP/IP stack internally. No traffic leaves the machine \u2014 if this fails, TCP/IP is not properly installed or functioning."},
+  {id:42,domain:2,q:"Which port does RDP (Remote Desktop Protocol) use by default?",opts:["22", "23", "3389", "5900"],ans:2,exp:"RDP uses TCP port 3389 by default. It is frequently targeted by brute-force attacks and should be restricted to trusted IPs or protected by a VPN."},
+  {id:43,domain:3,q:"Which is the smallest standard desktop motherboard form factor?",opts:["ATX", "Micro-ATX", "Mini-ITX", "E-ATX"],ans:2,exp:"Mini-ITX measures 170\u00d7170 mm. Micro-ATX is 244\u00d7244 mm and full ATX is 305\u00d7244 mm. Mini-ITX sacrifices expansion slots for a compact footprint."},
+  {id:44,domain:3,q:"For optimal dual-channel memory performance, matched RAM sticks should be installed in:",opts:["Any two available slots", "The colour-matched paired slots per the motherboard manual", "Slots 1 and 2 only regardless of colour", "All available slots simultaneously"],ans:1,exp:"Dual-channel requires matched DIMMs in the correct paired slots (typically A1/B1 or A2/B2, colour-coded). Always consult the motherboard manual for the exact configuration."},
+  {id:45,domain:3,q:"Which storage interface provides the fastest throughput for consumer SSDs, using the PCIe bus directly?",opts:["SATA III (600 MB/s)", "USB 3.2 Gen 2 (2 GB/s)", "NVMe PCIe 4.0 (up to ~7 GB/s)", "SAS-3 (1.2 GB/s)"],ans:2,exp:"NVMe over PCIe bypasses the SATA/AHCI controller overhead entirely. PCIe 4.0 NVMe SSDs reach ~7 GB/s sequential read vs SATA III's 600 MB/s ceiling."},
+  {id:46,domain:3,q:"A desktop PC shuts down spontaneously only when running demanding games or video rendering. The most likely component causing this is:",opts:["The RAM", "An underpowered or failing PSU", "The operating system", "The network card"],ans:1,exp:"Unexpected shutdowns under high load are a classic symptom of a PSU that cannot deliver sufficient sustained power when GPU and CPU draw spikes during intensive workloads."},
+  {id:47,domain:3,q:"What is the primary function of thermal paste between a CPU and its heatsink?",opts:["Electrical insulation", "Adhesive to hold the cooler in place", "Filling microscopic air gaps to maximise thermal conductivity", "Corrosion prevention"],ans:2,exp:"Even polished metal surfaces have microscopic irregularities. Thermal compound fills these gaps so heat transfers through paste (high conductivity) rather than trapped air (very low conductivity)."},
+  {id:48,domain:3,q:"Which type of RAM loses all stored data the instant power is removed?",opts:["Flash NAND", "EEPROM", "DRAM (DDR4/DDR5)", "ROM"],ans:2,exp:"DRAM is volatile \u2014 it requires constant power and refresh cycles to retain data. All contents are lost instantly on power removal. SSDs and ROM are non-volatile."},
+  {id:49,domain:3,q:"A dedicated GPU should be installed in which expansion slot for maximum bandwidth?",opts:["PCIe x1", "PCIe x4", "PCIe x16", "Legacy PCI"],ans:2,exp:"PCIe x16 provides the highest bandwidth needed by modern GPUs (up to 32 GB/s bidirectional on PCIe 5.0). All current discrete graphics cards use PCIe x16."},
+  {id:50,domain:3,q:"What does a UPS provide that a standard surge protector does not?",opts:["Higher output wattage", "Battery backup during outages and power conditioning", "Wireless charging", "Voltage step-up capability"],ans:1,exp:"A UPS adds a battery that sustains equipment through short outages and provides clean, regulated power, protecting against surges and brownouts."},
+  {id:51,domain:3,q:"Which RAID level mirrors data across exactly two drives with no parity, providing full redundancy at 50% storage efficiency?",opts:["RAID 0", "RAID 1", "RAID 5", "RAID 6"],ans:1,exp:"RAID 1 writes identical data to both drives simultaneously. The array survives one drive failure with zero data loss, but you only use 50% of total raw capacity."},
+  {id:52,domain:3,q:"How many pins does the main ATX motherboard power connector use in modern systems?",opts:["20", "24", "28", "4"],ans:1,exp:"Modern ATX mainboards use a 24-pin connector (a 20+4 keyed design for backward compatibility). There is also a separate 8-pin (4+4) EPS connector for CPU power."},
+  {id:53,domain:3,q:"What component on a motherboard maintains BIOS/UEFI settings and keeps the real-time clock running when the PC is unplugged?",opts:["Voltage Regulator Module", "CMOS battery (CR2032)", "Northbridge chip", "RAM module"],ans:1,exp:"The CR2032 lithium coin cell provides a trickle current to the RTC and CMOS storage that holds BIOS settings when the system has no main power."},
+  {id:54,domain:3,q:"A 2.5-inch SSD needs to be installed in a desktop that only has 3.5-inch drive bays. What is needed?",opts:["A SATA power splitter", "A 2.5-to-3.5-inch mounting bracket/adapter", "A PCIe adapter card", "Nothing \u2014 it fits directly in a 3.5-inch bay"],ans:1,exp:"2.5-inch drives are designed for laptops. A mounting bracket or adapter tray is required to fit them mechanically in standard 3.5-inch desktop bays."},
+  {id:55,domain:3,q:"DDR5 RAM replaced DDR4 on which Intel/AMD platforms?",opts:["Intel 10th gen / AMD Ryzen 3000", "Intel 11th gen / AMD Ryzen 5000", "Intel 12th gen+ (LGA1700) / AMD Ryzen 7000 (AM5)", "Intel 9th gen / AMD Ryzen 2000"],ans:2,exp:"DDR5 is the standard for Intel Alder Lake/Raptor Lake (LGA1700) and AMD Ryzen 7000 (AM5). Earlier platforms use DDR4."},
+  {id:56,domain:3,q:"What does ECC (Error Correcting Code) RAM do that standard RAM cannot?",opts:["Increases memory clock speed", "Automatically detects and corrects single-bit memory errors", "Allows higher overclocks", "Reduces idle power consumption"],ans:1,exp:"ECC RAM uses extra bits for parity calculations, detecting and correcting single-bit errors on the fly and detecting (but not correcting) double-bit errors. Critical for servers and workstations."},
+  {id:57,domain:3,q:"A workstation must drive four 4K displays simultaneously. What must be verified about the GPU?",opts:["It has a fast Ethernet port", "It has sufficient video outputs (4x DP/HDMI) and enough VRAM for all four 4K framebuffers", "The CPU supports hyper-threading", "The motherboard supports PCIe 5.0"],ans:1,exp:"Four 4K displays require four physical outputs on the GPU and enough VRAM to hold all framebuffers simultaneously. Verify both before purchasing."},
+  {id:58,domain:3,q:"POST beep codes most commonly identify issues with which component?",opts:["Hard drive", "RAM", "GPU", "CPU fan"],ans:1,exp:"POST beep codes vary by BIOS vendor but most commonly indicate a RAM problem. A system that fails POST with beeps and a blank screen should have RAM reseated or tested first."},
+  {id:59,domain:3,q:"Which is NOT an advantage of SSDs over HDDs?",opts:["Faster read/write speeds", "No moving parts (shock resistance)", "Lower cost per gigabyte at large capacities", "Silent operation"],ans:2,exp:"HDDs still cost less per gigabyte for large-capacity drives (4TB+). SSDs are faster, quieter, and more durable, but remain more expensive per GB at high capacities."},
+  {id:60,domain:3,q:"A desktop PC produces no response when the power button is pressed. What should the technician check FIRST?",opts:["Reseat the RAM", "Verify the wall outlet is live, the power cable is connected, and the PSU rocker switch is on", "Replace the motherboard", "Clear the CMOS jumper"],ans:1,exp:"Always start with the simplest external cause: confirm the outlet works, the cable is fully seated at both ends, and the PSU switch (if present) is set to on."},
+  {id:61,domain:3,q:"What type of non-volatile memory stores the UEFI/BIOS firmware on a modern motherboard?",opts:["The OS kernel partition", "Flash ROM (EEPROM)", "System RAM", "CPU L3 cache"],ans:1,exp:"UEFI/BIOS firmware is stored in flash (EEPROM) on the motherboard. It is non-volatile, survives power loss, and can be updated (flashed) to add features or fix bugs."},
+  {id:62,domain:3,q:"A SATA hard drive requires how many cables to connect to a desktop PC?",opts:["One combined cable", "Two: a 7-pin SATA data cable and a 15-pin SATA power cable", "Three: data, power, and ground", "One wide 40-pin ribbon cable"],ans:1,exp:"SATA uses a thin 7-pin data cable to the motherboard and a 15-pin power cable from the PSU \u2014 always two separate cables."},
+  {id:63,domain:3,q:"Which tool diagnoses suspected RAM errors by systematically testing every memory cell?",opts:["CrystalDiskInfo", "Windows Memory Diagnostic (mdsched.exe) or MemTest86", "HWiNFO", "Disk Defragmenter"],ans:1,exp:"Windows Memory Diagnostic (built-in) or MemTest86 (bootable USB) test all RAM cells for errors. Run tests for multiple passes for reliable results."},
+  {id:64,domain:3,q:"A laptop's built-in keyboard stops working; a USB keyboard works fine. What is the MOST likely cause?",opts:["Incorrect keyboard language layout", "A hardware fault specific to the internal keyboard \u2014 ribbon cable or keyboard module", "The OS needs reinstalling", "A BIOS setting disabled it"],ans:1,exp:"Since external USB input works, the OS and drivers are fine. The fault is isolated to the internal keyboard hardware: most likely the ribbon cable connection or the keyboard itself."},
+  {id:65,domain:3,q:"Which expansion slot is typically used for a desktop Wi-Fi/Bluetooth combo adapter?",opts:["PCIe x16", "PCIe x1", "Legacy PCI", "ISA"],ans:1,exp:"Wi-Fi/Bluetooth combo cards use PCIe x1 \u2014 they require minimal bandwidth compared to GPUs, which use PCIe x16."},
+  {id:66,domain:3,q:"For maximum sequential throughput when editing large 4K video files, which storage configuration is ideal?",opts:["Single 8 TB HDD", "RAID 0 with two NVMe SSDs", "RAID 1 with two HDDs", "Single 1 TB SATA SSD"],ans:1,exp:"RAID 0 stripes data across both NVMe drives, combining sequential bandwidth for the highest possible read/write speeds. Note: RAID 0 has no redundancy \u2014 back up your work."},
+  {id:67,domain:3,q:"Which Intel desktop CPU socket is used by 12th and 13th generation processors?",opts:["LGA1200", "LGA1700", "AM4", "AM5"],ans:1,exp:"Intel 12th-gen (Alder Lake) and 13th-gen (Raptor Lake) use LGA1700. LGA1200 was for 10th/11th gen; AM4/AM5 are AMD sockets."},
+  {id:68,domain:3,q:"A laptop shows 'Plugged in, not charging.' Which causes should the technician investigate?",opts:["Only a defective battery", "Wrong wattage adapter, defective battery, battery driver issue, or thermal protection circuit triggered", "Only the charging port", "Only a software driver issue"],ans:1,exp:"'Plugged in, not charging' has multiple causes: insufficient adapter wattage, worn battery, battery driver corruption, or the management IC blocking charging due to temperature or cell protection."},
+  {id:69,domain:3,q:"A PC's date and time reset to a very old date (e.g., 2000) every time it is restarted. What is the cause?",opts:["NTP server unreachable", "Dead CMOS battery (CR2032)", "Windows time service disabled", "Motherboard clock chip failing"],ans:1,exp:"A dead CMOS battery can no longer power the RTC when the system is off. The BIOS resets to its factory default date on every boot. Replace the CR2032 coin cell."},
+  {id:70,domain:3,q:"A capacitor on a motherboard is visibly bulging at the top. What action should be taken?",opts:["Apply thermal paste and continue using the system", "Replace the motherboard \u2014 bulging capacitors indicate failure and cause instability", "Clean it with isopropyl alcohol", "Update the BIOS firmware"],ans:1,exp:"Bulging capacitors are failing and will cause system instability, BSODs, or complete failure. The motherboard must be replaced (or recapped if skilled at soldering)."},
+  {id:71,domain:3,q:"Which component converts 110V/220V AC mains power into the regulated DC voltages (+12V, +5V, +3.3V) used by PC components?",opts:["VRM (Voltage Regulator Module)", "PSU (Power Supply Unit)", "UPS battery", "CMOS battery"],ans:1,exp:"The PSU converts AC mains to regulated DC. The VRM on the motherboard takes the PSU's +12V rail and further steps it down to the precise CPU core voltage required."},
+  {id:72,domain:3,q:"A technician is installing a CPU on an AMD AM5 motherboard. What critical mistake must be avoided?",opts:["Using too much thermal paste", "Bending the LGA pins in the AM5 socket (pins are on the socket, not the CPU)", "Installing the cooler before the CPU", "Using DDR4 RAM"],ans:1,exp:"AM5 uses an LGA-style socket with pins on the motherboard. Bending socket pins is a catastrophic and expensive error. Handle the socket cover carefully and never press hard on the socket."},
+  {id:73,domain:4,q:"Which cloud service model provides virtualised servers, storage, and networking \u2014 with the customer managing the OS and applications?",opts:["SaaS", "PaaS", "IaaS", "FaaS"],ans:2,exp:"IaaS (Infrastructure as a Service) provides raw compute resources. Customers manage OS, middleware, and apps. Examples: AWS EC2, Azure Virtual Machines, Google Compute Engine."},
+  {id:74,domain:4,q:"Microsoft 365 (Word, Excel, Teams delivered via subscription) is an example of which cloud model?",opts:["IaaS", "PaaS", "SaaS", "DaaS"],ans:2,exp:"SaaS (Software as a Service) delivers fully managed applications over the internet. The provider handles everything from hardware to app updates. Microsoft 365, Salesforce, and Gmail are classic examples."},
+  {id:75,domain:4,q:"A Type 1 hypervisor differs from a Type 2 hypervisor because it:",opts:["Runs on top of a host OS", "Runs directly on bare-metal hardware with no underlying OS", "Supports fewer VMs", "Is only used for desktop virtualisation"],ans:1,exp:"Type 1 (bare-metal) hypervisors like VMware ESXi, Microsoft Hyper-V, and Xen run directly on hardware. Type 2 (VirtualBox, VMware Workstation) run on top of an existing host OS."},
+  {id:76,domain:4,q:"A VM configured in NAT network mode will:",opts:["Get its own IP on the physical LAN", "Share the host machine's IP for outbound internet traffic", "Only communicate with other VMs on the same host", "Have no network access"],ans:1,exp:"NAT mode routes the VM's traffic through the host's IP address, making the VM appear as the host to external networks. Bridged mode gives the VM its own LAN identity."},
+  {id:77,domain:4,q:"A technician takes a VM snapshot before a risky software install. If the install breaks the VM, the snapshot allows them to:",opts:["Reinstall the OS from scratch", "Instantly revert the VM to its exact state at snapshot time", "Back up the VM to cloud storage", "Clone the VM to another host"],ans:1,exp:"A snapshot captures the complete VM state (disk, RAM, config) at a point in time. Reverting instantly rolls back all changes made after the snapshot was taken."},
+  {id:78,domain:4,q:"Which cloud deployment model is dedicated exclusively to one organisation and can be hosted on-premises or by a third party?",opts:["Public cloud", "Community cloud", "Hybrid cloud", "Private cloud"],ans:3,exp:"A private cloud is used exclusively by one organisation, offering greater control, security, and customisation than public cloud at higher management cost."},
+  {id:79,domain:4,q:"A company handles normal load on-premises but automatically uses public cloud resources during demand spikes. This is called:",opts:["Cloud migration", "Cloud bursting", "Hybrid failover", "Auto-scaling"],ans:1,exp:"Cloud bursting extends on-premises workloads to the public cloud during peak demand, allowing cost-effective handling of spikes without over-provisioning on-premises hardware."},
+  {id:80,domain:4,q:"Which technology packages an application with all its runtime dependencies into a portable, isolated unit that runs consistently on any compatible host?",opts:["Virtual machine", "Container (e.g., Docker)", "Thin client", "VDI"],ans:1,exp:"Containers (Docker, Podman) package code and dependencies into an image that runs identically across dev, test, and production environments."},
+  {id:81,domain:4,q:"What is the primary benefit of VDI (Virtual Desktop Infrastructure) for a corporate environment?",opts:["Each user gets a more powerful local machine", "Desktop environments run on central servers; users access them from thin clients or any device", "Users can install any software freely", "VDI eliminates the need for networking"],ans:1,exp:"VDI centralises desktop OS and apps on server hardware. End-user devices just stream the display. This simplifies management, patching, and security."},
+  {id:82,domain:4,q:"The cloud characteristic that allows resources to automatically scale up during high demand and scale down when demand drops is called:",opts:["High availability", "Redundancy", "Elasticity", "Load balancing"],ans:2,exp:"Elasticity is a defining cloud characteristic \u2014 resources expand and contract automatically with workload demand. You pay only for what you use at any moment."},
+  {id:83,domain:4,q:"Which cloud model charges only for the milliseconds a function executes, with no server provisioning required?",opts:["IaaS", "PaaS", "SaaS", "FaaS (Serverless)"],ans:3,exp:"FaaS (Function as a Service) / Serverless (AWS Lambda, Azure Functions) executes small event-driven functions and bills per execution with no idle server costs."},
+  {id:84,domain:4,q:"A technician needs an independent copy of a production VM for testing that can run in parallel. Which VM feature is used?",opts:["Snapshot", "Clone", "Backup", "Template"],ans:1,exp:"Cloning creates a full independent VM copy that can run alongside the original. Snapshots record state but are linked to the original VM; templates create new VMs from a master image."},
+  {id:85,domain:4,q:"Which cloud storage benefit is most valuable for disaster recovery purposes?",opts:["Faster access than local SSD", "Files stored off-site on geographically redundant infrastructure", "Always cheaper per GB than local storage", "No internet required for access"],ans:1,exp:"Cloud storage's primary DR benefit is automatic geographic redundancy \u2014 your files are replicated across multiple data centres, protecting against local site failures."},
+  {id:86,domain:5,q:"A computer displays 'No boot device found.' What should the technician check FIRST?",opts:["Reinstall the OS", "Verify BIOS/UEFI detects the drive and boot order is correct", "Replace the hard drive", "Run SFC /scannow"],ans:1,exp:"Before assuming hardware failure or OS corruption, confirm the BIOS sees the drive in the device list and the boot order prioritises the correct drive. A loose cable is a common cause."},
+  {id:87,domain:5,q:"A PC powers on (fans spin) but shows a black screen with no POST. What is the FIRST component to suspect?",opts:["CPU", "RAM \u2014 reseat or test one stick at a time", "Hard drive", "GPU driver"],ans:1,exp:"Fans spinning but no POST/video is the classic RAM failure pattern. Reseat the modules or test one stick at a time in different slots before suspecting other components."},
+  {id:88,domain:5,q:"A laptop has a working external monitor but the built-in display is completely black. What should the technician check FIRST?",opts:["Replace the LCD screen", "Use Win+P or Fn display-toggle to change the output mode", "Reinstall GPU drivers", "Replace the display cable"],ans:1,exp:"Always check software before opening hardware. Win+P switches display modes \u2014 it may be set to 'Second screen only,' making the built-in display appear dead."},
+  {id:89,domain:5,q:"Which tool verifies all eight conductors in an RJ-45 cable are correctly wired?",opts:["Multimeter", "Cable tester", "Wi-Fi analyser", "Tone probe"],ans:1,exp:"A cable tester injects signals on each conductor and checks the far end, confirming continuity, correct pin mapping, and detecting opens, shorts, and split pairs."},
+  {id:90,domain:5,q:"Task Manager shows CPU at 100% and the PC is sluggish. What is the FIRST step?",opts:["Upgrade the CPU", "Identify which process is consuming CPU in Task Manager \u2014 scan for malware if unknown", "Reinstall Windows", "Add more RAM"],ans:1,exp:"Identify the culprit before taking hardware or OS action. Sort by CPU% in Task Manager. A single rogue process (malware, hung app) can peg the CPU \u2014 ending it resolves the issue."},
+  {id:91,domain:5,q:"A laser printer produces uniformly faded, light prints. Which component is the most likely cause?",opts:["Fuser assembly", "Toner cartridge low or depleted", "Transfer belt", "Pickup roller"],ans:1,exp:"Uniformly faded output across the entire page indicates a low or failing toner cartridge. If a new cartridge doesn't resolve it, the imaging drum or developer unit may be failing."},
+  {id:92,domain:5,q:"A laser printer produces pages where toner smears when you touch it. Which component is most likely at fault?",opts:["Toner cartridge", "Fuser assembly", "Imaging drum", "Transfer corona wire"],ans:1,exp:"The fuser fuses toner to paper using heat and pressure. Smearing or toner that rubs off indicates the fuser isn't reaching the correct temperature to bond the toner permanently."},
+  {id:93,domain:5,q:"A laser printer prints a continuous vertical black line down every page. What does this most likely indicate?",opts:["Low toner", "A scratch or defect on the imaging drum", "Fuser failure", "Dirty transfer roller"],ans:1,exp:"A scratch on the drum picks up toner at that point every rotation, printing a repeating vertical line. The imaging drum (often integrated with the toner cartridge) must be replaced."},
+  {id:94,domain:5,q:"An inkjet printer produces prints with missing horizontal bands. What is the FIRST troubleshooting step?",opts:["Replace the ink cartridges", "Run the printer's built-in printhead cleaning utility", "Replace the printer", "Clean the paper feed rollers"],ans:1,exp:"Missing horizontal lines are caused by clogged nozzles. The built-in cleaning utility forces ink through to clear blockages \u2014 always try this before replacing expensive cartridges."},
+  {id:95,domain:5,q:"A thermal receipt printer outputs completely blank receipts. What is the most common cause?",opts:["The ink ribbon is empty", "Thermal paper loaded with the non-coated side facing the print head", "Clogged print head", "Outdated driver"],ans:1,exp:"Thermal printers use no ink \u2014 heat activates a coating on special paper. If the non-coated side faces the head, nothing prints. Flip the paper roll to fix it."},
+  {id:96,domain:5,q:"A hard drive begins making a repetitive clicking sound at startup. What should the technician do FIRST?",opts:["Run CHKDSK immediately", "Back up all accessible data immediately \u2014 clicking signals imminent mechanical failure", "Replace the SATA cable", "Run a defragmentation"],ans:1,exp:"'Click of death' means the read/write heads are failing. The drive can fail completely at any moment. Data preservation is the absolute first priority before any other action."},
+  {id:97,domain:5,q:"After installing a new GPU, the PC boots to a black screen. What should the technician check first?",opts:["Reinstall Windows display drivers", "Verify the monitor cable is in the new GPU's ports (not the motherboard) and PCIe power connectors are attached", "Replace the GPU", "Update the BIOS"],ans:1,exp:"Two very common mistakes: monitor still connected to motherboard's integrated graphics, or PCIe power connectors not plugged into the new GPU. Check both before anything else."},
+  {id:98,domain:5,q:"Which Windows Recovery Environment command repairs the Master Boot Record?",opts:["sfc /scannow", "bootrec /fixmbr", "chkdsk /f /r", "diskpart"],ans:1,exp:"`bootrec /fixmbr` rewrites the MBR code. Pair with `bootrec /fixboot` (boot sector) and `bootrec /rebuildbcd` (BCD store) for comprehensive boot repair."},
+  {id:99,domain:5,q:"Which Windows command checks for and repairs file system errors and bad sectors on a drive?",opts:["sfc /scannow", "defrag", "chkdsk /f /r", "format"],ans:2,exp:"`chkdsk /f` fixes file system errors; `/r` scans for bad sectors and attempts data recovery. Requires a reboot to run on the active system drive."},
+  {id:100,domain:5,q:"Which command scans and replaces corrupted Windows system files from a cached copy?",opts:["chkdsk", "sfc /scannow", "DISM /Online /Cleanup-Image /RestoreHealth", "msconfig"],ans:1,exp:"SFC (System File Checker) `sfc /scannow` scans protected Windows system files and restores corrupted ones from a local cache. Run DISM if SFC cannot repair files."},
+  {id:101,domain:5,q:"A PC shows 'BOOTMGR is missing' on startup. What is the correct first repair approach?",opts:["Reinstall Windows completely", "Boot from Windows installation media; open Recovery Command Prompt and run bootrec /fixmbr, /fixboot, /rebuildbcd", "Replace the hard drive", "Run sfc /scannow from a running OS"],ans:1,exp:"BOOTMGR missing means the Windows Boot Manager is corrupt. The bootrec commands from the WinRE command prompt repair the MBR, boot sector, and BCD store without reinstalling."},
+  {id:102,domain:5,q:"A PC randomly reboots and CPU temps hit 95\u00b0C under load. What should the technician do first?",opts:["Replace the CPU", "Clean dust from the CPU cooler and reapply fresh thermal paste", "Reduce the CPU multiplier in BIOS", "Replace the motherboard"],ans:1,exp:"95\u00b0C triggers thermal shutdown to protect the CPU. Clogged heatsink fins and dried thermal paste are the most common causes. Clean and reapply before assuming hardware failure."},
+  {id:103,domain:5,q:"After adding a new RAM module, a BSOD with MEMORY_MANAGEMENT appears. What is the FIRST action?",opts:["Replace the motherboard", "Remove the new RAM and test if the error disappears; run MemTest86 on the new module", "Reinstall Windows", "Update chipset drivers"],ans:1,exp:"A BSOD appearing immediately after adding RAM strongly suggests the new module is faulty or incompatible. Remove it and test independently with MemTest86."},
+  {id:104,domain:5,q:"A user's Wi-Fi is slow on 2.4 GHz but fast on 5 GHz. What is the most likely cause?",opts:["Router firmware is outdated", "2.4 GHz channel congestion from neighbouring networks and household RF interference", "User is too far from the router", "ISP throttling"],ans:1,exp:"2.4 GHz has only 3 non-overlapping channels and is shared with microwaves, Bluetooth, baby monitors, and every neighbour's router. Move to 5 GHz or select a less congested 2.4 GHz channel."},
+  {id:105,domain:5,q:"Cable runs were extended after an office move and users report slow network speeds. What should the technician check?",opts:["DHCP lease times", "Whether cable runs exceed 100 metres; inspect for damage at new junction points", "DNS server settings", "Switch VLAN config"],ans:1,exp:"Ethernet is specified to 100 m maximum. Exceeding this causes signal attenuation and errors. Also check for tight bends, staples, or poor-quality patch cable used during the move."},
+  {id:106,domain:5,q:"A VoIP call sounds choppy with audio cutting out intermittently. Which network condition is most likely the cause?",opts:["High DNS latency", "Jitter or high latency disrupting real-time UDP audio packets", "IP address conflict", "DHCP server offline"],ans:1,exp:"VoIP is extremely sensitive to jitter (variable packet arrival times) and high latency. Delayed or out-of-order UDP audio packets simply drop \u2014 there is no retransmission for real-time media."},
+  {id:107,domain:5,q:"After a power outage, a surge-protected power strip provides no power. What should the technician check first?",opts:["Replace all connected PSUs", "Locate and press the reset button on the surge protector; verify the wall outlet is live", "Replace the surge protector", "Check the building circuit breaker first, then the surge protector reset"],ans:3,exp:"Start at the source: check the circuit breaker first. If the breaker is fine, press the surge protector's reset button \u2014 many have auto-shutoff that requires manual reset after a large surge event."},
+  {id:108,domain:5,q:"A technician needs to identify which patch panel port matches a specific network drop in a remote office. Which tool is most appropriate?",opts:["Wi-Fi analyser", "Tone generator and inductive probe (fox and hound)", "Cable tester", "Network tap"],ans:1,exp:"A tone generator injects an audio tone at one end of the cable; the inductive probe traces the cable at the patch panel by detecting the tone through insulation without cutting into the cable."},
+  {id:109,domain:5,q:"A projector connected via HDMI shows 'No Signal' while the laptop screen works normally. What should the technician try first?",opts:["Replace the HDMI cable", "Press Win+P (or Fn display toggle) to switch to Duplicate or Extend mode", "Reinstall the display adapter driver", "Replace the projector lamp"],ans:1,exp:"Win+P or the Fn display key cycles through display modes. If set to 'PC screen only,' no signal is sent to the HDMI output. This is the most common cause and costs nothing to check."},
+  {id:110,domain:5,q:"An optical mouse cursor moves erratically and jumps around the screen. What should the technician try first?",opts:["Replace the mouse", "Clean the optical sensor and try the mouse on a proper mouse pad", "Reinstall mouse drivers", "Replace the USB port"],ans:1,exp:"Optical sensors fail on glass, mirrors, or highly uniform surfaces, and a dirty sensor lens causes erratic tracking. Clean and use a suitable surface before replacing hardware."},
+  {id:111,domain:5,q:"After replacing a laptop display, the screen shows a consistent pink/purple tint. What is the most likely cause?",opts:["Wrong replacement panel model", "Loose or improperly seated display cable (LVDS/eDP connector)", "Backlight failure", "GPU failure"],ans:1,exp:"A consistent colour cast (pink, purple, green) on an otherwise functional display after screen work typically means the video cable connector is not fully seated. Reseat carefully."},
+  {id:112,domain:5,q:"A switch port shows an amber/orange link light rather than green. What does this typically indicate?",opts:["Normal Gigabit operation", "Operating at 10/100 Mbps rather than Gigabit, or a fault condition", "No cable connected", "Port administratively shut down"],ans:1,exp:"Most switches use green for 1 Gbps links and amber/orange for 10/100 Mbps connections, indicating either a legacy device, a cable that can't negotiate Gigabit, or a fault."},
+  {id:113,domain:5,q:"A network printer works for some users but not others on the same LAN. What is the most likely cause?",opts:["Printer out of paper", "Printer permissions \u2014 affected users lack the required access rights", "Printer IP changed", "Print spooler crashed"],ans:1,exp:"When some users can print and others cannot from the same LAN, it is almost always a permissions issue. Verify the affected users have Print permission on that printer object."},
+  {id:114,domain:5,q:"A user can access local servers and shared drives but cannot browse the internet. What should the technician verify FIRST?",opts:["DNS server", "The default gateway \u2014 ping it and confirm the route to the internet is correct", "Wi-Fi password", "NIC driver"],ans:1,exp:"Local connectivity works, so NIC, switch, and local routing are fine. The default gateway is the exit point for internet traffic. Ping it first to confirm reachability."},
+  {id:115,domain:5,q:"A technician suspects a PC is overheating. Which tool monitors real-time CPU/GPU temperatures?",opts:["Task Manager CPU graph", "HWMonitor or HWiNFO", "Device Manager", "Resource Monitor"],ans:1,exp:"Task Manager only shows CPU load percentages. HWMonitor and HWiNFO read actual temperature sensor values from the CPU, GPU, motherboard, and storage devices in real time."},
+  {id:116,domain:5,q:"Which tool most quickly checks whether a wall outlet is correctly wired (hot, neutral, ground)?",opts:["Multimeter", "Receptacle (outlet) tester \u2014 a 3-prong plug with LED indicators", "Voltage tester pen", "Oscilloscope"],ans:1,exp:"A receptacle tester plugs into the outlet and displays wiring status instantly via LED combinations. Faster than a multimeter for a quick polarity/ground check."},
+  {id:117,domain:5,q:"A workstation was fine yesterday; today it powers on (fans spin, single beep) but shows a black screen. What should the technician try FIRST?",opts:["Replace the PSU", "Reseat the RAM and expansion cards, then retry", "Flash the BIOS", "Replace the CPU"],ans:1,exp:"Components can unseat due to thermal cycling. Reseating RAM, GPU, and other cards costs nothing and resolves a large percentage of 'worked yesterday, dead today' failures."},
+  {id:118,domain:5,q:"After a Windows update, a printer shows 'Driver unavailable.' What is the quickest fix?",opts:["Roll back the Windows update", "Download and reinstall the correct driver from the manufacturer's website", "Replace the printer", "Perform a system restore"],ans:1,exp:"Windows updates sometimes remove or corrupt third-party drivers. Downloading the current driver from the manufacturer's site and reinstalling is the standard and most reliable fix."},
+  {id:119,domain:5,q:"A 'Low Disk Space' warning appears on the C: drive. What should the technician do FIRST?",opts:["Purchase a larger drive", "Run Disk Cleanup, remove large unnecessary files, and uninstall unused apps", "Expand the partition using Disk Management", "Reinstall Windows"],ans:1,exp:"Before spending money on hardware, use Disk Cleanup to remove temp files, empty the Recycle Bin, clear Windows Update cache, and uninstall bloatware. Often reclaims gigabytes for free."},
+  {id:120,domain:5,q:"A user receives 'IP address conflict' notifications. What does this mean and how is it resolved?",opts:["Two devices share the same subnet \u2014 normal behaviour", "Two devices have identical IP addresses; identify both and assign unique IPs, or use DHCP exclusively", "A DHCP lease expired", "A DNS server has a stale record"],ans:1,exp:"An IP conflict means two devices share an IP address, causing both to malfunction. Identify both devices (check static IP assignments and DHCP reservations) and ensure all IPs are unique."}
+];
+
+// ── Shuffle utilities ──────────────────────────────────────────────────────
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Domain proportions: select this many questions per domain per exam run
+// (maintains the real 220-1101 weighting; pool is much larger so every run is fresh)
+// 220-1101 weights: D1=23% D2=19% D3=17% D4=20% D5=21%
+const DOMAIN_SELECT = {1:8,2:10,3:13,4:5,5:14};
+
+// Produces a fresh exam: proportional domain sampling, shuffled question order,
+// AND shuffled answer option order (ans + wrongWhy remapped to match).
+function prepareExam() {
+  // Group question indices by domain
+  const byDomain = {1:[],2:[],3:[],4:[],5:[]};
+  questions.forEach((q, i) => byDomain[q.d].push(i));
+
+  // Pick a random sample from each domain's pool
+  const selected = [];
+  [1, 2, 3, 4, 5].forEach(d => {
+    const pool = shuffleArray(byDomain[d]);
+    const n = Math.min(DOMAIN_SELECT[d], pool.length);
+    selected.push(...pool.slice(0, n));
+  });
+
+  // Shuffle the combined selection so domains aren't grouped
+  return shuffleArray(selected).map(origIdx => {
+    const q = questions[origIdx];
+    const optOrder = shuffleArray([0, 1, 2, 3]);
+    return {
+      ...q,
+      opts:     optOrder.map(i => q.opts[i]),
+      wrongWhy: optOrder.map(i => (q.wrongWhy ? q.wrongWhy[i] : null)),
+      ans:      optOrder.indexOf(q.ans)
+    };
+  });
+}
+
+// ── State ──────────────────────────────────────────────────────────────────
+let current = 0;
+let activeQuestions = questions;  // replaced with a freshly shuffled copy at exam start
+let answers = new Array(questions.length).fill(null);   // null=unanswered, -1=not learned, 0-3=chosen option
+let flagged = [];                 // flagged[i] = true if question i was flagged for review
+let startTime = null, timerInterval = null;
+const letters = ['A','B','C','D'];
+let examDate = '2026-05-31'; // updated by user's date input in results view
+
+// ── New feature globals ────────────────────────────────────────────────────
+let learningMode    = false;          // show explanations after each answer
+let confidence      = [];             // null | 1=guessing | 2=unsure | 3=confident
+let questionTimes   = [];             // ms spent on each question
+let questionStartMs = null;           // when current question was first rendered
+let wrong_cache     = [];             // cached for retry quiz
+let nl_cache        = [];             // cached for retry quiz
+let retryQuestions  = [], retryAnswers = [], retryCurrent = 0;
+const HISTORY_KEY   = 'aplus220_1101_history_v1';
+const STUDIED_KEY   = 'aplus220_1101_studied_v1';
+const NOTES_KEY     = 'aplus220_1101_notes_v1';
+let isViewingHistory = false;
+let historyElapsed   = null;
+
+// ── Session persistence ────────────────────────────────────────────────────
+const SAVE_KEY = 'aplus220_1101_exam_v1';
+
+function saveState() {
+  if (!startTime) return;
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      activeQuestions,
+      answers,
+      flagged,
+      confidence,
+      questionTimes,
+      learningMode,
+      elapsedMs: Date.now() - startTime,
+      current,
+      savedAt: Date.now()
+    }));
+  } catch(e) {}
+}
+
+function clearState() {
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+}
+
+function checkSavedState() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (!s || !s.activeQuestions || !s.answers) return;
+
+    const answered  = s.answers.filter(a => a !== null).length;
+    const fl        = (s.flagged || []).filter(Boolean).length;
+    const mins      = Math.floor(s.elapsedMs / 60000);
+    const secs      = Math.floor((s.elapsedMs % 60000) / 1000);
+    const timeStr   = `${mins}:${secs.toString().padStart(2,'0')}`;
+    const savedDate = new Date(s.savedAt).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+
+    const banner = document.createElement('div');
+    banner.id = 'resume-banner';
+    banner.className = 'resume-banner';
+    banner.innerHTML = `
+      <h3>${ic('map-pin',16)} Resume Your Assessment</h3>
+      <p>You have an exam in progress — saved ${savedDate}. Pick up right where you left off, or start fresh with a newly shuffled exam.</p>
+      <div class="resume-stats">
+        <div class="resume-stat"><div class="rst-num">${answered}<span style="font-size:0.85rem;font-weight:600">/50</span></div><div class="rst-label">Answered</div></div>
+        ${fl > 0 ? `<div class="resume-stat"><div class="rst-num">${fl}</div><div class="rst-label">Flagged</div></div>` : ''}
+        <div class="resume-stat"><div class="rst-num">${timeStr}</div><div class="rst-label">Elapsed</div></div>
+        <div class="resume-stat"><div class="rst-num">${50 - answered}</div><div class="rst-label">Remaining</div></div>
+      </div>
+      <div class="resume-actions">
+        <button class="btn btn-primary btn-lg" onclick="resumeExam()">Resume Where I Left Off →</button>
+        <button class="btn btn-secondary" onclick="startFresh()">Start Fresh Instead</button>
+      </div>`;
+
+    const startScreen = document.getElementById('start-screen');
+    startScreen.insertBefore(banner, startScreen.firstChild);
+    document.getElementById('start-btn').style.display = 'none';
+    renderIcons();
+  } catch(e) {}
+}
+
+function resumeExam() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if (!s) { startExam(); return; }
+    activeQuestions = s.activeQuestions;
+    answers         = s.answers;
+    flagged         = s.flagged        || new Array(activeQuestions.length).fill(false);
+    confidence      = s.confidence     || new Array(activeQuestions.length).fill(null);
+    questionTimes   = s.questionTimes  || new Array(activeQuestions.length).fill(0);
+    learningMode    = s.learningMode   || false;
+    startTime       = Date.now() - s.elapsedMs;
+    current         = s.current || 0;
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('timer-box').style.display    = 'block';
+    document.getElementById('prog-wrap').classList.add('show');
+    timerInterval = setInterval(updateTimer, 1000);
+    renderQuestion(current);
+  } catch(e) { startExam(); }
+}
+
+function startFresh() {
+  clearState();
+  document.getElementById('resume-banner')?.remove();
+  document.getElementById('start-btn').style.display = '';
+}
+
+const domainInfo = {
+  1: {name:"Mobile Devices",     color:"#3b82f6", pct:15, xVal:15},
+  2: {name:"Networking",         color:"#10b981", pct:20, xVal:20},
+  3: {name:"Hardware",           color:"#f97316", pct:25, xVal:25},
+  4: {name:"Virtualization & Cloud", color:"#8b5cf6", pct:11, xVal:11},
+  5: {name:"HW & Net Troubleshooting", color:"#ef4444", pct:29, xVal:29}
+};;
+
+// ── Start ──────────────────────────────────────────────────────────────────
+function startExam() {
+  clearState();
+  activeQuestions = prepareExam();                        // fresh shuffle every time
+  answers       = new Array(activeQuestions.length).fill(null);
+  flagged       = new Array(activeQuestions.length).fill(false);
+  confidence    = new Array(activeQuestions.length).fill(null);
+  questionTimes = new Array(activeQuestions.length).fill(0);
+  learningMode  = document.getElementById('learning-mode-toggle')?.checked || false;
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('timer-box').style.display = 'block';
+  document.getElementById('prog-wrap').classList.add('show');
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
+  renderQuestion(0);
+}
+
+function updateTimer() {
+  const s = Math.floor((Date.now() - startTime) / 1000);
+  document.getElementById('timer').textContent = `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
+}
+
+// ── Render question ────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  current = idx;
+  questionStartMs = Date.now();
+  const q = activeQuestions[idx];
+  const answered = answers[idx] !== null;
+  const notLearned = answers[idx] === -1;
+  const userAns = answers[idx];
+
+  const optsHTML = q.opts.map((o, i) => {
+    let cls = 'opt-btn';
+    if (answered && (learningMode || notLearned)) {
+      // In exam mode, don't colour-code answers — reveal only in results
+      if (i === q.ans) cls += ' correct';
+      else if (i === userAns) cls += ' wrong';
+    } else if (answered && i === userAns) {
+      // In exam mode, just show which option was selected (neutral highlight)
+      cls += ' selected';
+    }
+    return `<button class="${cls}" onclick="selectAnswer(${idx},${i})" ${answered?'disabled':''}>
+      <span class="opt-letter">${letters[i]}</span><span>${o}</span>
+    </button>`;
+  }).join('');
+
+  // Explanation — only shown in Learning Mode (or when Not Learned, which always reveals the answer)
+  let expHTML = '';
+  if (answered && (learningMode || notLearned)) {
+    if (notLearned) {
+      expHTML = `<div class="explanation show notlearned-exp">
+        <div style="color:var(--yellow);font-weight:800;font-size:0.8rem;margin-bottom:0.4rem">${ic('book-open',13)} Marked as Not Learned Yet</div>
+        <div class="exp-correct-label">${ic('check',13)} Correct answer: ${letters[q.ans]}. ${q.opts[q.ans]}</div>
+        <div class="exp-body" style="margin-top:0.35rem"><strong>Why:</strong> ${q.exp}</div>
+      </div>`;
+    } else if (userAns === q.ans) {
+      expHTML = `<div class="explanation show correct-exp">
+        <div style="color:var(--green);font-weight:800;font-size:0.8rem;margin-bottom:0.35rem">${ic('check',13)} Correct!</div>
+        <div class="exp-body">${q.exp}</div>
+      </div>`;
+    } else {
+      const whyWrong = q.wrongWhy && q.wrongWhy[userAns] ? q.wrongWhy[userAns] : null;
+      expHTML = `<div class="explanation show wrong-exp">
+        <div class="exp-wrong-label" style="margin-bottom:0.3rem">${ic('x',13)} Incorrect</div>
+        ${whyWrong ? `<div class="exp-why-wrong">Why ${letters[userAns]} is wrong: ${whyWrong}</div>` : ''}
+        <div class="exp-correct-label">${ic('check',13)} Correct: ${letters[q.ans]}. ${q.opts[q.ans]}</div>
+        <div class="exp-body" style="margin-top:0.3rem">${q.exp}</div>
+      </div>`;
+    }
+  }
+
+  // Confidence rating (shown after answering a non-not-learned question)
+  const confHTML = (answered && !notLearned) ? `<div class="conf-row">
+    <span class="conf-label">${ic('bar-chart-2',11)} Confidence:</span>
+    ${[['Guessing',1,'conf-guess'],['Unsure',2,'conf-unsure'],['Confident',3,'conf-sure']].map(([l,v,c])=>
+      `<button class="conf-btn ${c}${confidence[idx]===v?' active':''}" onclick="setConfidence(${idx},${v})">${l}</button>`
+    ).join('')}
+  </div>` : '';
+
+  // Not-learned button
+  const nlActive = notLearned ? 'active' : '';
+  const nlDisabled = answered && !notLearned ? 'disabled' : '';
+  const nlLabel = notLearned ? ic('check',13)+' Marked as Not Learned Yet' : ic('book-open',13)+' I haven\'t learned this yet';
+
+  // Next / finish button
+  const isLast = idx === activeQuestions.length - 1;
+  const nextLabel = learningMode && answered && !isLast ? ic('arrow-right',13)+' Continue' : 'Next →';
+  const nextBtn = isLast
+    ? `<button class="btn btn-primary" onclick="showReviewScreen()">View Full Report →</button>`
+    : `<button class="btn btn-primary" onclick="navigate(${idx+1})">${nextLabel}</button>`;
+
+  const html = `
+    <div class="q-card active">
+      <div class="q-meta">
+        <span class="q-num">Q${idx+1} of ${activeQuestions.length}</span>
+        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        ${answered && !notLearned && learningMode && userAns===q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--green)">${ic('check',12)} Correct</span>` : ''}
+        ${answered && !notLearned && learningMode && userAns!==q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--red)">${ic('x',12)} Incorrect</span>` : ''}
+        ${notLearned ? `<span style="font-size:0.73rem;font-weight:700;color:var(--yellow)">${ic('book-open',12)} Not Learned</span>` : ''}
+        <button class="${flagged[idx]?'flag-btn flagged':'flag-btn'}" onclick="markFlagged(${idx})">${flagged[idx]?ic('flag',12)+' Flagged':ic('flag',12)+' Flag'}</button>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optsHTML}</div>
+      ${confHTML}
+      <div class="not-learned-row">
+        <button class="not-learned-btn ${nlActive}" ${nlDisabled} onclick="markNotLearned(${idx})">
+          ${nlLabel}
+        </button>
+      </div>
+      ${expHTML}
+      <div class="nav-row">
+        <button class="btn btn-secondary" onclick="navigate(${idx-1})" ${idx===0?'disabled':''}>← Prev</button>
+        ${nextBtn}
+      </div>
+    </div>`;
+
+  document.getElementById('question-area').innerHTML = html;
+  renderIcons();
+  updateProgress(idx);
+  renderNavigator();
+  window.scrollTo(0,0);
+  if (learningMode && answered) {
+    setTimeout(() => document.querySelector('.explanation.show')?.scrollIntoView({behavior:'smooth',block:'nearest'}), 150);
+  }
+}
+
+function selectAnswer(qIdx, optIdx) {
+  if (answers[qIdx] !== null && answers[qIdx] !== -1) return;
+  if (answers[qIdx] === -1) return;
+  if (questionStartMs) questionTimes[qIdx] = Date.now() - questionStartMs;
+  answers[qIdx] = optIdx;
+  renderQuestion(qIdx);
+  saveState();
+}
+
+function markNotLearned(idx) {
+  if (answers[idx] !== null && answers[idx] !== -1) return;
+  if (questionStartMs) questionTimes[idx] = Date.now() - questionStartMs;
+  answers[idx] = answers[idx] === -1 ? null : -1;
+  renderQuestion(idx);
+  saveState();
+}
+
+function markFlagged(idx) {
+  flagged[idx] = !flagged[idx];
+  renderQuestion(idx);
+  saveState();
+}
+
+function navigate(idx) {
+  if (idx < 0 || idx >= activeQuestions.length) return;
+  renderQuestion(idx);
+  saveState();
+}
+
+function setConfidence(qIdx, level) {
+  confidence[qIdx] = confidence[qIdx] === level ? null : level;
+  // Re-render just the confidence row without full re-render
+  document.querySelectorAll('.conf-btn').forEach((btn, i) => {
+    const v = i + 1;
+    btn.classList.toggle('active', confidence[qIdx] === v);
+  });
+  saveState();
+}
+
+function updateProgress(idx) {
+  const pct = ((idx+1)/activeQuestions.length)*100;
+  document.getElementById('prog-fill').style.width = pct+'%';
+  const ans = answers.filter(a=>a!==null).length;
+  const fl  = flagged.filter(Boolean).length;
+  document.getElementById('prog-label').innerHTML = `Q${idx+1} of ${activeQuestions.length} · ${ans} answered${fl>0?` · ${ic('flag',12)} ${fl} flagged`:''}`;
+}
+
+// ── Question Navigator ─────────────────────────────────────────────────────
+function toggleNavigator() {
+  const nav = document.getElementById('q-navigator');
+  if (!nav) return;
+  nav.classList.toggle('open');
+  if (nav.classList.contains('open')) renderNavigator();
+}
+
+function renderNavigator() {
+  const grid = document.getElementById('nav-grid');
+  if (!grid || !document.getElementById('q-navigator')?.classList.contains('open')) return;
+  grid.innerHTML = activeQuestions.map((q, i) => {
+    let cls = 'nav-sq';
+    if (i === current)       cls += ' nav-curr';
+    else if (answers[i] === -1)    cls += ' nav-nl';
+    else if (answers[i] !== null)  cls += ' nav-ans';
+    if (flagged[i] && i !== current) cls += ' nav-flag';
+    return `<button class="${cls}" onclick="navigate(${i})" title="Q${i+1}: ${q.tag}">${i+1}</button>`;
+  }).join('');
+}
+
+// ── Review Before Submit ───────────────────────────────────────────────────
+function showReviewScreen() {
+  const unanswered   = answers.filter(a => a === null).length;
+  const notLearnedCt = answers.filter(a => a === -1).length;
+  const answeredCt   = answers.filter(a => a !== null && a !== -1).length;
+  const flaggedCt    = flagged.filter(Boolean).length;
+  const flaggedItems = activeQuestions
+    .map((q, i) => ({ q, i }))
+    .filter(({ i }) => flagged[i])
+    .map(({ q, i }) => `<li>Q${i+1}: ${q.q.length > 85 ? q.q.slice(0,85)+'…' : q.q}</li>`)
+    .join('');
+
+  const html = `
+    <div class="review-screen">
+      <h2>${ic('clipboard-check',20)} Ready to Submit?</h2>
+      <p>Here's where you stand before seeing your results. You can still go back and review flagged questions.</p>
+      <div class="review-counts">
+        <div class="review-count"><div class="rc-num" style="color:var(--green)">${answeredCt}</div><div class="rc-label">Answered</div></div>
+        <div class="review-count"><div class="rc-num" style="color:var(--yellow)">${notLearnedCt}</div><div class="rc-label">Not Learned</div></div>
+        <div class="review-count"><div class="rc-num" style="color:#f59e0b">${flaggedCt}</div><div class="rc-label">Flagged</div></div>
+        ${unanswered > 0 ? `<div class="review-count"><div class="rc-num" style="color:var(--red)">${unanswered}</div><div class="rc-label">Unanswered</div></div>` : ''}
+      </div>
+      ${flaggedItems ? `<div style="text-align:left;margin-bottom:1rem"><div style="font-size:0.78rem;font-weight:700;color:#f59e0b;margin-bottom:0.4rem">${ic('flag',13)} Flagged for review:</div><ul class="review-flagged-list">${flaggedItems}</ul></div>` : ''}
+      <div class="review-actions">
+        <button class="btn btn-primary btn-lg" onclick="showResults()">${ic('bar-chart-2',16)} Submit &amp; See Results</button>
+        <button class="btn btn-secondary" onclick="navigate(${activeQuestions.length-1})">${ic('arrow-left',14)} Back to Last Question</button>
+      </div>
+    </div>`;
+  document.getElementById('question-area').innerHTML = html;
+  renderIcons();
+  window.scrollTo(0,0);
+}
+
+// ── Keyboard Shortcuts ─────────────────────────────────────────────────────
+document.addEventListener('keydown', function(e) {
+  if (!startTime) return;
+  if (document.getElementById('results').style.display !== 'none') return;
+  if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
+  const answered = answers[current] !== null;
+  switch(e.key) {
+    case 'a': case 'A': case '1': if (!answered) { e.preventDefault(); selectAnswer(current,0); } break;
+    case 'b': case 'B': case '2': if (!answered) { e.preventDefault(); selectAnswer(current,1); } break;
+    case 'c': case 'C': case '3': if (!answered) { e.preventDefault(); selectAnswer(current,2); } break;
+    case 'd': case 'D': case '4': if (!answered) { e.preventDefault(); selectAnswer(current,3); } break;
+    case 'f': case 'F': e.preventDefault(); markFlagged(current); break;
+    case 'ArrowRight': e.preventDefault();
+      if (current < activeQuestions.length-1) navigate(current+1); else showReviewScreen(); break;
+    case 'ArrowLeft': e.preventDefault(); if (current > 0) navigate(current-1); break;
+  }
+});
+
+// ── Run History ────────────────────────────────────────────────────────────
+function saveRunToHistory(correct, total, dStats) {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    history.unshift({
+      date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+      score: Math.round((correct/total)*100),
+      correct, total,
+      dPct: {1:dStats[1].pct, 2:dStats[2].pct, 3:dStats[3].pct, 4:dStats[4].pct},
+      ts: Date.now(),
+      // Full state for report replay
+      elapsed: document.getElementById('timer').textContent,
+      qIndices: activeQuestions.map(q => questions.indexOf(q)),
+      answers:       answers.slice(),
+      confidence:    confidence.slice(),
+      questionTimes: questionTimes.slice(),
+      flagged:       flagged.slice(),
+    });
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0,10)));
+  } catch(e) {}
+}
+
+function buildRunHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length < 2) return '';
+    const rows = history.map((h, i) => {
+      const prev = history[i+1];
+      const delta = prev ? h.score - prev.score : null;
+      const trend = delta === null ? '<span style="color:var(--muted)">First run</span>'
+                  : delta > 0  ? `<span class="hist-up">↑ +${delta}%</span>`
+                  : delta < 0  ? `<span class="hist-dn">↓ ${delta}%</span>`
+                  : '<span style="color:var(--muted)">→ Same</span>';
+      const sc = h.score >= 78 ? 'var(--green)' : h.score >= 60 ? 'var(--yellow)' : 'var(--red)';
+      return `<tr>
+        <td>${h.date}</td>
+        <td style="font-weight:800;color:${sc}">${h.score}%</td>
+        <td>${h.correct}/${h.total}</td>
+        <td>${trend}</td>
+        <td style="font-size:0.72rem;color:var(--muted)">${[1,2,3,4,5].map(d=>`D${d}:${h.dPct[d]}%`).join(' · ')}</td>
+      </tr>`;
+    }).join('');
+    return `<div class="history-section">
+      <h3>${ic('trending-up',15)} Score History (${history.length} runs)</h3>
+      <table class="history-table">
+        <thead><tr><th>Date</th><th>Score</th><th>Correct</th><th>Trend</th><th>By Domain</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  } catch(e) { return ''; }
+}
+
+// ── Radar Chart ────────────────────────────────────────────────────────────
+function buildRadarChart(dStats) {
+  const cx=170, cy=160, r=100;
+  const dNames = ['Networking\nConcepts 23%','Net. Impl.\n19%','Net. Ops\n17%','Net. Security\n20%','Troubleshooting\n21%'];
+  const dColors = ['#3b82f6','#22c55e','#f97316','#a855f7','#14b8a6'];
+  // 5 axes
+  const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
+
+  const rings = [25,50,75,100].map(pct => {
+    const pts = angles.map(a => `${cx+r*pct/100*Math.cos(a)},${cy+r*pct/100*Math.sin(a)}`).join(' ');
+    return `<polygon points="${pts}" fill="none" stroke="var(--border)" stroke-width="${pct===100?1.5:0.8}" opacity="0.7"/>`;
+  }).join('');
+
+  const passRing = angles.map(a => `${cx+r*0.78*Math.cos(a)},${cy+r*0.78*Math.sin(a)}`).join(' ');
+  const scorePts = angles.map((a,i) => {
+    const pct = dStats[i+1].pct/100;
+    return `${cx+r*pct*Math.cos(a)},${cy+r*pct*Math.sin(a)}`;
+  }).join(' ');
+  const axes = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" stroke="var(--border)" stroke-width="1" opacity="0.6"/>`
+  ).join('');
+
+  const dots = angles.map((a,i) => {
+    const pct = (dStats[i+1]||{pct:0}).pct/100;
+    const dx = cx+r*pct*Math.cos(a), dy = cy+r*pct*Math.sin(a);
+    const lx = cx+(r+32)*Math.cos(a), ly = cy+(r+32)*Math.sin(a);
+    const anchor = Math.cos(a)>0.2?'start':Math.cos(a)<-0.2?'end':'middle';
+    const [l1,l2] = dNames[i].split('\n');
+    return `<circle cx="${dx}" cy="${dy}" r="5" fill="${dColors[i]}" stroke="var(--card)" stroke-width="1.5"/>
+      <text x="${lx}" y="${ly-7}" text-anchor="${anchor}" fill="var(--muted)" font-size="10" font-family="system-ui">${l1}</text>
+      <text x="${lx}" y="${ly+5}" text-anchor="${anchor}" fill="${dColors[i]}" font-size="11" font-weight="bold" font-family="system-ui">${dStats[i+1].pct}%</text>`;
+  }).join('');
+
+  const pRingLabelX = cx + r*0.78*Math.cos(-Math.PI/2) - 25;
+  const pRingLabelY = cy + r*0.78*Math.sin(-Math.PI/2) - 7;
+
+  return `<div class="radar-section">
+    <h3>${ic('activity',15)} Domain Coverage Radar</h3>
+    <div class="radar-wrap">
+      <svg width="340" height="310" viewBox="0 0 340 310" xmlns="http://www.w3.org/2000/svg">
+        ${rings}
+        <polygon points="${passRing}" fill="rgba(239,68,68,0.05)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+        ${axes}
+        <polygon points="${scorePts}" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+        ${dots}
+        <text x="${pRingLabelX}" y="${pRingLabelY}" fill="#ef4444" font-size="9" font-family="system-ui" opacity="0.85">78% pass line</text>
+      </svg>
+    </div>
+  </div>`;
+}
+
+// ── Priority Matrix ────────────────────────────────────────────────────────
+function buildPriorityMatrix(dStats) {
+  const W=340, H=260, padL=44, padR=14, padT=14, padB=36;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const dInfo=[{d:1,name:'Net. Concepts',w:23,c:'#3b82f6'},{d:2,name:'Net. Impl.',w:19,c:'#22c55e'},{d:3,name:'Net. Ops',w:17,c:'#f97316'},{d:4,name:'Net. Security',w:20,c:'#a855f7'},{d:5,name:'Troubleshoot',w:21,c:'#14b8a6'}];
+  const xMin=9,xMax=31,yMin=0,yMax=100;
+  const toX=w=>padL+(w-xMin)/(xMax-xMin)*plotW;
+  const toY=s=>padT+plotH-(s-yMin)/(yMax-yMin)*plotH;
+  const qx=toX(20), qy=toY(70);
+
+  const bubbles = dInfo.map(({d,name,w,c})=>{
+    const s=dStats[d].pct, x=toX(w), y=toY(s);
+    return `<circle cx="${x}" cy="${y}" r="24" fill="${c}" opacity="0.13" stroke="${c}" stroke-width="1.5"/>
+      <text x="${x}" y="${y-2}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-weight="bold" font-size="12" font-family="system-ui">${s}%</text>
+      <text x="${x}" y="${y+12}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-size="9" font-family="system-ui">${name}</text>`;
+  }).join('');
+
+  return `<div class="pmatrix-box">
+    <h3>${ic('target',15)} Study Priority Matrix</h3>
+    <p class="pmatrix-sub">High exam weight + low your score = highest ROI for study time. Focus bottom-right first.</p>
+    <div class="pmatrix-wrap">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+        <rect x="${padL}" y="${padT}" width="${qx-padL}" height="${qy-padT}" fill="rgba(234,179,8,0.05)" rx="3"/>
+        <rect x="${qx}" y="${padT}" width="${W-padR-qx}" height="${qy-padT}" fill="rgba(76,175,80,0.05)" rx="3"/>
+        <rect x="${padL}" y="${qy}" width="${qx-padL}" height="${H-padB-qy}" fill="rgba(156,163,175,0.04)" rx="3"/>
+        <rect x="${qx}" y="${qy}" width="${W-padR-qx}" height="${H-padB-qy}" fill="rgba(239,68,68,0.07)" rx="3"/>
+        <text x="${(padL+qx)/2}" y="${padT+9}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Light review</text>
+        <text x="${(qx+W-padR)/2}" y="${padT+9}" text-anchor="middle" fill="#22c55e" font-size="8" font-family="system-ui">✓ Maintain</text>
+        <text x="${(padL+qx)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low priority</text>
+        <text x="${(qx+W-padR)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--red)" font-size="8" font-family="system-ui">🔴 Focus here</text>
+        <line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="${qx}" y1="${padT}" x2="${qx}" y2="${H-padB}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <line x1="${padL}" y1="${qy}" x2="${W-padR}" y2="${qy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <text x="${padL-4}" y="${toY(100)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">100%</text>
+        <text x="${padL-4}" y="${toY(70)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">70%</text>
+        <text x="${padL-4}" y="${toY(0)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">0%</text>
+        <text x="${toX(16)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low weight</text>
+        <text x="${toX(25)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">High weight</text>
+        ${bubbles}
+      </svg>
+    </div>
+  </div>`;
+}
+
+// ── Retry Missed Mini-Quiz ─────────────────────────────────────────────────
+function retryMissed() {
+  const combined = shuffleArray([...wrong_cache, ...nl_cache]);
+  if (combined.length === 0) return;
+  retryQuestions = combined;
+  retryAnswers   = new Array(combined.length).fill(null);
+  retryCurrent   = 0;
+  document.getElementById('retry-section').style.display = 'block';
+  renderRetryQuestion(0);
+  document.getElementById('retry-section').scrollIntoView({behavior:'smooth'});
+}
+
+function renderRetryQuestion(idx) {
+  retryCurrent = idx;
+  const q = retryQuestions[idx];
+  const ua = retryAnswers[idx];
+  const answered = ua !== null;
+  const optsHTML = q.opts.map((o,i) => {
+    let cls = 'opt-btn';
+    if (answered) { if(i===q.ans)cls+=' correct'; else if(i===ua)cls+=' wrong'; }
+    return `<button class="${cls}" onclick="selectRetryAnswer(${idx},${i})" ${answered?'disabled':''}><span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`;
+  }).join('');
+  let expHTML = '';
+  if (answered) {
+    const ok = ua===q.ans;
+    const why = !ok && q.wrongWhy && q.wrongWhy[ua] ? `<div class="exp-why-wrong">Why ${letters[ua]} is wrong: ${q.wrongWhy[ua]}</div>` : '';
+    expHTML = ok
+      ? `<div class="explanation show correct-exp"><div style="color:var(--green);font-weight:800;font-size:0.8rem;margin-bottom:0.3rem">${ic('check',13)} Correct!</div><div class="exp-body">${q.exp}</div></div>`
+      : `<div class="explanation show wrong-exp">${why}<div class="exp-correct-label">${ic('check',13)} Correct: ${letters[q.ans]}. ${q.opts[q.ans]}</div><div class="exp-body" style="margin-top:0.3rem">${q.exp}</div></div>`;
+  }
+  const isLast = idx === retryQuestions.length-1;
+  document.getElementById('retry-quiz-area').innerHTML = `
+    <div class="retry-header">
+      <h3>${ic('rotate-ccw',14)} Retry: Missed Topics</h3>
+      <span class="retry-badge">Q${idx+1} / ${retryQuestions.length}</span>
+    </div>
+    <div class="q-card active" style="margin-bottom:1rem">
+      <div class="q-meta"><span class="q-num">Q${idx+1} of ${retryQuestions.length}</span><span class="domain-tag tag-d${q.d}">${q.tag}</span></div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optsHTML}</div>
+      ${expHTML}
+      <div class="nav-row">
+        <button class="btn btn-secondary" onclick="renderRetryQuestion(${idx-1})" ${idx===0?'disabled':''}>← Prev</button>
+        ${isLast ? `<button class="btn btn-primary" onclick="showRetryResults()" ${!answered?'disabled':''}>See Results →</button>`
+                 : `<button class="btn btn-primary" onclick="renderRetryQuestion(${idx+1})">Next →</button>`}
+      </div>
+    </div>`;
+  renderIcons();
+}
+
+function selectRetryAnswer(qIdx, optIdx) {
+  if (retryAnswers[qIdx] !== null) return;
+  retryAnswers[qIdx] = optIdx;
+  renderRetryQuestion(qIdx);
+}
+
+function showRetryResults() {
+  const correct = retryAnswers.filter((a,i) => a === retryQuestions[i].ans).length;
+  const total = retryQuestions.length;
+  const pct = Math.round((correct/total)*100);
+  const sc = pct>=80?'var(--green)':pct>=60?'var(--yellow)':'var(--red)';
+  document.getElementById('retry-quiz-area').innerHTML = `
+    <div style="text-align:center;padding:1.5rem 0">
+      <div style="font-size:0.9rem;color:var(--muted);margin-bottom:0.5rem">Retry score on previously missed topics</div>
+      <div class="retry-score" style="color:${sc}">${correct}/${total}</div>
+      <div style="font-size:1.1rem;font-weight:700;color:${sc};margin-bottom:1.5rem">${pct}%</div>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="retryMissed()">${ic('rotate-ccw',13)} Try Again</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('retry-section').style.display='none'">Close</button>
+      </div>
+    </div>`;
+  renderIcons();
+}
+
+// ── Studied Items ──────────────────────────────────────────────────────────
+function getStudiedSet() {
+  try { return new Set(JSON.parse(localStorage.getItem(STUDIED_KEY)||'[]')); } catch(e) { return new Set(); }
+}
+
+function toggleStudied(key, btn) {
+  const s = getStudiedSet();
+  if (s.has(key)) {
+    s.delete(key);
+    btn.classList.remove('studied');
+    btn.innerHTML = ic('circle',13) + ' Mark as Studied';
+  } else {
+    s.add(key);
+    btn.classList.add('studied');
+    btn.innerHTML = ic('check-circle-2',13) + ' Studied';
+  }
+  try { localStorage.setItem(STUDIED_KEY, JSON.stringify([...s])); } catch(e) {}
+  renderIcons();
+  updateStudiedProgress();
+}
+
+function updateStudiedProgress() {
+  const nlBtns = document.querySelectorAll('.studied-btn');
+  const total = nlBtns.length;
+  if (!total) return;
+  const done = [...nlBtns].filter(b => b.classList.contains('studied')).length;
+  const countEl = document.getElementById('studied-count');
+  const barEl   = document.getElementById('studied-bar');
+  if (countEl) countEl.textContent = done;
+  if (barEl)   barEl.style.width = Math.round(done/total*100) + '%';
+}
+
+// ── Results ────────────────────────────────────────────────────────────────
+function showResults() {
+  if (!isViewingHistory) {
+    clearInterval(timerInterval);
+    clearState();   // exam finished — no need to resume
+    document.getElementById('question-area').innerHTML = '';
+    document.getElementById('prog-wrap').classList.remove('show');
+  }
+
+  const total = activeQuestions.length;
+  const notLearned = activeQuestions.filter((_,i) => answers[i] === -1);
+  const attempted = activeQuestions.filter((_,i) => answers[i] !== null && answers[i] !== -1);
+  const correct = activeQuestions.filter((q,i) => answers[i] === q.ans);
+  const wrong = activeQuestions.filter((q,i) => answers[i] !== null && answers[i] !== -1 && answers[i] !== q.ans);
+
+  // Cache for retry mini-quiz
+  wrong_cache = wrong.slice();
+  nl_cache = notLearned.slice();
+
+  const pct = attempted.length > 0 ? Math.round((correct.length/total)*100) : 0;
+  const attPct = attempted.length > 0 ? Math.round((correct.length/attempted.length)*100) : 0;
+
+  // Domain stats
+  const domains = [1,2,3,4,5];
+  const dStats = {};
+  domains.forEach(d => {
+    // Build list of indices in activeQuestions that belong to this domain
+    const dIdxs = activeQuestions.reduce((acc, q, i) => { if (q.d===d) acc.push(i); return acc; }, []);
+    const dc  = dIdxs.filter(i => answers[i] === activeQuestions[i].ans).length;
+    const dnl = dIdxs.filter(i => answers[i] === -1).length;
+    const da  = dIdxs.filter(i => answers[i] !== null && answers[i] !== -1).length;
+    dStats[d] = { total:dIdxs.length, correct:dc, notLearned:dnl, attempted:da, pct: dIdxs.length>0?Math.round((dc/dIdxs.length)*100):0 };
+  });
+
+  const elapsed = historyElapsed !== null ? historyElapsed : document.getElementById('timer').textContent;
+  historyElapsed = null;
+
+  // Save run to history (skip when replaying a historical report)
+  if (!isViewingHistory) saveRunToHistory(correct.length, total, dStats);
+
+  // Verdict
+  let verdict, verdictSub, verdictColor;
+  if (pct >= 78) { verdict=ic('zap',16)+' Strong Foundation'; verdictColor="#4ade80"; verdictSub="You're tracking well. Use this report to identify any remaining gaps and the 9-day plan to close them."; }
+  else if (pct >= 60) { verdict="Solid Base — Gaps to Close"; verdictColor="#fbbf24"; verdictSub="Good foundational knowledge. The personalized study plan below targets exactly where you need to focus."; }
+  else { verdict="Foundation Building Needed"; verdictColor="#f87171"; verdictSub="That's exactly why you do a diagnostic first. Follow the study plan below closely — 9 days is enough time to pass this."; }
+
+  // Build domain cards
+  const domainNames = {1:"Networking Concepts",2:"Net. Implementation",3:"Network Operations",4:"Net. Security",5:"Troubleshooting"};
+  const drCards = domains.map(d => {
+    const s = dStats[d]; const di = domainInfo[d];
+    const barColor = s.pct>=80?"#22c55e":s.pct>=60?"#eab308":"#ef4444";
+    const hint = s.notLearned>0 ? `${s.notLearned} not learned yet` : s.pct>=80?"Strong" : s.pct>=60?"Needs review":"Focus area";
+    return `<div class="dr-card">
+      <div class="dr-domain" style="color:${di.color}">${domainNames[d]} (${d===1?'12%':d===2?'22%':d===3?'18%':d===4?'28%':'20%'})</div>
+      <div class="dr-score" style="color:${barColor}">${s.pct}%</div>
+      <div class="dr-counts">${s.correct}/${s.total} correct${s.notLearned>0?` · ${s.notLearned} not learned`:''}</div>
+      <div class="dr-bar-track"><div class="dr-bar-fill" style="width:${s.pct}%;background:${barColor}"></div></div>
+      <div class="dr-hint">${hint}</div>
+    </div>`;
+  }).join('');
+
+  // Build personalized study plan
+  const studyPlan = buildStudyPlan(dStats, notLearned.length, wrong.length);
+
+  // Extra stats
+  const confidentWrong = wrong.filter(q => { const gi = activeQuestions.indexOf(q); return confidence[gi] === 3; });
+  const slowQuestions  = activeQuestions.filter((_,i) => (questionTimes[i]||0) > 90000);
+
+  // Build readiness report + AI prompt
+  const readinessHTML = buildReadinessReport(dStats, correct, wrong, notLearned, total);
+  const aiPromptText  = buildAIPrompt(dStats, wrong, notLearned, correct, total);
+
+  // Build missed/not-learned breakdown
+  const missedHTML = buildMissedSection(wrong, notLearned);
+
+  // Build new visual sections
+  const radarHTML   = buildRadarChart(dStats);
+  const matrixHTML  = buildPriorityMatrix(dStats);
+  const historyHTML = buildRunHistory();
+
+  // Score ring
+  const r=60, circ=2*Math.PI*r, dash=(pct/100)*circ;
+  const rc = pct>=78?"#22c55e":pct>=60?"#eab308":"#ef4444";
+
+  document.getElementById('results').innerHTML = `
+    ${readinessHTML}
+    <div class="results-hero">
+      <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Your Assessment Results</div>
+      <svg width="150" height="150" viewBox="0 0 150 150" style="transform:rotate(-90deg)">
+        <circle cx="75" cy="75" r="${r}" fill="none" stroke="#2a3050" stroke-width="13"/>
+        <circle cx="75" cy="75" r="${r}" fill="none" stroke="${rc}" stroke-width="13" stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
+        <text x="75" y="75" text-anchor="middle" dominant-baseline="middle" transform="rotate(90,75,75)" style="fill:${rc};font-size:2rem;font-weight:900;font-family:system-ui">${pct}%</text>
+        <text x="75" y="95" text-anchor="middle" transform="rotate(90,75,75)" style="fill:#8892a4;font-size:0.78rem;font-family:system-ui">${correct.length}/${total}</text>
+      </svg>
+      <div class="verdict" style="color:${verdictColor}">${verdict}</div>
+      <div class="verdict-sub">${verdictSub}</div>
+    </div>
+
+    <div class="stat-pills">
+      <div class="stat-pill"><div class="sp-num" style="color:#22c55e">${correct.length}</div><div class="sp-label">Correct</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:#ef4444">${wrong.length}</div><div class="sp-label">Incorrect</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:#eab308">${notLearned.length}</div><div class="sp-label">Not Learned</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:var(--muted)">${elapsed}</div><div class="sp-label">Time</div></div>
+      ${confidentWrong.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#a855f7">${confidentWrong.length}</div><div class="sp-label">Confident but Wrong</div></div>` : ''}
+      ${slowQuestions.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#f97316">${slowQuestions.length}</div><div class="sp-label">Slow (&gt;90s)</div></div>` : ''}
+    </div>
+
+    <div class="section-header">Domain Breakdown</div>
+    <div class="domain-results">${drCards}</div>
+
+    ${radarHTML}
+    ${matrixHTML}
+
+    <div class="section-header">${ic('clipboard',15)} Your Personalized 9-Day Study Plan</div>
+    ${studyPlan}
+
+    <div class="section-header" id="missed-header">
+      ${ic('x-circle',15)} Full Results Breakdown
+      <span style="font-size:0.8rem;font-weight:400;color:var(--muted);margin-left:0.5rem">(${wrong.length} incorrect · ${notLearned.length} not learned)</span>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterMissed('all',this)">All (${wrong.length+notLearned.length})</button>
+      <button class="filter-tab" onclick="filterMissed('wrong',this)">${ic('x',13)} Incorrect (${wrong.length})</button>
+      <button class="filter-tab" onclick="filterMissed('notlearned',this)">${ic('book-open',13)} Not Learned (${notLearned.length})</button>
+      <button class="filter-tab" onclick="filterMissed('flagged',this)">${ic('flag',13)} Flagged (${flagged.filter(Boolean).length})</button>
+    </div>
+    ${missedHTML}
+
+    ${wrong.length + notLearned.length > 0 ? `
+    <div class="retry-section" id="retry-section">
+      <div class="retry-header">
+        ${ic('refresh-cw',15)} Retry Missed Questions
+        <span class="retry-badge">${wrong.length + notLearned.length} questions</span>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0 1rem">Run a mini-quiz covering only the questions you got wrong or didn't learn — great for a quick follow-up session.</p>
+      <button class="retry-launch-btn" onclick="retryMissed()">${ic('play',14)} Start Retry Quiz</button>
+      <div id="retry-quiz-area"></div>
+    </div>` : ''}
+
+    ${historyHTML ? `<div class="history-section">
+      <div class="section-header">${ic('trending-up',15)} Score History</div>
+      ${historyHTML}
+    </div>` : ''}
+
+    <div class="section-header">${ic('bot',15)} AI-Powered Study Guide Generator</div>
+    <div class="ai-prompt-box">
+      <h3>${ic('clipboard',15)} Your Personalised Study Prompt</h3>
+      <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed on this assessment.</p>
+      <div class="apb-date-row">
+        <label for="exam-date-input">${ic('calendar',14)} Exam date:</label>
+        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()">
+        <span class="apb-days-away" id="exam-days-away">${examDate ? '(' + Math.ceil((new Date(examDate + 'T12:00:00') - new Date()) / 864e5) + ' days away)' : ''}</span>
+      </div>
+      <div class="prompt-text" id="ai-prompt-text">${aiPromptText}</div>
+      <div class="copy-row">
+        <button class="copy-btn" onclick="copyPrompt()">${ic('clipboard',13)} Copy Prompt</button>
+        <span class="copy-hint">Then paste into any AI chat to get your personalised study guide</span>
+      </div>
+    </div>
+
+    ${isViewingHistory ? `<button class="history-back-btn" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>` : ''}
+    <div class="results-actions">
+      <button class="btn btn-primary btn-lg" onclick="window.open('https://www.youtube.com/results?search_query=CompTIA+Network%2B+220-1101+study+plan','_blank')">CompTIA A+ Core 1 Study Resources →</button>
+      <button class="btn btn-primary btn-lg" onclick="window.print()">${ic('printer',14)} Print Full Report</button>
+      ${isViewingHistory
+        ? `<button class="btn btn-secondary" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>`
+        : `<button class="btn btn-secondary" onclick="location.reload()">${ic('rotate-ccw',14)} Retake Assessment</button>`}
+    </div>
+    ${!isViewingHistory ? `<div style="text-align:center;margin-top:0.5rem">
+      <button class="btn btn-secondary" style="font-size:0.78rem;padding:0.45rem 1rem" onclick="clearState();location.reload()">${ic('trash-2',13)} Clear saved data &amp; start completely fresh</button>
+    </div>` : ''}`;
+
+  document.getElementById('results').style.display = 'block';
+  renderIcons();
+  window.scrollTo(0,0);
+  setTimeout(()=>{ document.querySelectorAll('.dr-bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,50);}); },200);
+}
+
+function buildStudyPlan(dStats, notLearnedCount, wrongCount) {
+  const days = [];
+
+  // Day 1: always diagnostic
+  days.push({ badge:'Day 1', priority:'ok', badgeCls:'priority-ok', title:'Diagnostic Complete — Start Your Plan Today', desc:'You\'ve done the pre-exam. Review all explanations for questions you missed, then begin Day 2 of the study tracker.' });
+
+  // Domain priority based on scores
+  const domainOrder = [
+    { d:1, name:'Domain 1: Networking Concepts (23%)', days:'Days 2–3', topics:'OSI & TCP/IP models layer by layer, IPv4/IPv6 addressing & subnetting, ports (DNS 53, HTTP 80, HTTPS 443, SSH 22, SNMP 161), routing fundamentals, VLANs, STP, wireless 802.11 standards' },
+    { d:2, name:'Domain 2: Network Implementation (19%)', days:'Days 4–5', topics:'Switching (MAC flooding, BPDU guard, PortFast), VLANs & trunking (802.1Q), router-on-a-stick, OSPF/EIGRP/BGP, PoE standards (af/at/bt), VXLAN, SDN, WAN types (MPLS, leased line)' },
+    { d:3, name:'Domain 3: Network Operations (17%)', days:'Day 6', topics:'SNMP monitoring, NetFlow, Syslog severity levels (0-7), NTP (UDP 123), DHCP reservations & relay agents, HA (VRRP/HSRP), QoS (DSCP marking, LLQ), change management (RFC/CAB), backup types' },
+    { d:4, name:'Domain 4: Network Security (20%)', days:'Day 7', topics:'AAA (802.1X, RADIUS, TACACS+), firewall types, DMZ design, IPsec VPN modes (tunnel vs transport), WPA3/SAE, ARP poisoning, DHCP snooping, DAI, port security, Zero Trust, SIEM, PKI' },
+    { d:5, name:'Domain 5: Network Troubleshooting (21%)', days:'Day 8', topics:'ping/traceroute/netstat/nslookup, APIPA (169.254.x.x), DHCP relay agent, duplex mismatch (late collisions), co-channel interference, DFS channel changes, default route missing, TIME_WAIT state, OTDR/TDR' },
+  ];
+
+  domainOrder.forEach(({ d, name, days: studyDays, topics }) => {
+    const s = dStats[d];
+    let priority, badgeCls, note;
+    if (s.pct < 60 || s.notLearned >= 3) {
+      priority = ic('alert-circle',12)+' High Priority'; badgeCls = 'priority-high';
+      note = `Score: ${s.pct}% — significant gaps here. Double your review time on these days.`;
+    } else if (s.pct < 78) {
+      priority = ic('alert-triangle',12)+' Medium Priority'; badgeCls = 'priority-med';
+      note = `Score: ${s.pct}% — solid base but needs reinforcement. Focus on weak sub-topics.`;
+    } else {
+      priority = ic('check',12)+' Solid — Light Review'; badgeCls = 'priority-low';
+      note = `Score: ${s.pct}% — strong. Do a flashcard review and some practice questions to maintain.`;
+    }
+    days.push({ badge: studyDays, priority, badgeCls, title: name, desc: `${note}<br><span style="color:var(--muted)">Key topics: ${topics}</span>` });
+  });
+
+  days.push({ badge:'Day 8', priority:'Full Practice Exam', badgeCls:'priority-ok', title:'Timed Practice Exam + Weak Spot Drilling', desc:'Take a full 85-question practice exam under exam conditions (90 min). Review every wrong answer. Drill your lowest 2 domains.' });
+  days.push({ badge:'Day 9', priority:'Final Prep', badgeCls:'priority-ok', title:'Flashcard Review + Exam Logistics', desc:'Light review only — no new content. Review acronyms, cloud model table, closing sequence. Confirm exam booking. Sleep.' });
+  days.push({ badge:'Exam Day', priority:ic('graduation-cap',12)+' Exam Day', badgeCls:'priority-high', title:'CompTIA A+ Core 1 220-1101', desc:'Passing score: 720/900. Read each question twice. Flag uncertain ones. ~60 seconds per question. You\'ve got this.' });
+
+  const rowsHTML = days.map(d => `
+    <div class="day-row">
+      <span class="day-badge ${d.badgeCls}">${d.badge}</span>
+      <div class="day-content">
+        <div class="day-title">${d.title}</div>
+        <div class="day-desc">${d.desc}</div>
+      </div>
+    </div>`).join('');
+
+  return `<div class="study-plan-box"><h3>${ic('calendar',14)} Recommended Study Plan Based on Your Results</h3>${rowsHTML}</div>`;
+}
+
+// ── Topic video search resources ─────────────────────────────────────────────
+const TOPIC_VIDEOS = {
+  kanban:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+Kanban+methodology+agile',
+  safe:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+SAFe+scaled+agile+framework',
+  backlog:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+product+backlog+sprint+planning+scrum',
+  cpm:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+critical+path+method+CPM+float+slack',
+  risk:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+risk+management+mitigate+transfer+avoid+accept',
+  change:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+change+control+process+CCB+change+request',
+  agile:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+agile+scrum+sprint+velocity+methodology',
+  gantt:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+Gantt+chart+schedule+bar+chart',
+  pert:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+PERT+chart+network+diagram+AOA+AON',
+  raci:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+RACI+matrix+responsible+accountable+consulted+informed',
+  cloud:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+IaaS+PaaS+SaaS+cloud+service+models',
+  erp:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+ERP+CRM+EDRMS+enterprise+systems+acronyms',
+  cicd:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+CI+CD+continuous+integration+delivery+DevOps',
+  pii:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+PII+PHI+data+privacy+compliance+governance',
+  charter:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+project+charter+business+case+initiation+phase',
+  phasegate:  'https://www.youtube.com/results?search_query=CompTIA+Project%2B+phase+gate+review+kill+point+lifecycle',
+  lessons:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+lessons+learned+closing+phase+retrospective',
+  closeout:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+contract+closeout+procurement+closing',
+  wbs:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+work+breakdown+structure+WBS+decomposition',
+  stakeholder:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+stakeholder+management+register+analysis',
+  comms:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+communication+plan+matrix+virtual+teams',
+  reporting:  'https://www.youtube.com/results?search_query=CompTIA+Project%2B+status+report+dashboard+project+reporting',
+  budget:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+budget+cost+EVM+earned+value+management',
+  scope:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+scope+management+creep+gold+plating',
+  quality:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+quality+management+assurance+control',
+  resource:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+resource+management+team+staffing',
+  deploy:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+deployment+environments+testing+staging+production',
+  procurement:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+procurement+contracts+fixed+price+time+material',
+  kickoff:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+kickoff+meeting+planning+phase',
+  issuelog:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+issue+log+risk+log+action+items+difference',
+  burndown:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+burndown+chart+burnup+agile+tracking',
+  baseline:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+project+baseline+scope+schedule+cost',
+};
+
+function getVideoSearchURL(q) {
+  const text = (q.q + ' ' + (q.exp||'') + ' ' + q.opts.join(' ')).toLowerCase();
+  const rules = [
+    [/kanban/,                                          'kanban'],
+    [/safe|scaled agile/,                               'safe'],
+    [/product backlog|backlog item|backlog refine/,     'backlog'],
+    [/critical path|\bcpm\b|\bfloat\b|slack.*schedul/,  'cpm'],
+    [/risk response|mitigat|risk register|risk log/,    'risk'],
+    [/change control|change request|change board|\bccb\b/,'change'],
+    [/\bagile\b|\bscrum\b|\bsprint\b|velocity|user stor/,'agile'],
+    [/gantt/,                                           'gantt'],
+    [/\bpert\b|\baoa\b|\baon\b|arrow diagram|precedence diagram/,'pert'],
+    [/raci|responsible.*accountable|consulted.*informed/,'raci'],
+    [/\biaas\b|\bpaas\b|\bsaas\b|cloud model|cloud service/,'cloud'],
+    [/\berp\b|\bcrm\b|\bedrms\b|enterprise resource|customer relation/,'erp'],
+    [/ci\/cd|continuous integr|continuous deliver|devops/,'cicd'],
+    [/\bpii\b|\bphi\b|personally identifiable|protected health/,'pii'],
+    [/project charter|business case.*initiat/,          'charter'],
+    [/phase.gate|stage.gate|kill point|go.no.go/,       'phasegate'],
+    [/lessons learned|post.mortem|after.action/,        'lessons'],
+    [/contract close|procurement close/,                'closeout'],
+    [/\bwbs\b|work breakdown|decompos/,                 'wbs'],
+    [/stakeholder register|stakeholder analys/,         'stakeholder'],
+    [/communication plan|communication matrix|virtual team/,'comms'],
+    [/status report|project report|dashboard.*status/,  'reporting'],
+    [/\bbudget\b|cost baseline|earned value|\bevm\b/,   'budget'],
+    [/scope creep|gold plating|scope management/,       'scope'],
+    [/quality assur|quality control|quality manag/,     'quality'],
+    [/resource manag|staffing plan|team building/,      'resource'],
+    [/deployment|test environment|staging|production.*environ/,'deploy'],
+    [/procurement|fixed.price|time.*material|contract type/,'procurement'],
+    [/kickoff meeting|kick-off/,                        'kickoff'],
+    [/issue log|issue register|action item.*log/,       'issuelog'],
+    [/burndown|burnup chart|sprint.*track/,             'burndown'],
+    [/baseline.*scope|baseline.*schedule|baseline.*cost/,'baseline'],
+  ];
+  for (const [re, key] of rules) {
+    if (re.test(text)) return TOPIC_VIDEOS[key] || null;
+  }
+  const fallback = {
+    1:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+1+PM+concepts+study',
+    2:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+2+life+cycle+phases+study',
+    3:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+3+tools+documentation+study',
+    4:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+4+IT+governance+study',
+  };
+  return fallback[q.d] || 'https://www.youtube.com/results?search_query=CompTIA+Network%2B+220-1101+study';
+}
+
+function getVideoChip(q) {
+  const url = getVideoSearchURL(q);
+  if (!url) return '';
+  return `<div class="vid-resources">
+    <span class="vid-label">${ic('play-circle',12)} Study this topic:</span>
+    <a href="${url}" target="_blank" rel="noopener" class="vid-chip" title="Search YouTube for explanations of this concept">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      Search YouTube
+    </a>
+  </div>`;
+}
+
+// ── Study Panel Data ───────────────────────────────────────────────────────
+const TOPIC_CONCEPTS = [
+  { regex: /osi|osi model|layer.*osi|osi.*layer|physical layer|data link|network layer|transport layer|session layer|presentation|application layer/,
+    bullets: ['OSI layers: Physical(1), Data Link(2), Network(3), Transport(4), Session(5), Presentation(6), Application(7)', 'Switches = Layer 2 (MAC), Routers = Layer 3 (IP), Firewalls/LB = Layer 4+, WAF = Layer 7', 'Mnemonic: "Please Do Not Throw Sausage Pizza Away" (Physical → Application)'] },
+  { regex: /tcp.?ip model|internet layer|network access/,
+    bullets: ['TCP/IP 4 layers: Network Access (L1+L2), Internet (L3), Transport (L4), Application (L5+L6+L7)', 'Internet layer = IP, ICMP, ARP. Transport = TCP (reliable, connection-oriented) + UDP (fast, connectionless)', 'TCP uses 3-way handshake: SYN → SYN/ACK → ACK. Teardown: FIN → FIN/ACK → ACK'] },
+  { regex: /subnet|cidr|slash notation|\/24|\/16|\/8|network address|broadcast address|host range/,
+    bullets: ['CIDR notation: /24 = 256 addresses (254 usable), /25 = 128 (126 usable), /16 = 65536 (65534 usable)', 'First address = network, Last address = broadcast — neither assignable to hosts', 'To find network: AND the IP with the subnet mask. /20 = 255.255.240.0, borrowing 4 bits from 3rd octet'] },
+  { regex: /ipv6|fe80|2001:|fc00|ff00|link.local|global unicast|unique local|anycast/,
+    bullets: ['IPv6 address types: Global unicast (2000::/3, public internet), Link-local (fe80::/10, auto, non-routable), Unique local (fc00::/7, private), Multicast (ff00::/8)', 'Anycast = same address on multiple interfaces, delivered to nearest. IPv6 has NO broadcast', 'fe80:: is always auto-configured — used for neighbor discovery, router solicitation. Like APIPA in IPv4'] },
+  { regex: /port.*number|well.known port|tcp.*port|udp.*port|ephemeral|registered port/,
+    bullets: ['Critical ports: FTP=21, SSH=22, Telnet=23, SMTP=25, DNS=53, HTTP=80, HTTPS=443, SMB=445', 'SNMP agent=161(UDP), SNMP trap=162(UDP), Syslog=514, RDP=3389, RADIUS=1812, TACACS+=49', 'Well-known: 0-1023. Registered: 1024-49151. Ephemeral (dynamic/source): 49152-65535'] },
+  { regex: /ospf|eigrp|bgp|rip|routing protocol|administrative distance|link.state|distance.vector|path.vector/,
+    bullets: ['Administrative Distance: Connected=0, Static=1, EIGRP=90, OSPF=110, RIP=120 (lower = more trusted)', 'OSPF = link-state, uses cost (bandwidth). EIGRP = hybrid distance-vector, bandwidth+delay. BGP = path-vector between ASes', 'OSPF Area 0 = backbone — all other areas must connect to it. RIP max 15 hops.'] },
+  { regex: /vlan|802\.1q|trunk port|access port|native vlan|inter.vlan|svi|router.on.a.stick/,
+    bullets: ['Access port = single VLAN (untagged). Trunk port = multiple VLANs (802.1Q tagged). Native VLAN = untagged on trunk', 'Inter-VLAN routing options: Router-on-a-stick (subinterfaces), Layer 3 switch (SVIs), or separate router ports', '802.1Q tag adds 4 bytes: 12-bit VLAN ID (0-4095), 3-bit PCP for QoS priority, 1-bit DEI'] },
+  { regex: /spanning tree|stp|rstp|bpdu|root bridge|port.*state|forwarding.*state|blocking.*state/,
+    bullets: ['STP prevents Layer 2 loops. Root bridge = switch with lowest bridge ID (priority + MAC)', 'Port states: Blocking (no forward/learn) → Listening → Learning (learn MACs, no forward) → Forwarding', 'BPDU guard: shuts down port if BPDU received (protects access ports). PortFast: skips listening/learning for end devices'] },
+  { regex: /wireless|802\.11|ssid|channel|2\.4.*ghz|5.*ghz|6.*ghz|wpa|wpa2|wpa3|sae/,
+    bullets: ['2.4 GHz: non-overlapping channels 1, 6, 11. 5 GHz: many non-overlapping channels, faster but shorter range', 'Wi-Fi 6E (802.11ax) adds 6 GHz band. WPA3 uses SAE (eliminates offline dictionary attacks on PSK)', 'Co-channel interference = same channel APs competing. Adjacent channel = overlapping channel spectrum. Use non-overlapping channels'] },
+  { regex: /nat|pat|overload|static nat|dynamic nat|private.*ip|rfc 1918/,
+    bullets: ['PAT (NAT Overload) = many-to-one using port numbers — how home/enterprise internet access works', 'RFC 1918 private: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 — not routed on public internet', 'Static NAT = 1:1 mapping. Dynamic NAT = pool of public IPs. PAT = many-to-one using unique ports'] },
+  { regex: /dhcp|ip helper|relay agent|apipa|169\.254|dora/,
+    bullets: ['DORA: Discover (broadcast) → Offer → Request → Acknowledge. Client uses 255.255.255.255 to discover', 'DHCP relay agent (ip helper-address) forwards DHCP broadcasts across router boundaries to a centralized server', 'APIPA 169.254.x.x = DHCP failure self-assignment. DHCP reservation = static IP mapped to MAC address'] },
+  { regex: /dns|a record|aaaa|mx record|ptr|cname|txt|nslookup|dig|name resolution/,
+    bullets: ['DNS records: A = IPv4, AAAA = IPv6, MX = mail, PTR = reverse lookup, CNAME = alias, TXT = SPF/DKIM/DMARC', 'DNS uses UDP 53 for queries, TCP 53 for zone transfers. DNSSEC digitally signs records to prevent cache poisoning', 'DNS resolution order: local hosts file → local DNS cache → DNS server → recursive resolution'] },
+  { regex: /snmp|mib|oid|trap|community string|snmpv3/,
+    bullets: ['SNMP: agent (device) on UDP 161, manager polls. Traps = unsolicited alerts from agent to manager (UDP 162)', 'SNMPv1/v2c use community strings (cleartext, insecure). SNMPv3 adds authentication (MD5/SHA) + encryption (AES)', 'MIB (Management Information Base) = database of manageable objects. OID = unique identifier for each managed object'] },
+  { regex: /qos|dscp|cos|marking|queuing|traffic shaping|policing|llq|cbwfq/,
+    bullets: ['QoS steps: Classify (identify traffic type) → Mark (DSCP/CoS value) → Queue (LLQ/CBWFQ) → Schedule', 'DSCP EF (Expedited Forwarding, 46) = VoIP. AF = Assured Forwarding (video). CS0 = best effort (default)', 'LLQ (Low Latency Queuing) = priority queue for voice. Shaping buffers excess; Policing drops/re-marks excess'] },
+  { regex: /mpls|wan|leased line|frame relay|metro ethernet|sd.wan/,
+    bullets: ['MPLS uses labels (not IP lookups) for fast forwarding — supports QoS, traffic engineering, VPNs for service providers', 'WAN options: Leased line (dedicated, symmetric, expensive), MPLS (provider QoS), broadband (cheap, asymmetric, shared)', 'SD-WAN = software-defined WAN using broadband/MPLS/LTE for cost-effective, policy-driven WAN with central control'] },
+  { regex: /vxlan|sdn|overlay|underlay|virtualization.*network|nfv/,
+    bullets: ['VXLAN encapsulates L2 frames in UDP (port 4789) — extends L2 across L3, supports 16M virtual networks vs 4096 VLANs', 'SDN: Control plane (intelligence/routing decisions) separated from Data plane (forwarding) — centralized controller', 'NFV = Network Functions Virtualization — runs routers, firewalls, load balancers as VMs instead of dedicated hardware'] },
+];
+
+const MNEMONICS_MAP = [
+  { regex: /osi|layer.*model|please do not/,
+    label: 'OSI Layer Mnemonic',
+    text: '"Please Do Not Throw Sausage Pizza Away" = Physical, Data Link, Network, Transport, Session, Presentation, Application. Or bottom-up: "All People Seem To Need Data Processing." Key exam question: switches=L2 (MAC), routers=L3 (IP), and Transport (L4) is where TCP/UDP ports live.' },
+  { regex: /administrative distance|ad.*route|route.*preference/,
+    label: 'Administrative Distance Values',
+    text: '"CD SCORE" = Connected(0), Direct/Static(1), EIGRP(90), OSPF(110), RIP(120), External EIGRP(170). Lower AD wins. If two protocols both know 10.0.0.0/24, the lower-AD route goes into the routing table. OSPF (110) always beats RIP (120) for same destination.' },
+  { regex: /subnet|cidr|\/24|\/25|\/26|\/27|\/28/,
+    label: 'Subnetting Quick Reference',
+    text: 'Powers of 2 for hosts: /24=256, /25=128, /26=64, /27=32, /28=16, /29=8, /30=4 (2 usable). Always subtract 2 (network + broadcast). /30 = point-to-point links (2 hosts). Block size = 256 minus the subnet mask octet (e.g., /26 = 256-192=64 block size).' },
+  { regex: /dora|dhcp.*process|dhcp.*discover/,
+    label: 'DHCP DORA Process',
+    text: '"DORA" = Discover (client broadcasts), Offer (server proposes IP), Request (client requests it), Acknowledge (server confirms). Client uses 255.255.255.255 for Discover. APIPA kicks in if no DHCP response. Relay agent (ip helper-address) needed to cross router boundaries.' },
+  { regex: /stp|spanning tree|port.*state|bpdu/,
+    label: 'STP Port States',
+    text: '"Blocking Literally Learns Forwarding" = Blocking → Listening → Learning → Forwarding. 802.1D total = ~50 seconds. RSTP (802.1w) = ~1-2 seconds. PortFast skips to Forwarding immediately (for end devices only!). BPDU guard: if a BPDU arrives on a PortFast port, err-disable immediately.' },
+  { regex: /wpa|wpa2|wpa3|wireless security|sae|tkip|ccmp/,
+    label: 'Wireless Security Evolution',
+    text: '"Weak People Avoid Strong Auth": WEP = broken (RC4, static IV). WPA = temporary fix (TKIP, still RC4). WPA2 = AES/CCMP, secure but PSK vulnerable to offline dictionary attack. WPA3 = SAE (Dragonfly), each attempt requires active interaction — offline cracking impossible.' },
+  { regex: /nat|pat|overload|private.*address/,
+    label: 'NAT Types',
+    text: '"S=1:1, D=Many:Pool, P=Many:One" — Static NAT=one private to one public (servers). Dynamic NAT=pool of public IPs. PAT (overload)=many privates to ONE public using unique source ports. ~65,535 sessions per public IP. That last one is how your home router works.' },
+  { regex: /arp.*poison|arp.*spoof|mac.*flood|dhcp.*snoop|dai/,
+    label: 'Layer 2 Attack Mitigations',
+    text: '"SID" = Snooping (DHCP snooping stops rogue DHCP), Inspection (Dynamic ARP Inspection stops ARP spoofing), Destination (Port security limits MACs per port, stops MAC flooding). DAI uses the DHCP snooping binding table to validate ARP. Enable DHCP snooping first, then DAI.' },
+  { regex: /qos|dscp|voice.*traffic|voip.*priority/,
+    label: 'QoS for VoIP',
+    text: 'VoIP needs: low latency (<150ms one-way), low jitter (<30ms), low packet loss (<1%). DSCP EF (46) = highest priority for voice. LLQ creates a dedicated priority queue that always gets serviced first. Mark at ingress, honor everywhere. "Classify, Mark, Queue" in that order.' },
+  { regex: /vxlan|overlay.*network|16.*million|tunnel.*id|vni/,
+    label: 'VXLAN vs VLAN',
+    text: 'VLAN = 12-bit ID = 4,096 max networks. VXLAN = 24-bit VNI = 16,777,216 virtual networks. VXLAN encapsulates L2 in UDP port 4789 — lets you stretch Layer 2 across Layer 3 boundaries. Essential for multi-tenant cloud/data center. VTEP = tunnel endpoint (switch or hypervisor).' },
+  { regex: /troubleshoot.*method|first step|identify.*problem|establish.*theory/,
+    label: 'CompTIA Troubleshooting Steps',
+    text: '"I Eat Tacos Everyday In Vast Deserts" = Identify problem, Establish theory, Test theory, Establish plan of action, Implement solution, Verify functionality, Document findings. Always IDENTIFY first (gather info, question users) before theorizing. Document LAST.'},
+];
+
+// ── Study Panel Functions ──────────────────────────────────────────────────
+function noteKey(q) {
+  // Stable key based on question text (survives reshuffling)
+  return 'n_' + q.q.slice(0, 40).replace(/\W+/g, '_');
+}
+
+function getNotes() {
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY) || '{}'); } catch(e) { return {}; }
+}
+
+function saveNote(key, text) {
+  const notes = getNotes();
+  if (text.trim()) notes[key] = text;
+  else delete notes[key];
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch(e) {}
+  // Show saved indicator
+  const msg = document.getElementById('note-saved-' + key);
+  if (msg) { msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 1800); }
+}
+
+function copyFlashcard(gi) {
+  const q = activeQuestions[gi];
+  const text = [
+    'QUESTION:',
+    q.q,
+    '',
+    'OPTIONS:',
+    q.opts.map((o, i) => letters[i] + '. ' + o).join('\n'),
+    '',
+    'CORRECT ANSWER: ' + letters[q.ans] + '. ' + q.opts[q.ans],
+    '',
+    'EXPLANATION:',
+    q.exp,
+    '',
+    'DOMAIN: ' + q.tag,
+  ].join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('fc-btn-' + gi);
+    if (btn) {
+      btn.classList.add('copied');
+      btn.innerHTML = ic('check', 12) + ' Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = ic('copy', 12) + ' Copy as Flashcard';
+        renderIcons();
+      }, 2000);
+    }
+    renderIcons();
+  }).catch(() => alert('Copy failed — try selecting and copying the explanation manually.'));
+}
+
+function getMesserLink(q) {
+  const text = (q.q + ' ' + q.exp + ' ' + (q.opts||[]).join(' ')).toLowerCase();
+  const topicMap = [
+    [/\bscrum\b|sprint backlog|product backlog|daily standup/, 'Scrum network plus 220-1101'],
+    [/agile|iterative|adaptive/, 'Agile methodology project plus'],
+    [/kanban/, 'Kanban project management'],
+    [/waterfall|sequential|predictive lifecycle/, 'waterfall project management'],
+    [/\braci\b|responsibility assignment/, 'RACI matrix project management'],
+    [/risk response|risk register|risk matrix|mitigat|contingency/, 'risk management project plus'],
+    [/change control|change request|ccb/, 'change management project plus'],
+    [/gantt|bar chart|schedule chart/, 'Gantt chart project management'],
+    [/pert|three.?point|optimistic|pessimistic/, 'PERT CPM project management'],
+    [/critical path|float|slack|network diagram/, 'critical path method project management'],
+    [/earned value|cpi|spi|\bev\b|\bpv\b|\bac\b/, 'earned value management project plus'],
+    [/iaas|paas|saas|cloud service|cloud model/, 'cloud computing IaaS PaaS SaaS'],
+    [/stakeholder|stakeholder register/, 'stakeholder management project plus'],
+    [/communication plan|communication channel/, 'project communications management'],
+    [/wbs|work breakdown|scope decompos/, 'work breakdown structure WBS'],
+    [/project charter|project initiat|project sponsor/, 'project charter initiation'],
+    [/lessons learned|project clos/, 'project closing lessons learned'],
+    [/cobit|itil|iso 27001|governance/, 'IT governance project management'],
+    [/procurement|contract type|fixed price|time and material/, 'procurement project management'],
+    [/crashing|fast.?track|schedule compress/, 'schedule compression project management'],
+  ];
+  for (const [regex, query] of topicMap) {
+    if (regex.test(text)) {
+      return `https://www.youtube.com/results?search_query=${encodeURIComponent('Professor Messer ' + query)}`;
+    }
+  }
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent('Professor Messer network plus 220-1101 ' + (q.topic||''))}`;
+}
+
+
+function getTopicConceptsHTML(q) {
+  const text = (q.q + ' ' + q.exp + ' ' + (q.opts||[]).join(' ')).toLowerCase();
+  for (const {regex, bullets} of TOPIC_CONCEPTS) {
+    if (regex.test(text)) {
+      return `<div class="key-concepts-box">
+        <div class="kc-header">${ic('lightbulb',11)} Key Concepts</div>
+        <ul class="kc-list">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+      </div>`;
+    }
+  }
+  return '';
+}
+
+function getMnemonicHTML(q) {
+  const text = (q.q + ' ' + q.exp + ' ' + (q.opts||[]).join(' ')).toLowerCase();
+  for (const {regex, label, text: mnemonicText} of MNEMONICS_MAP) {
+    if (regex.test(text)) {
+      return `<div class="mnemonic-box">
+        <div class="mnemonic-header">${ic('zap',11)} ${label}</div>
+        <div class="mnemonic-text">${mnemonicText}</div>
+      </div>`;
+    }
+  }
+  return '';
+}
+
+function getRelatedQuestionsHTML(q, gi) {
+  const related = activeQuestions
+    .map((aq, i) => ({aq, i}))
+    .filter(({aq, i}) => i !== gi && aq.d === q.d && answers[i] !== null && (answers[i] === -1 || answers[i] !== aq.ans))
+    .slice(0, 3);
+  if (related.length === 0) return '';
+  const items = related.map(({aq, i}) => {
+    const label = answers[i] === -1
+      ? `<span style="color:var(--yellow);font-size:0.68rem;font-weight:700;flex-shrink:0">Not Learned</span>`
+      : `<span style="color:var(--red);font-size:0.68rem;font-weight:700;flex-shrink:0">Wrong</span>`;
+    const preview = aq.q.length > 85 ? aq.q.slice(0, 85) + '…' : aq.q;
+    return `<div class="related-q-item">${label}<span>Q${i+1}: ${preview}</span></div>`;
+  }).join('');
+  return `<div class="related-qs-box">
+    <div class="related-qs-header">${ic('git-branch',11)} Other ${q.tag} questions you missed (${related.length})</div>
+    ${items}
+  </div>`;
+}
+
+function getStudyPanel(q, gi) {
+  const nk = noteKey(q);
+  const notes = getNotes();
+  const savedNote = notes[nk] || '';
+  const messerURL = getMesserLink(q);
+  const vidChip = getVideoChip(q);
+  const conceptsHTML = getTopicConceptsHTML(q);
+  const mnemonicHTML = getMnemonicHTML(q);
+  const relatedHTML  = getRelatedQuestionsHTML(q, gi);
+
+  return `<div class="study-panel">
+    <div class="study-chips-row">
+      ${vidChip}
+      <a href="${messerURL}" target="_blank" class="messer-chip">${ic('play-circle',12)} Professor Messer</a>
+    </div>
+    ${conceptsHTML}
+    ${mnemonicHTML}
+    ${relatedHTML}
+    <div class="note-row">
+      <div class="note-label">${ic('pencil',11)} Your Notes</div>
+      <textarea class="note-area" placeholder="Add your own note, memory trick, or summary…" onblur="saveNote('${nk}', this.value)">${savedNote}</textarea>
+      <span class="note-saved-msg" id="note-saved-${nk}">${ic('check',11)} Saved</span>
+    </div>
+    <div class="panel-bottom-row">
+      <button class="flashcard-btn" id="fc-btn-${gi}" onclick="copyFlashcard(${gi})">${ic('copy',12)} Copy as Flashcard</button>
+      <span style="font-size:0.68rem;color:var(--muted)">Paste into Anki, Notion, or any AI chat</span>
+    </div>
+  </div>`;
+}
+
+function buildMissedSection(wrong, notLearned) {
+  const studiedSet = getStudiedSet();
+
+  const wrongItemsHTML = wrong.map(q => {
+    const gi = activeQuestions.indexOf(q);
+    const ua = answers[gi];
+    const isFlagged = flagged[gi];
+    const isConfidentWrong = confidence[gi] === 3;
+    const isSlow = (questionTimes[gi] || 0) > 90000;
+    const whyWrong = q.wrongWhy && q.wrongWhy[ua] ? q.wrongWhy[ua] : null;
+    return `<div class="missed-item" data-type="wrong" data-flagged="${isFlagged}">
+      <div class="mi-meta">
+        <span class="q-num">Q${gi+1}</span>
+        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span style="font-size:0.7rem;font-weight:700;color:var(--red)">${ic('x',12)} Incorrect</span>
+        ${isFlagged ? `<span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged</span>` : ''}
+        ${isConfidentWrong ? `<span class="conf-wrong-badge">${ic('zap',11)} Confident but Wrong</span>` : ''}
+        ${isSlow ? `<span class="slow-badge">${ic('clock',11)} Slow (${Math.round((questionTimes[gi]||0)/1000)}s)</span>` : ''}
+      </div>
+      <div class="mi-q">${q.q}</div>
+      <div class="mi-answers">
+        <div class="mi-answer-row your-answer">
+          <span class="mi-answer-label label-wrong">${ic('x',12)} Your answer:</span>
+          <span>${letters[ua]}. ${q.opts[ua]}</span>
+        </div>
+        <div class="mi-answer-row correct-answer">
+          <span class="mi-answer-label label-correct">${ic('check',12)} Correct:</span>
+          <span>${letters[q.ans]}. ${q.opts[q.ans]}</span>
+        </div>
+      </div>
+      ${whyWrong ? `<div class="mi-why-wrong">Why ${letters[ua]} is wrong: ${whyWrong}</div>` : ''}
+      <div class="mi-exp"><strong>Explanation:</strong> ${q.exp}</div>
+      ${getStudyPanel(q, gi)}
+    </div>`;
+  }).join('');
+
+  const nlItemsHTML = notLearned.map(q => {
+    const gi = activeQuestions.indexOf(q);
+    const isFlagged = flagged[gi];
+    const isSlow = (questionTimes[gi] || 0) > 90000;
+    const studyKey = 'nl_' + gi;
+    const isStudied = studiedSet.has(studyKey);
+    return `<div class="missed-item not-learned-item" data-type="notlearned" data-flagged="${isFlagged}">
+      <div class="mi-meta">
+        <span class="q-num">Q${gi+1}</span>
+        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('book-open',12)} Not Learned Yet</span>
+        ${isFlagged ? `<span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged</span>` : ''}
+        ${isSlow ? `<span class="slow-badge">${ic('clock',11)} Slow (${Math.round((questionTimes[gi]||0)/1000)}s)</span>` : ''}
+      </div>
+      <div class="mi-q">${q.q}</div>
+      <div class="mi-answers">
+        <div class="mi-answer-row not-learned-answer">
+          <span class="mi-answer-label label-notlearned">${ic('check',12)} Correct answer:</span>
+          <span>${letters[q.ans]}. ${q.opts[q.ans]}</span>
+        </div>
+      </div>
+      <div class="mi-exp"><strong>Explanation:</strong> ${q.exp}</div>
+      ${getStudyPanel(q, gi)}
+      <button class="studied-btn ${isStudied ? 'studied' : ''}" id="studied-${studyKey}" onclick="toggleStudied('${studyKey}', this)">
+        ${isStudied ? ic('check-circle-2',13)+' Studied' : ic('circle',13)+' Mark as Studied'}
+      </button>
+    </div>`;
+  }).join('');
+
+  // Flagged-but-correct questions — hidden by default, visible only in Flagged tab
+  const flaggedCorrectHTML = activeQuestions
+    .map((q, i) => ({ q, i }))
+    .filter(({ q, i }) => flagged[i] && answers[i] === q.ans)
+    .map(({ q, i }) => `<div class="missed-item" data-type="flaggedcorrect" data-flagged="true" style="display:none;border-color:var(--yellow-border);background:var(--yellow-bg)">
+      <div class="mi-meta">
+        <span class="q-num">Q${i+1}</span>
+        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span style="font-size:0.7rem;font-weight:700;color:var(--green)">${ic('check',12)} Correct</span>
+        <span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged for Review</span>
+      </div>
+      <div class="mi-q">${q.q}</div>
+      <div class="mi-answers">
+        <div class="mi-answer-row correct-answer">
+          <span class="mi-answer-label label-correct">${ic('check',12)} Correct:</span>
+          <span>${letters[q.ans]}. ${q.opts[q.ans]}</span>
+        </div>
+      </div>
+      <div class="mi-exp"><strong>Explanation:</strong> ${q.exp}</div>
+    </div>`).join('');
+
+  const emptyMsg = wrong.length===0 && notLearned.length===0
+    ? `<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.9rem">${ic('sparkles',16)} No incorrect or not-learned answers to show!</div>` : '';
+
+  // Studied progress bar for not-learned items
+  const studiedCount = notLearned.filter((_,i2) => {
+    const gi = activeQuestions.indexOf(notLearned[i2]);
+    return studiedSet.has('nl_' + gi);
+  }).length;
+  const nlProgress = notLearned.length > 0 ? `
+    <div class="studied-progress" id="studied-progress">
+      ${ic('check-circle-2',13)} <span id="studied-count">${studiedCount}</span> of ${notLearned.length} not-learned items marked as studied
+      <div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px">
+        <div id="studied-bar" style="height:4px;background:#22c55e;border-radius:2px;width:${notLearned.length>0?Math.round(studiedCount/notLearned.length*100):0}%;transition:width 0.3s"></div>
+      </div>
+    </div>` : '';
+
+  return `<div class="missed-list" id="missed-list">${nlProgress}${emptyMsg}${wrongItemsHTML}${nlItemsHTML}${flaggedCorrectHTML}</div>`;
+}
+
+function filterMissed(type, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.missed-item').forEach(el => {
+    const t = el.dataset.type;
+    const isFlagged = el.dataset.flagged === 'true';
+    if (type === 'all')        el.style.display = t === 'flaggedcorrect' ? 'none' : '';
+    else if (type === 'flagged') el.style.display = isFlagged ? '' : 'none';
+    else                       el.style.display = t === type ? '' : 'none';
+  });
+}
+// ── Readiness Report ───────────────────────────────────────────────────────
+function buildReadinessReport(dStats, correct, wrong, notLearned, total) {
+  const weights = {1:0.12, 2:0.22, 3:0.18, 4:0.28, 5:0.20};
+  const domainNames = {1:'Networking Concepts',2:'Net. Implementation',3:'Network Operations',4:'Net. Security',5:'Troubleshooting'};
+
+  // Domain-weighted performance → CompTIA 100–900 scale (675 = passing)
+  // Apply a conservative 5% real-exam adjustment (practice tests tend to overestimate)
+  let rawWeighted = 0;
+  [1,2,3,4,5].forEach(d => { rawWeighted += (dStats[d].pct / 100) * weights[d]; });
+  const adjWeighted = Math.max(0, rawWeighted - 0.05);
+  const estScore  = Math.round(100 + adjWeighted * 800);
+  const estMin    = Math.max(100, estScore - 65);
+  const estMax    = Math.min(900, estScore + 65);
+  const GAP       = 675 - estScore;
+
+  // Pass probability narrative
+  let verdict, verdictColor, readyText, confidence, confColor;
+  if (estScore >= 790) {
+    verdict = ic('check-circle-2',14)+' Very Likely Ready to Pass';
+    verdictColor = 'var(--green)'; confidence = 'High'; confColor = 'var(--green)';
+    readyText = 'Strong performance across all domains. Your weighted score comfortably clears the 675 passing threshold. Spend the remaining days tightening any gaps, take one more timed practice run, and you should be in great shape for exam day.';
+  } else if (estScore >= 730) {
+    verdict = ic('check-circle-2',14)+' Likely Ready — Keep Sharpening';
+    verdictColor = 'var(--green)'; confidence = 'Good'; confColor = 'var(--green)';
+    readyText = 'Your score projects above the passing line, but there\'s margin to improve. Use the study plan to close remaining weak spots — a focused few days can move you well clear of the 675 cutoff.';
+  } else if (estScore >= 675) {
+    verdict = ic('alert-triangle',14)+' Borderline — More Prep Recommended';
+    verdictColor = 'var(--yellow)'; confidence = 'Moderate'; confColor = 'var(--yellow)';
+    readyText = 'You\'re at the edge of passing. Small knowledge gaps could tip the result either way. Don\'t book the exam yet — spend focused time on your weakest domains and retake this assessment.';
+  } else if (estScore >= 650) {
+    verdict = ic('book-open',14)+' Not Quite Ready — Close Gap First';
+    verdictColor = '#f97316'; confidence = 'Low'; confColor = '#f97316';
+    readyText = 'You have a real foundation but notable gaps remain. Follow the personalised study plan below closely. 5–7 focused days targeting your weak domains should move you into passing territory.';
+  } else {
+    verdict = ic('alert-circle',14)+' Significant Prep Required';
+    verdictColor = 'var(--red)'; confidence = 'Very Low'; confColor = 'var(--red)';
+    readyText = 'This diagnostic shows major gaps across multiple domains. Take the full 9-day study plan seriously — and use the AI study guide prompt below to build targeted material. You can pass this, but need to put in the work.';
+  }
+
+  // Strongest & weakest domain
+  const domainsByScore = [1,2,3,4,5].sort((a,b) => dStats[a].pct - dStats[b].pct);
+  const weakest = domainsByScore[0]; const strongest = domainsByScore[3];
+
+  // Bar geometry (100–900 scale)
+  const barPct     = ((estScore - 100) / 800) * 100;
+  const markerPct  = ((675 - 100) / 800) * 100;   // 76.25%
+  const barColor   = estScore >= 675 ? 'var(--green)' : estScore >= 650 ? '#f97316' : 'var(--red)';
+
+  return `<div class="readiness-card">
+    <div class="readiness-header-label">${ic('target',16)} Exam Readiness Report</div>
+    <div class="readiness-verdict" style="color:${verdictColor}">${verdict}</div>
+    <div class="readiness-sub">${readyText}</div>
+
+    <div class="readiness-grid">
+      <div class="r-stat">
+        <div class="rs-num" style="color:${barColor}">${estScore}</div>
+        <div class="rs-label">Est. Score / 900</div>
+      </div>
+      <div class="r-stat">
+        <div class="rs-num">${estMin}–${estMax}</div>
+        <div class="rs-label">Likely Range</div>
+      </div>
+      <div class="r-stat">
+        <div class="rs-num" style="color:${GAP<=0?'var(--green)':'var(--red)'}">${GAP<=0?'+'+Math.abs(GAP):'-'+Math.abs(GAP)} pts</div>
+        <div class="rs-label">${GAP<=0?'Above':'Below'} Passing (675)</div>
+      </div>
+      <div class="r-stat">
+        <div class="rs-num" style="color:${confColor}">${confidence}</div>
+        <div class="rs-label">Pass Confidence</div>
+      </div>
+    </div>
+
+    <div class="r-bar-wrap">
+      <div class="r-bar-labels">
+        <span>100</span>
+        <span style="color:var(--text);font-weight:700">675 passing threshold</span>
+        <span>900</span>
+      </div>
+      <div class="r-bar-track">
+        <div class="r-bar-fill" style="width:${barPct}%;background:${barColor}"></div>
+        <div class="r-passing-marker" style="left:${markerPct}%">
+          <div class="r-passing-label">675</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-domain-row">
+      <div class="r-domain-chip">
+        <div class="rdc-label">Strongest Domain</div>
+        <div class="rdc-val" style="color:var(--green)">${domainNames[strongest]} — ${dStats[strongest].pct}%</div>
+      </div>
+      <div class="r-domain-chip">
+        <div class="rdc-label">Weakest Domain</div>
+        <div class="rdc-val" style="color:var(--red)">${domainNames[weakest]} — ${dStats[weakest].pct}%</div>
+      </div>
+    </div>
+
+    <div class="readiness-note">
+      <strong>How this is calculated:</strong> Score estimated using domain-weighted performance
+      (PM Concepts×33% + Life Cycle×30% + Tools×19% + IT&amp;Gov×18%), mapped to CompTIA's
+      100–900 scale with a 5% conservative real-exam adjustment. Actual results may vary
+      by ±65 points depending on question difficulty on test day.
+    </div>
+  </div>`;
+}
+
+// ── AI Study Guide Prompt ─────────────────────────────────────────────────
+function buildAIPrompt(dStats, wrong, notLearned, correct, total) {
+  const dNames = {
+    1:'Domain 1: PM Concepts (33% of exam)',
+    2:'Domain 2: Life Cycle Phases (30% of exam)',
+    3:'Domain 3: Tools & Docs (19% of exam)',
+    4:'Domain 4: IT & Governance (18% of exam)'
+  };
+  const score    = Math.round((correct.length / total) * 100);
+  const daysLeft = examDate ? Math.ceil((new Date(examDate+'T12:00:00') - new Date()) / 864e5) : null;
+
+  const domainLines = [1,2,3,4,5].map(d => {
+    const s = dStats[d];
+    const flag = s.pct < 60 ? ' ← HIGH PRIORITY' : s.pct < 78 ? ' ← needs review' : ' ✓ solid';
+    return `  • ${dNames[d]}: ${s.pct}% (${s.correct}/${s.total} correct${s.notLearned>0?', '+s.notLearned+' skipped':''})${flag}`;
+  }).join('\n');
+
+  const highPri = [1,2,3,4,5].filter(d => dStats[d].pct < 60 || dStats[d].notLearned >= 3).map(d => `Domain ${d}`);
+  const medPri  = [1,2,3,4,5].filter(d => dStats[d].pct >= 60 && dStats[d].pct < 78 && dStats[d].notLearned < 3).map(d => `Domain ${d}`);
+
+  const wrongLines = wrong.length === 0 ? '  None' : wrong.map((q, i) => {
+    const gi = activeQuestions.indexOf(q);
+    const ua = answers[gi];
+    const why = q.wrongWhy && q.wrongWhy[ua] ? q.wrongWhy[ua] : null;
+    return [
+      `  ${i+1}. [${q.tag}] ${q.q}`,
+      `     ✗ My answer:  "${q.opts[ua]}"`,
+      why ? `     Why wrong:   ${why}` : null,
+      `     ✓ Correct:    "${q.opts[q.ans]}"`,
+      `     Explanation: ${q.exp}`,
+    ].filter(Boolean).join('\n');
+  }).join('\n\n');
+
+  const nlLines = notLearned.length === 0 ? '  None' : notLearned.map((q, i) => {
+    return [
+      `  ${i+1}. [${q.tag}] ${q.q}`,
+      `     ✓ Correct answer: "${q.opts[q.ans]}"`,
+      `     Explanation: ${q.exp}`,
+    ].join('\n');
+  }).join('\n\n');
+
+  const scheduleNote = daysLeft !== null
+    ? `\nI have ${daysLeft} day${daysLeft===1?'':'s'} until exam day. Please build the study guide around this timeline.`
+    : '';
+
+  return `I'm preparing for the CompTIA A+ Core 1 220-1101 exam. I just took a full diagnostic pre-exam and need a targeted, personalised study guide covering ONLY what I missed or haven't studied yet. Please ignore topics I already scored well on.${scheduleNote}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ MY DIAGNOSTIC RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall score:       ${correct.length}/${total} correct (${score}%)
+Questions wrong:     ${wrong.length}
+Topics not studied:  ${notLearned.length}
+Exam date:           ${examDate ? new Date(examDate+'T12:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : 'Not set'}${daysLeft!==null?' ('+daysLeft+' days away)':''}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ DOMAIN BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${domainLines}
+${highPri.length?'\n🔴 High priority (below 60% or 3+ skipped): '+highPri.join(', '):''}
+${medPri.length?'🟡 Needs review (60–77%): '+medPri.join(', '):''}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ QUESTIONS I GOT WRONG (${wrong.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+I'm including my wrong answer, the reason it's wrong, and the correct explanation so you can address my exact misconception — not just teach the topic generically.
+
+${wrongLines}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ TOPICS I HAVEN'T STUDIED YET (${notLearned.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+These are completely new to me — please explain from scratch, not just a quick definition.
+
+${nlLines}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ WHAT I NEED FROM YOU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Please produce a study guide with these four sections:
+
+── SECTION 1: DAY-BY-DAY STUDY SCHEDULE ──
+Create a specific daily plan across my ${daysLeft||9} remaining days.
+- Assign specific topics to each day, ordered by domain weight (PM Concepts 33% and Life Cycle Phases 30% come first)
+- Reserve the final 1–2 days for full review and timed practice
+- Each day should cover 1–2 focused topics — not a data dump
+
+── SECTION 2: TOPIC DEEP-DIVES (one section per missed/skipped topic) ──
+For EACH question I got wrong or skipped, write a dedicated section with these five parts:
+
+  a) CONCEPT EXPLANATION — plain language, 2–3 paragraphs, like teaching a capable adult from scratch. Anchor it to a concrete real-world project scenario.
+
+  b) MY MISCONCEPTION — directly explain why the answer I chose was wrong and what thinking trap led me there. Don't just say "that's incorrect" — show me how to recognise and avoid this trap on test day.
+
+  c) COMPARISON TABLE — if this topic is commonly confused with something else (e.g. IaaS vs PaaS vs SaaS, risk register vs status report, Gantt vs PERT), show a clear side-by-side table with the distinguishing differences.
+
+  d) EXAM TRIGGER WORDS — list the specific words or phrases CompTIA uses in questions to signal this concept (e.g. "formally document risk → Risk Register", "track issues blocking progress → Issue Log", "no hardware to manage → SaaS"). These are the mental shortcuts for test day.
+
+  e) MEMORY AID — one strong mnemonic, acronym, analogy, or visual hook for the hardest part of this concept.
+
+  f) 3 PRACTICE QUESTIONS — in CompTIA scenario style:
+     • 2–3 sentence project scenario, then 4 options labelled A–D
+     • Include at least 2 plausible distractors closely related to the concept
+     • After each question: correct answer + why it's right + why each wrong option is wrong
+
+── SECTION 3: QUICK-REFERENCE CHEAT SHEET ──
+One compact reference page (table format where possible) covering:
+  • Cloud service models: IaaS / PaaS / SaaS — what each manages, who manages what layer, real examples, PM relevance
+  • Risk response types: Avoid / Transfer / Mitigate / Accept — one-line definition, trigger phrase, one example each
+  • Key PM documents by phase: Initiation / Planning / Execution / Monitoring & Controlling / Closing
+  • Project closing sequence: the exact order of steps CompTIA expects
+  • Acronym table: RACI, CCB, PERT, CPM, WBS, CI/CD, ERP, CRM, EDRMS, PII, PHI, EVM, SOW, MOV
+
+── SECTION 4: EXAM-DAY TIP SHEET ──
+  • Time strategy for 85 questions in 90 minutes — pacing rules, when to cut your losses and move on
+  • Flag-and-return: exactly when to flag, how many to allow, how to handle the review pass
+  • 8 CompTIA question traps (e.g., "FIRST", "BEST", "MOST appropriate", double negatives, "all of the above" patterns, answer options that are all technically correct but only one fits the scenario context)
+  • Day-before checklist: what to review, what to avoid, sleep strategy
+  • Morning-of checklist: arrival time, mental warm-up, first-question approach
+
+FORMAT GUIDANCE:
+- Use clear headers for every section and subheader for every topic
+- Bold key terms on first use
+- Use tables for any side-by-side comparisons
+- Ground all explanations in real project examples, not abstract theory
+- For practice questions, make distractors plausible — not obviously silly
+- Flag anywhere CompTIA tests something differently than real-world PM practice`;
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────
+// ── Result data helper (used by refreshAIPrompt) ──────────────────────────
+function getResultData() {
+  const total = activeQuestions.length;
+  const notLearned = activeQuestions.filter((_,i) => answers[i] === -1);
+  const correct    = activeQuestions.filter((q,i) => answers[i] === q.ans);
+  const wrong      = activeQuestions.filter((q,i) => answers[i] !== null && answers[i] !== -1 && answers[i] !== q.ans);
+  const dStats = {};
+  [1,2,3,4].forEach(d => {
+    const dIdxs = activeQuestions.reduce((acc,q,i) => { if (q.d===d) acc.push(i); return acc; }, []);
+    const dc  = dIdxs.filter(i => answers[i] === activeQuestions[i].ans).length;
+    const dnl = dIdxs.filter(i => answers[i] === -1).length;
+    const da  = dIdxs.filter(i => answers[i] !== null && answers[i] !== -1).length;
+    dStats[d] = { total:dIdxs.length, correct:dc, notLearned:dnl, attempted:da, pct:dIdxs.length>0?Math.round((dc/dIdxs.length)*100):0 };
+  });
+  return { total, notLearned, correct, wrong, dStats };
+}
+
+// Regenerates the AI prompt text when the user changes their exam date
+function refreshAIPrompt() {
+  const inp = document.getElementById('exam-date-input');
+  if (inp) examDate = inp.value || '2026-05-31';
+  const el = document.getElementById('ai-prompt-text');
+  if (!el) return;
+  const { dStats, wrong, notLearned, correct, total } = getResultData();
+  el.textContent = buildAIPrompt(dStats, wrong, notLearned, correct, total);
+  const daysEl = document.getElementById('exam-days-away');
+  if (daysEl && examDate) {
+    const d = Math.ceil((new Date(examDate+'T12:00:00') - new Date()) / 864e5);
+    daysEl.textContent = d > 0 ? '(' + d + ' days away)' : d === 0 ? '(today!)' : '(past — double-check your date)';
+  }
+}
+
+// ── Start Screen History ───────────────────────────────────────────────────
+function renderStartHistory() {
+  const el = document.getElementById('start-history');
+  if (!el) return;
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length === 0) { el.innerHTML = ''; return; }
+
+    const domainNames = {1:'Networking Concepts',2:'Net. Implementation',3:'Network Operations',4:'Net. Security',5:'Troubleshooting'};
+    const bestScore = Math.max(...history.map(h => h.score));
+
+    const cards = history.map((h, i) => {
+      const prev  = history[i + 1];
+      const delta = prev ? h.score - prev.score : null;
+      const sc    = h.score >= 78 ? '#22c55e' : h.score >= 60 ? '#eab308' : '#ef4444';
+      const isBest = h.score === bestScore && i === history.findIndex(x => x.score === bestScore);
+
+      let trendHTML = '';
+      if (delta !== null) {
+        if (delta > 0)      trendHTML = `<span class="sh-trend sh-trend-up">↑ +${delta}%</span>`;
+        else if (delta < 0) trendHTML = `<span class="sh-trend sh-trend-dn">↓ ${delta}%</span>`;
+        else                trendHTML = `<span class="sh-trend sh-trend-same">→ Same</span>`;
+      }
+
+      const domainBars = [1,2,3,4,5].map(d => {
+        const pct = h.dPct[d];
+        const c   = pct >= 78 ? '#22c55e' : pct >= 60 ? '#eab308' : '#ef4444';
+        return `<div class="sh-domain-row">
+          <span class="sh-domain-lbl">${domainNames[d]}</span>
+          <div class="sh-bar-track"><div class="sh-bar-fill" style="width:${pct}%;background:${c}"></div></div>
+          <span class="sh-domain-pct" style="color:${c}">${pct}%</span>
+        </div>`;
+      }).join('');
+
+      const hasFullData = Array.isArray(h.qIndices) && h.qIndices.length > 0;
+      const clickHint = hasFullData
+        ? `<div class="sh-click-hint">${ic('file-text',11)} Click to view full report</div>`
+        : `<div class="sh-click-hint">${ic('info',11)} Complete a new run to enable full report replay</div>`;
+
+      return `<button class="sh-run" onclick="${hasFullData ? `showHistoryReport(${i})` : ''}" ${!hasFullData ? 'style="cursor:default"' : ''}>
+        <div class="sh-accent-bar" style="background:${sc}"></div>
+        <div class="sh-body">
+          <div class="sh-top-row">
+            <div class="sh-score-wrap">
+              <span class="sh-score" style="color:${sc}">${h.score}%</span>
+              <span class="sh-score-label">${h.score >= 78 ? '✓ Passing' : h.score >= 60 ? 'Close' : 'Needs work'}</span>
+            </div>
+            <div class="sh-right">
+              ${trendHTML}
+              ${isBest && history.length > 1 ? `<span class="sh-best-badge">★ Best</span>` : ''}
+            </div>
+          </div>
+          <div class="sh-meta">
+            <strong>${h.date}</strong> · ${h.correct}/${h.total} correct${h.elapsed ? ' · ' + h.elapsed : ''}
+          </div>
+          <div class="sh-domains" style="margin-top:0.55rem">${domainBars}</div>
+          ${clickHint}
+        </div>
+      </button>`;
+    }).join('');
+
+    el.innerHTML = `<div class="start-history">
+      <div class="start-history-header">
+        <div class="start-history-title">${ic('trending-up',13)} Previous Attempts (${history.length})</div>
+        <button class="start-history-clear" onclick="clearHistory()" title="Clear history">Clear all</button>
+      </div>
+      <div class="sh-runs">${cards}</div>
+    </div>`;
+    renderIcons();
+  } catch(e) { el.innerHTML = ''; }
+}
+
+function clearHistory() {
+  if (!confirm('Clear all test history? This cannot be undone.')) return;
+  try { localStorage.removeItem(HISTORY_KEY); } catch(e) {}
+  renderStartHistory();
+}
+
+function showHistoryReport(histIdx) {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    const entry = history[histIdx];
+    if (!entry || !Array.isArray(entry.qIndices) || entry.qIndices.length === 0) return;
+
+    // Reconstruct exam state from stored data
+    activeQuestions = entry.qIndices.map(i => questions[i]).filter(Boolean);
+    answers         = entry.answers.slice();
+    confidence      = (entry.confidence  || []).slice();
+    questionTimes   = (entry.questionTimes || []).slice();
+    flagged         = (entry.flagged || []).slice();
+    historyElapsed  = entry.elapsed || '—';
+    isViewingHistory = true;
+
+    // Hide start screen, show results
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('timer-box').style.display = 'none';
+    document.getElementById('prog-wrap').classList.remove('show');
+    document.getElementById('question-area').innerHTML = '';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('results').innerHTML = '';
+
+    showResults();
+  } catch(e) { console.error('History report error:', e); }
+}
+
+function backToStart() {
+  isViewingHistory = false;
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('timer-box').style.display = '';
+  document.getElementById('start-screen').style.display = '';
+  renderStartHistory();
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('DOMContentLoaded', () => { checkSavedState(); renderStartHistory(); });
+
+// ── Copy prompt to clipboard ───────────────────────────────────────────────
+function copyPrompt() {
+  const text = document.getElementById('ai-prompt-text').textContent;
+  const btn  = document.querySelector('.copy-btn');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.innerHTML = ic('check',13)+' Copied!'; btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = ic('clipboard',13)+' Copy Prompt'; btn.classList.remove('copied'); renderIcons(); }, 2500);
+      renderIcons();
+    }).catch(fallback);
+  } else { fallback(); }
+
+  function fallback() {
+    const el = document.getElementById('ai-prompt-text');
+    const sel = window.getSelection(); const range = document.createRange();
+    range.selectNodeContents(el); sel.removeAllRanges(); sel.addRange(range);
+    document.execCommand('copy');
+    btn.innerHTML = ic('check',13)+' Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = ic('clipboard',13)+' Copy Prompt'; btn.classList.remove('copied'); renderIcons(); }, 2500);
+    renderIcons();
+  }
+}
+</script>
+</body>
+</html>
