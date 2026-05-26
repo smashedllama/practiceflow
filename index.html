@@ -208,12 +208,13 @@
   /* Domains */
   .exam-domains { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex: 1; }
   .ed-label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
-  .ed-list { display: flex; flex-direction: column; gap: 0.35rem; }
-  .ed-row { display: flex; align-items: center; gap: 0.5rem; }
-  .ed-name { font-size: 0.72rem; color: var(--text); flex: 1; }
-  .ed-bar-track { width: 60px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
-  .ed-bar-fill { height: 4px; border-radius: 2px; }
-  .ed-pct { font-size: 0.65rem; font-weight: 700; color: var(--muted); width: 2rem; text-align: right; flex-shrink: 0; }
+  .ed-stack { display:flex; height:8px; border-radius:4px; overflow:hidden; margin-bottom:0.65rem; gap:2px; }
+  .ed-seg { height:100%; border-radius:2px; }
+  .ed-legend { display:flex; flex-wrap:wrap; gap:0.22rem 0.5rem; }
+  .ed-leg-item { display:flex; align-items:center; gap:0.32rem; flex:0 0 calc(50% - 0.25rem); min-width:0; }
+  .ed-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .ed-leg-name { font-size:0.68rem; color:var(--text); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .ed-leg-pct { font-size:0.63rem; font-weight:700; color:var(--muted); flex-shrink:0; }
 
   /* CTA */
   .exam-cta { padding: 1.25rem 1.5rem; }
@@ -369,13 +370,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Mobile Devices</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:15%;background:#3b82f6"></div></div><span class="ed-pct">15%</span></div>
-          <div class="ed-row"><span class="ed-name">Networking</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#10b981"></div></div><span class="ed-pct">20%</span></div>
-          <div class="ed-row"><span class="ed-name">Hardware</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:25%;background:#f97316"></div></div><span class="ed-pct">25%</span></div>
-          <div class="ed-row"><span class="ed-name">Virtualization &amp; Cloud</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:11%;background:#8b5cf6"></div></div><span class="ed-pct">11%</span></div>
-          <div class="ed-row"><span class="ed-name">HW &amp; Net Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:29%;background:#ef4444"></div></div><span class="ed-pct">29%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:15;background:#3b82f6"></div><div class="ed-seg" style="flex:20;background:#10b981"></div><div class="ed-seg" style="flex:25;background:#f97316"></div><div class="ed-seg" style="flex:11;background:#8b5cf6"></div><div class="ed-seg" style="flex:29;background:#ef4444"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">Mobile Devices</span><span class="ed-leg-pct">15%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#10b981"></span><span class="ed-leg-name">Networking</span><span class="ed-leg-pct">20%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Hardware</span><span class="ed-leg-pct">25%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#8b5cf6"></span><span class="ed-leg-name">Virtualization &amp; Cloud</span><span class="ed-leg-pct">11%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">HW &amp; Net Troubleshooting</span><span class="ed-leg-pct">29%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="aplus-core1/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">
@@ -403,12 +398,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Operating Systems</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:31%;background:#3b82f6"></div></div><span class="ed-pct">31%</span></div>
-          <div class="ed-row"><span class="ed-name">Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:25%;background:#ef4444"></div></div><span class="ed-pct">25%</span></div>
-          <div class="ed-row"><span class="ed-name">Software Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#f97316"></div></div><span class="ed-pct">22%</span></div>
-          <div class="ed-row"><span class="ed-name">Operational Procedures</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#10b981"></div></div><span class="ed-pct">22%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:31;background:#3b82f6"></div><div class="ed-seg" style="flex:25;background:#ef4444"></div><div class="ed-seg" style="flex:22;background:#f97316"></div><div class="ed-seg" style="flex:22;background:#10b981"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">Operating Systems</span><span class="ed-leg-pct">31%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Security</span><span class="ed-leg-pct">25%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Software Troubleshooting</span><span class="ed-leg-pct">22%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#10b981"></span><span class="ed-leg-name">Operational Procedures</span><span class="ed-leg-pct">22%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="aplus-core2/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">
@@ -436,13 +426,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Networking Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:23%;background:#3b82f6"></div></div><span class="ed-pct">23%</span></div>
-          <div class="ed-row"><span class="ed-name">Network Implementation</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#22c55e"></div></div><span class="ed-pct">19%</span></div>
-          <div class="ed-row"><span class="ed-name">Network Operations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:17%;background:#f97316"></div></div><span class="ed-pct">17%</span></div>
-          <div class="ed-row"><span class="ed-name">Network Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#a855f7"></div></div><span class="ed-pct">20%</span></div>
-          <div class="ed-row"><span class="ed-name">Network Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:21%;background:#14b8a6"></div></div><span class="ed-pct">21%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:23;background:#3b82f6"></div><div class="ed-seg" style="flex:19;background:#22c55e"></div><div class="ed-seg" style="flex:17;background:#f97316"></div><div class="ed-seg" style="flex:20;background:#a855f7"></div><div class="ed-seg" style="flex:21;background:#14b8a6"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">Networking Concepts</span><span class="ed-leg-pct">23%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Network Implementation</span><span class="ed-leg-pct">19%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Network Operations</span><span class="ed-leg-pct">17%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#a855f7"></span><span class="ed-leg-name">Network Security</span><span class="ed-leg-pct">20%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#14b8a6"></span><span class="ed-leg-name">Network Troubleshooting</span><span class="ed-leg-pct">21%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="network-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">
@@ -469,11 +453,7 @@
         <div class="exam-stat"><span class="exam-stat-num">90 min</span><span class="exam-stat-lbl">Duration</span></div>
       </div>
       <div class="exam-domains">
-        <div class="ed-row"><span class="ed-name">Hardware Installation &amp; Mgmt</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:18%;background:#f59e0b"></div></div><span class="ed-pct">18%</span></div>
-        <div class="ed-row"><span class="ed-name">Server Administration</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:30%;background:#3b82f6"></div></div><span class="ed-pct">30%</span></div>
-        <div class="ed-row"><span class="ed-name">Security &amp; Disaster Recovery</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:24%;background:#ef4444"></div></div><span class="ed-pct">24%</span></div>
-        <div class="ed-row"><span class="ed-name">Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:28%;background:#8b5cf6"></div></div><span class="ed-pct">28%</span></div>
-      </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:18;background:#f59e0b"></div><div class="ed-seg" style="flex:30;background:#3b82f6"></div><div class="ed-seg" style="flex:24;background:#ef4444"></div><div class="ed-seg" style="flex:28;background:#8b5cf6"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#f59e0b"></span><span class="ed-leg-name">Hardware Installation &amp; Mgmt</span><span class="ed-leg-pct">18%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">Server Administration</span><span class="ed-leg-pct">30%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Security &amp; Disaster Recovery</span><span class="ed-leg-pct">24%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#8b5cf6"></span><span class="ed-leg-name">Troubleshooting</span><span class="ed-leg-pct">28%</span></div></div></div>
       <div class="exam-cta">
         <a href="server-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
           Start Server+ Assessment →
@@ -500,12 +480,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">System Management</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:32%;background:#22c55e"></div></div><span class="ed-pct">32%</span></div>
-          <div class="ed-row"><span class="ed-name">Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:28%;background:#3b82f6"></div></div><span class="ed-pct">28%</span></div>
-          <div class="ed-row"><span class="ed-name">Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:21%;background:#ef4444"></div></div><span class="ed-pct">21%</span></div>
-          <div class="ed-row"><span class="ed-name">Scripting &amp; Automation</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#f97316"></div></div><span class="ed-pct">19%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:32;background:#22c55e"></div><div class="ed-seg" style="flex:28;background:#3b82f6"></div><div class="ed-seg" style="flex:21;background:#ef4444"></div><div class="ed-seg" style="flex:19;background:#f97316"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">System Management</span><span class="ed-leg-pct">32%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">Troubleshooting</span><span class="ed-leg-pct">28%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Security</span><span class="ed-leg-pct">21%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Scripting &amp; Automation</span><span class="ed-leg-pct">19%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="linux-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#84cc16,#16a34a)">
@@ -533,13 +508,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">General Security Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:12%;background:#4CAF50"></div></div><span class="ed-pct">12%</span></div>
-          <div class="ed-row"><span class="ed-name">Threats, Vulns &amp; Mitigations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#ef4444"></div></div><span class="ed-pct">22%</span></div>
-          <div class="ed-row"><span class="ed-name">Security Architecture</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:18%;background:#f97316"></div></div><span class="ed-pct">18%</span></div>
-          <div class="ed-row"><span class="ed-name">Security Operations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:28%;background:#22c55e"></div></div><span class="ed-pct">28%</span></div>
-          <div class="ed-row"><span class="ed-name">Security Program Mgmt</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#66BB6A"></div></div><span class="ed-pct">20%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:12;background:#4CAF50"></div><div class="ed-seg" style="flex:22;background:#ef4444"></div><div class="ed-seg" style="flex:18;background:#f97316"></div><div class="ed-seg" style="flex:28;background:#22c55e"></div><div class="ed-seg" style="flex:20;background:#66BB6A"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#4CAF50"></span><span class="ed-leg-name">General Security Concepts</span><span class="ed-leg-pct">12%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Threats, Vulns &amp; Mitigations</span><span class="ed-leg-pct">22%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Security Architecture</span><span class="ed-leg-pct">18%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Security Operations</span><span class="ed-leg-pct">28%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#66BB6A"></span><span class="ed-leg-name">Security Program Mgmt</span><span class="ed-leg-pct">20%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="security-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#ef4444,#f97316)">
@@ -567,13 +536,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Deployment</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:23%;background:#f97316"></div></div><span class="ed-pct">23%</span></div>
-          <div class="ed-row"><span class="ed-name">Operations &amp; Support</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#22c55e"></div></div><span class="ed-pct">22%</span></div>
-          <div class="ed-row"><span class="ed-name">Troubleshooting</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:22%;background:#8b5cf6"></div></div><span class="ed-pct">22%</span></div>
-          <div class="ed-row"><span class="ed-name">Security</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#ef4444"></div></div><span class="ed-pct">20%</span></div>
-          <div class="ed-row"><span class="ed-name">Architecture &amp; Design</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:13%;background:#0ea5e9"></div></div><span class="ed-pct">13%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:23;background:#f97316"></div><div class="ed-seg" style="flex:22;background:#22c55e"></div><div class="ed-seg" style="flex:22;background:#8b5cf6"></div><div class="ed-seg" style="flex:20;background:#ef4444"></div><div class="ed-seg" style="flex:13;background:#0ea5e9"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Deployment</span><span class="ed-leg-pct">23%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Operations &amp; Support</span><span class="ed-leg-pct">22%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#8b5cf6"></span><span class="ed-leg-name">Troubleshooting</span><span class="ed-leg-pct">22%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Security</span><span class="ed-leg-pct">20%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#0ea5e9"></span><span class="ed-leg-name">Architecture &amp; Design</span><span class="ed-leg-pct">13%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="cloud-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">
@@ -601,12 +564,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Security Operations</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:33%;background:#7c3aed"></div></div><span class="ed-pct">33%</span></div>
-          <div class="ed-row"><span class="ed-name">Vulnerability Management</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:30%;background:#06b6d4"></div></div><span class="ed-pct">30%</span></div>
-          <div class="ed-row"><span class="ed-name">Incident Response &amp; Mgmt</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:20%;background:#f97316"></div></div><span class="ed-pct">20%</span></div>
-          <div class="ed-row"><span class="ed-name">Reporting &amp; Communication</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:17%;background:#10b981"></div></div><span class="ed-pct">17%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:33;background:#7c3aed"></div><div class="ed-seg" style="flex:30;background:#06b6d4"></div><div class="ed-seg" style="flex:20;background:#f97316"></div><div class="ed-seg" style="flex:17;background:#10b981"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#7c3aed"></span><span class="ed-leg-name">Security Operations</span><span class="ed-leg-pct">33%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#06b6d4"></span><span class="ed-leg-name">Vulnerability Management</span><span class="ed-leg-pct">30%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Incident Response &amp; Mgmt</span><span class="ed-leg-pct">20%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#10b981"></span><span class="ed-leg-name">Reporting &amp; Communication</span><span class="ed-leg-pct">17%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="cysa/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">
@@ -634,13 +592,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">Attacks &amp; Exploits</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:35%;background:#dc2626"></div></div><span class="ed-pct">35%</span></div>
-          <div class="ed-row"><span class="ed-name">Recon &amp; Enumeration</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:21%;background:#06b6d4"></div></div><span class="ed-pct">21%</span></div>
-          <div class="ed-row"><span class="ed-name">Post-Exploitation</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:14%;background:#8b5cf6"></div></div><span class="ed-pct">14%</span></div>
-          <div class="ed-row"><span class="ed-name">Vuln Discovery</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:17%;background:#22c55e"></div></div><span class="ed-pct">17%</span></div>
-          <div class="ed-row"><span class="ed-name">Engagement Mgmt</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:13%;background:#f59e0b"></div></div><span class="ed-pct">13%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:35;background:#dc2626"></div><div class="ed-seg" style="flex:21;background:#06b6d4"></div><div class="ed-seg" style="flex:14;background:#8b5cf6"></div><div class="ed-seg" style="flex:17;background:#22c55e"></div><div class="ed-seg" style="flex:13;background:#f59e0b"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#dc2626"></span><span class="ed-leg-name">Attacks &amp; Exploits</span><span class="ed-leg-pct">35%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#06b6d4"></span><span class="ed-leg-name">Recon &amp; Enumeration</span><span class="ed-leg-pct">21%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#8b5cf6"></span><span class="ed-leg-name">Post-Exploitation</span><span class="ed-leg-pct">14%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Vuln Discovery</span><span class="ed-leg-pct">17%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f59e0b"></span><span class="ed-leg-name">Engagement Mgmt</span><span class="ed-leg-pct">13%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="pentest-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#dc2626,#7f1d1d)">
@@ -667,12 +619,7 @@
         <div class="exam-stat"><span class="exam-stat-num">90 min</span><span class="exam-stat-lbl">Duration</span></div>
       </div>
       <div class="exam-domains">
-        <div class="ed-row"><span class="ed-name">Data Concepts &amp; Environments</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:15%;background:#0ea5e9"></div></div><span class="ed-pct">15%</span></div>
-        <div class="ed-row"><span class="ed-name">Data Mining</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:25%;background:#f59e0b"></div></div><span class="ed-pct">25%</span></div>
-        <div class="ed-row"><span class="ed-name">Data Analysis</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:23%;background:#22c55e"></div></div><span class="ed-pct">23%</span></div>
-        <div class="ed-row"><span class="ed-name">Visualization</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:23%;background:#8b5cf6"></div></div><span class="ed-pct">23%</span></div>
-        <div class="ed-row"><span class="ed-name">Governance, Quality &amp; Controls</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:14%;background:#ef4444"></div></div><span class="ed-pct">14%</span></div>
-      </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:15;background:#0ea5e9"></div><div class="ed-seg" style="flex:25;background:#f59e0b"></div><div class="ed-seg" style="flex:23;background:#22c55e"></div><div class="ed-seg" style="flex:23;background:#8b5cf6"></div><div class="ed-seg" style="flex:14;background:#ef4444"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#0ea5e9"></span><span class="ed-leg-name">Data Concepts &amp; Environments</span><span class="ed-leg-pct">15%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f59e0b"></span><span class="ed-leg-name">Data Mining</span><span class="ed-leg-pct">25%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Data Analysis</span><span class="ed-leg-pct">23%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#8b5cf6"></span><span class="ed-leg-name">Visualization</span><span class="ed-leg-pct">23%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#ef4444"></span><span class="ed-leg-name">Governance, Quality &amp; Controls</span><span class="ed-leg-pct">14%</span></div></div></div>
       <div class="exam-cta">
         <a href="data-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">
           Start Data+ Assessment →
@@ -699,12 +646,7 @@
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
-        <div class="ed-list">
-          <div class="ed-row"><span class="ed-name">PM Concepts</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:33%;background:#3b82f6"></div></div><span class="ed-pct">33%</span></div>
-          <div class="ed-row"><span class="ed-name">Life Cycle Phases</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:30%;background:#22c55e"></div></div><span class="ed-pct">30%</span></div>
-          <div class="ed-row"><span class="ed-name">Tools &amp; Documents</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:19%;background:#f97316"></div></div><span class="ed-pct">19%</span></div>
-          <div class="ed-row"><span class="ed-name">IT &amp; Governance</span><div class="ed-bar-track"><div class="ed-bar-fill" style="width:18%;background:#66BB6A"></div></div><span class="ed-pct">18%</span></div>
-        </div>
+        <div class="ed-stack"><div class="ed-seg" style="flex:33;background:#3b82f6"></div><div class="ed-seg" style="flex:30;background:#22c55e"></div><div class="ed-seg" style="flex:19;background:#f97316"></div><div class="ed-seg" style="flex:18;background:#66BB6A"></div></div><div class="ed-legend"><div class="ed-leg-item"><span class="ed-dot" style="background:#3b82f6"></span><span class="ed-leg-name">PM Concepts</span><span class="ed-leg-pct">33%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#22c55e"></span><span class="ed-leg-name">Life Cycle Phases</span><span class="ed-leg-pct">30%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#f97316"></span><span class="ed-leg-name">Tools &amp; Documents</span><span class="ed-leg-pct">19%</span></div><div class="ed-leg-item"><span class="ed-dot" style="background:#66BB6A"></span><span class="ed-leg-name">IT &amp; Governance</span><span class="ed-leg-pct">18%</span></div></div>
       </div>
       <div class="exam-cta">
         <a href="project-plus/" class="exam-btn exam-btn-live" style="background:linear-gradient(135deg,#3b82f6,#4CAF50)">
