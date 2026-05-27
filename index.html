@@ -77,15 +77,25 @@
     display: flex; align-items: center; justify-content: space-between;
     height: 58px;
   }
-  .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+  .nav-altflow { display: flex; align-items: center; gap: 0.45rem; text-decoration: none; }
+  .nav-altflow-icon {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 0.85rem; color: #fff; flex-shrink: 0;
+  }
+  .nav-altflow-word { font-weight: 800; font-size: 0.9rem; color: var(--text); letter-spacing: -0.01em; }
+  .nav-sep { width: 1px; height: 18px; background: var(--border); }
+  .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
   .nav-logo {
-    width: 32px; height: 32px; border-radius: 8px;
+    width: 28px; height: 28px; border-radius: 7px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     display: flex; align-items: center; justify-content: center;
-    font-weight: 900; font-size: 1rem; color: #fff;
+    font-weight: 900; font-size: 0.85rem; color: #fff;
   }
-  .nav-name { font-weight: 800; font-size: 1rem; color: var(--text); }
-  .nav-by { font-size: 0.72rem; color: var(--muted); margin-left: 0.1rem; }
+  .nav-name { font-weight: 700; font-size: 0.9rem; color: var(--muted); }
+  .nav-by { display: none; }
   .nav-links { display: flex; align-items: center; gap: 1.5rem; }
   .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
   .nav-link:hover { color: var(--text); }
@@ -122,6 +132,7 @@
   .hero p {
     font-size: 1.05rem; color: var(--muted); line-height: 1.7;
     max-width: 540px; margin: 0 auto;
+    text-wrap: balance;
   }
   .hero-stats {
     display: flex; justify-content: center; gap: 2rem;
@@ -318,13 +329,17 @@
 <body>
 
 <nav>
-  <a class="nav-brand" href="#">
-    <div class="nav-logo">P</div>
-    <div>
+  <div class="nav-left">
+    <a class="nav-altflow" href="https://altflow.dev" target="_blank">
+      <div class="nav-altflow-icon">A</div>
+      <span class="nav-altflow-word">altflow</span>
+    </a>
+    <div class="nav-sep"></div>
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">P</div>
       <span class="nav-name">PracticeFlow</span>
-      <span class="nav-by">by altflow.dev</span>
-    </div>
-  </a>
+    </a>
+  </div>
   <div class="nav-links">
     <a class="nav-link" href="#exams">Exams</a>
     <a class="nav-link" href="#features">Features</a>
@@ -338,7 +353,7 @@
     Free · No signup · No fluff
   </div>
   <h1>Practice like it's<br><span>exam day.</span></h1>
-  <p>Proportionally weighted, fully explained practice exams for CompTIA certifications. Built to simulate the real thing: not to sell you a course.</p>
+  <p>Proportionally weighted, fully explained practice exams for every CompTIA cert. Built to help you pass — not sell you a course.</p>
   <div class="hero-stats">
     <div class="hero-stat"><span class="hero-stat-num">16</span><span class="hero-stat-lbl">Exams</span></div>
     <div class="hero-stat"><span class="hero-stat-num">1100+</span><span class="hero-stat-lbl">Questions</span></div>
