@@ -299,6 +299,21 @@
   .mode-badge { font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 99px; }
   .mode-badge-exam { background: rgba(59,130,246,0.12); color: #3b82f6; }
   .mode-badge-learn { background: rgba(76,175,80,0.12); color: var(--accent); }
+  .timer-urgent  { color: var(--red) !important; animation: pulse-urgent 1s ease-in-out infinite; }
+  .timer-warning { color: #f97316 !important; }
+  @keyframes pulse-urgent { 0%,100%{opacity:1} 50%{opacity:0.5} }
+  .dtrend-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+  .dtrend-section-title { font-size: 0.7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .dtrend-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .dtrend-card { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; flex: 1; min-width: 70px; }
+  .dtrend-label { font-size: 0.62rem; color: var(--muted); font-weight: 700; text-align: center; }
+  .dtrend-pct { font-size: 0.78rem; font-weight: 800; }
+  .slow-callout { background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.18); border-radius: 10px; padding: 0.7rem 1rem; margin-bottom: 1.5rem; }
+  .slow-callout-title { font-size: 0.78rem; font-weight: 700; color: #f97316; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+  .slow-callout-list { display: flex; flex-direction: column; gap: 0.3rem; }
+  .slow-callout-item { font-size: 0.76rem; color: var(--text); display: flex; align-items: baseline; gap: 0.5rem; }
+  .slow-callout-item .slow-tag { font-size: 0.65rem; font-weight: 700; background: rgba(249,115,22,0.12); color: #f97316; padding: 0.1rem 0.4rem; border-radius: 99px; flex-shrink: 0; }
+  .slow-callout-item .slow-ok  { font-size: 0.65rem; font-weight: 700; background: rgba(34,197,94,0.1); color: var(--green); padding: 0.1rem 0.4rem; border-radius: 99px; flex-shrink: 0; }
   .mode-desc { font-size: 0.78rem; color: var(--muted); max-width: 440px; text-align: center; line-height: 1.5; }
 
   /* ── Question Navigator ── */
@@ -527,7 +542,7 @@
     </div>
   </div>
   <div class="timer-box" id="timer-box">
-    <div class="timer-label">Elapsed</div>
+    <div class="timer-label" id="timer-label">Elapsed</div>
     <div class="timer-val" id="timer">0:00</div>
   </div>
 </header>
@@ -567,6 +582,13 @@
       <span class="mode-badge mode-badge-learn">Learning Mode</span>
     </label>
     <p class="mode-desc" id="mode-desc">Results only shown at the end — mirrors real exam conditions.</p>
+    <label class="mode-toggle" style="margin-top:0.25rem" title="Simulate real exam time pressure">
+      <span class="mode-badge" style="background:rgba(249,115,22,0.12);color:#f97316">Practice</span>
+      <input type="checkbox" id="timed-mode-toggle" onchange="document.getElementById('timed-desc').textContent=this.checked?'\u23f1 50-min countdown — auto-submits when time runs out.':'No time limit — take as long as you need.'">
+      <div class="mode-track"><div class="mode-thumb"></div></div>
+      <span class="mode-badge" style="background:rgba(249,115,22,0.12);color:#f97316">Timed (50 min)</span>
+    </label>
+    <p class="mode-desc" id="timed-desc">No time limit — take as long as you need.</p>
   </div>
   <button class="btn btn-primary btn-lg" id="start-btn" onclick="startExam()">Start Assessment →</button>
   <div id="start-history"></div>
@@ -759,6 +781,9 @@ let activeQuestions = questions;  // replaced with a freshly shuffled copy at ex
 let answers = new Array(questions.length).fill(null);   // null=unanswered, -1=not learned, 0-3=chosen option
 let flagged = [];                 // flagged[i] = true if question i was flagged for review
 let startTime = null, timerInterval = null;
+let timedMode = false;
+const EXAM_TIMED_MINUTES = 50;
+
 const letters = ['A','B','C','D'];
 let examDate = (()=>{const d=new Date();d.setDate(d.getDate()+30);return d.toISOString().split('T')[0];})(); // defaults to 30 days out; updated by user's date input
 
@@ -789,6 +814,7 @@ function saveState() {
       confidence,
       questionTimes,
       learningMode,
+      timedMode,
       elapsedMs: Date.now() - startTime,
       current,
       savedAt: Date.now()
@@ -848,12 +874,14 @@ function resumeExam() {
     confidence      = s.confidence     || new Array(activeQuestions.length).fill(null);
     questionTimes   = s.questionTimes  || new Array(activeQuestions.length).fill(0);
     learningMode    = s.learningMode   || false;
+    timedMode       = s.timedMode      || false;
     startTime       = Date.now() - s.elapsedMs;
     current         = s.current || 0;
     document.getElementById('start-screen').style.display = 'none';
     document.getElementById('timer-box').style.display    = 'block';
     document.getElementById('prog-wrap').classList.add('show');
     timerInterval = setInterval(updateTimer, 1000);
+    if (timedMode) { const lbl = document.getElementById('timer-label'); if(lbl) lbl.textContent = 'Remaining'; }
     renderQuestion(current);
   } catch(e) { startExam(); }
 }
@@ -880,17 +908,31 @@ function startExam() {
   confidence    = new Array(activeQuestions.length).fill(null);
   questionTimes = new Array(activeQuestions.length).fill(0);
   learningMode  = document.getElementById('learning-mode-toggle')?.checked || false;
+  timedMode     = document.getElementById('timed-mode-toggle')?.checked || false;
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('timer-box').style.display = 'block';
   document.getElementById('prog-wrap').classList.add('show');
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 1000);
+  if (timedMode) { const lbl = document.getElementById('timer-label'); if(lbl) lbl.textContent = 'Remaining'; }
   renderQuestion(0);
 }
 
 function updateTimer() {
-  const s = Math.floor((Date.now() - startTime) / 1000);
-  document.getElementById('timer').textContent = `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
+  const el = document.getElementById('timer');
+  if (timedMode) {
+    const elapsed   = Math.floor((Date.now() - startTime) / 1000);
+    const remaining = Math.max(0, EXAM_TIMED_MINUTES * 60 - elapsed);
+    const m = Math.floor(remaining / 60), s = remaining % 60;
+    el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    if      (remaining <= 300) el.className = 'timer-val timer-urgent';
+    else if (remaining <= 600) el.className = 'timer-val timer-warning';
+    else                       el.className = 'timer-val';
+    if (remaining === 0) { clearInterval(timerInterval); showResults(); }
+  } else {
+    const s = Math.floor((Date.now() - startTime) / 1000);
+    el.textContent = `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
+  }
 }
 
 // ── Render question ────────────────────────────────────────────────────────
@@ -1168,6 +1210,49 @@ function buildRunHistory() {
   } catch(e) { return ''; }
 }
 
+
+// ── Domain Trend Sparklines ────────────────────────────────────────────────
+function buildDomainTrends() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length < 2) return '';
+    const recent = history.slice(0, 5).reverse(); // oldest→newest for left-to-right
+    const domains = Object.keys(history[0].dPct || {}).map(Number).sort();
+    if (!domains.length) return '';
+    const W = 72, H = 26, pad = 3;
+    const cards = domains.map(d => {
+      const vals = recent.map(h => (h.dPct && h.dPct[d] != null) ? h.dPct[d] : 0);
+      const minV = Math.min(...vals), maxV = Math.max(...vals);
+      const range = maxV - minV || 1;
+      const pts = vals.map((v, i) => {
+        const x = pad + (vals.length < 2 ? W/2-pad : i/(vals.length-1)*(W-pad*2));
+        const y = H - pad - ((v - minV)/range)*(H - pad*2);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+      const last = vals[vals.length-1], first = vals[0];
+      const delta = last - first;
+      const col = delta > 2 ? '#22c55e' : delta < -2 ? '#ef4444' : '#94a3b8';
+      const dots = vals.map((v, i) => {
+        const x = pad + (vals.length < 2 ? W/2-pad : i/(vals.length-1)*(W-pad*2));
+        const y = H - pad - ((v - minV)/range)*(H - pad*2);
+        return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="${col}"/>`;
+      }).join('');
+      return `<div class="dtrend-card">
+        <div class="dtrend-label">Domain ${d}</div>
+        <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="overflow:visible">
+          <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          ${dots}
+        </svg>
+        <div class="dtrend-pct" style="color:${col}">${last}%</div>
+      </div>`;
+    }).join('');
+    return `<div class="dtrend-section">
+      <div class="dtrend-section-title">\u{1F4C8} Domain trends across last ${recent.length} runs</div>
+      <div class="dtrend-row">${cards}</div>
+    </div>`;
+  } catch(e) { return ''; }
+}
+
 // ── Radar Chart ────────────────────────────────────────────────────────────
 function buildRadarChart(dStats) {
   const cx=170, cy=160, r=100;
@@ -1436,6 +1521,18 @@ function showResults() {
   // Extra stats
   const confidentWrong = wrong.filter(q => { const gi = activeQuestions.indexOf(q); return confidence[gi] === 3; });
   const slowQuestions  = activeQuestions.filter((_,i) => (questionTimes[i]||0) > 90000);
+  const slowDetails = slowQuestions.length > 0 ? `<div class="slow-callout">
+    <div class="slow-callout-title">${ic('clock',13)} These questions took you over 90 seconds — worth a second look</div>
+    <div class="slow-callout-list">${slowQuestions.map(q => {
+      const qi = activeQuestions.indexOf(q);
+      const wasCorrect = answers[qi] === q.ans;
+      const tag = wasCorrect
+        ? \`<span class="slow-ok">✓ Correct</span>\`
+        : \`<span class="slow-tag">✗ Incorrect</span>\`;
+      const secs = Math.round((questionTimes[qi]||0)/1000);
+      return \`<div class="slow-callout-item">${tag}<span>\${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">\${secs}s</span></div>\`;
+    }).join('')}</div>
+  </div>\` : '';
 
   // Build readiness report + AI prompt
   const readinessHTML = buildReadinessReport(dStats, correct, wrong, notLearned, total);
@@ -1476,13 +1573,14 @@ function showResults() {
       ${slowQuestions.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#f97316">${slowQuestions.length}</div><div class="sp-label">Slow (&gt;90s)</div></div>` : ''}
     </div>
 
+    \${slowDetails}
+
     <div class="section-header">Domain Breakdown</div>
     <div class="domain-results">${drCards}</div>
 
     ${radarHTML}
     ${matrixHTML}
 
-    <div class="section-header">${ic('clipboard',15)} Your Personalized 9-Day Study Plan</div>
 
     <div class="section-header" id="missed-header">
       ${ic('x-circle',15)} Full Results Breakdown
@@ -1509,6 +1607,7 @@ function showResults() {
 
     ${historyHTML ? `<div class="history-section">
       <div class="section-header">${ic('trending-up',15)} Score History</div>
+      ${buildDomainTrends()}
       ${historyHTML}
     </div>` : ''}
 
