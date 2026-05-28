@@ -148,9 +148,9 @@
   }
   .exams-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    align-items: stretch;
+    align-items: start;
   }
 
   /* Exam Card */
@@ -272,8 +272,11 @@
   .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
 
   /* ── Mobile responsive ─────────────────────────────── */
+  @media (max-width: 1100px) {
+    .exams-grid { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 768px) {
-    .exams-grid { grid-template-columns: 1fr; }
+    .exams-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
     nav { padding: 0 1rem; height: 52px; }
@@ -299,6 +302,9 @@
     .feature-item { padding: 1rem; }
     footer { padding: 1.5rem 1rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     .footer-links { gap: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .exams-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 400px) {
     .hero h1 { font-size: 1.55rem; }
