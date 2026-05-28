@@ -491,6 +491,8 @@
     .logo p  { font-size: 0.65rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .timer-box { padding: 0.3rem 0.65rem; flex-shrink: 0; }
     .timer-val { font-size: 1.15rem; }
+  .pause-btn { background: none; border: 1px solid var(--border); border-radius: 7px; padding: 0.2rem 0.55rem; font-size: 0.72rem; font-weight: 700; color: var(--muted); cursor: pointer; margin-top: 0.3rem; display: none; white-space: nowrap; transition: all 0.15s; }
+  .pause-btn:hover { border-color: var(--accent); color: var(--accent); }
     .progress-bar-wrap {
       padding: 0.45rem 0.9rem;
       overflow: hidden;         /* prevent Map button bleed */
@@ -544,6 +546,7 @@
   <div class="timer-box" id="timer-box">
     <div class="timer-label" id="timer-label">Elapsed</div>
     <div class="timer-val" id="timer">0:00</div>
+    <button class="pause-btn" id="pause-btn" onclick="togglePause()">⏸ Pause</button>
   </div>
 </header>
 
@@ -596,6 +599,14 @@
 
 <div id="question-area"></div>
 <div id="results"></div>
+
+
+<div id="pause-overlay" style="display:none;position:fixed;inset:0;z-index:999;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;text-align:center;padding:2rem">
+  <div style="font-size:3rem">⏸</div>
+  <h2 style="font-size:1.6rem;font-weight:800;margin:0">Exam Paused</h2>
+  <p style="color:var(--muted);max-width:360px;margin:0">Your progress is saved. The timer is stopped. Questions are hidden while paused.</p>
+  <button class="btn btn-primary btn-lg" onclick="togglePause()">Resume Exam →</button>
+</div>
 
 </main>
 
@@ -702,6 +713,9 @@ function saveState() {
 
 function clearState() {
   try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+  const pb = document.getElementById('pause-btn'); if (pb) pb.style.display = 'none';
+  const ov = document.getElementById('pause-overlay'); if (ov) ov.style.display = 'none';
+  isPaused = false;
 }
 
 function checkSavedState() {
@@ -789,6 +803,7 @@ function startExam() {
   timedMode     = document.getElementById('timed-mode-toggle')?.checked || false;
   document.getElementById('start-screen').style.display = 'none';
   document.getElementById('timer-box').style.display = 'block';
+  const pb = document.getElementById('pause-btn'); if (pb) pb.style.display = 'block';
   document.getElementById('prog-wrap').classList.add('show');
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 1000);
@@ -2359,6 +2374,31 @@ function backToStart() {
   document.getElementById('start-screen').style.display = '';
   renderStartHistory();
   window.scrollTo(0, 0);
+}
+
+
+// ── Pause / Resume ─────────────────────────────────────────────────────────
+let isPaused = false;
+let pausedElapsedMs = 0;
+
+function togglePause() {
+  if (!startTime) return;
+  isPaused = !isPaused;
+  const overlay = document.getElementById('pause-overlay');
+  const btn = document.getElementById('pause-btn');
+  if (isPaused) {
+    pausedElapsedMs = Date.now() - startTime;
+    clearInterval(timerInterval);
+    timerInterval = null;
+    overlay.style.display = 'flex';
+    if (btn) btn.textContent = '▶ Resume';
+    saveState();
+  } else {
+    startTime = Date.now() - pausedElapsedMs;
+    timerInterval = setInterval(updateTimer, 1000);
+    overlay.style.display = 'none';
+    if (btn) btn.textContent = '⏸ Pause';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => { checkSavedState(); renderStartHistory(); });
