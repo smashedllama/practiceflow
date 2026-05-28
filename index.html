@@ -150,7 +150,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   /* Exam Card */
@@ -201,7 +201,7 @@
   .es-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 
   /* Domains */
-  .exam-domains { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex: 1; }
+  .exam-domains { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
   .ed-label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
   .ed-domain-row { display:flex; align-items:flex-start; gap:12px; }
   .ed-waffle { display:grid; grid-template-columns:repeat(10,1fr); gap:2px; flex-shrink:0; width:88px; }
@@ -213,7 +213,7 @@
   .ed-leg-pct { font-size:0.63rem; font-weight:700; color:var(--muted); flex-shrink:0; }
 
   /* CTA */
-  .exam-cta { padding: 1.25rem 1.5rem; }
+  .exam-cta { padding: 1.25rem 1.5rem; margin-top: auto; }
   .exam-btn {
     display: block; width: 100%; text-align: center;
     padding: 0.75rem 1rem;
