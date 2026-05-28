@@ -610,8 +610,1055 @@ function ic(name, size) {
 }
 function renderIcons() { if (window.lucide) lucide.createIcons(); }
 
-const questions = [{"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which numbering system uses only the digits 0 and 1 and is the foundational language of all computers?", "opts": ["Binary (base-2)", "Decimal (base-10)", "Hexadecimal (base-16)", "Octal (base-8)"], "ans": 0, "exp": "Binary is a base-2 numbering system using only 0 and 1. Computers use binary because electronic circuits can represent two states: on (1) and off (0). 'Decimal (base-10)' uses digits 0–9 and is the human everyday number system, not used directly in circuits. 'Hexadecimal (base-16)' uses 0–9 and A–F and is useful shorthand for binary, but is not the foundational language. 'Octal (base-8)' uses digits 0–7 and has limited modern use."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What is a 'bit' in computing?", "opts": ["The smallest unit of digital data, representing a value of 0 or 1", "A unit equal to 8 bytes of digital storage", "A type of error that occurs in computer memory", "A network packet used to transfer data between devices"], "ans": 0, "exp": "A bit (binary digit) is the most basic unit of digital information, holding a value of either 0 or 1. Eight bits make one byte. 'A unit equal to 8 bytes' describes a different unit (8 bytes = 64 bits, not one bit). 'A type of memory error' is unrelated — that would describe a parity error or bit flip. 'A network packet' is a completely different concept referring to a chunk of transmitted data."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "How many bytes are in one kilobyte (KB) using the traditional binary definition?", "opts": ["1,024 bytes", "1,000 bytes", "512 bytes", "8 bytes"], "ans": 0, "exp": "In the traditional binary definition, 1 kilobyte = 1,024 bytes (2^10). '1,000 bytes' is the SI/metric definition used by storage manufacturers, not the binary definition. '512 bytes' is one sector of a traditional hard drive, not a kilobyte. '8 bytes' is 64 bits — a 64-bit value — not a kilobyte."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What term describes the raw facts and figures that have not yet been processed into a meaningful form?", "opts": ["Data", "Information", "Knowledge", "Output"], "ans": 0, "exp": "Data refers to raw, unprocessed facts such as numbers, characters, or symbols. 'Information' is what data becomes after being processed and given context — it's the result, not the raw input. 'Knowledge' is a higher level of understanding derived from information. 'Output' refers to results produced by a computer system, not the raw input material."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following is an example of analog data?", "opts": ["The temperature read from a traditional mercury thermometer", "A digital photo stored as pixels on a memory card", "A text file stored on a computer hard drive", "A song in MP3 format on a smartphone"], "ans": 0, "exp": "Analog data represents continuously varying values. 'A digital photo stored as pixels' is discrete digital data — pixels are discrete values, not continuous. 'A text file stored on a hard drive' is digital — it's binary data. 'A song in MP3 format' is also digital — MP3 is a compressed digital audio format."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does 'input' mean in the context of a computer system?", "opts": ["Data or commands entered into the computer by the user or another device", "The results or data produced by the computer for the user", "The process of permanently saving data to storage", "The internal calculations performed by the CPU"], "ans": 0, "exp": "Input is any data or commands fed into a computer system. 'The results or data produced by the computer' describes output, not input. 'Permanently saving data to storage' is a storage/write operation. 'Internal calculations performed by the CPU' describes processing, the middle stage of the input-processing-output model."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "A company's customer database contains names, addresses, and purchase histories. This collection of structured, organized data is BEST described as:", "opts": ["Structured data stored in a database", "Unstructured data in a document", "Metadata describing a file system", "Analog data from a physical source"], "ans": 0, "exp": "Structured data is organized in a defined format with rows and columns, as in a relational database. 'Unstructured data in a document' would apply to things like plain text emails or Word files without defined schema. 'Metadata describing a file system' refers to data about files (size, date, permissions), not the content itself. 'Analog data from a physical source' refers to continuous signals, not a customer database."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does the abbreviation 'IT' stand for in a business context?", "opts": ["Information Technology", "Internal Transfer", "Internet Terminal", "Integrated Telecommunications"], "ans": 0, "exp": "IT stands for Information Technology — the use of computers, software, networks, and related infrastructure to create, store, process, and exchange information. 'Internal Transfer' is a business/finance term unrelated to IT. 'Internet Terminal' is not a standard industry term. 'Integrated Telecommunications' is not the standard expansion of the IT abbreviation."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which file extension is commonly associated with plain text files that can be opened in any text editor?", "opts": [".txt", ".exe", ".docx", ".mp4"], "ans": 0, "exp": ".txt is the extension for plain text files containing unformatted text with no embedded formatting or media. '.exe' is a Windows executable file that runs programs — it cannot be safely opened in a text editor. '.docx' is a Microsoft Word document with rich formatting, not plain text. '.mp4' is a video container format for multimedia."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does the hexadecimal number system use as its base?", "opts": ["16 (digits 0–9 and letters A–F)", "2 (digits 0 and 1)", "8 (digits 0–7)", "10 (digits 0–9)"], "ans": 0, "exp": "Hexadecimal (hex) is a base-16 numbering system using digits 0–9 and letters A–F. 'Base-2 (binary)' uses only 0 and 1 — that describes binary. 'Base-8 (octal)' uses digits 0–7 — that describes the octal system. 'Base-10' uses digits 0–9 — that is the decimal (standard human) number system."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following BEST describes 'throughput' in networking?", "opts": ["The actual amount of data successfully transmitted over a network in a given time", "The maximum possible speed of a network connection as advertised by the provider", "The time delay between sending and receiving a signal across a network", "The number of devices connected to a network simultaneously"], "ans": 0, "exp": "Throughput is the actual amount of data transferred successfully in a given period (measured in Mbps or Gbps). 'Maximum possible speed as advertised' describes bandwidth — the theoretical maximum, not the real-world measured rate. 'Time delay between sending and receiving' describes latency (ping). 'Number of devices connected simultaneously' is a count of connections, unrelated to throughput."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does 'latency' refer to in a computer network?", "opts": ["The delay or time it takes for data to travel from source to destination", "The total amount of data a network can carry at one time", "The number of data packets lost during transmission", "The speed at which a CPU processes instructions"], "ans": 0, "exp": "Latency (also called delay or ping) is the time it takes for a signal to travel from the sender to the receiver. 'The total amount of data a network can carry at one time' describes bandwidth. 'The number of data packets lost during transmission' describes packet loss. 'The speed at which a CPU processes instructions' describes CPU performance, not network latency."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "A user wants to convert the binary number 1010 to decimal. What is the correct answer?", "opts": ["10", "8", "12", "5"], "ans": 0, "exp": "1010 in binary = (1x2^3) + (0x2^2) + (1x2^1) + (0x2^0) = 8 + 0 + 2 + 0 = 10 in decimal. '8' would be 1000 in binary (only the 2^3 bit set). '12' would be 1100 in binary (2^3 + 2^2). '5' would be 0101 in binary (2^2 + 2^0 = 4+1)."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following file types is an image format that supports lossless compression?", "opts": ["PNG", "JPEG", "MP3", "AVI"], "ans": 0, "exp": "PNG (Portable Network Graphics) uses lossless compression, meaning no image data is lost when the file is saved. 'JPEG' uses lossy compression, which discards some image data to reduce file size, resulting in quality loss at high compression levels. 'MP3' is an audio format (lossy), not an image format at all. 'AVI' is a video container format, not an image format."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the primary function of a CPU (Central Processing Unit) in a computer?", "opts": ["To execute program instructions and perform calculations", "To store data permanently even when the computer is powered off", "To display graphics and video output on the monitor", "To connect the computer to a network or the internet"], "ans": 0, "exp": "The CPU is the 'brain' of the computer — it fetches, decodes, and executes program instructions. 'Store data permanently when powered off' describes an HDD or SSD (non-volatile storage). 'Display graphics and video output' describes the GPU (Graphics Processing Unit). 'Connect the computer to a network' describes a NIC (Network Interface Card)."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the main difference between RAM and a hard drive in a computer?", "opts": ["RAM is temporary storage that loses data when powered off; a hard drive retains data permanently", "RAM stores data permanently; hard drives are used only for running programs", "RAM is slower than a hard drive for accessing data", "A hard drive is inside the CPU; RAM is an external device"], "ans": 0, "exp": "RAM (Random Access Memory) is volatile — it loses everything when power is cut. 'RAM stores data permanently' is false — permanent storage is the role of HDDs/SSDs. 'RAM is slower than a hard drive' is the opposite of the truth — RAM is significantly faster than hard drives. 'A hard drive is inside the CPU' is incorrect — hard drives are separate components; the CPU contains only processor cores and cache."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which of the following is a wireless communication technology used to connect devices over short distances (typically up to 10 meters)?", "opts": ["Bluetooth", "Wi-Fi (802.11)", "Ethernet", "Fiber optic"], "ans": 0, "exp": "Bluetooth is designed for short-range wireless connections (typically up to 10 meters/33 feet). 'Wi-Fi (802.11)' covers a larger area (home/office, up to hundreds of feet) and is used for network access, not direct device pairing. 'Ethernet' is a wired technology using physical cables. 'Fiber optic' is also a wired technology using light signals through glass cables."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What does a router do in a home or office network?", "opts": ["Directs network traffic between the local network and the internet", "Converts digital signals to analog for telephone lines", "Stores and shares files with all computers on the network", "Amplifies Wi-Fi signals to extend wireless range"], "ans": 0, "exp": "A router connects two or more networks — typically a home/office LAN and the WAN (internet) — and routes data packets between them based on IP addresses. 'Converting digital signals to analog for telephone lines' describes a modem (modulator-demodulator). 'Storing and sharing files with all computers on the network' describes a file server. 'Amplifying Wi-Fi signals to extend wireless range' describes a wireless extender/repeater."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which type of storage device uses flash memory with no moving parts, making it faster and more durable than traditional hard disk drives?", "opts": ["SSD (Solid State Drive)", "HDD (Hard Disk Drive)", "Optical disc (CD/DVD)", "Magnetic tape"], "ans": 0, "exp": "SSDs store data on flash memory chips with no moving parts, making them faster, quieter, and more shock-resistant. 'HDD (Hard Disk Drive)' uses spinning magnetic platters and read/write heads — it has moving parts, making it slower and more fragile. 'Optical disc (CD/DVD)' uses lasers to read/write on spinning plastic discs — optical, not flash memory. 'Magnetic tape' is a sequential-access storage medium used for backups, not random-access flash storage."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the purpose of a UPS (Uninterruptible Power Supply)?", "opts": ["To provide temporary battery backup power so devices can safely shut down during a power outage", "To increase the speed of a computer's power supply unit", "To distribute power evenly between multiple computers", "To convert AC power to DC power for mobile devices"], "ans": 0, "exp": "A UPS contains a battery that provides power instantly when main power fails, allowing safe shutdown. 'Increasing the speed of a computer's power supply unit' is not what a UPS does — it provides backup power, not speed. 'Distributing power evenly between multiple computers' describes a PDU (Power Distribution Unit). 'Converting AC power to DC power for mobile devices' describes a charger or the PSU inside a computer — a UPS handles AC-to-AC backup."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which port type is commonly used to connect a mouse or keyboard to a modern computer?", "opts": ["USB (Universal Serial Bus)", "VGA (Video Graphics Array)", "HDMI (High-Definition Multimedia Interface)", "RJ-45 (Ethernet)"], "ans": 0, "exp": "USB is the standard interface for connecting peripherals like mice, keyboards, flash drives, and printers. 'VGA (Video Graphics Array)' is an older analog video output port for connecting monitors. 'HDMI (High-Definition Multimedia Interface)' is a digital audio/video output port for monitors and TVs. 'RJ-45 (Ethernet)' is the connector on a wired network cable, not a peripheral port."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is 'the cloud' in everyday IT usage?", "opts": ["Remote servers hosted on the internet that store, manage, and process data", "A type of operating system used only on smartphones", "Physical hardware located inside a company's building", "A special type of network cable for high-speed connections"], "ans": 0, "exp": "The cloud refers to internet-based computing services hosted by third-party providers, accessed over the internet. 'A type of operating system used only on smartphones' is entirely wrong — smartphones run mobile OS like iOS and Android, which are not cloud-based. 'Physical hardware located inside a company's building' describes on-premises infrastructure, the opposite of cloud. 'A special type of network cable' has nothing to do with cloud computing."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is 'virtualization' in the context of computing?", "opts": ["Running multiple virtual computers on a single physical machine by sharing hardware resources", "Converting physical documents into digital files stored on a computer", "Increasing the display resolution of a monitor", "Compressing files to save storage space"], "ans": 0, "exp": "Virtualization uses software (a hypervisor) to create virtual machines that share one physical host's hardware. 'Converting physical documents into digital files' describes digitization or scanning. 'Increasing the display resolution of a monitor' is a display setting, not virtualization. 'Compressing files to save storage space' describes file compression, not virtualization."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What type of device is a smartphone classified as?", "opts": ["Mobile device", "Desktop computer", "Mainframe", "Server"], "ans": 0, "exp": "A smartphone is a mobile device — a portable, handheld computing device with wireless communication capabilities. 'Desktop computer' is a stationary, non-portable device. 'Mainframe' is a very large, high-performance enterprise computer for bulk data processing. 'Server' is a computer that provides resources (files, websites, apps) to other devices over a network."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What does 'bandwidth' measure in a network?", "opts": ["The maximum data transfer rate of a network connection, typically measured in Mbps or Gbps", "The physical length of a network cable", "The number of devices connected to a router simultaneously", "The time it takes for a signal to travel from one device to another"], "ans": 0, "exp": "Bandwidth is the maximum rate at which data can be transmitted, measured in Mbps or Gbps. 'The physical length of a network cable' is a measurement of distance, not bandwidth. 'The number of devices connected to a router' is a device count, not a data rate measure. 'The time it takes for a signal to travel from one device to another' describes latency, not bandwidth."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which of the following describes a Local Area Network (LAN)?", "opts": ["A network connecting devices within a limited geographic area such as a home or office building", "A network spanning multiple countries and continents", "A wireless-only network used exclusively for mobile devices", "A network provided by an internet service provider to its customers"], "ans": 0, "exp": "A LAN (Local Area Network) connects devices in a limited area — a home, office, or campus. 'A network spanning multiple countries and continents' describes a WAN (Wide Area Network) or the internet. 'A wireless-only network used exclusively for mobile devices' is incorrect — LANs can be wired or wireless and include any type of device. 'A network provided by an ISP to its customers' describes the internet access connection (WAN side), not the customer's LAN."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is an operating system (OS)?", "opts": ["Software that manages hardware resources and provides a platform for running applications", "A program specifically designed for creating and editing spreadsheets", "The physical circuit board that connects all computer components", "A type of antivirus software that protects against malware"], "ans": 0, "exp": "An OS is the foundational software that manages hardware resources and provides an interface for users and applications. 'A program specifically designed for creating and editing spreadsheets' describes application software like Microsoft Excel. 'The physical circuit board that connects all computer components' describes the motherboard (hardware). 'A type of antivirus software' describes security application software, not an OS."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is the difference between 'system software' and 'application software'?", "opts": ["System software manages hardware and provides the platform; application software performs specific tasks for users", "System software is free; application software always requires payment", "System software runs on servers; application software runs on desktop computers only", "There is no difference — the terms are interchangeable"], "ans": 0, "exp": "System software (OS, drivers, utilities) manages hardware and provides infrastructure for other programs. 'System software is free; application software always requires payment' is false — many apps are free and many OS versions cost money. 'System software runs on servers; application software runs only on desktops' is false — both run on all device types. 'The terms are interchangeable' is incorrect — they are distinct, well-defined categories."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is a 'driver' in computing?", "opts": ["Software that allows the operating system to communicate with a hardware device", "A physical tool used to install computer components", "A type of malware that hijacks device controls", "A user account with elevated administrative privileges"], "ans": 0, "exp": "A device driver is software that acts as a translator between the OS and a hardware device. 'A physical tool used to install computer components' describes a screwdriver — a hardware tool. 'A type of malware that hijacks device controls' is a rootkit or Trojan, not a driver. 'A user account with elevated administrative privileges' describes an admin or root account, not a driver."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "Which of the following is an example of productivity software?", "opts": ["Microsoft Word (word processing application)", "Windows 11 (operating system)", "Norton Antivirus (security software)", "Chrome (web browser)"], "ans": 0, "exp": "Productivity software helps users create documents, presentations, and spreadsheets. 'Windows 11 (operating system)' is system software, not productivity software. 'Norton Antivirus (security software)' is a security utility, not productivity software. 'Chrome (web browser)' is application software but classified as a browser, not productivity software."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What does 'software update' or 'software patch' typically address?", "opts": ["Security vulnerabilities, bug fixes, and performance improvements", "Changing the color scheme and fonts of an application", "Permanently removing the software from the computer", "Adding more storage space to the hard drive"], "ans": 0, "exp": "Software updates and patches address security vulnerabilities, fix bugs, and improve performance. 'Changing the color scheme and fonts' describes cosmetic/UI customization, not patching. 'Permanently removing the software' describes uninstallation. 'Adding more storage space to the hard drive' describes a hardware upgrade or storage expansion, unrelated to software patching."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "A web browser is an example of which type of software?", "opts": ["Application software used to access and display web pages", "System software that manages network hardware", "Utility software that defragments the hard drive", "Development software for writing computer programs"], "ans": 0, "exp": "A web browser (Chrome, Firefox, Safari, Edge) is application software that retrieves and displays web pages. 'System software that manages network hardware' describes a network device driver or NOS (Network OS). 'Utility software that defragments the hard drive' describes disk defragmentation tools — a type of system utility. 'Development software for writing computer programs' describes an IDE (Integrated Development Environment)."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What does 'Software as a Service' (SaaS) mean?", "opts": ["Software hosted in the cloud and accessed over the internet on a subscription basis, without local installation", "Software that must be purchased and installed on each user's computer", "Open-source software that can be freely modified and distributed", "Security software that protects against cloud-based threats"], "ans": 0, "exp": "SaaS delivers software over the internet on a subscription basis, without local installation. 'Software purchased and installed on each user's computer' describes traditional on-premises/perpetual licensed software. 'Open-source software that can be freely modified' describes FOSS (Free and Open Source Software), not SaaS. 'Security software that protects against cloud-based threats' is a cloud security product but does not define SaaS."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is a 'file extension' and what is its purpose?", "opts": ["A suffix added to a filename (e.g., .jpg, .pdf) that identifies the file type and the application used to open it", "Additional storage capacity added to an existing file", "A password that protects a file from unauthorized access", "A network path that indicates where a file is stored on a server"], "ans": 0, "exp": "A file extension (the letters after the dot) identifies the file format and the application to open it. 'Additional storage capacity added to an existing file' is not what an extension does — it's metadata in the filename. 'A password that protects a file' describes file encryption or password protection. 'A network path indicating where a file is stored' describes a UNC path or URL, not an extension."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "Which operating system is known for being open source and widely used on servers and embedded systems?", "opts": ["Linux", "Windows", "macOS", "iOS"], "ans": 0, "exp": "Linux is an open-source OS kernel widely used on servers, Android phones, and embedded systems. 'Windows' is a proprietary OS by Microsoft, not open source. 'macOS' is Apple's proprietary OS for Macs, not open source. 'iOS' is Apple's mobile OS for iPhones, also proprietary."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is 'multitasking' in the context of an operating system?", "opts": ["The OS's ability to run multiple applications or processes simultaneously by rapidly switching between them", "A user performing two different tasks on separate computers at the same time", "A feature that allows two users to log in to one computer simultaneously", "The ability of software to work on both Windows and macOS"], "ans": 0, "exp": "OS multitasking allows multiple programs to appear to run simultaneously via rapid CPU time-sharing. 'A user performing two tasks on separate computers' describes a human working across machines, not OS multitasking. 'Allowing two users to log in simultaneously' describes multi-user capability, a different concept. 'The ability of software to work on both Windows and macOS' describes cross-platform compatibility, not multitasking."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is 'source code' in software development?", "opts": ["Human-readable instructions written by programmers in a programming language", "The compiled, machine-executable version of a program", "The documentation file that explains how to use a program", "The database of error messages for a specific application"], "ans": 0, "exp": "Source code is human-readable text written in a programming language by developers. 'The compiled, machine-executable version of a program' describes machine code or an executable (.exe). 'The documentation file explaining how to use a program' describes user documentation or a manual. 'The database of error messages for an application' describes error message resources, not source code."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is the difference between a 'compiled' and an 'interpreted' programming language?", "opts": ["Compiled languages translate all code to machine code before running; interpreted languages execute code line-by-line at runtime", "Compiled languages run only on Windows; interpreted languages run only on Linux", "Compiled languages are for web development; interpreted languages are for desktop apps", "There is no practical difference for end users"], "ans": 0, "exp": "Compiled languages translate all code to machine code before running, producing a fast standalone executable. 'Compiled languages run only on Windows' is false — compilers exist for all platforms. 'Compiled languages are for web development; interpreted for desktop' is backwards — JavaScript (interpreted) powers web front-ends, while compiled languages like C++ are common for desktop apps. 'There is no practical difference' is false — compilation vs. interpretation has real implications for speed, portability, and debugging."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is a 'variable' in programming?", "opts": ["A named storage location in memory that holds a value that can change during program execution", "A fixed value that never changes throughout a program", "A type of loop that repeats a block of code multiple times", "An error that occurs when a program accesses invalid memory"], "ans": 0, "exp": "A variable is a named container in memory that stores a value that can change during program execution. 'A fixed value that never changes' describes a constant. 'A type of loop that repeats code multiple times' describes a for/while loop. 'An error that occurs when a program accesses invalid memory' describes a segmentation fault or memory access violation."}, {"d": 4, "tag": "D4 – Software Development", "q": "What does 'version control' (such as Git) help software developers do?", "opts": ["Track changes to code over time, collaborate with others, and revert to previous versions if needed", "Automatically fix bugs in source code without developer intervention", "Compress code files to save storage space on servers", "Prevent unauthorized users from viewing proprietary source code"], "ans": 0, "exp": "Version control systems (Git) track every change to code, who made it, and when, enabling collaboration and rollback. 'Automatically fixing bugs without developer intervention' is not a function of version control — that would be static analysis or AI tools. 'Compressing code files to save space' is not version control's purpose, though repos may compress objects internally. 'Preventing unauthorized users from viewing source code' is access control, not version control's primary purpose."}, {"d": 4, "tag": "D4 – Software Development", "q": "In programming, what is an 'if-then' statement?", "opts": ["A conditional statement that executes a block of code only if a specified condition is true", "A loop that repeats code a specific number of times", "A function that accepts input and returns a calculated result", "A command that permanently ends program execution"], "ans": 0, "exp": "An if-then statement executes a block of code only if a specified condition is true. 'A loop that repeats code a specific number of times' describes a for loop or while loop. 'A function that accepts input and returns a calculated result' describes a function/method definition. 'A command that permanently ends program execution' describes a return or exit/terminate command."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is a 'script' in IT?", "opts": ["A file containing a series of commands that are executed automatically by an interpreter", "A printed document that describes how to install software", "A compiled program that requires manual execution by an administrator", "A security policy that defines user access permissions"], "ans": 0, "exp": "A script is a text file containing commands executed automatically by an interpreter. 'A printed document describing how to install software' is documentation, not a script. 'A compiled program requiring manual execution by an administrator' describes an executable binary, not a script. 'A security policy that defines user access permissions' describes an ACL (Access Control List) or policy document."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is 'pseudocode' used for in software development?", "opts": ["Describing the logic of a program in plain language before writing actual code", "Writing code that is intentionally hidden from other developers", "Testing a completed program to identify errors", "Generating documentation for end users of an application"], "ans": 0, "exp": "Pseudocode describes algorithm logic in plain language before actual coding begins. 'Writing code intentionally hidden from other developers' describes obfuscated code. 'Testing a completed program to identify errors' describes software testing or quality assurance. 'Generating documentation for end users' describes technical writing or user documentation."}, {"d": 4, "tag": "D4 – Software Development", "q": "What does 'debugging' mean in software development?", "opts": ["Finding and fixing errors (bugs) in a program's code", "Removing unused features from a software application", "Compressing program files to improve performance", "Installing software updates released by the developer"], "ans": 0, "exp": "Debugging is the process of identifying and fixing errors (bugs) in code. 'Removing unused features from an application' describes refactoring or feature pruning. 'Compressing program files to improve performance' describes optimization or packaging. 'Installing software updates released by the developer' describes patching, not debugging."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a database?", "opts": ["An organized collection of structured data stored electronically and managed by a database management system", "A type of programming language used to create web applications", "A hardware device used to physically store backup copies of files", "A security system that controls access to a computer network"], "ans": 0, "exp": "A database is an organized collection of data managed by a DBMS. 'A programming language used to create web applications' describes languages like PHP or Python, not a database. 'A hardware device to store backup copies of files' describes external storage (backup drive, tape), not a database. 'A security system that controls access to a network' describes a firewall or NAC system."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "In a relational database, what is a 'table'?", "opts": ["A structured set of data organized into rows (records) and columns (fields)", "A diagram showing the relationships between different databases", "A password-protected file that stores database backups", "A type of query used to search for specific information"], "ans": 0, "exp": "A table in a relational database organizes data into rows (records) and columns (fields). 'A diagram showing relationships between different databases' describes an entity-relationship (ER) diagram. 'A password-protected file that stores database backups' describes an encrypted backup, not a table. 'A type of query used to search for specific information' describes a SELECT statement, not a table structure."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a 'primary key' in a database table?", "opts": ["A unique identifier for each record in a table, ensuring no two rows have the same value in that column", "The first column of every database table regardless of its content", "A password that restricts access to sensitive database records", "The column that stores the largest amount of data in a table"], "ans": 0, "exp": "A primary key uniquely identifies each row in a table with no duplicates or NULLs allowed. 'The first column of every table regardless of content' is incorrect — a primary key can be any column or combination and is defined by its uniqueness, not position. 'A password restricting access to sensitive records' describes field-level security or encryption. 'The column storing the largest amount of data' describes capacity, not key function."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What language is primarily used to interact with relational databases?", "opts": ["SQL (Structured Query Language)", "HTML (HyperText Markup Language)", "Python", "JavaScript"], "ans": 0, "exp": "SQL (Structured Query Language) is the standard language for querying and managing relational databases. 'HTML (HyperText Markup Language)' is used to structure web pages, not query databases. 'Python' is a general-purpose programming language that can send SQL queries but is not itself a database query language. 'JavaScript' is primarily a web scripting language, not a database query language."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a database 'query'?", "opts": ["A request to retrieve or manipulate specific data from a database", "A backup copy of database data stored on an external drive", "A type of database index that speeds up data retrieval", "A user account with read-only access to a database"], "ans": 0, "exp": "A query is a request to retrieve or manipulate specific data from a database. 'A backup copy stored on an external drive' describes a database backup, not a query. 'A database index that speeds up data retrieval' describes an index (B-tree structure), not a query. 'A user account with read-only access' describes a database role or permission level."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What does DBMS stand for, and what does it do?", "opts": ["Database Management System — software that stores, organizes, and retrieves data in a database", "Digital Backup and Memory System — hardware that stores system backups", "Distributed Bandwidth Monitoring Service — a network analysis tool", "Dynamic Browser Management Software — software for web server configuration"], "ans": 0, "exp": "DBMS stands for Database Management System — software that creates, maintains, and controls access to databases. 'Digital Backup and Memory System' is a fabricated expansion not used in IT. 'Distributed Bandwidth Monitoring Service' is a made-up term from networking — unrelated. 'Dynamic Browser Management Software' is not a real IT acronym."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is the purpose of a database 'backup'?", "opts": ["To create a copy of database data that can be restored if the original is lost or corrupted", "To improve the speed of database queries by caching frequently accessed records", "To restrict unauthorized users from accessing sensitive database fields", "To remove duplicate records and optimize database storage"], "ans": 0, "exp": "Database backups create copies that can restore data if the original is lost or corrupted. 'Improving query speed by caching frequently accessed records' describes indexing or query caching, not backup. 'Restricting unauthorized users from accessing fields' describes access control and permissions. 'Removing duplicate records and optimizing storage' describes database maintenance or deduplication."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a 'flat file' database, and how does it differ from a relational database?", "opts": ["A flat file stores all data in a single table or file with no relationships; a relational database uses multiple linked tables", "A flat file is stored on physical disk; a relational database is stored only in cloud storage", "A flat file requires SQL to query data; a relational database uses natural language", "There is no practical difference between flat file and relational databases"], "ans": 0, "exp": "A flat file stores all data in a single table with no relationships; a relational database uses multiple linked tables. 'A flat file is stored on physical disk; relational is cloud-only' is false — both can be stored on any medium. 'A flat file requires SQL; relational uses natural language' is backwards — relational databases use SQL; flat files typically do not use SQL at all. 'There is no practical difference' is false — the structural and relational differences are significant."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What does 'data integrity' mean in a database context?", "opts": ["Ensuring that data is accurate, consistent, and reliable throughout its lifecycle", "Encrypting all database records to prevent unauthorized viewing", "Compressing database files to save server storage space", "Limiting the number of users who can access the database simultaneously"], "ans": 0, "exp": "Data integrity means data is accurate, complete, and consistent throughout its lifecycle. 'Encrypting all database records to prevent unauthorized viewing' describes data security/confidentiality, not integrity. 'Compressing database files to save server storage space' describes storage optimization. 'Limiting the number of users who can access the database simultaneously' describes concurrency control or connection limits."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'malware'?", "opts": ["Malicious software designed to harm, disrupt, or gain unauthorized access to a computer system", "Software that monitors network traffic for performance issues", "A type of firewall that filters harmful websites", "Hardware devices used to physically secure computer equipment"], "ans": 0, "exp": "Malware (malicious software) is any software intentionally designed to cause harm, disrupt, or gain unauthorized access. 'Software that monitors network traffic for performance issues' describes a network monitor or packet analyzer (legitimate tool). 'A type of firewall that filters harmful websites' describes a web filter or content filtering firewall. 'Hardware devices used to physically secure computer equipment' describes physical security locks or cable ties."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'phishing'?", "opts": ["A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity in electronic communications", "A technique hackers use to intercept Wi-Fi signals in a public location", "Software that secretly records all keystrokes typed by a user", "An attack that overwhelms a server with excessive traffic"], "ans": 0, "exp": "Phishing uses deceptive emails, texts, or fake websites impersonating trusted sources to steal credentials. 'Intercepting Wi-Fi signals in a public location' describes a wireless eavesdropping or man-in-the-middle attack. 'Software that secretly records all keystrokes' describes a keylogger (a type of malware). 'An attack that overwhelms a server with excessive traffic' describes a DDoS (Distributed Denial of Service) attack."}, {"d": 6, "tag": "D6 – Security", "q": "What is the principle of 'least privilege' in security?", "opts": ["Giving users only the minimum access rights needed to perform their job duties", "Requiring all users to share a single administrator account", "Storing sensitive files in the least secure location to reduce complexity", "Granting temporary administrator access to all new employees"], "ans": 0, "exp": "Least privilege limits users to only the access rights necessary for their specific role. 'Requiring all users to share a single administrator account' is the opposite of least privilege and creates major security risks. 'Storing sensitive files in the least secure location to reduce complexity' violates security principles and has nothing to do with least privilege. 'Granting temporary administrator access to all new employees' violates least privilege by giving excessive rights."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'encryption' and why is it used?", "opts": ["The process of converting readable data into an unreadable format that can only be decoded with the correct key", "The process of compressing files to save storage space", "A method of deleting sensitive data so it cannot be recovered", "Software that scans files for viruses and removes them"], "ans": 0, "exp": "Encryption scrambles data into unreadable ciphertext that can only be decoded with the correct key. 'Compressing files to save storage space' describes data compression, which reduces size but does not make data unreadable. 'Deleting sensitive data so it cannot be recovered' describes secure erasure or data wiping. 'Software that scans files for viruses and removes them' describes antivirus software."}, {"d": 6, "tag": "D6 – Security", "q": "A user receives an email claiming their bank account has been compromised and they must click a link immediately to verify their account. This is MOST likely which type of attack?", "opts": ["Phishing — using urgency and impersonation to trick the user into clicking a malicious link", "Ransomware — software that encrypts files and demands payment", "Denial of Service — flooding a server to make it unavailable", "SQL Injection — inserting malicious code into a database"], "ans": 0, "exp": "This is a classic phishing attack — creating urgency and impersonating a bank to pressure victims into clicking. 'Ransomware' encrypts files and demands payment — it doesn't come as a warning email asking you to verify an account. 'Denial of Service' floods a server to take it offline — it doesn't target individual users via email. 'SQL Injection' inserts malicious code into database queries — it's an attack on websites/apps, not an email-based deception."}, {"d": 6, "tag": "D6 – Security", "q": "What is multi-factor authentication (MFA)?", "opts": ["Requiring two or more different types of verification (something you know, have, or are) to log in", "Using the same password for multiple accounts to simplify login", "A system that allows multiple users to share a single account securely", "An antivirus scan performed every time a user logs in"], "ans": 0, "exp": "MFA requires two or more factors from different categories: something you know, have, or are. 'Using the same password for multiple accounts' is password reuse — a security weakness, not MFA. 'A system allowing multiple users to share a single account' describes shared accounts, which reduces security accountability. 'An antivirus scan performed at every login' describes endpoint security, not multi-factor authentication."}, {"d": 6, "tag": "D6 – Security", "q": "What is a 'virus' in the context of computer security?", "opts": ["Malicious code that attaches itself to a legitimate file or program and spreads when that file is shared or executed", "Software that monitors system performance and reports errors", "A hardware device that generates random passwords for secure login", "An email filter that blocks spam and unwanted messages"], "ans": 0, "exp": "A computer virus is malware that attaches to legitimate files and spreads when those files are shared or executed. 'Software that monitors system performance and reports errors' describes system monitoring tools — legitimate software. 'A hardware device that generates random passwords' describes a hardware token or password generator. 'An email filter that blocks spam' describes a spam filter or email security gateway."}, {"d": 6, "tag": "D6 – Security", "q": "What does 'authentication' mean in security?", "opts": ["Verifying the identity of a user, device, or system before granting access", "Defining what resources an authenticated user is allowed to access", "Recording a log of all user activities in a system", "Encrypting data to prevent interception during transmission"], "ans": 0, "exp": "Authentication verifies identity — confirming who you are before granting access. 'Defining what resources an authenticated user is allowed to access' describes authorization (what you can do), which follows authentication. 'Recording a log of all user activities' describes accounting or auditing — the third part of AAA. 'Encrypting data to prevent interception' describes data encryption, not authentication."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'social engineering' in cybersecurity?", "opts": ["Manipulating people into revealing confidential information or performing actions that compromise security", "Using software tools to scan a network for vulnerabilities", "A legal method of testing system security with the owner's permission", "Configuring social media privacy settings to protect personal data"], "ans": 0, "exp": "Social engineering manipulates human psychology to get people to reveal information or perform actions that compromise security. 'Using software tools to scan a network for vulnerabilities' describes automated penetration testing or vulnerability scanning. 'A legal method of testing system security with the owner's permission' describes ethical hacking or a penetration test. 'Configuring social media privacy settings' describes personal privacy management."}, {"d": 6, "tag": "D6 – Security", "q": "What is the purpose of antivirus software?", "opts": ["To detect, block, and remove malicious software from a computer", "To speed up internet browsing by caching frequently visited websites", "To create and manage strong passwords for online accounts", "To encrypt files stored on a computer's hard drive"], "ans": 0, "exp": "Antivirus software detects, blocks, and removes malicious software from a computer. 'Speeding up internet browsing by caching websites' describes a browser cache or web proxy. 'Creating and managing strong passwords for online accounts' describes a password manager. 'Encrypting files stored on a hard drive' describes full-disk encryption (like BitLocker or FileVault)."}, {"d": 6, "tag": "D6 – Security", "q": "What does it mean to keep your software 'patched'?", "opts": ["Regularly installing security updates released by software vendors to fix known vulnerabilities", "Purchasing extended support contracts from software vendors", "Making backup copies of software installation files", "Removing unused software from a computer to reduce risk"], "ans": 0, "exp": "Patching means applying security updates from vendors to fix known vulnerabilities. 'Purchasing extended support contracts from software vendors' describes maintenance agreements, not patching itself. 'Making backup copies of software installation files' describes creating installation media or backups. 'Removing unused software to reduce risk' describes attack surface reduction, which is good practice but not patching."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'spyware'?", "opts": ["Malware that secretly monitors user activity and sends information to a third party without consent", "Software used by IT administrators to monitor employee productivity", "A type of firewall that inspects encrypted traffic for threats", "A legitimate tool for backing up sensitive files to a secure location"], "ans": 0, "exp": "Spyware is malware that secretly monitors user activity and sends data to attackers without consent. 'Software used by IT administrators to monitor employee productivity' describes legitimate endpoint management software — it operates with disclosure and consent. 'A type of firewall that inspects encrypted traffic' describes SSL/TLS inspection or a NGFW feature. 'A legitimate tool for backing up sensitive files' describes backup software."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'tailgating' (also called piggybacking) in physical security?", "opts": ["An unauthorized person following an authorized employee through a secured door without using their own credentials", "A technique for attacking wireless networks by following signal patterns", "Reading someone's screen by looking over their shoulder in a public place", "An automated script that repeatedly attempts to guess login passwords"], "ans": 0, "exp": "Tailgating is when an unauthorized person follows an authorized employee through a secured door without authenticating. 'Attacking wireless networks by following signal patterns' describes a wireless attack (like war driving), not physical tailgating. 'Reading someone's screen by looking over their shoulder' describes shoulder surfing — a different physical security threat. 'An automated script that repeatedly attempts to guess login passwords' describes a brute-force attack."}, {"d": 6, "tag": "D6 – Security", "q": "What is a strong password policy MOST likely to require?", "opts": ["A minimum length, mix of character types, and prohibition on reusing recent passwords", "Using only letters with no numbers or symbols for easy memorization", "The same password across all company systems for centralized management", "Changing the password every day to maximize security"], "ans": 0, "exp": "Strong password policies require minimum length, character complexity, and prohibition of reused passwords. 'Using only letters with no numbers or symbols' describes a weak passphrase policy that reduces character set complexity. 'The same password across all company systems' describes password reuse — a critical vulnerability if one system is compromised. 'Changing the password every day' is overly frequent and counterproductive — users create predictable patterns when forced to change too often."}]
-;
+const questions = [{"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which numbering system uses only the digits 0 and 1 and is the foundational language of all computers?", "opts": ["Binary (base-2)", "Decimal (base-10)", "Hexadecimal (base-16)", "Octal (base-8)"], "ans": 0, "exp": "Binary is a base-2 numbering system using only 0 and 1. Computers use binary because electronic circuits can represent two states: on (1) and off (0). All data — text, images, video — is ultimately stored and processed as binary."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What is a 'bit' in computing?", "opts": ["The smallest unit of digital data, representing a value of 0 or 1", "A unit equal to 8 bytes of digital storage", "A type of error that occurs in computer memory", "A network packet used to transfer data between devices"], "ans": 0, "exp": "A bit (binary digit) is the most basic unit of digital information, holding a value of either 0 or 1. Eight bits make one byte. All digital data — numbers, text, images — is ultimately represented as sequences of bits."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "How many bytes are in one kilobyte (KB) using the traditional binary definition?", "opts": ["1,024 bytes", "1,000 bytes", "512 bytes", "8 bytes"], "ans": 0, "exp": "In the traditional binary definition, 1 kilobyte = 1,024 bytes (2^10). This differs from the SI metric definition (1 KB = 1,000 bytes). Storage manufacturers often use the metric definition, while operating systems typically use the binary definition."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What term describes the raw facts and figures that have not yet been processed into a meaningful form?", "opts": ["Data", "Information", "Knowledge", "Output"], "ans": 0, "exp": "Data refers to raw, unprocessed facts such as numbers, characters, or symbols. When data is processed and given context, it becomes information. For example, '98.6' is data; '98.6°F is normal human body temperature' is information."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following is an example of analog data?", "opts": ["The temperature read from a traditional mercury thermometer", "A digital photo stored as pixels on a memory card", "A text file stored on a computer hard drive", "A song in MP3 format on a smartphone"], "ans": 0, "exp": "Analog data represents continuously varying values. A mercury thermometer shows a continuous range of temperatures without discrete steps. Digital data, by contrast, is represented as discrete binary values (0s and 1s), as in digital photos or MP3 files."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does 'input' mean in the context of a computer system?", "opts": ["Data or commands entered into the computer by the user or another device", "The results or data produced by the computer for the user", "The process of permanently saving data to storage", "The internal calculations performed by the CPU"], "ans": 0, "exp": "Input is any data or commands fed into a computer system. Input devices include keyboards, mice, microphones, and cameras. The basic computing model is: Input → Processing → Output. Storage is a fourth element that supports this cycle."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "A company's customer database contains names, addresses, and purchase histories. This collection of structured, organized data is BEST described as:", "opts": ["Structured data stored in a database", "Unstructured data in a document", "Metadata describing a file system", "Analog data from a physical source"], "ans": 0, "exp": "Structured data is organized in a defined format with rows and columns, as in a relational database. Customer records with fields like name, address, and purchase history are classic structured data. Unstructured data lacks this predefined format (e.g., emails, social media posts, images)."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does the abbreviation 'IT' stand for in a business context?", "opts": ["Information Technology", "Internal Transfer", "Internet Terminal", "Integrated Telecommunications"], "ans": 0, "exp": "IT stands for Information Technology — the use of computers, software, networks, and related infrastructure to create, store, process, and exchange information. IT departments manage the technology resources of organizations."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which file extension is commonly associated with plain text files that can be opened in any text editor?", "opts": [".txt", ".exe", ".docx", ".mp4"], "ans": 0, "exp": ".txt is the extension for plain text files containing unformatted text with no embedded formatting or media. They can be opened with any text editor (Notepad, TextEdit, etc.). .exe is an executable, .docx is a Word document, and .mp4 is a video format."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does the hexadecimal number system use as its base?", "opts": ["16 (digits 0–9 and letters A–F)", "2 (digits 0 and 1)", "8 (digits 0–7)", "10 (digits 0–9)"], "ans": 0, "exp": "Hexadecimal (hex) is a base-16 numbering system using digits 0–9 and letters A–F (where A=10, B=11, through F=15). It is widely used in computing to represent binary values compactly — one hex digit represents exactly four binary bits."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following BEST describes 'throughput' in networking?", "opts": ["The actual amount of data successfully transmitted over a network in a given time", "The maximum possible speed of a network connection as advertised by the provider", "The time delay between sending and receiving a signal across a network", "The number of devices connected to a network simultaneously"], "ans": 0, "exp": "Throughput is the actual amount of data transferred successfully in a given period (measured in Mbps or Gbps). It differs from bandwidth, which is the theoretical maximum capacity. Factors like network congestion, errors, and protocol overhead reduce throughput below bandwidth."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "What does 'latency' refer to in a computer network?", "opts": ["The delay or time it takes for data to travel from source to destination", "The total amount of data a network can carry at one time", "The number of data packets lost during transmission", "The speed at which a CPU processes instructions"], "ans": 0, "exp": "Latency (also called delay or ping) is the time it takes for a signal to travel from the sender to the receiver. It is measured in milliseconds (ms). High latency causes lag in real-time applications like video calls and online gaming, even on high-bandwidth connections."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "A user wants to convert the binary number 1010 to decimal. What is the correct answer?", "opts": ["10", "8", "12", "5"], "ans": 0, "exp": "1010 in binary = (1×2³) + (0×2²) + (1×2¹) + (0×2⁰) = 8 + 0 + 2 + 0 = 10 in decimal. Each bit position represents a power of 2, starting from the right (2⁰=1, 2¹=2, 2²=4, 2³=8)."}, {"d": 1, "tag": "D1 – IT Concepts & Terminology", "q": "Which of the following file types is an image format that supports lossless compression?", "opts": ["PNG", "JPEG", "MP3", "AVI"], "ans": 0, "exp": "PNG (Portable Network Graphics) uses lossless compression, meaning no image data is lost when the file is saved. JPEG uses lossy compression, which reduces file size at the cost of image quality. MP3 is an audio format; AVI is a video container format."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the primary function of a CPU (Central Processing Unit) in a computer?", "opts": ["To execute program instructions and perform calculations", "To store data permanently even when the computer is powered off", "To display graphics and video output on the monitor", "To connect the computer to a network or the internet"], "ans": 0, "exp": "The CPU is the 'brain' of the computer — it fetches, decodes, and executes program instructions and performs arithmetic/logic operations. Other components: HDD/SSD stores data, GPU handles graphics, NIC handles networking."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the main difference between RAM and a hard drive in a computer?", "opts": ["RAM is temporary storage that loses data when powered off; a hard drive retains data permanently", "RAM stores data permanently; hard drives are used only for running programs", "RAM is slower than a hard drive for accessing data", "A hard drive is inside the CPU; RAM is an external device"], "ans": 0, "exp": "RAM (Random Access Memory) is volatile — it stores data the CPU is actively using, but loses everything when power is cut. Hard drives (HDD/SSD) are non-volatile storage that retain data permanently. RAM is much faster but much smaller in capacity than typical storage drives."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which of the following is a wireless communication technology used to connect devices over short distances (typically up to 10 meters)?", "opts": ["Bluetooth", "Wi-Fi (802.11)", "Ethernet", "Fiber optic"], "ans": 0, "exp": "Bluetooth is designed for short-range wireless connections (typically up to 10 meters/33 feet) between devices like headsets, keyboards, and phones. Wi-Fi covers a larger area (home/office). Ethernet and fiber are wired technologies."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What does a router do in a home or office network?", "opts": ["Directs network traffic between the local network and the internet", "Converts digital signals to analog for telephone lines", "Stores and shares files with all computers on the network", "Amplifies Wi-Fi signals to extend wireless range"], "ans": 0, "exp": "A router connects two or more networks — typically a home/office LAN and the WAN (internet) — and routes data packets between them based on IP addresses. A Wi-Fi extender/repeater amplifies wireless signals; a file server stores shared files; a modem handles signal conversion."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which type of storage device uses flash memory with no moving parts, making it faster and more durable than traditional hard disk drives?", "opts": ["SSD (Solid State Drive)", "HDD (Hard Disk Drive)", "Optical disc (CD/DVD)", "Magnetic tape"], "ans": 0, "exp": "SSDs store data on flash memory chips with no moving parts, making them faster, quieter, and more shock-resistant than HDDs. HDDs use spinning magnetic platters with read/write heads. Optical discs and magnetic tape are other storage media types."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is the purpose of a UPS (Uninterruptible Power Supply)?", "opts": ["To provide temporary battery backup power so devices can safely shut down during a power outage", "To increase the speed of a computer's power supply unit", "To distribute power evenly between multiple computers", "To convert AC power to DC power for mobile devices"], "ans": 0, "exp": "A UPS contains a battery that kicks in instantly when main power fails, providing enough power to safely save work and shut down equipment. This prevents data loss and hardware damage from sudden power cuts. Surge protectors protect against voltage spikes but don't provide backup power."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which port type is commonly used to connect a mouse or keyboard to a modern computer?", "opts": ["USB (Universal Serial Bus)", "VGA (Video Graphics Array)", "HDMI (High-Definition Multimedia Interface)", "RJ-45 (Ethernet)"], "ans": 0, "exp": "USB is the standard interface for connecting peripherals like mice, keyboards, flash drives, and printers to computers. VGA and HDMI are for video output to monitors. RJ-45 is the connector for wired Ethernet network cables."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is 'the cloud' in everyday IT usage?", "opts": ["Remote servers hosted on the internet that store, manage, and process data", "A type of operating system used only on smartphones", "Physical hardware located inside a company's building", "A special type of network cable for high-speed connections"], "ans": 0, "exp": "The cloud refers to internet-based computing services — servers, storage, and software — hosted by third-party providers (AWS, Azure, Google Cloud) and accessed over the internet. Instead of running software locally or storing files on your own hardware, you use remote resources."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What is 'virtualization' in the context of computing?", "opts": ["Running multiple virtual computers on a single physical machine by sharing hardware resources", "Converting physical documents into digital files stored on a computer", "Increasing the display resolution of a monitor", "Compressing files to save storage space"], "ans": 0, "exp": "Virtualization uses software (a hypervisor) to create virtual machines (VMs) that each behave like a separate computer, sharing the physical hardware of one host machine. This increases hardware utilization and allows multiple operating systems to run simultaneously."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What type of device is a smartphone classified as?", "opts": ["Mobile device", "Desktop computer", "Mainframe", "Server"], "ans": 0, "exp": "A smartphone is a mobile device — a portable, handheld computing device with wireless communication capabilities. Mobile devices include smartphones, tablets, and wearables. Desktops are stationary; mainframes are large enterprise computers; servers provide resources to other devices on a network."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "What does 'bandwidth' measure in a network?", "opts": ["The maximum data transfer rate of a network connection, typically measured in Mbps or Gbps", "The physical length of a network cable", "The number of devices connected to a router simultaneously", "The time it takes for a signal to travel from one device to another"], "ans": 0, "exp": "Bandwidth is the maximum rate at which data can be transmitted over a network connection, measured in megabits per second (Mbps) or gigabits per second (Gbps). Higher bandwidth means more data can flow simultaneously. Latency measures signal travel time."}, {"d": 2, "tag": "D2 – Infrastructure", "q": "Which of the following describes a Local Area Network (LAN)?", "opts": ["A network connecting devices within a limited geographic area such as a home or office building", "A network spanning multiple countries and continents", "A wireless-only network used exclusively for mobile devices", "A network provided by an internet service provider to its customers"], "ans": 0, "exp": "A LAN (Local Area Network) connects devices in a limited area — a home, office, or campus — typically using Ethernet or Wi-Fi. A WAN (Wide Area Network) spans large geographic areas; the internet is the largest WAN. LANs are privately owned and managed."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is an operating system (OS)?", "opts": ["Software that manages hardware resources and provides a platform for running applications", "A program specifically designed for creating and editing spreadsheets", "The physical circuit board that connects all computer components", "A type of antivirus software that protects against malware"], "ans": 0, "exp": "An OS is the foundational software that manages computer hardware, memory, storage, and processes, and provides an interface for users and applications. Examples include Windows, macOS, Linux, iOS, and Android. Without an OS, a computer cannot run applications."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is the difference between 'system software' and 'application software'?", "opts": ["System software manages hardware and provides the platform; application software performs specific tasks for users", "System software is free; application software always requires payment", "System software runs on servers; application software runs on desktop computers only", "There is no difference — the terms are interchangeable"], "ans": 0, "exp": "System software (OS, drivers, utilities) manages hardware and provides infrastructure for other programs. Application software (word processors, browsers, games) serves specific user purposes. Word processors and spreadsheets are apps; the OS and device drivers are system software."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is a 'driver' in computing?", "opts": ["Software that allows the operating system to communicate with a hardware device", "A physical tool used to install computer components", "A type of malware that hijacks device controls", "A user account with elevated administrative privileges"], "ans": 0, "exp": "A device driver is software that acts as a translator between the OS and a hardware device (printer, graphics card, keyboard). Without the correct driver, the OS cannot use the device properly. Manufacturers provide drivers for their hardware."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "Which of the following is an example of productivity software?", "opts": ["Microsoft Word (word processing application)", "Windows 11 (operating system)", "Norton Antivirus (security software)", "Chrome (web browser)"], "ans": 0, "exp": "Productivity software helps users create documents, presentations, spreadsheets, and manage information. Examples include Microsoft Office, Google Workspace, and LibreOffice. Browsers, antivirus, and OS are different categories of software."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What does 'software update' or 'software patch' typically address?", "opts": ["Security vulnerabilities, bug fixes, and performance improvements", "Changing the color scheme and fonts of an application", "Permanently removing the software from the computer", "Adding more storage space to the hard drive"], "ans": 0, "exp": "Software updates and patches address security vulnerabilities (closing holes attackers could exploit), fix bugs that cause crashes or errors, and sometimes add new features or performance improvements. Keeping software updated is one of the most important security practices."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "A web browser is an example of which type of software?", "opts": ["Application software used to access and display web pages", "System software that manages network hardware", "Utility software that defragments the hard drive", "Development software for writing computer programs"], "ans": 0, "exp": "A web browser (Chrome, Firefox, Safari, Edge) is application software that retrieves, interprets, and displays web pages and online content. System utilities manage OS functions; development software (IDEs) helps programmers write code."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What does 'Software as a Service' (SaaS) mean?", "opts": ["Software hosted in the cloud and accessed over the internet on a subscription basis, without local installation", "Software that must be purchased and installed on each user's computer", "Open-source software that can be freely modified and distributed", "Security software that protects against cloud-based threats"], "ans": 0, "exp": "SaaS delivers software applications over the internet — users subscribe and access them via a browser rather than installing locally. Examples include Gmail, Salesforce, Microsoft 365 online, and Slack. The provider manages servers, updates, and maintenance."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is a 'file extension' and what is its purpose?", "opts": ["A suffix added to a filename (e.g., .jpg, .pdf) that identifies the file type and the application used to open it", "Additional storage capacity added to an existing file", "A password that protects a file from unauthorized access", "A network path that indicates where a file is stored on a server"], "ans": 0, "exp": "A file extension (the letters after the dot in a filename) identifies the file format and tells the OS which application to use to open it. For example, .jpg indicates an image file, .pdf a document, .mp3 audio, .exe an executable program."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "Which operating system is known for being open source and widely used on servers and embedded systems?", "opts": ["Linux", "Windows", "macOS", "iOS"], "ans": 0, "exp": "Linux is an open-source operating system kernel that anyone can view, modify, and distribute. It powers most web servers, Android smartphones, supercomputers, and embedded systems. Windows and macOS are proprietary. iOS is Apple's mobile OS."}, {"d": 3, "tag": "D3 – Applications & Software", "q": "What is 'multitasking' in the context of an operating system?", "opts": ["The OS's ability to run multiple applications or processes simultaneously by rapidly switching between them", "A user performing two different tasks on separate computers at the same time", "A feature that allows two users to log in to one computer simultaneously", "The ability of software to work on both Windows and macOS"], "ans": 0, "exp": "OS multitasking allows multiple programs to appear to run simultaneously. The OS rapidly switches CPU time between processes (time-slicing) so fast that users perceive concurrency. Modern multi-core CPUs can execute multiple processes truly in parallel."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is 'source code' in software development?", "opts": ["Human-readable instructions written by programmers in a programming language", "The compiled, machine-executable version of a program", "The documentation file that explains how to use a program", "The database of error messages for a specific application"], "ans": 0, "exp": "Source code is the human-readable text written by developers in a programming language (Python, Java, C++, etc.). It must be compiled or interpreted into machine code (binary instructions) before a computer can execute it. Source code is what developers read, write, and debug."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is the difference between a 'compiled' and an 'interpreted' programming language?", "opts": ["Compiled languages translate all code to machine code before running; interpreted languages execute code line-by-line at runtime", "Compiled languages run only on Windows; interpreted languages run only on Linux", "Compiled languages are for web development; interpreted languages are for desktop apps", "There is no practical difference for end users"], "ans": 0, "exp": "Compiled languages (C, C++, Go) translate entire source code into machine code before execution — producing a standalone executable that runs fast. Interpreted languages (Python, JavaScript, Ruby) are translated at runtime by an interpreter, which is more flexible but generally slower."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is a 'variable' in programming?", "opts": ["A named storage location in memory that holds a value that can change during program execution", "A fixed value that never changes throughout a program", "A type of loop that repeats a block of code multiple times", "An error that occurs when a program accesses invalid memory"], "ans": 0, "exp": "A variable is a named container in memory that stores a value. The value can be read and modified as the program runs. For example, `score = 0` creates a variable named 'score' holding 0. A constant holds a value that cannot change (e.g., PI = 3.14159)."}, {"d": 4, "tag": "D4 – Software Development", "q": "What does 'version control' (such as Git) help software developers do?", "opts": ["Track changes to code over time, collaborate with others, and revert to previous versions if needed", "Automatically fix bugs in source code without developer intervention", "Compress code files to save storage space on servers", "Prevent unauthorized users from viewing proprietary source code"], "ans": 0, "exp": "Version control systems (Git, SVN) track every change made to code, who made it, and when. Teams can collaborate without overwriting each other's work, compare versions, and revert to an earlier state if new code introduces bugs. GitHub and GitLab are popular platforms built on Git."}, {"d": 4, "tag": "D4 – Software Development", "q": "In programming, what is an 'if-then' statement?", "opts": ["A conditional statement that executes a block of code only if a specified condition is true", "A loop that repeats code a specific number of times", "A function that accepts input and returns a calculated result", "A command that permanently ends program execution"], "ans": 0, "exp": "An if-then (or if/else) statement is a conditional control structure: if a condition is true, execute one block of code; otherwise (else), execute another. This is the basis of decision-making in programs. For example: 'if user is logged in, show dashboard; else show login page.'"}, {"d": 4, "tag": "D4 – Software Development", "q": "What is a 'script' in IT?", "opts": ["A file containing a series of commands that are executed automatically by an interpreter", "A printed document that describes how to install software", "A compiled program that requires manual execution by an administrator", "A security policy that defines user access permissions"], "ans": 0, "exp": "A script is a text file containing commands written in a scripting language (Bash, PowerShell, Python) that an interpreter executes sequentially. Scripts automate repetitive tasks like backups, user account creation, and system configuration without compiling to a binary."}, {"d": 4, "tag": "D4 – Software Development", "q": "What is 'pseudocode' used for in software development?", "opts": ["Describing the logic of a program in plain language before writing actual code", "Writing code that is intentionally hidden from other developers", "Testing a completed program to identify errors", "Generating documentation for end users of an application"], "ans": 0, "exp": "Pseudocode is an informal, language-agnostic description of an algorithm's logic written in plain language. Developers use it to plan and communicate program logic before committing to a specific programming language. It has no fixed syntax and cannot be executed by a computer."}, {"d": 4, "tag": "D4 – Software Development", "q": "What does 'debugging' mean in software development?", "opts": ["Finding and fixing errors (bugs) in a program's code", "Removing unused features from a software application", "Compressing program files to improve performance", "Installing software updates released by the developer"], "ans": 0, "exp": "Debugging is the process of identifying, analyzing, and fixing errors (called bugs) in code. Bugs can cause incorrect output, crashes, or security vulnerabilities. Developers use debugging tools (debuggers) to step through code, inspect variables, and find where logic fails."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a database?", "opts": ["An organized collection of structured data stored electronically and managed by a database management system", "A type of programming language used to create web applications", "A hardware device used to physically store backup copies of files", "A security system that controls access to a computer network"], "ans": 0, "exp": "A database is an organized collection of data stored and accessed electronically. A Database Management System (DBMS) like MySQL, Microsoft SQL Server, or Oracle manages the data. Databases enable efficient storage, retrieval, and manipulation of large amounts of structured information."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "In a relational database, what is a 'table'?", "opts": ["A structured set of data organized into rows (records) and columns (fields)", "A diagram showing the relationships between different databases", "A password-protected file that stores database backups", "A type of query used to search for specific information"], "ans": 0, "exp": "A table in a relational database organizes data into rows (each row is one record or entity) and columns (each column is a field or attribute). For example, a 'Customers' table might have columns for CustomerID, Name, Email, and Phone, with one row per customer."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a 'primary key' in a database table?", "opts": ["A unique identifier for each record in a table, ensuring no two rows have the same value in that column", "The first column of every database table regardless of its content", "A password that restricts access to sensitive database records", "The column that stores the largest amount of data in a table"], "ans": 0, "exp": "A primary key is a column (or combination of columns) whose value uniquely identifies each row in a table. No two rows can have the same primary key value, and it cannot be NULL. For example, a CustomerID number that is assigned uniquely to each customer."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What language is primarily used to interact with relational databases?", "opts": ["SQL (Structured Query Language)", "HTML (HyperText Markup Language)", "Python", "JavaScript"], "ans": 0, "exp": "SQL (Structured Query Language) is the standard language for querying and managing relational databases. Key commands include SELECT (retrieve data), INSERT (add data), UPDATE (modify data), and DELETE (remove data). Most DBMS products (MySQL, PostgreSQL, SQL Server) use SQL or a variant."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a database 'query'?", "opts": ["A request to retrieve or manipulate specific data from a database", "A backup copy of database data stored on an external drive", "A type of database index that speeds up data retrieval", "A user account with read-only access to a database"], "ans": 0, "exp": "A query is a question or command submitted to a database to retrieve, insert, update, or delete data. In SQL, a SELECT query retrieves data matching specified criteria. For example: SELECT * FROM Customers WHERE City='Austin' retrieves all customers in Austin."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What does DBMS stand for, and what does it do?", "opts": ["Database Management System — software that stores, organizes, and retrieves data in a database", "Digital Backup and Memory System — hardware that stores system backups", "Distributed Bandwidth Monitoring Service — a network analysis tool", "Dynamic Browser Management Software — software for web server configuration"], "ans": 0, "exp": "DBMS stands for Database Management System — software (like MySQL, Oracle, SQL Server, SQLite) that creates, maintains, and controls access to databases. It handles data storage, retrieval, security, backup, and multi-user access, acting as an intermediary between applications and data."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is the purpose of a database 'backup'?", "opts": ["To create a copy of database data that can be restored if the original is lost or corrupted", "To improve the speed of database queries by caching frequently accessed records", "To restrict unauthorized users from accessing sensitive database fields", "To remove duplicate records and optimize database storage"], "ans": 0, "exp": "Database backups are copies of data made at regular intervals and stored separately. If a database is damaged by hardware failure, ransomware, accidental deletion, or corruption, the backup allows restoration to a known good state. Backups are a fundamental data protection practice."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What is a 'flat file' database, and how does it differ from a relational database?", "opts": ["A flat file stores all data in a single table or file with no relationships; a relational database uses multiple linked tables", "A flat file is stored on physical disk; a relational database is stored only in cloud storage", "A flat file requires SQL to query data; a relational database uses natural language", "There is no practical difference between flat file and relational databases"], "ans": 0, "exp": "A flat file database (like a CSV spreadsheet) stores data in a single table with all information in one place — no relationships between tables. A relational database uses multiple linked tables that relate to each other via keys, reducing redundancy and supporting complex queries."}, {"d": 5, "tag": "D5 – Database Fundamentals", "q": "What does 'data integrity' mean in a database context?", "opts": ["Ensuring that data is accurate, consistent, and reliable throughout its lifecycle", "Encrypting all database records to prevent unauthorized viewing", "Compressing database files to save server storage space", "Limiting the number of users who can access the database simultaneously"], "ans": 0, "exp": "Data integrity means data is accurate, complete, and consistent. Databases enforce integrity through constraints (primary keys prevent duplicates, foreign keys maintain relationships, data type restrictions prevent invalid entries). High integrity data produces reliable reports and decisions."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'malware'?", "opts": ["Malicious software designed to harm, disrupt, or gain unauthorized access to a computer system", "Software that monitors network traffic for performance issues", "A type of firewall that filters harmful websites", "Hardware devices used to physically secure computer equipment"], "ans": 0, "exp": "Malware (malicious software) is any software intentionally designed to cause harm. Types include viruses, worms, Trojans, ransomware, spyware, and adware. Malware can steal data, encrypt files, damage systems, or give attackers control of a device."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'phishing'?", "opts": ["A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity in electronic communications", "A technique hackers use to intercept Wi-Fi signals in a public location", "Software that secretly records all keystrokes typed by a user", "An attack that overwhelms a server with excessive traffic"], "ans": 0, "exp": "Phishing uses deceptive emails, texts, or websites that impersonate trusted sources (banks, employers, popular services) to trick users into revealing passwords, credit card numbers, or personal data. It relies on social engineering rather than technical hacking."}, {"d": 6, "tag": "D6 – Security", "q": "What is the principle of 'least privilege' in security?", "opts": ["Giving users only the minimum access rights needed to perform their job duties", "Requiring all users to share a single administrator account", "Storing sensitive files in the least secure location to reduce complexity", "Granting temporary administrator access to all new employees"], "ans": 0, "exp": "Least privilege limits users to only the access rights necessary for their role. An accountant doesn't need access to HR records; a receptionist doesn't need admin rights. This reduces the damage if an account is compromised and limits insider threat opportunities."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'encryption' and why is it used?", "opts": ["The process of converting readable data into an unreadable format that can only be decoded with the correct key", "The process of compressing files to save storage space", "A method of deleting sensitive data so it cannot be recovered", "Software that scans files for viruses and removes them"], "ans": 0, "exp": "Encryption scrambles data using an algorithm and key so it appears as meaningless ciphertext to anyone without the decryption key. It protects data in transit (HTTPS) and at rest (encrypted hard drives). Even if intercepted or stolen, encrypted data cannot be read without the key."}, {"d": 6, "tag": "D6 – Security", "q": "A user receives an email claiming their bank account has been compromised and they must click a link immediately to verify their account. This is MOST likely which type of attack?", "opts": ["Phishing — using urgency and impersonation to trick the user into clicking a malicious link", "Ransomware — software that encrypts files and demands payment", "Denial of Service — flooding a server to make it unavailable", "SQL Injection — inserting malicious code into a database"], "ans": 0, "exp": "This is a classic phishing attack — creating false urgency and impersonating a trusted institution to pressure the victim into clicking. The link typically leads to a fake website that harvests login credentials. Legitimate banks never ask customers to verify accounts via unsolicited emails."}, {"d": 6, "tag": "D6 – Security", "q": "What is multi-factor authentication (MFA)?", "opts": ["Requiring two or more different types of verification (something you know, have, or are) to log in", "Using the same password for multiple accounts to simplify login", "A system that allows multiple users to share a single account securely", "An antivirus scan performed every time a user logs in"], "ans": 0, "exp": "MFA requires users to provide two or more factors from different categories: something you know (password), something you have (phone for a one-time code), or something you are (fingerprint/face). Even if a password is stolen, attackers still cannot log in without the second factor."}, {"d": 6, "tag": "D6 – Security", "q": "What is a 'virus' in the context of computer security?", "opts": ["Malicious code that attaches itself to a legitimate file or program and spreads when that file is shared or executed", "Software that monitors system performance and reports errors", "A hardware device that generates random passwords for secure login", "An email filter that blocks spam and unwanted messages"], "ans": 0, "exp": "A computer virus is a type of malware that inserts its code into legitimate files. When an infected file is executed or shared, the virus replicates to other files, potentially causing data damage, system crashes, or creating backdoors. Unlike worms, viruses require human action (running the infected file) to spread."}, {"d": 6, "tag": "D6 – Security", "q": "What does 'authentication' mean in security?", "opts": ["Verifying the identity of a user, device, or system before granting access", "Defining what resources an authenticated user is allowed to access", "Recording a log of all user activities in a system", "Encrypting data to prevent interception during transmission"], "ans": 0, "exp": "Authentication answers 'who are you?' — it verifies identity. Methods include passwords (something you know), smart cards (something you have), and biometrics (something you are). Authorization (what can you do?) follows authentication. Accounting (what did you do?) logs activities."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'social engineering' in cybersecurity?", "opts": ["Manipulating people into revealing confidential information or performing actions that compromise security", "Using software tools to scan a network for vulnerabilities", "A legal method of testing system security with the owner's permission", "Configuring social media privacy settings to protect personal data"], "ans": 0, "exp": "Social engineering exploits human psychology rather than technical vulnerabilities. Attackers build trust or create fear/urgency to manipulate victims into revealing passwords, clicking links, or transferring money. Phishing, pretexting, baiting, and tailgating are all social engineering techniques."}, {"d": 6, "tag": "D6 – Security", "q": "What is the purpose of antivirus software?", "opts": ["To detect, block, and remove malicious software from a computer", "To speed up internet browsing by caching frequently visited websites", "To create and manage strong passwords for online accounts", "To encrypt files stored on a computer's hard drive"], "ans": 0, "exp": "Antivirus (AV) software detects known malware using signature databases and behavioral analysis, quarantines or removes threats, and provides real-time protection against new infections. Modern endpoint protection tools go beyond viruses to cover all malware types, phishing, and ransomware."}, {"d": 6, "tag": "D6 – Security", "q": "What does it mean to keep your software 'patched'?", "opts": ["Regularly installing security updates released by software vendors to fix known vulnerabilities", "Purchasing extended support contracts from software vendors", "Making backup copies of software installation files", "Removing unused software from a computer to reduce risk"], "ans": 0, "exp": "Patching means applying security updates released by vendors to fix known vulnerabilities. Many major attacks (WannaCry, NotPetya) exploited unpatched software weaknesses. Keeping OS and applications updated closes these holes before attackers can exploit them."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'spyware'?", "opts": ["Malware that secretly monitors user activity and sends information to a third party without consent", "Software used by IT administrators to monitor employee productivity", "A type of firewall that inspects encrypted traffic for threats", "A legitimate tool for backing up sensitive files to a secure location"], "ans": 0, "exp": "Spyware is malware installed without the user's knowledge that secretly collects data — browsing habits, keystrokes, passwords, credit card numbers — and transmits it to attackers. It differs from legitimate monitoring tools in that it operates without disclosure or consent."}, {"d": 6, "tag": "D6 – Security", "q": "What is 'tailgating' (also called piggybacking) in physical security?", "opts": ["An unauthorized person following an authorized employee through a secured door without using their own credentials", "A technique for attacking wireless networks by following signal patterns", "Reading someone's screen by looking over their shoulder in a public place", "An automated script that repeatedly attempts to guess login passwords"], "ans": 0, "exp": "Tailgating is a physical security breach where an unauthorized person follows a legitimate employee into a restricted area without authenticating (e.g., slipping through a badge-reader door behind someone). Prevention includes security awareness training and physical barriers like mantraps."}, {"d": 6, "tag": "D6 – Security", "q": "What is a strong password policy MOST likely to require?", "opts": ["A minimum length, mix of character types, and prohibition on reusing recent passwords", "Using only letters with no numbers or symbols for easy memorization", "The same password across all company systems for centralized management", "Changing the password every day to maximize security"], "ans": 0, "exp": "Strong password policies typically require: minimum length (8–12+ characters), complexity (uppercase, lowercase, numbers, symbols), prohibition of common or previously used passwords, and periodic changes. Excessively frequent mandatory changes (daily) can reduce security by encouraging weak, predictable patterns."}]
+
+// ── Shuffle utilities ──────────────────────────────────────────────────────
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Domain proportions: select this many questions per domain per exam run
+// (maintains the real N10-009 weighting; pool is much larger so every run is fresh)
+// FC0-U61 weights: D1=18% D2=15% D3=15% D4=13% D5=13% D6=26%
+const DOMAIN_SELECT = {1:9, 2:8, 3:7, 4:6, 5:7, 6:13};
+const xMin = 15; const xMax = 35;
+
+// Produces a fresh exam: proportional domain sampling, shuffled question order,
+// AND shuffled answer option order (ans + wrongWhy remapped to match).
+function prepareExam() {
+  // Group question indices by domain
+  const byDomain = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
+  questions.forEach((q, i) => byDomain[q.d].push(i));
+
+  // Pick a random sample from each domain's pool
+  const selected = [];
+  [1, 2, 3, 4, 5, 6].forEach(d => {
+    const pool = shuffleArray(byDomain[d]);
+    const n = Math.min(DOMAIN_SELECT[d], pool.length);
+    selected.push(...pool.slice(0, n));
+  });
+
+  // Shuffle the combined selection so domains aren't grouped
+  return shuffleArray(selected).map(origIdx => {
+    const q = questions[origIdx];
+    const optOrder = shuffleArray([0, 1, 2, 3]);
+    return {
+      ...q,
+      opts:     optOrder.map(i => q.opts[i]),
+      wrongWhy: optOrder.map(i => (q.wrongWhy ? q.wrongWhy[i] : null)),
+      ans:      optOrder.indexOf(q.ans)
+    };
+  });
+}
+
+// ── State ──────────────────────────────────────────────────────────────────
+let current = 0;
+let activeQuestions = questions;  // replaced with a freshly shuffled copy at exam start
+let answers = new Array(questions.length).fill(null);   // null=unanswered, -1=not learned, 0-3=chosen option
+let flagged = [];                 // flagged[i] = true if question i was flagged for review
+let startTime = null, timerInterval = null;
+let timedMode = false;
+const EXAM_TIMED_MINUTES = 50;
+
+const letters = ['A','B','C','D'];
+let examDate = (()=>{const d=new Date();d.setDate(d.getDate()+30);return d.toISOString().split('T')[0];})(); // defaults to 30 days out; updated by user's date input
+
+// ── New feature globals ────────────────────────────────────────────────────
+let learningMode    = false;          // show explanations after each answer
+let confidence      = [];             // null | 1=guessing | 2=unsure | 3=confident
+let questionTimes   = [];             // ms spent on each question
+let questionStartMs = null;           // when current question was first rendered
+let wrong_cache     = [];             // cached for retry quiz
+let nl_cache        = [];             // cached for retry quiz
+let retryQuestions  = [], retryAnswers = [], retryCurrent = 0;
+const HISTORY_KEY   = 'fc0u61_history_v1';
+const STUDIED_KEY   = 'fc0u61_studied_v1';
+const NOTES_KEY     = 'fc0u61_notes_v1';
+let isViewingHistory = false;
+let historyElapsed   = null;
+
+// ── Session persistence ────────────────────────────────────────────────────
+const SAVE_KEY = 'fc0u61_exam_v1';
+
+function saveState() {
+  if (!startTime) return;
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      activeQuestions,
+      answers,
+      flagged,
+      confidence,
+      questionTimes,
+      learningMode,
+      timedMode,
+      elapsedMs: Date.now() - startTime,
+      current,
+      savedAt: Date.now()
+    }));
+  } catch(e) {}
+}
+
+function clearState() {
+  try { localStorage.removeItem(SAVE_KEY); } catch(e) {}
+}
+
+function checkSavedState() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (!s || !s.activeQuestions || !s.answers) return;
+
+    const answered  = s.answers.filter(a => a !== null).length;
+    const fl        = (s.flagged || []).filter(Boolean).length;
+    const mins      = Math.floor(s.elapsedMs / 60000);
+    const secs      = Math.floor((s.elapsedMs % 60000) / 1000);
+    const timeStr   = `${mins}:${secs.toString().padStart(2,'0')}`;
+    const savedDate = new Date(s.savedAt).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+
+    const banner = document.createElement('div');
+    banner.id = 'resume-banner';
+    banner.className = 'resume-banner';
+    banner.innerHTML = `
+      <h3>${ic('map-pin',16)} Resume Your Assessment</h3>
+      <p>You have an exam in progress — saved ${savedDate}. Pick up right where you left off, or start fresh with a newly shuffled exam.</p>
+      <div class="resume-stats">
+        <div class="resume-stat"><div class="rst-num">${answered}<span style="font-size:0.85rem;font-weight:600">/50</span></div><div class="rst-label">Answered</div></div>
+        ${fl > 0 ? `<div class="resume-stat"><div class="rst-num">${fl}</div><div class="rst-label">Flagged</div></div>` : ''}
+        <div class="resume-stat"><div class="rst-num">${timeStr}</div><div class="rst-label">Elapsed</div></div>
+        <div class="resume-stat"><div class="rst-num">${50 - answered}</div><div class="rst-label">Remaining</div></div>
+      </div>
+      <div class="resume-actions">
+        <button class="btn btn-primary btn-lg" onclick="resumeExam()">Resume Where I Left Off →</button>
+        <button class="btn btn-secondary" onclick="startFresh()">Start Fresh Instead</button>
+      </div>`;
+
+    const startScreen = document.getElementById('start-screen');
+    startScreen.insertBefore(banner, startScreen.firstChild);
+    document.getElementById('start-btn').style.display = 'none';
+    renderIcons();
+  } catch(e) {}
+}
+
+function resumeExam() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SAVE_KEY));
+    if (!s) { startExam(); return; }
+    activeQuestions = s.activeQuestions;
+    answers         = s.answers;
+    flagged         = s.flagged        || new Array(activeQuestions.length).fill(false);
+    confidence      = s.confidence     || new Array(activeQuestions.length).fill(null);
+    questionTimes   = s.questionTimes  || new Array(activeQuestions.length).fill(0);
+    learningMode    = s.learningMode   || false;
+    timedMode       = s.timedMode      || false;
+    startTime       = Date.now() - s.elapsedMs;
+    current         = s.current || 0;
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('timer-box').style.display    = 'block';
+    document.getElementById('prog-wrap').classList.add('show');
+    timerInterval = setInterval(updateTimer, 1000);
+    if (timedMode) { const lbl = document.getElementById('timer-label'); if(lbl) lbl.textContent = 'Remaining'; }
+    renderQuestion(current);
+  } catch(e) { startExam(); }
+}
+
+function startFresh() {
+  clearState();
+  document.getElementById('resume-banner')?.remove();
+  document.getElementById('start-btn').style.display = '';
+}
+
+const domainInfo = {
+  1:{name:"IT Concepts & Terminology",color:"#92400e",pct:18,xVal:18},
+  2:{name:"Infrastructure",color:"#b45309",pct:15,xVal:15},
+  3:{name:"Applications & Software",color:"#d97706",pct:15,xVal:15},
+  4:{name:"Software Development",color:"#ca8a04",pct:13,xVal:13},
+  5:{name:"Database Fundamentals",color:"#a16207",pct:13,xVal:13},
+  6:{name:"Security",color:"#78350f",pct:26,xVal:26}
+};
+
+// ── Start ──────────────────────────────────────────────────────────────────
+function startExam() {
+  clearState();
+  activeQuestions = prepareExam();                        // fresh shuffle every time
+  answers       = new Array(activeQuestions.length).fill(null);
+  flagged       = new Array(activeQuestions.length).fill(false);
+  confidence    = new Array(activeQuestions.length).fill(null);
+  questionTimes = new Array(activeQuestions.length).fill(0);
+  learningMode  = document.getElementById('learning-mode-toggle')?.checked || false;
+  timedMode     = document.getElementById('timed-mode-toggle')?.checked || false;
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('timer-box').style.display = 'block';
+  document.getElementById('prog-wrap').classList.add('show');
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
+  if (timedMode) { const lbl = document.getElementById('timer-label'); if(lbl) lbl.textContent = 'Remaining'; }
+  renderQuestion(0);
+}
+
+function updateTimer() {
+  const el = document.getElementById('timer');
+  if (timedMode) {
+    const elapsed   = Math.floor((Date.now() - startTime) / 1000);
+    const remaining = Math.max(0, EXAM_TIMED_MINUTES * 60 - elapsed);
+    const m = Math.floor(remaining / 60), s = remaining % 60;
+    el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    if      (remaining <= 300) el.className = 'timer-val timer-urgent';
+    else if (remaining <= 600) el.className = 'timer-val timer-warning';
+    else                       el.className = 'timer-val';
+    if (remaining === 0) { clearInterval(timerInterval); showResults(); }
+  } else {
+    const s = Math.floor((Date.now() - startTime) / 1000);
+    el.textContent = `${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')}`;
+  }
+}
+
+// ── Render question ────────────────────────────────────────────────────────
+function renderQuestion(idx) {
+  current = idx;
+  questionStartMs = Date.now();
+  const q = activeQuestions[idx];
+  const answered = answers[idx] !== null;
+  const notLearned = answers[idx] === -1;
+  const userAns = answers[idx];
+
+  const optsHTML = q.opts.map((o, i) => {
+    let cls = 'opt-btn';
+    if (answered && (learningMode || notLearned)) {
+      // In exam mode, don't colour-code answers — reveal only in results
+      if (i === q.ans) cls += ' correct';
+      else if (i === userAns) cls += ' wrong';
+    } else if (answered && i === userAns) {
+      // In exam mode, just show which option was selected (neutral highlight)
+      cls += ' selected';
+    }
+    return `<button class="${cls}" onclick="selectAnswer(${idx},${i})" ${answered?'disabled':''}>
+      <span class="opt-letter">${letters[i]}</span><span>${o}</span>
+    </button>`;
+  }).join('');
+
+  // Explanation — only shown in Learning Mode (or when Not Learned, which always reveals the answer)
+  let expHTML = '';
+  if (answered && (learningMode || notLearned)) {
+    if (notLearned) {
+      expHTML = `<div class="explanation show notlearned-exp">
+        <div style="color:var(--yellow);font-weight:800;font-size:0.8rem;margin-bottom:0.4rem">${ic('book-open',13)} Marked as Not Learned Yet</div>
+        <div class="exp-correct-label">${ic('check',13)} Correct answer: ${letters[q.ans]}. ${q.opts[q.ans]}</div>
+        <div class="exp-body" style="margin-top:0.35rem"><strong>Why:</strong> ${q.exp}</div>
+      </div>`;
+    } else if (userAns === q.ans) {
+      expHTML = `<div class="explanation show correct-exp">
+        <div style="color:var(--green);font-weight:800;font-size:0.8rem;margin-bottom:0.35rem">${ic('check',13)} Correct!</div>
+        <div class="exp-body">${q.exp}</div>
+      </div>`;
+    } else {
+      const whyWrong = q.wrongWhy && q.wrongWhy[userAns] ? q.wrongWhy[userAns] : null;
+      expHTML = `<div class="explanation show wrong-exp">
+        <div class="exp-wrong-label" style="margin-bottom:0.3rem">${ic('x',13)} Incorrect</div>
+        ${whyWrong ? `<div class="exp-why-wrong">Why ${letters[userAns]} is wrong: ${whyWrong}</div>` : ''}
+        <div class="exp-correct-label">${ic('check',13)} Correct: ${letters[q.ans]}. ${q.opts[q.ans]}</div>
+        <div class="exp-body" style="margin-top:0.3rem">${q.exp}</div>
+      </div>`;
+    }
+  }
+
+  // Confidence rating (shown after answering a non-not-learned question)
+  const confHTML = (answered && !notLearned) ? `<div class="conf-row">
+    <span class="conf-label">${ic('bar-chart-2',11)} Confidence:</span>
+    ${[['Guessing',1,'conf-guess'],['Unsure',2,'conf-unsure'],['Confident',3,'conf-sure']].map(([l,v,c])=>
+      `<button class="conf-btn ${c}${confidence[idx]===v?' active':''}" onclick="setConfidence(${idx},${v})">${l}</button>`
+    ).join('')}
+  </div>` : '';
+
+  // Not-learned button
+  const nlActive = notLearned ? 'active' : '';
+  const nlDisabled = answered && !notLearned ? 'disabled' : '';
+  const nlLabel = notLearned ? ic('check',13)+' Marked as Not Learned Yet' : ic('book-open',13)+' I haven\'t learned this yet';
+
+  // Next / finish button
+  const isLast = idx === activeQuestions.length - 1;
+  const nextLabel = learningMode && answered && !isLast ? ic('arrow-right',13)+' Continue' : 'Next →';
+  const nextBtn = isLast
+    ? `<button class="btn btn-primary" onclick="showReviewScreen()">View Full Report →</button>`
+    : `<button class="btn btn-primary" onclick="navigate(${idx+1})">${nextLabel}</button>`;
+
+  const html = `
+    <div class="q-card active">
+      <div class="q-meta">
+        <span class="q-num">Q${idx+1} of ${activeQuestions.length}</span>
+        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        ${answered && !notLearned && learningMode && userAns===q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--green)">${ic('check',12)} Correct</span>` : ''}
+        ${answered && !notLearned && learningMode && userAns!==q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--red)">${ic('x',12)} Incorrect</span>` : ''}
+        ${notLearned ? `<span style="font-size:0.73rem;font-weight:700;color:var(--yellow)">${ic('book-open',12)} Not Learned</span>` : ''}
+        <button class="${flagged[idx]?'flag-btn flagged':'flag-btn'}" onclick="markFlagged(${idx})">${flagged[idx]?ic('flag',12)+' Flagged':ic('flag',12)+' Flag'}</button>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optsHTML}</div>
+      ${confHTML}
+      <div class="not-learned-row">
+        <button class="not-learned-btn ${nlActive}" ${nlDisabled} onclick="markNotLearned(${idx})">
+          ${nlLabel}
+        </button>
+      </div>
+      ${expHTML}
+      <div class="nav-row">
+        <button class="btn btn-secondary" onclick="navigate(${idx-1})" ${idx===0?'disabled':''}>← Prev</button>
+        ${nextBtn}
+      </div>
+    </div>`;
+
+  document.getElementById('question-area').innerHTML = html;
+  renderIcons();
+  updateProgress(idx);
+  renderNavigator();
+  window.scrollTo(0,0);
+  if (learningMode && answered) {
+    setTimeout(() => document.querySelector('.explanation.show')?.scrollIntoView({behavior:'smooth',block:'nearest'}), 150);
+  }
+}
+
+function selectAnswer(qIdx, optIdx) {
+  if (answers[qIdx] !== null && answers[qIdx] !== -1) return;
+  if (answers[qIdx] === -1) return;
+  if (questionStartMs) questionTimes[qIdx] = Date.now() - questionStartMs;
+  answers[qIdx] = optIdx;
+  renderQuestion(qIdx);
+  saveState();
+}
+
+function markNotLearned(idx) {
+  if (answers[idx] !== null && answers[idx] !== -1) return;
+  if (questionStartMs) questionTimes[idx] = Date.now() - questionStartMs;
+  answers[idx] = answers[idx] === -1 ? null : -1;
+  renderQuestion(idx);
+  saveState();
+}
+
+function markFlagged(idx) {
+  flagged[idx] = !flagged[idx];
+  renderQuestion(idx);
+  saveState();
+}
+
+function navigate(idx) {
+  if (idx < 0 || idx >= activeQuestions.length) return;
+  renderQuestion(idx);
+  saveState();
+}
+
+function setConfidence(qIdx, level) {
+  confidence[qIdx] = confidence[qIdx] === level ? null : level;
+  // Re-render just the confidence row without full re-render
+  document.querySelectorAll('.conf-btn').forEach((btn, i) => {
+    const v = i + 1;
+    btn.classList.toggle('active', confidence[qIdx] === v);
+  });
+  saveState();
+}
+
+function updateProgress(idx) {
+  const pct = ((idx+1)/activeQuestions.length)*100;
+  document.getElementById('prog-fill').style.width = pct+'%';
+  const ans = answers.filter(a=>a!==null).length;
+  const fl  = flagged.filter(Boolean).length;
+  document.getElementById('prog-label').innerHTML = `Q${idx+1} of ${activeQuestions.length} · ${ans} answered${fl>0?` · ${ic('flag',12)} ${fl} flagged`:''}`;
+}
+
+// ── Question Navigator ─────────────────────────────────────────────────────
+function toggleNavigator() {
+  const nav = document.getElementById('q-navigator');
+  if (!nav) return;
+  nav.classList.toggle('open');
+  if (nav.classList.contains('open')) renderNavigator();
+}
+
+function renderNavigator() {
+  const grid = document.getElementById('nav-grid');
+  if (!grid || !document.getElementById('q-navigator')?.classList.contains('open')) return;
+  grid.innerHTML = activeQuestions.map((q, i) => {
+    let cls = 'nav-sq';
+    if (i === current)       cls += ' nav-curr';
+    else if (answers[i] === -1)    cls += ' nav-nl';
+    else if (answers[i] !== null)  cls += ' nav-ans';
+    if (flagged[i] && i !== current) cls += ' nav-flag';
+    return `<button class="${cls}" onclick="navigate(${i})" title="Q${i+1}: ${q.tag}">${i+1}</button>`;
+  }).join('');
+}
+
+// ── Review Before Submit ───────────────────────────────────────────────────
+function showReviewScreen() {
+  const unanswered   = answers.filter(a => a === null).length;
+  const notLearnedCt = answers.filter(a => a === -1).length;
+  const answeredCt   = answers.filter(a => a !== null && a !== -1).length;
+  const flaggedCt    = flagged.filter(Boolean).length;
+  const flaggedItems = activeQuestions
+    .map((q, i) => ({ q, i }))
+    .filter(({ i }) => flagged[i])
+    .map(({ q, i }) => `<li>Q${i+1}: ${q.q.length > 85 ? q.q.slice(0,85)+'…' : q.q}</li>`)
+    .join('');
+
+  const html = `
+    <div class="review-screen">
+      <h2>${ic('clipboard-check',20)} Ready to Submit?</h2>
+      <p>Here's where you stand before seeing your results. You can still go back and review flagged questions.</p>
+      <div class="review-counts">
+        <div class="review-count"><div class="rc-num" style="color:var(--green)">${answeredCt}</div><div class="rc-label">Answered</div></div>
+        <div class="review-count"><div class="rc-num" style="color:var(--yellow)">${notLearnedCt}</div><div class="rc-label">Not Learned</div></div>
+        <div class="review-count"><div class="rc-num" style="color:#f59e0b">${flaggedCt}</div><div class="rc-label">Flagged</div></div>
+        ${unanswered > 0 ? `<div class="review-count"><div class="rc-num" style="color:var(--red)">${unanswered}</div><div class="rc-label">Unanswered</div></div>` : ''}
+      </div>
+      ${flaggedItems ? `<div style="text-align:left;margin-bottom:1rem"><div style="font-size:0.78rem;font-weight:700;color:#f59e0b;margin-bottom:0.4rem">${ic('flag',13)} Flagged for review:</div><ul class="review-flagged-list">${flaggedItems}</ul></div>` : ''}
+      <div class="review-actions">
+        <button class="btn btn-primary btn-lg" onclick="showResults()">${ic('bar-chart-2',16)} Submit &amp; See Results</button>
+        <button class="btn btn-secondary" onclick="navigate(${activeQuestions.length-1})">${ic('arrow-left',14)} Back to Last Question</button>
+      </div>
+    </div>`;
+  document.getElementById('question-area').innerHTML = html;
+  renderIcons();
+  window.scrollTo(0,0);
+}
+
+// ── Keyboard Shortcuts ─────────────────────────────────────────────────────
+document.addEventListener('keydown', function(e) {
+  if (!startTime) return;
+  if (document.getElementById('results').style.display !== 'none') return;
+  if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
+  const answered = answers[current] !== null;
+  switch(e.key) {
+    case 'a': case 'A': case '1': if (!answered) { e.preventDefault(); selectAnswer(current,0); } break;
+    case 'b': case 'B': case '2': if (!answered) { e.preventDefault(); selectAnswer(current,1); } break;
+    case 'c': case 'C': case '3': if (!answered) { e.preventDefault(); selectAnswer(current,2); } break;
+    case 'd': case 'D': case '4': if (!answered) { e.preventDefault(); selectAnswer(current,3); } break;
+    case 'f': case 'F': e.preventDefault(); markFlagged(current); break;
+    case 'ArrowRight': e.preventDefault();
+      if (current < activeQuestions.length-1) navigate(current+1); else showReviewScreen(); break;
+    case 'ArrowLeft': e.preventDefault(); if (current > 0) navigate(current-1); break;
+  }
+});
+
+// ── Run History ────────────────────────────────────────────────────────────
+function saveRunToHistory(correct, total, dStats) {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    history.unshift({
+      date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+      score: Math.round((correct/total)*100),
+      correct, total,
+      dPct: {1:dStats[1].pct, 2:dStats[2].pct, 3:dStats[3].pct, 4:dStats[4].pct},
+      ts: Date.now(),
+      // Full state for report replay
+      elapsed: document.getElementById('timer').textContent,
+      qIndices: activeQuestions.map(q => questions.indexOf(q)),
+      answers:       answers.slice(),
+      confidence:    confidence.slice(),
+      questionTimes: questionTimes.slice(),
+      flagged:       flagged.slice(),
+    });
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0,10)));
+  } catch(e) {}
+}
+
+function buildRunHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length < 2) return '';
+    const rows = history.map((h, i) => {
+      const prev = history[i+1];
+      const delta = prev ? h.score - prev.score : null;
+      const trend = delta === null ? '<span style="color:var(--muted)">First run</span>'
+                  : delta > 0  ? `<span class="hist-up">↑ +${delta}%</span>`
+                  : delta < 0  ? `<span class="hist-dn">↓ ${delta}%</span>`
+                  : '<span style="color:var(--muted)">→ Same</span>';
+      const sc = h.score >= 78 ? 'var(--green)' : h.score >= 60 ? 'var(--yellow)' : 'var(--red)';
+      return `<tr>
+        <td>${h.date}</td>
+        <td style="font-weight:800;color:${sc}">${h.score}%</td>
+        <td>${h.correct}/${h.total}</td>
+        <td>${trend}</td>
+        <td style="font-size:0.72rem;color:var(--muted)">${[1,2,3,4,5].map(d=>`D${d}:${h.dPct[d]}%`).join(' · ')}</td>
+      </tr>`;
+    }).join('');
+    return `<div class="history-section">
+      <h3>${ic('trending-up',15)} Score History (${history.length} runs)</h3>
+      <table class="history-table">
+        <thead><tr><th>Date</th><th>Score</th><th>Correct</th><th>Trend</th><th>By Domain</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  } catch(e) { return ''; }
+}
+
+
+// ── Domain Trend Sparklines ────────────────────────────────────────────────
+function buildDomainTrends() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    if (history.length < 2) return '';
+    const recent = history.slice(0, 5).reverse(); // oldest→newest for left-to-right
+    const domains = Object.keys(history[0].dPct || {}).map(Number).sort();
+    if (!domains.length) return '';
+    const W = 72, H = 26, pad = 3;
+    const cards = domains.map(d => {
+      const vals = recent.map(h => (h.dPct && h.dPct[d] != null) ? h.dPct[d] : 0);
+      const minV = Math.min(...vals), maxV = Math.max(...vals);
+      const range = maxV - minV || 1;
+      const pts = vals.map((v, i) => {
+        const x = pad + (vals.length < 2 ? W/2-pad : i/(vals.length-1)*(W-pad*2));
+        const y = H - pad - ((v - minV)/range)*(H - pad*2);
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(' ');
+      const last = vals[vals.length-1], first = vals[0];
+      const delta = last - first;
+      const col = delta > 2 ? '#22c55e' : delta < -2 ? '#ef4444' : '#94a3b8';
+      const dots = vals.map((v, i) => {
+        const x = pad + (vals.length < 2 ? W/2-pad : i/(vals.length-1)*(W-pad*2));
+        const y = H - pad - ((v - minV)/range)*(H - pad*2);
+        return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="${col}"/>`;
+      }).join('');
+      return `<div class="dtrend-card">
+        <div class="dtrend-label">Domain ${d}</div>
+        <svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="overflow:visible">
+          <polyline points="${pts}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          ${dots}
+        </svg>
+        <div class="dtrend-pct" style="color:${col}">${last}%</div>
+      </div>`;
+    }).join('');
+    return `<div class="dtrend-section">
+      <div class="dtrend-section-title">\u{1F4C8} Domain trends across last ${recent.length} runs</div>
+      <div class="dtrend-row">${cards}</div>
+    </div>`;
+  } catch(e) { return ''; }
+}
+
+// ── Radar Chart ────────────────────────────────────────────────────────────
+function buildRadarChart(dStats) {
+  const cx=170, cy=160, r=100;
+  const dNames = ['IT Concepts\n18%','Infrastructure\n15%','Apps &\nSoftware 15%','Software\nDev 13%','Database\n13%','Security\n26%'];
+  const dColors = ['#92400e','#b45309','#d97706','#ca8a04','#a16207','#78350f'];
+  // 5 axes
+  const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
+
+  const rings = [25,50,75,100].map(pct => {
+    const pts = angles.map(a => `${cx+r*pct/100*Math.cos(a)},${cy+r*pct/100*Math.sin(a)}`).join(' ');
+    return `<polygon points="${pts}" fill="none" stroke="var(--border)" stroke-width="${pct===100?1.5:0.8}" opacity="0.7"/>`;
+  }).join('');
+
+  const passRing = angles.map(a => `${cx+r*0.78*Math.cos(a)},${cy+r*0.78*Math.sin(a)}`).join(' ');
+  const scorePts = angles.map((a,i) => {
+    const pct = dStats[i+1].pct/100;
+    return `${cx+r*pct*Math.cos(a)},${cy+r*pct*Math.sin(a)}`;
+  }).join(' ');
+  const axes = angles.map(a =>
+    `<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" stroke="var(--border)" stroke-width="1" opacity="0.6"/>`
+  ).join('');
+
+  const dots = angles.map((a,i) => {
+    const pct = (dStats[i+1]||{pct:0}).pct/100;
+    const dx = cx+r*pct*Math.cos(a), dy = cy+r*pct*Math.sin(a);
+    const lx = cx+(r+32)*Math.cos(a), ly = cy+(r+32)*Math.sin(a);
+    const anchor = Math.cos(a)>0.2?'start':Math.cos(a)<-0.2?'end':'middle';
+    const [l1,l2] = dNames[i].split('\n');
+    return `<circle cx="${dx}" cy="${dy}" r="5" fill="${dColors[i]}" stroke="var(--card)" stroke-width="1.5"/>
+      <text x="${lx}" y="${ly-7}" text-anchor="${anchor}" fill="var(--muted)" font-size="10" font-family="system-ui">${l1}</text>
+      <text x="${lx}" y="${ly+5}" text-anchor="${anchor}" fill="${dColors[i]}" font-size="11" font-weight="bold" font-family="system-ui">${dStats[i+1].pct}%</text>`;
+  }).join('');
+
+  const pRingLabelX = cx + r*0.78*Math.cos(-Math.PI/2) - 25;
+  const pRingLabelY = cy + r*0.78*Math.sin(-Math.PI/2) - 7;
+
+  return `<div class="radar-section">
+    <h3>${ic('activity',15)} Domain Coverage Radar</h3>
+    <div class="radar-wrap">
+      <svg width="340" height="310" viewBox="0 0 340 310" xmlns="http://www.w3.org/2000/svg">
+        ${rings}
+        <polygon points="${passRing}" fill="rgba(239,68,68,0.05)" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+        ${axes}
+        <polygon points="${scorePts}" fill="rgba(59,130,246,0.12)" stroke="#3b82f6" stroke-width="2"/>
+        ${dots}
+        <text x="${pRingLabelX}" y="${pRingLabelY}" fill="#ef4444" font-size="9" font-family="system-ui" opacity="0.85">78% pass line</text>
+      </svg>
+    </div>
+  </div>`;
+}
+
+// ── Priority Matrix ────────────────────────────────────────────────────────
+function buildPriorityMatrix(dStats) {
+  const W=340, H=260, padL=44, padR=14, padT=14, padB=36;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const dInfo=[{d:1,tag:"Security Operations",name:'Net. Concepts',w:23,c:'#3b82f6'},{d:2,tag:"Vuln Management",name:'Net. Impl.',w:19,c:'#22c55e'},{d:3,tag:"Incident Response",name:'Net. Ops',w:17,c:'#f97316'},{d:4,tag:"Reporting & Comm",name:'Net. Security',w:20,c:'#a855f7'},{d:5,tag:"Domain 5",name:'Troubleshoot',w:21,c:'#14b8a6'}];
+  const xMin=13,xMax=27,yMin=0,yMax=100;
+  const toX=w=>padL+(w-xMin)/(xMax-xMin)*plotW;
+  const toY=s=>padT+plotH-(s-yMin)/(yMax-yMin)*plotH;
+  const qx=toX(20), qy=toY(70);
+
+  const bubbles = dInfo.map(({d,name,w,c})=>{
+    const s=dStats[d].pct, x=toX(w), y=toY(s);
+    return `<circle cx="${x}" cy="${y}" r="24" fill="${c}" opacity="0.13" stroke="${c}" stroke-width="1.5"/>
+      <text x="${x}" y="${y-2}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-weight="bold" font-size="12" font-family="system-ui">${s}%</text>
+      <text x="${x}" y="${y+12}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-size="9" font-family="system-ui">${name}</text>`;
+  }).join('');
+
+  return `<div class="pmatrix-box">
+    <h3>${ic('target',15)} Study Priority Matrix</h3>
+    <p class="pmatrix-sub">High exam weight + low your score = highest ROI for study time. Focus bottom-right first.</p>
+    <div class="pmatrix-wrap">
+      <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+        <rect x="${padL}" y="${padT}" width="${qx-padL}" height="${qy-padT}" fill="rgba(234,179,8,0.05)" rx="3"/>
+        <rect x="${qx}" y="${padT}" width="${W-padR-qx}" height="${qy-padT}" fill="rgba(76,175,80,0.05)" rx="3"/>
+        <rect x="${padL}" y="${qy}" width="${qx-padL}" height="${H-padB-qy}" fill="rgba(156,163,175,0.04)" rx="3"/>
+        <rect x="${qx}" y="${qy}" width="${W-padR-qx}" height="${H-padB-qy}" fill="rgba(239,68,68,0.07)" rx="3"/>
+        <text x="${(padL+qx)/2}" y="${padT+9}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Light review</text>
+        <text x="${(qx+W-padR)/2}" y="${padT+9}" text-anchor="middle" fill="#22c55e" font-size="8" font-family="system-ui">✓ Maintain</text>
+        <text x="${(padL+qx)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low priority</text>
+        <text x="${(qx+W-padR)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--red)" font-size="8" font-family="system-ui">🔴 Focus here</text>
+        <line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
+        <line x1="${qx}" y1="${padT}" x2="${qx}" y2="${H-padB}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <line x1="${padL}" y1="${qy}" x2="${W-padR}" y2="${qy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <text x="${padL-4}" y="${toY(100)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">100%</text>
+        <text x="${padL-4}" y="${toY(70)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">70%</text>
+        <text x="${padL-4}" y="${toY(0)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">0%</text>
+        <text x="${toX(16)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low weight</text>
+        <text x="${toX(25)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">High weight</text>
+        ${bubbles}
+      </svg>
+    </div>
+  </div>`;
+}
+
+// ── Retry Missed Mini-Quiz ─────────────────────────────────────────────────
+function retryMissed() {
+  const combined = shuffleArray([...wrong_cache, ...nl_cache]);
+  if (combined.length === 0) return;
+  retryQuestions = combined;
+  retryAnswers   = new Array(combined.length).fill(null);
+  retryCurrent   = 0;
+  document.getElementById('retry-section').style.display = 'block';
+  renderRetryQuestion(0);
+  document.getElementById('retry-section').scrollIntoView({behavior:'smooth'});
+}
+
+function renderRetryQuestion(idx) {
+  retryCurrent = idx;
+  const q = retryQuestions[idx];
+  const ua = retryAnswers[idx];
+  const answered = ua !== null;
+  const optsHTML = q.opts.map((o,i) => {
+    let cls = 'opt-btn';
+    if (answered) { if(i===q.ans)cls+=' correct'; else if(i===ua)cls+=' wrong'; }
+    return `<button class="${cls}" onclick="selectRetryAnswer(${idx},${i})" ${answered?'disabled':''}><span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`;
+  }).join('');
+  let expHTML = '';
+  if (answered) {
+    const ok = ua===q.ans;
+    const why = !ok && q.wrongWhy && q.wrongWhy[ua] ? `<div class="exp-why-wrong">Why ${letters[ua]} is wrong: ${q.wrongWhy[ua]}</div>` : '';
+    expHTML = ok
+      ? `<div class="explanation show correct-exp"><div style="color:var(--green);font-weight:800;font-size:0.8rem;margin-bottom:0.3rem">${ic('check',13)} Correct!</div><div class="exp-body">${q.exp}</div></div>`
+      : `<div class="explanation show wrong-exp">${why}<div class="exp-correct-label">${ic('check',13)} Correct: ${letters[q.ans]}. ${q.opts[q.ans]}</div><div class="exp-body" style="margin-top:0.3rem">${q.exp}</div></div>`;
+  }
+  const isLast = idx === retryQuestions.length-1;
+  document.getElementById('retry-quiz-area').innerHTML = `
+    <div class="retry-header">
+      <h3>${ic('rotate-ccw',14)} Retry: Missed Topics</h3>
+      <span class="retry-badge">Q${idx+1} / ${retryQuestions.length}</span>
+    </div>
+    <div class="q-card active" style="margin-bottom:1rem">
+      <div class="q-meta"><span class="q-num">Q${idx+1} of ${retryQuestions.length}</span><span class="domain-tag tag-d${q.d}">${q.tag}</span></div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optsHTML}</div>
+      ${expHTML}
+      <div class="nav-row">
+        <button class="btn btn-secondary" onclick="renderRetryQuestion(${idx-1})" ${idx===0?'disabled':''}>← Prev</button>
+        ${isLast ? `<button class="btn btn-primary" onclick="showRetryResults()" ${!answered?'disabled':''}>See Results →</button>`
+                 : `<button class="btn btn-primary" onclick="renderRetryQuestion(${idx+1})">Next →</button>`}
+      </div>
+    </div>`;
+  renderIcons();
+}
+
+function selectRetryAnswer(qIdx, optIdx) {
+  if (retryAnswers[qIdx] !== null) return;
+  retryAnswers[qIdx] = optIdx;
+  renderRetryQuestion(qIdx);
+}
+
+function showRetryResults() {
+  const correct = retryAnswers.filter((a,i) => a === retryQuestions[i].ans).length;
+  const total = retryQuestions.length;
+  const pct = Math.round((correct/total)*100);
+  const sc = pct>=80?'var(--green)':pct>=60?'var(--yellow)':'var(--red)';
+  document.getElementById('retry-quiz-area').innerHTML = `
+    <div style="text-align:center;padding:1.5rem 0">
+      <div style="font-size:0.9rem;color:var(--muted);margin-bottom:0.5rem">Retry score on previously missed topics</div>
+      <div class="retry-score" style="color:${sc}">${correct}/${total}</div>
+      <div style="font-size:1.1rem;font-weight:700;color:${sc};margin-bottom:1.5rem">${pct}%</div>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="retryMissed()">${ic('rotate-ccw',13)} Try Again</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('retry-section').style.display='none'">Close</button>
+      </div>
+    </div>`;
+  renderIcons();
+}
+
+// ── Studied Items ──────────────────────────────────────────────────────────
+function getStudiedSet() {
+  try { return new Set(JSON.parse(localStorage.getItem(STUDIED_KEY)||'[]')); } catch(e) { return new Set(); }
+}
+
+function toggleStudied(key, btn) {
+  const s = getStudiedSet();
+  if (s.has(key)) {
+    s.delete(key);
+    btn.classList.remove('studied');
+    btn.innerHTML = ic('circle',13) + ' Mark as Studied';
+  } else {
+    s.add(key);
+    btn.classList.add('studied');
+    btn.innerHTML = ic('check-circle-2',13) + ' Studied';
+  }
+  try { localStorage.setItem(STUDIED_KEY, JSON.stringify([...s])); } catch(e) {}
+  renderIcons();
+  updateStudiedProgress();
+}
+
+function updateStudiedProgress() {
+  const nlBtns = document.querySelectorAll('.studied-btn');
+  const total = nlBtns.length;
+  if (!total) return;
+  const done = [...nlBtns].filter(b => b.classList.contains('studied')).length;
+  const countEl = document.getElementById('studied-count');
+  const barEl   = document.getElementById('studied-bar');
+  if (countEl) countEl.textContent = done;
+  if (barEl)   barEl.style.width = Math.round(done/total*100) + '%';
+}
+
+// ── Results ────────────────────────────────────────────────────────────────
+function showResults() {
+  if (!isViewingHistory) {
+    clearInterval(timerInterval);
+    clearState();   // exam finished — no need to resume
+    document.getElementById('question-area').innerHTML = '';
+    document.getElementById('prog-wrap').classList.remove('show');
+  }
+
+  const total = activeQuestions.length;
+  const notLearned = activeQuestions.filter((_,i) => answers[i] === -1);
+  const attempted = activeQuestions.filter((_,i) => answers[i] !== null && answers[i] !== -1);
+  const correct = activeQuestions.filter((q,i) => answers[i] === q.ans);
+  const wrong = activeQuestions.filter((q,i) => answers[i] !== null && answers[i] !== -1 && answers[i] !== q.ans);
+
+  // Cache for retry mini-quiz
+  wrong_cache = wrong.slice();
+  nl_cache = notLearned.slice();
+
+  const pct = attempted.length > 0 ? Math.round((correct.length/total)*100) : 0;
+  const attPct = attempted.length > 0 ? Math.round((correct.length/attempted.length)*100) : 0;
+
+  // Domain stats
+  const domains = [1,2,3,4,5];
+  const dStats = {};
+  domains.forEach(d => {
+    // Build list of indices in activeQuestions that belong to this domain
+    const dIdxs = activeQuestions.reduce((acc, q, i) => { if (q.d===d) acc.push(i); return acc; }, []);
+    const dc  = dIdxs.filter(i => answers[i] === activeQuestions[i].ans).length;
+    const dnl = dIdxs.filter(i => answers[i] === -1).length;
+    const da  = dIdxs.filter(i => answers[i] !== null && answers[i] !== -1).length;
+    dStats[d] = { total:dIdxs.length, correct:dc, notLearned:dnl, attempted:da, pct: dIdxs.length>0?Math.round((dc/dIdxs.length)*100):0 };
+  });
+
+  const elapsed = historyElapsed !== null ? historyElapsed : document.getElementById('timer').textContent;
+  historyElapsed = null;
+
+  // Save run to history (skip when replaying a historical report)
+  if (!isViewingHistory) saveRunToHistory(correct.length, total, dStats);
+
+  // Verdict
+  let verdict, verdictSub, verdictColor;
+  if (pct >= 78) { verdict=ic('zap',16)+' Strong Foundation'; verdictColor="#4ade80"; verdictSub="You're tracking well. Use this report to identify any remaining gaps before exam day."; }
+  else if (pct >= 60) { verdict="Solid Base — Gaps to Close"; verdictColor="#fbbf24"; verdictSub="Good foundational knowledge. The personalized study plan below targets exactly where you need to focus."; }
+  else { verdict="Foundation Building Needed"; verdictColor="#f87171"; verdictSub="That's exactly why you do a diagnostic first. Use the AI prompt below to build a targeted study guide around exactly what you missed."; }
+
+  // Build domain cards
+  const domainNames = {1:"Networking Concepts",2:"Net. Implementation",3:"Network Operations",4:"Net. Security",5:"Troubleshooting"};
+  const drCards = domains.map(d => {
+    const s = dStats[d]; const di = domainInfo[d];
+    const barColor = s.pct>=80?"#22c55e":s.pct>=60?"#eab308":"#ef4444";
+    const hint = s.notLearned>0 ? `${s.notLearned} not learned yet` : s.pct>=80?"Strong" : s.pct>=60?"Needs review":"Focus area";
+    return `<div class="dr-card">
+      <div class="dr-domain" style="color:${di.color}">${domainNames[d]} (${d===1?'12%':d===2?'22%':d===3?'18%':d===4?'28%':'20%'})</div>
+      <div class="dr-score" style="color:${barColor}">${s.pct}%</div>
+      <div class="dr-counts">${s.correct}/${s.total} correct${s.notLearned>0?` · ${s.notLearned} not learned`:''}</div>
+      <div class="dr-bar-track"><div class="dr-bar-fill" style="width:${s.pct}%;background:${barColor}"></div></div>
+      <div class="dr-hint">${hint}</div>
+    </div>`;
+  }).join('');
+
+  // Build personalized study plan
+
+  // Extra stats
+  const confidentWrong = wrong.filter(q => { const gi = activeQuestions.indexOf(q); return confidence[gi] === 3; });
+  const slowQuestions  = activeQuestions.filter((_,i) => (questionTimes[i]||0) > 90000);
+  const slowDetails = slowQuestions.length > 0 ? `<div class="slow-callout">
+    <div class="slow-callout-title">${ic('clock',13)} These questions took you over 90 seconds — worth a second look</div>
+    <div class="slow-callout-list">${slowQuestions.map(q => {
+      const qi = activeQuestions.indexOf(q);
+      const wasCorrect = answers[qi] === q.ans;
+      const tag = wasCorrect
+        ? \`<span class="slow-ok">✓ Correct</span>\`
+        : \`<span class="slow-tag">✗ Incorrect</span>\`;
+      const secs = Math.round((questionTimes[qi]||0)/1000);
+      return \`<div class="slow-callout-item">${tag}<span>\${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">\${secs}s</span></div>\`;
+    }).join('')}</div>
+  </div>\` : '';
+
+  // Build readiness report + AI prompt
+  const readinessHTML = buildReadinessReport(dStats, correct, wrong, notLearned, total);
+  const aiPromptText  = buildAIPrompt(dStats, wrong, notLearned, correct, total);
+
+  // Build missed/not-learned breakdown
+  const missedHTML = buildMissedSection(wrong, notLearned);
+
+  // Build new visual sections
+  const radarHTML   = buildRadarChart(dStats);
+  const matrixHTML  = buildPriorityMatrix(dStats);
+  const historyHTML = buildRunHistory();
+
+  // Score ring
+  const r=60, circ=2*Math.PI*r, dash=(pct/100)*circ;
+  const rc = pct>=78?"#22c55e":pct>=60?"#eab308":"#ef4444";
+
+  document.getElementById('results').innerHTML = `
+    ${readinessHTML}
+    <div class="results-hero">
+      <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Your Assessment Results</div>
+      <svg width="150" height="150" viewBox="0 0 150 150" style="transform:rotate(-90deg)">
+        <circle cx="75" cy="75" r="${r}" fill="none" stroke="#2a3050" stroke-width="13"/>
+        <circle cx="75" cy="75" r="${r}" fill="none" stroke="${rc}" stroke-width="13" stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
+        <text x="75" y="75" text-anchor="middle" dominant-baseline="middle" transform="rotate(90,75,75)" style="fill:${rc};font-size:2rem;font-weight:900;font-family:system-ui">${pct}%</text>
+        <text x="75" y="95" text-anchor="middle" transform="rotate(90,75,75)" style="fill:#8892a4;font-size:0.78rem;font-family:system-ui">${correct.length}/${total}</text>
+      </svg>
+      <div class="verdict" style="color:${verdictColor}">${verdict}</div>
+      <div class="verdict-sub">${verdictSub}</div>
+    </div>
+
+    <div class="stat-pills">
+      <div class="stat-pill"><div class="sp-num" style="color:#22c55e">${correct.length}</div><div class="sp-label">Correct</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:#ef4444">${wrong.length}</div><div class="sp-label">Incorrect</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:#eab308">${notLearned.length}</div><div class="sp-label">Not Learned</div></div>
+      <div class="stat-pill"><div class="sp-num" style="color:var(--muted)">${elapsed}</div><div class="sp-label">Time</div></div>
+      ${confidentWrong.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#a855f7">${confidentWrong.length}</div><div class="sp-label">Confident but Wrong</div></div>` : ''}
+      ${slowQuestions.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#f97316">${slowQuestions.length}</div><div class="sp-label">Slow (&gt;90s)</div></div>` : ''}
+    </div>
+
+    \${slowDetails}
+
+    <div class="section-header">Domain Breakdown</div>
+    <div class="domain-results">${drCards}</div>
+
+    ${radarHTML}
+    ${matrixHTML}
+
+
+    <div class="section-header" id="missed-header">
+      ${ic('x-circle',15)} Full Results Breakdown
+      <span style="font-size:0.8rem;font-weight:400;color:var(--muted);margin-left:0.5rem">(${wrong.length} incorrect · ${notLearned.length} not learned)</span>
+    </div>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterMissed('all',this)">All (${wrong.length+notLearned.length})</button>
+      <button class="filter-tab" onclick="filterMissed('wrong',this)">${ic('x',13)} Incorrect (${wrong.length})</button>
+      <button class="filter-tab" onclick="filterMissed('notlearned',this)">${ic('book-open',13)} Not Learned (${notLearned.length})</button>
+      <button class="filter-tab" onclick="filterMissed('flagged',this)">${ic('flag',13)} Flagged (${flagged.filter(Boolean).length})</button>
+    </div>
+    ${missedHTML}
+
+    ${wrong.length + notLearned.length > 0 ? `
+    <div class="retry-section" id="retry-section">
+      <div class="retry-header">
+        ${ic('refresh-cw',15)} Retry Missed Questions
+        <span class="retry-badge">${wrong.length + notLearned.length} questions</span>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0 1rem">Run a mini-quiz covering only the questions you got wrong or didn't learn — great for a quick follow-up session.</p>
+      <button class="retry-launch-btn" onclick="retryMissed()">${ic('play',14)} Start Retry Quiz</button>
+      <div id="retry-quiz-area"></div>
+    </div>` : ''}
+
+    ${historyHTML ? `<div class="history-section">
+      <div class="section-header">${ic('trending-up',15)} Score History</div>
+      ${buildDomainTrends()}
+      ${historyHTML}
+    </div>` : ''}
+
+    <div class="section-header">${ic('bot',15)} AI-Powered Study Guide Generator</div>
+    <div class="ai-prompt-box">
+      <h3>${ic('clipboard',15)} Your Personalised Study Prompt</h3>
+      <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed on this assessment.</p>
+      <div class="apb-date-row">
+        <label for="exam-date-input">${ic('calendar',14)} Exam date:</label>
+        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()">
+        <span class="apb-days-away" id="exam-days-away">${examDate ? '(' + Math.ceil((new Date(examDate + 'T12:00:00') - new Date()) / 864e5) + ' days away)' : ''}</span>
+      </div>
+      <div class="prompt-text" id="ai-prompt-text">${aiPromptText}</div>
+      <div class="copy-row">
+        <button class="copy-btn" onclick="copyPrompt()">${ic('clipboard',13)} Copy Prompt</button>
+        <span class="copy-hint">Then paste into any AI chat to get your personalised study guide</span>
+      </div>
+    </div>
+
+    ${isViewingHistory ? `<button class="history-back-btn" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>` : ''}
+    <div class="results-actions">
+      <button class="btn btn-primary btn-lg" onclick="window.open('https://www.youtube.com/results?search_query=CompTIA+ITF+plus+FC0-U61+study+guide','_blank')">CompTIA ITF+ Study Resources →</button>
+      <button class="btn btn-primary btn-lg" onclick="window.print()">${ic('printer',14)} Print Full Report</button>
+      ${isViewingHistory
+        ? `<button class="btn btn-secondary" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>`
+        : `<button class="btn btn-secondary" onclick="location.reload()">${ic('rotate-ccw',14)} Retake Assessment</button>`}
+    </div>
+    ${!isViewingHistory ? `<div style="text-align:center;margin-top:0.5rem">
+      <button class="btn btn-secondary" style="font-size:0.78rem;padding:0.45rem 1rem" onclick="clearState();location.reload()">${ic('trash-2',13)} Clear saved data &amp; start completely fresh</button>
+    </div>` : ''}`;
+
+  document.getElementById('results').style.display = 'block';
+  renderIcons();
+  window.scrollTo(0,0);
+  setTimeout(()=>{ document.querySelectorAll('.dr-bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,50);}); },200);
+}
+
+// ── Topic video search resources ─────────────────────────────────────────────
+const TOPIC_VIDEOS = {
+  kanban:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+Kanban+methodology+agile',
+  safe:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+SAFe+scaled+agile+framework',
+  backlog:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+product+backlog+sprint+planning+scrum',
+  cpm:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+critical+path+method+CPM+float+slack',
+  risk:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+risk+management+mitigate+transfer+avoid+accept',
+  change:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+change+control+process+CCB+change+request',
+  agile:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+agile+scrum+sprint+velocity+methodology',
+  gantt:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+Gantt+chart+schedule+bar+chart',
+  pert:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+PERT+chart+network+diagram+AOA+AON',
+  raci:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+RACI+matrix+responsible+accountable+consulted+informed',
+  cloud:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+IaaS+PaaS+SaaS+cloud+service+models',
+  erp:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+ERP+CRM+EDRMS+enterprise+systems+acronyms',
+  cicd:       'https://www.youtube.com/results?search_query=CompTIA+Project%2B+CI+CD+continuous+integration+delivery+DevOps',
+  pii:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+PII+PHI+data+privacy+compliance+governance',
+  charter:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+project+charter+business+case+initiation+phase',
+  phasegate:  'https://www.youtube.com/results?search_query=CompTIA+Project%2B+phase+gate+review+kill+point+lifecycle',
+  lessons:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+lessons+learned+closing+phase+retrospective',
+  closeout:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+contract+closeout+procurement+closing',
+  wbs:        'https://www.youtube.com/results?search_query=CompTIA+Project%2B+work+breakdown+structure+WBS+decomposition',
+  stakeholder:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+stakeholder+management+register+analysis',
+  comms:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+communication+plan+matrix+virtual+teams',
+  reporting:  'https://www.youtube.com/results?search_query=CompTIA+Project%2B+status+report+dashboard+project+reporting',
+  budget:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+budget+cost+EVM+earned+value+management',
+  scope:      'https://www.youtube.com/results?search_query=CompTIA+Project%2B+scope+management+creep+gold+plating',
+  quality:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+quality+management+assurance+control',
+  resource:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+resource+management+team+staffing',
+  deploy:     'https://www.youtube.com/results?search_query=CompTIA+Project%2B+deployment+environments+testing+staging+production',
+  procurement:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+procurement+contracts+fixed+price+time+material',
+  kickoff:    'https://www.youtube.com/results?search_query=CompTIA+Project%2B+kickoff+meeting+planning+phase',
+  issuelog:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+issue+log+risk+log+action+items+difference',
+  burndown:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+burndown+chart+burnup+agile+tracking',
+  baseline:   'https://www.youtube.com/results?search_query=CompTIA+Project%2B+project+baseline+scope+schedule+cost',
+};
+
+function getVideoSearchURL(q) {
+  const text = (q.q + ' ' + (q.exp||'') + ' ' + q.opts.join(' ')).toLowerCase();
+  const rules = [
+    [/kanban/,                                          'kanban'],
+    [/safe|scaled agile/,                               'safe'],
+    [/product backlog|backlog item|backlog refine/,     'backlog'],
+    [/critical path|\bcpm\b|\bfloat\b|slack.*schedul/,  'cpm'],
+    [/risk response|mitigat|risk register|risk log/,    'risk'],
+    [/change control|change request|change board|\bccb\b/,'change'],
+    [/\bagile\b|\bscrum\b|\bsprint\b|velocity|user stor/,'agile'],
+    [/gantt/,                                           'gantt'],
+    [/\bpert\b|\baoa\b|\baon\b|arrow diagram|precedence diagram/,'pert'],
+    [/raci|responsible.*accountable|consulted.*informed/,'raci'],
+    [/\biaas\b|\bpaas\b|\bsaas\b|cloud model|cloud service/,'cloud'],
+    [/\berp\b|\bcrm\b|\bedrms\b|enterprise resource|customer relation/,'erp'],
+    [/ci\/cd|continuous integr|continuous deliver|devops/,'cicd'],
+    [/\bpii\b|\bphi\b|personally identifiable|protected health/,'pii'],
+    [/project charter|business case.*initiat/,          'charter'],
+    [/phase.gate|stage.gate|kill point|go.no.go/,       'phasegate'],
+    [/lessons learned|post.mortem|after.action/,        'lessons'],
+    [/contract close|procurement close/,                'closeout'],
+    [/\bwbs\b|work breakdown|decompos/,                 'wbs'],
+    [/stakeholder register|stakeholder analys/,         'stakeholder'],
+    [/communication plan|communication matrix|virtual team/,'comms'],
+    [/status report|project report|dashboard.*status/,  'reporting'],
+    [/\bbudget\b|cost baseline|earned value|\bevm\b/,   'budget'],
+    [/scope creep|gold plating|scope management/,       'scope'],
+    [/quality assur|quality control|quality manag/,     'quality'],
+    [/resource manag|staffing plan|team building/,      'resource'],
+    [/deployment|test environment|staging|production.*environ/,'deploy'],
+    [/procurement|fixed.price|time.*material|contract type/,'procurement'],
+    [/kickoff meeting|kick-off/,                        'kickoff'],
+    [/issue log|issue register|action item.*log/,       'issuelog'],
+    [/burndown|burnup chart|sprint.*track/,             'burndown'],
+    [/baseline.*scope|baseline.*schedule|baseline.*cost/,'baseline'],
+  ];
+  for (const [re, key] of rules) {
+    if (re.test(text)) return TOPIC_VIDEOS[key] || null;
+  }
+  const fallback = {
+    1:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+1+PM+concepts+study',
+    2:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+2+life+cycle+phases+study',
+    3:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+3+tools+documentation+study',
+    4:'https://www.youtube.com/results?search_query=CompTIA+Project%2B+domain+4+IT+governance+study',
+  };
+  return fallback[q.d] || 'https://www.youtube.com/results?search_query=CompTIA+ITF+plus+FC0-U61+study';
+}
+
+function getVideoChip(q) {
+  const url = getVideoSearchURL(q);
+  if (!url) return '';
+  return `<div class="vid-resources">
+    <span class="vid-label">${ic('play-circle',12)} Study this topic:</span>
+    <a href="${url}" target="_blank" rel="noopener" class="vid-chip" title="Search YouTube for explanations of this concept">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      Search YouTube
+    </a>
+  </div>`;
+}
+
+// ── Study Panel Data ───────────────────────────────────────────────────────
+const TOPIC_CONCEPTS = [
+  { regex: /osi|osi model|layer.*osi|osi.*layer|physical layer|data link|network layer|transport layer|session layer|presentation|application layer/,
+    bullets: ['OSI layers: Physical(1), Data Link(2), Network(3), Transport(4), Session(5), Presentation(6), Application(7)', 'Switches = Layer 2 (MAC), Routers = Layer 3 (IP), Firewalls/LB = Layer 4+, WAF = Layer 7', 'Mnemonic: "Please Do Not Throw Sausage Pizza Away" (Physical → Application)'] },
+  { regex: /tcp.?ip model|internet layer|network access/,
+    bullets: ['TCP/IP 4 layers: Network Access (L1+L2), Internet (L3), Transport (L4), Application (L5+L6+L7)', 'Internet layer = IP, ICMP, ARP. Transport = TCP (reliable, connection-oriented) + UDP (fast, connectionless)', 'TCP uses 3-way handshake: SYN → SYN/ACK → ACK. Teardown: FIN → FIN/ACK → ACK'] },
+  { regex: /subnet|cidr|slash notation|\/24|\/16|\/8|network address|broadcast address|host range/,
+    bullets: ['CIDR notation: /24 = 256 addresses (254 usable), /25 = 128 (126 usable), /16 = 65536 (65534 usable)', 'First address = network, Last address = broadcast — neither assignable to hosts', 'To find network: AND the IP with the subnet mask. /20 = 255.255.240.0, borrowing 4 bits from 3rd octet'] },
+  { regex: /ipv6|fe80|2001:|fc00|ff00|link.local|global unicast|unique local|anycast/,
+    bullets: ['IPv6 address types: Global unicast (2000::/3, public internet), Link-local (fe80::/10, auto, non-routable), Unique local (fc00::/7, private), Multicast (ff00::/8)', 'Anycast = same address on multiple interfaces, delivered to nearest. IPv6 has NO broadcast', 'fe80:: is always auto-configured — used for neighbor discovery, router solicitation. Like APIPA in IPv4'] },
+  { regex: /port.*number|well.known port|tcp.*port|udp.*port|ephemeral|registered port/,
+    bullets: ['Critical ports: FTP=21, SSH=22, Telnet=23, SMTP=25, DNS=53, HTTP=80, HTTPS=443, SMB=445', 'SNMP agent=161(UDP), SNMP trap=162(UDP), Syslog=514, RDP=3389, RADIUS=1812, TACACS+=49', 'Well-known: 0-1023. Registered: 1024-49151. Ephemeral (dynamic/source): 49152-65535'] },
+  { regex: /ospf|eigrp|bgp|rip|routing protocol|administrative distance|link.state|distance.vector|path.vector/,
+    bullets: ['Administrative Distance: Connected=0, Static=1, EIGRP=90, OSPF=110, RIP=120 (lower = more trusted)', 'OSPF = link-state, uses cost (bandwidth). EIGRP = hybrid distance-vector, bandwidth+delay. BGP = path-vector between ASes', 'OSPF Area 0 = backbone — all other areas must connect to it. RIP max 15 hops.'] },
+  { regex: /vlan|802\.1q|trunk port|access port|native vlan|inter.vlan|svi|router.on.a.stick/,
+    bullets: ['Access port = single VLAN (untagged). Trunk port = multiple VLANs (802.1Q tagged). Native VLAN = untagged on trunk', 'Inter-VLAN routing options: Router-on-a-stick (subinterfaces), Layer 3 switch (SVIs), or separate router ports', '802.1Q tag adds 4 bytes: 12-bit VLAN ID (0-4095), 3-bit PCP for QoS priority, 1-bit DEI'] },
+  { regex: /spanning tree|stp|rstp|bpdu|root bridge|port.*state|forwarding.*state|blocking.*state/,
+    bullets: ['STP prevents Layer 2 loops. Root bridge = switch with lowest bridge ID (priority + MAC)', 'Port states: Blocking (no forward/learn) → Listening → Learning (learn MACs, no forward) → Forwarding', 'BPDU guard: shuts down port if BPDU received (protects access ports). PortFast: skips listening/learning for end devices'] },
+  { regex: /wireless|802\.11|ssid|channel|2\.4.*ghz|5.*ghz|6.*ghz|wpa|wpa2|wpa3|sae/,
+    bullets: ['2.4 GHz: non-overlapping channels 1, 6, 11. 5 GHz: many non-overlapping channels, faster but shorter range', 'Wi-Fi 6E (802.11ax) adds 6 GHz band. WPA3 uses SAE (eliminates offline dictionary attacks on PSK)', 'Co-channel interference = same channel APs competing. Adjacent channel = overlapping channel spectrum. Use non-overlapping channels'] },
+  { regex: /nat|pat|overload|static nat|dynamic nat|private.*ip|rfc 1918/,
+    bullets: ['PAT (NAT Overload) = many-to-one using port numbers — how home/enterprise internet access works', 'RFC 1918 private: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 — not routed on public internet', 'Static NAT = 1:1 mapping. Dynamic NAT = pool of public IPs. PAT = many-to-one using unique ports'] },
+  { regex: /dhcp|ip helper|relay agent|apipa|169\.254|dora/,
+    bullets: ['DORA: Discover (broadcast) → Offer → Request → Acknowledge. Client uses 255.255.255.255 to discover', 'DHCP relay agent (ip helper-address) forwards DHCP broadcasts across router boundaries to a centralized server', 'APIPA 169.254.x.x = DHCP failure self-assignment. DHCP reservation = static IP mapped to MAC address'] },
+  { regex: /dns|a record|aaaa|mx record|ptr|cname|txt|nslookup|dig|name resolution/,
+    bullets: ['DNS records: A = IPv4, AAAA = IPv6, MX = mail, PTR = reverse lookup, CNAME = alias, TXT = SPF/DKIM/DMARC', 'DNS uses UDP 53 for queries, TCP 53 for zone transfers. DNSSEC digitally signs records to prevent cache poisoning', 'DNS resolution order: local hosts file → local DNS cache → DNS server → recursive resolution'] },
+  { regex: /snmp|mib|oid|trap|community string|snmpv3/,
+    bullets: ['SNMP: agent (device) on UDP 161, manager polls. Traps = unsolicited alerts from agent to manager (UDP 162)', 'SNMPv1/v2c use community strings (cleartext, insecure). SNMPv3 adds authentication (MD5/SHA) + encryption (AES)', 'MIB (Management Information Base) = database of manageable objects. OID = unique identifier for each managed object'] },
+  { regex: /qos|dscp|cos|marking|queuing|traffic shaping|policing|llq|cbwfq/,
+    bullets: ['QoS steps: Classify (identify traffic type) → Mark (DSCP/CoS value) → Queue (LLQ/CBWFQ) → Schedule', 'DSCP EF (Expedited Forwarding, 46) = VoIP. AF = Assured Forwarding (video). CS0 = best effort (default)', 'LLQ (Low Latency Queuing) = priority queue for voice. Shaping buffers excess; Policing drops/re-marks excess'] },
+  { regex: /mpls|wan|leased line|frame relay|metro ethernet|sd.wan/,
+    bullets: ['MPLS uses labels (not IP lookups) for fast forwarding — supports QoS, traffic engineering, VPNs for service providers', 'WAN options: Leased line (dedicated, symmetric, expensive), MPLS (provider QoS), broadband (cheap, asymmetric, shared)', 'SD-WAN = software-defined WAN using broadband/MPLS/LTE for cost-effective, policy-driven WAN with central control'] },
+  { regex: /vxlan|sdn|overlay|underlay|virtualization.*network|nfv/,
+    bullets: ['VXLAN encapsulates L2 frames in UDP (port 4789) — extends L2 across L3, supports 16M virtual networks vs 4096 VLANs', 'SDN: Control plane (intelligence/routing decisions) separated from Data plane (forwarding) — centralized controller', 'NFV = Network Functions Virtualization — runs routers, firewalls, load balancers as VMs instead of dedicated hardware'] },
+];
 
 // Normalize question keys so prepareExam() and renderQuestion() always find
 // the short-form fields (d, q, opts, ans, exp) regardless of how the
