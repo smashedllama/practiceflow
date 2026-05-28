@@ -192,14 +192,13 @@
 
   /* Card stats */
   .exam-stats {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem; border-bottom: 1px solid var(--border);
-    height: 72px; align-content: center;
   }
-  .exam-stat { text-align: center; }
+  .exam-stat { text-align: center; display: flex; flex-direction: column; gap: 0.35rem; }
   .es-val { font-size: 1rem; font-weight: 800; display: block; }
-  .es-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .es-lbl { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
 
   /* Domains */
   .exam-domains { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); flex: 1; }
@@ -457,17 +456,17 @@
     <div class="exam-card" style="--card-accent:#84cc16">
       <div class="exam-card-top">
         <div class="exam-header">
-          <div class="exam-cert-code" style="color:#d9f99d">XK0-005</div>
+          <div class="exam-cert-code" style="color:#a3e635">XK0-005</div>
           <div class="exam-name">CompTIA Linux+</div>
           <div class="exam-tagline">Linux system administration, security, scripting, containers and troubleshooting.</div>
         </div>
         <span class="status-badge status-live">● Live</span>
       </div>
       <div class="exam-stats">
-        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">50</span><span class="es-lbl">Questions</span></div>
-        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">4</span><span class="es-lbl">Domains</span></div>
-        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">720</span><span class="es-lbl">Pass score</span></div>
-        <div class="exam-stat"><span class="es-val" style="color:#d9f99d">~60m</span><span class="es-lbl">Est. time</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#a3e635">50</span><span class="es-lbl">Questions</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#a3e635">4</span><span class="es-lbl">Domains</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#a3e635">720</span><span class="es-lbl">Pass score</span></div>
+        <div class="exam-stat"><span class="es-val" style="color:#a3e635">~60m</span><span class="es-lbl">Est. time</span></div>
       </div>
       <div class="exam-domains">
         <div class="ed-label">Domain breakdown</div>
