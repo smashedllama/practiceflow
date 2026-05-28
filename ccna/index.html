@@ -1139,13 +1139,7 @@ function buildDomainTrends() {
 // ── Radar Chart ────────────────────────────────────────────────────────────
 function buildRadarChart(dStats) {
   const cx=170, cy=160, r=100;
-  const dNames = ['Network
-Fundamentals 20%','Network
-Access 20%','IP
-Connectivity 25%','IP
-Services 10%','Security
-15%','Automation
-10%'];
+  const dNames = ['Network\nFundamentals 20%','Network\nAccess 20%','IP\nConnectivity 25%','IP\nServices 10%','Security\n15%','Automation\n10%'];
   const dColors = ['#1e40af','#1d4ed8','#0369a1','#0284c7','#0ea5e9','#38bdf8'];
   // 5 axes
   const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
