@@ -837,7 +837,7 @@ function renderQuestion(idx) {
       // In exam mode, just show which option was selected (neutral highlight)
       cls += ' selected';
     }
-    return `<button class="${cls}" onclick="selectAnswer(${idx},${i})" ${answered?'disabled':''}>
+    return `<button class="${cls}" onclick="selectAnswer(${idx},${i})" ${answered && (learningMode || notLearned) ? 'disabled' : ''}>
       <span class="opt-letter">${letters[i]}</span><span>${o}</span>
     </button>`;
   }).join('');
@@ -923,7 +923,8 @@ function renderQuestion(idx) {
 }
 
 function selectAnswer(qIdx, optIdx) {
-  if (answers[qIdx] !== null && answers[qIdx] !== -1) return;
+  // In learning mode, lock after first answer; in exam mode allow re-selection
+  if (learningMode && answers[qIdx] !== null && answers[qIdx] !== -1) return;
   if (answers[qIdx] === -1) return;
   if (questionStartMs) questionTimes[qIdx] = Date.now() - questionStartMs;
   answers[qIdx] = optIdx;
@@ -1030,10 +1031,10 @@ document.addEventListener('keydown', function(e) {
   if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)) return;
   const answered = answers[current] !== null;
   switch(e.key) {
-    case 'a': case 'A': case '1': if (!answered) { e.preventDefault(); selectAnswer(current,0); } break;
-    case 'b': case 'B': case '2': if (!answered) { e.preventDefault(); selectAnswer(current,1); } break;
-    case 'c': case 'C': case '3': if (!answered) { e.preventDefault(); selectAnswer(current,2); } break;
-    case 'd': case 'D': case '4': if (!answered) { e.preventDefault(); selectAnswer(current,3); } break;
+    case 'a': case 'A': case '1': if (!answered || !learningMode) { e.preventDefault(); selectAnswer(current,0); } break;
+    case 'b': case 'B': case '2': if (!answered || !learningMode) { e.preventDefault(); selectAnswer(current,1); } break;
+    case 'c': case 'C': case '3': if (!answered || !learningMode) { e.preventDefault(); selectAnswer(current,2); } break;
+    case 'd': case 'D': case '4': if (!answered || !learningMode) { e.preventDefault(); selectAnswer(current,3); } break;
     case 'f': case 'F': e.preventDefault(); markFlagged(current); break;
     case 'ArrowRight': e.preventDefault();
       if (current < activeQuestions.length-1) navigate(current+1); else showReviewScreen(); break;
