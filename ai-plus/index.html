@@ -1135,12 +1135,7 @@ function buildDomainTrends() {
 // ── Radar Chart ────────────────────────────────────────────────────────────
 function buildRadarChart(dStats) {
   const cx=170, cy=160, r=100;
-  const dNames = ['AI Concepts
-15%','Data
-for AI 19%','Implementing
-AI 22%','Ethics &
-Compliance 22%','AI Ops
-22%'];
+  const dNames = ['AI Concepts\n15%','Data\nfor AI 19%','Implementing\nAI 22%','Ethics &\nCompliance 22%','AI Ops\n22%'];
   const dColors = ['#c084fc','#a855f7','#9333ea','#7c3aed','#6d28d9'];
   // 5 axes
   const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
