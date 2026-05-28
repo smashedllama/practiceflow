@@ -1416,12 +1416,12 @@ function showResults() {
       const qi = activeQuestions.indexOf(q);
       const wasCorrect = answers[qi] === q.ans;
       const tag = wasCorrect
-        ? \`<span class="slow-ok">✓ Correct</span>\`
-        : \`<span class="slow-tag">✗ Incorrect</span>\`;
+        ? `<span class="slow-ok">✓ Correct</span>`
+        : `<span class="slow-tag">✗ Incorrect</span>`;
       const secs = Math.round((questionTimes[qi]||0)/1000);
-      return \`<div class="slow-callout-item">${tag}<span>\${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">\${secs}s</span></div>\`;
+      return `<div class="slow-callout-item">${tag}<span>\${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">\${secs}s</span></div>`;
     }).join('')}</div>
-  </div>\` : '';
+  </div>` : '';
 
   // Build readiness report + AI prompt
   const readinessHTML = buildReadinessReport(dStats, correct, wrong, notLearned, total);
