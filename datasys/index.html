@@ -1133,11 +1133,7 @@ function buildDomainTrends() {
 // ── Radar Chart ────────────────────────────────────────────────────────────
 function buildRadarChart(dStats) {
   const cx=170, cy=160, r=100;
-  const dNames = ['DB Fundamentals
-22%','Deployment
-25%','Management
-27%','Security
-26%'];
+  const dNames = ['DB Fundamentals\n22%','Deployment\n25%','Management\n27%','Security\n26%'];
   const dColors = ['#0f766e','#0d9488','#14b8a6','#2dd4bf'];
   // 5 axes
   const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
