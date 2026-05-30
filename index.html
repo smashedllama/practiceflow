@@ -86,7 +86,8 @@
   .nav-link:hover { color: var(--text); }
 
   /* ── Hero split ── */
-  .hero-split-section { border-bottom: 1px solid var(--border); }
+  .hero-split-section { position: relative; }
+  .hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; z-index: 2; }
   .hero-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
   .hero-split-left { display: flex; align-items: center; justify-content: flex-end; border-right: 1px solid var(--border); padding: 4rem 3rem 4rem 2rem; }
   .hero-left-inner { width: 100%; max-width: 460px; }
@@ -99,7 +100,7 @@
   .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 700; padding: 0.7rem 1.35rem; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
   .hero-cta:hover { opacity: 0.88; }
   .hero-split-right { display: flex; align-items: center; justify-content: flex-start; padding: 3rem 2rem 3rem 3rem; position: relative; overflow: hidden; background: var(--surface); }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.5; }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.5; -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 40%, transparent 100%); }
   /* Result card */
   .hrc { width: 100%; max-width: 300px; position: relative; z-index: 1; }
   .hrc-inner { background: var(--bg); border-radius: 14px; padding: 1.25rem; border: 1px solid var(--border); transition: border-color 0.6s ease, box-shadow 0.6s ease; }
@@ -112,7 +113,7 @@
   .hrc-ring-wrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
   .hrc-ring-wrap svg { transform: rotate(-90deg); }
   .hrc-ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; line-height: 1; }
-  .hrc-domains { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+  .hrc-domains { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; min-height: 158px; }
   .hrc-d-top { display: flex; justify-content: space-between; margin-bottom: 0.2rem; }
   .hrc-d-name { font-size: 0.6rem; color: var(--muted); }
   .hrc-d-pct  { font-size: 0.6rem; font-weight: 600; }
@@ -411,6 +412,8 @@
       </div>
     </div>
   </div>
+  <div class="hero-fade"></div>
+  <div class="hero-fade"></div>
 </section>
 
 <section class="exams-section" id="exams">
