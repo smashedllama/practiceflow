@@ -264,22 +264,21 @@
 
   /* Why + FAQ side-by-side */
   .why-faq-section { border-top: 1px solid var(--border); }
-  .why-faq-inner { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1.15fr; gap: 3.5rem; align-items: start; }
-  /* Why column */
-  .why-col {}
-  .why-inner { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
-  .why-bar { width: 3px; background: var(--accent); border-radius: 99px; align-self: stretch; flex-shrink: 0; }
-  .why-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.6rem; }
-  .why-heading { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.85rem; line-height: 1.35; }
-  .why-body { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+  .why-faq-inner { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+  /* Why column — editorial quote style */
+  .why-col { display: flex; gap: 1.25rem; align-items: start; }
+  .why-bar { width: 3px; background: var(--accent); border-radius: 99px; align-self: stretch; flex-shrink: 0; margin-top: 2px; }
+  .why-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.65rem; }
+  .why-quote { font-family: Georgia, 'Times New Roman', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; line-height: 1.45; color: var(--text); margin-bottom: 1rem; }
+  .why-body { font-size: 0.82rem; color: var(--muted); line-height: 1.72; }
   .why-body p + p { margin-top: 0.7rem; }
   .why-support { margin-top: 1rem; font-size: 0.78rem; color: var(--muted); }
   .why-support a { color: var(--accent); text-decoration: none; font-weight: 600; }
   .why-support a:hover { text-decoration: underline; }
   /* FAQ column */
   .faq-col {}
-  .faq-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
-  .faq-sub { color: var(--muted); font-size: 0.8rem; margin-bottom: 1rem; }
+  .faq-title { font-size: 1rem; font-weight: 800; margin-bottom: 0.2rem; }
+  .faq-sub { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.9rem; }
   .faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.3rem; overflow: hidden; transition: border-color 0.15s; }
   .faq-item.open { border-color: var(--accent); }
   .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.9rem; cursor: pointer; font-size: 0.8rem; font-weight: 700; gap: 1rem; user-select: none; }
@@ -288,8 +287,8 @@
   .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
   .faq-a { display: none; padding: 0 0.9rem 0.65rem; font-size: 0.77rem; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 0.55rem; }
   .faq-item.open .faq-a { display: block; }
-  @media (max-width: 800px) {
-    .why-faq-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
+  @media (max-width: 860px) {
+    .why-faq-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.25rem; }
   }
 
   /* Footer */
@@ -923,17 +922,15 @@
   <div class="why-faq-inner">
     <!-- Why column -->
     <div class="why-col">
-      <div class="why-inner">
-        <div class="why-bar"></div>
-        <div>
-          <div class="why-label">Why I built this</div>
-          <div class="why-heading">Because studying for these exams was more frustrating than it needed to be.</div>
-          <div class="why-body">
-            <p>When I was working through CompTIA certifications, I kept running into the same problem with practice exams. Most were too short to tell you anything useful. The ones with real depth recycled the same questions on every attempt, so after a few runs you were memorising answer positions instead of learning the material.</p>
-            <p>The sites that were well-made either locked your full results behind a paywall, pushed you toward a $200 course at every turn, or buried the actual content under so many ads that focusing felt like work before the work even started.</p>
-            <p>I wanted a diagnostic that felt like the real thing: the right length, questions weighted to the actual domain percentages, a fresh shuffle every attempt so you couldn't game it, and a results report that told you exactly what to study next. No account, no paywall, no upsell. So I built it.</p>
-            <p class="why-support">If this helps you pass, consider <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener">buying me a coffee</a> to support further development.</p>
-          </div>
+      <div class="why-bar"></div>
+      <div>
+        <div class="why-label">Why I built this</div>
+        <div class="why-quote">"Because studying for these exams was more frustrating than it needed to be."</div>
+        <div class="why-body">
+          <p>Most practice sites were too short to tell you anything useful, or they recycled the same questions until you were memorising answer positions instead of learning the material.</p>
+          <p>The well-made ones locked results behind a paywall, pushed a $200 course at every turn, or buried the content under enough ads that focusing felt like work before the work started.</p>
+          <p>I wanted something domain-weighted, properly long, with a fresh shuffle every attempt and results you could actually act on. No account. No paywall. No upsell. So I built it.</p>
+          <p class="why-support">If this helps you pass, consider <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener">buying me a coffee</a> to support further development.</p>
         </div>
       </div>
     </div>
