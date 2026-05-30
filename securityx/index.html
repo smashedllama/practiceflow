@@ -567,6 +567,41 @@
     header { flex-direction: column; align-items: flex-start; }
     .timer-box { align-self: flex-end; }
   }
+
+  /* ── Results Hero Split ── */
+  .rh-section { position: relative; background: var(--mid); overflow: hidden; margin-left: -1.5rem; margin-right: -1.5rem; }
+  .rh-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.45; -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 40%, transparent 100%); pointer-events: none; }
+  .rh-inner { display: grid; grid-template-columns: 1fr 1fr; }
+  .rh-left { display: flex; align-items: center; justify-content: flex-end; padding: 3rem 2.5rem 3rem 2rem; position: relative; z-index: 1; }
+  .rh-inner-content { width: 100%; max-width: 380px; }
+  .rh-kicker { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem; }
+  .rh-score-num { font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 0.3rem; }
+  .rh-verdict { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .rh-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.1rem; }
+  .rh-stats { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .rh-stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0.45rem 0.7rem; text-align: center; min-width: 58px; box-shadow: var(--shadow-card); }
+  .rh-stat-num { display: block; font-size: 1.2rem; font-weight: 900; }
+  .rh-stat-lbl { display: block; font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.1rem; }
+  .rh-right { background: var(--card); padding: 2.5rem 2rem 2.5rem 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 1.25rem; position: relative; z-index: 1; border-left: 1px solid var(--border); }
+  .rh-ring-track { transition: stroke-dasharray 1.2s cubic-bezier(.4,0,.2,1); }
+  .rh-domains { width: 100%; display: flex; flex-direction: column; gap: 0.6rem; }
+  .rh-drow { display: flex; align-items: center; gap: 0.65rem; }
+  .rh-dname { font-size: 0.73rem; color: var(--muted); width: 115px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rh-dtrack { flex: 1; height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .rh-dfill { height: 100%; border-radius: 99px; width: 0; transition: width 0.9s cubic-bezier(.4,0,.2,1); }
+  .rh-dpct { font-size: 0.73rem; font-weight: 700; width: 30px; text-align: right; flex-shrink: 0; }
+  .rh-section-header { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 2rem 0 0.85rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.4rem; }
+  .rsh-sub { font-size: 0.7rem; font-weight: 400; color: var(--muted); margin-left: auto; letter-spacing: 0; text-transform: none; }
+  @media (max-width: 640px) {
+    .rh-section { margin-left: -1rem; margin-right: -1rem; }
+    .rh-inner { grid-template-columns: 1fr; }
+    .rh-left { justify-content: flex-start; padding: 2rem 1.5rem 1.5rem; }
+    .rh-inner-content { max-width: 100%; }
+    .rh-right { border-left: none; border-top: 1px solid var(--border); padding: 1.5rem; }
+    .rh-score-num { font-size: 3rem; }
+    .rh-dname { width: 90px; }
+  }
+
 </style>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
@@ -1537,41 +1572,59 @@ function showResults() {
   const r=60, circ=2*Math.PI*r, dash=(pct/100)*circ;
   const rc = pct>=78?"#22c55e":pct>=60?"#eab308":"#ef4444";
 
+
+  // RH panel — domain bars + ring
+  const rhDomainBars = domains.filter(d => dStats[d] && dStats[d].total > 0).map(d => {
+    const s = dStats[d];
+    const dClr = s.pct>=80?'#22c55e':s.pct>=60?'#eab308':'#ef4444';
+    return `<div class="rh-drow"><span class="rh-dname">${domainNames[d]}</span><div class="rh-dtrack"><div class="rh-dfill" data-w="${s.pct}%" style="background:${dClr}"></div></div><span class="rh-dpct" style="color:${dClr}">${s.pct}%</span></div>`;
+  }).join('');
+  const rhR=52, rhCirc=2*Math.PI*rhR, rhDash=(pct/100)*rhCirc;
+
   document.getElementById('results').innerHTML = `
+    <section class="rh-section">
+      <div class="rh-grid-bg"></div>
+      <div class="rh-inner">
+        <div class="rh-left">
+          <div class="rh-inner-content">
+            <div class="rh-kicker">${ic('check',12)} Assessment complete</div>
+            <div class="rh-score-num" style="color:${rc}">${pct}%</div>
+            <div class="rh-verdict" style="color:${verdictColor}">${verdict}</div>
+            <div class="rh-sub">${verdictSub}</div>
+            <div class="rh-stats">
+              <div class="rh-stat"><span class="rh-stat-num" style="color:#22c55e">${correct.length}</span><span class="rh-stat-lbl">Correct</span></div>
+              <div class="rh-stat"><span class="rh-stat-num" style="color:#ef4444">${wrong.length}</span><span class="rh-stat-lbl">Wrong</span></div>
+              <div class="rh-stat"><span class="rh-stat-num" style="color:#eab308">${notLearned.length}</span><span class="rh-stat-lbl">Not Learned</span></div>
+              <div class="rh-stat"><span class="rh-stat-num" style="color:var(--muted)">${elapsed}</span><span class="rh-stat-lbl">Time</span></div>
+              ${confidentWrong.length > 0 ? `<div class="rh-stat"><span class="rh-stat-num" style="color:#a855f7">${confidentWrong.length}</span><span class="rh-stat-lbl">Confident Wrong</span></div>` : ''}
+              ${slowQuestions.length > 0 ? `<div class="rh-stat"><span class="rh-stat-num" style="color:#f97316">${slowQuestions.length}</span><span class="rh-stat-lbl">Slow &gt;90s</span></div>` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="rh-right">
+          <svg width="130" height="130" viewBox="0 0 130 130">
+            <circle cx="65" cy="65" r="${rhR}" fill="none" stroke="var(--border)" stroke-width="11"/>
+            <circle cx="65" cy="65" r="${rhR}" fill="none" stroke="${rc}" stroke-width="11" stroke-dasharray="0 ${rhCirc}" stroke-linecap="round" transform="rotate(-90 65 65)" class="rh-ring-track" id="rh-ring-arc"/>
+            <text x="65" y="62" text-anchor="middle" dominant-baseline="middle" style="fill:${rc};font-size:1.6rem;font-weight:900;font-family:system-ui">${pct}%</text>
+            <text x="65" y="80" text-anchor="middle" style="fill:var(--muted);font-size:0.7rem;font-family:system-ui">${correct.length} / ${total}</text>
+          </svg>
+          <div class="rh-domains">${rhDomainBars}</div>
+        </div>
+      </div>
+    </section>
+
     ${readinessHTML}
-    <div class="results-hero">
-      <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Your Assessment Results</div>
-      <svg width="150" height="150" viewBox="0 0 150 150" style="transform:rotate(-90deg)">
-        <circle cx="75" cy="75" r="${r}" fill="none" stroke="#2a3050" stroke-width="13"/>
-        <circle cx="75" cy="75" r="${r}" fill="none" stroke="${rc}" stroke-width="13" stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
-        <text x="75" y="75" text-anchor="middle" dominant-baseline="middle" transform="rotate(90,75,75)" style="fill:${rc};font-size:2rem;font-weight:900;font-family:system-ui">${pct}%</text>
-        <text x="75" y="95" text-anchor="middle" transform="rotate(90,75,75)" style="fill:#8892a4;font-size:0.78rem;font-family:system-ui">${correct.length}/${total}</text>
-      </svg>
-      <div class="verdict" style="color:${verdictColor}">${verdict}</div>
-      <div class="verdict-sub">${verdictSub}</div>
-    </div>
+    ${slowDetails}
 
-    <div class="stat-pills">
-      <div class="stat-pill"><div class="sp-num" style="color:#22c55e">${correct.length}</div><div class="sp-label">Correct</div></div>
-      <div class="stat-pill"><div class="sp-num" style="color:#ef4444">${wrong.length}</div><div class="sp-label">Incorrect</div></div>
-      <div class="stat-pill"><div class="sp-num" style="color:#eab308">${notLearned.length}</div><div class="sp-label">Not Learned</div></div>
-      <div class="stat-pill"><div class="sp-num" style="color:var(--muted)">${elapsed}</div><div class="sp-label">Time</div></div>
-      ${confidentWrong.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#a855f7">${confidentWrong.length}</div><div class="sp-label">Confident but Wrong</div></div>` : ''}
-      ${slowQuestions.length > 0 ? `<div class="stat-pill"><div class="sp-num" style="color:#f97316">${slowQuestions.length}</div><div class="sp-label">Slow (&gt;90s)</div></div>` : ''}
-    </div>
-
-    \${slowDetails}
-
-    <div class="section-header">Domain Breakdown</div>
+    <div class="rh-section-header">${ic('grid',13)} Domain Breakdown</div>
     <div class="domain-results">${drCards}</div>
 
     ${radarHTML}
     ${matrixHTML}
 
-
-    <div class="section-header" id="missed-header">
-      ${ic('x-circle',15)} Full Results Breakdown
-      <span style="font-size:0.8rem;font-weight:400;color:var(--muted);margin-left:0.5rem">(${wrong.length} incorrect · ${notLearned.length} not learned)</span>
+    <div class="rh-section-header" id="missed-header">
+      ${ic('list',13)} Full Results Breakdown
+      <span class="rsh-sub">${wrong.length} incorrect · ${notLearned.length} not learned</span>
     </div>
     <div class="filter-tabs">
       <button class="filter-tab active" onclick="filterMissed('all',this)">All (${wrong.length+notLearned.length})</button>
@@ -1587,21 +1640,21 @@ function showResults() {
         ${ic('refresh-cw',15)} Retry Missed Questions
         <span class="retry-badge">${wrong.length + notLearned.length} questions</span>
       </div>
-      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0 1rem">Run a mini-quiz covering only the questions you got wrong or didn't learn — great for a quick follow-up session.</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:0.5rem 0 1rem">Run a mini-quiz covering only the questions you got wrong or didn't learn — great for a follow-up session.</p>
       <button class="retry-launch-btn" onclick="retryMissed()">${ic('play',14)} Start Retry Quiz</button>
       <div id="retry-quiz-area"></div>
     </div>` : ''}
 
     ${historyHTML ? `<div class="history-section">
-      <div class="section-header">${ic('trending-up',15)} Score History</div>
+      <div class="rh-section-header">${ic('trending-up',13)} Score History</div>
       ${buildDomainTrends()}
       ${historyHTML}
     </div>` : ''}
 
-    <div class="section-header">${ic('bot',15)} AI-Powered Study Guide Generator</div>
+    <div class="rh-section-header">${ic('bot',13)} AI Study Guide Generator</div>
     <div class="ai-prompt-box">
       <h3>${ic('clipboard',15)} Your Personalised Study Prompt</h3>
-      <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed on this assessment.</p>
+      <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed.</p>
       <div class="apb-date-row">
         <label for="exam-date-input">${ic('calendar',14)} Exam date:</label>
         <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()">
@@ -1610,7 +1663,7 @@ function showResults() {
       <div class="prompt-text" id="ai-prompt-text">${aiPromptText}</div>
       <div class="copy-row">
         <button class="copy-btn" onclick="copyPrompt()">${ic('clipboard',13)} Copy Prompt</button>
-        <span class="copy-hint">Then paste into any AI chat to get your personalised study guide</span>
+        <span class="copy-hint">Paste into any AI chat for a personalised study guide</span>
       </div>
     </div>
 
@@ -1630,7 +1683,12 @@ function showResults() {
   document.getElementById('results').style.display = 'block';
   renderIcons();
   window.scrollTo(0,0);
-  setTimeout(()=>{ document.querySelectorAll('.dr-bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,50);}); },200);
+  setTimeout(()=>{
+    document.querySelectorAll('.dr-bar-fill').forEach(el=>{const w=el.style.width;el.style.width='0';setTimeout(()=>el.style.width=w,50);});
+    document.querySelectorAll('.rh-dfill').forEach(el=>{ if(el.dataset.w) el.style.width=el.dataset.w; });
+    const arc=document.getElementById('rh-ring-arc');
+    if(arc) arc.setAttribute('stroke-dasharray', rhDash+' '+rhCirc);
+  }, 150);
 }
 
 // ── Topic video search resources ─────────────────────────────────────────────
