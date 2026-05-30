@@ -251,7 +251,7 @@
   .flag-btn.flagged { border-color: var(--yellow); color: var(--yellow); background: var(--yellow-bg); }
 
   /* READINESS CARD */
-  .readiness-card { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+  .readiness-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow-card); }
   .readiness-header-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 0.5rem; }
   .readiness-verdict { font-size: 1.4rem; font-weight: 900; margin-bottom: 0.3rem; }
   .readiness-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; max-width: 600px; }
@@ -792,9 +792,11 @@ function prepareExam() {
     const optOrder = shuffleArray([0, 1, 2, 3]);
     return {
       ...q,
-      opts:     optOrder.map(i => q.opts[i]),
-      wrongWhy: optOrder.map(i => (q.wrongWhy ? q.wrongWhy[i] : null)),
-      ans:      optOrder.indexOf(q.ans)
+      _origIdx:  origIdx,
+      _optOrder: optOrder,
+      opts:      optOrder.map(i => q.opts[i]),
+      wrongWhy:  optOrder.map(i => (q.wrongWhy ? q.wrongWhy[i] : null)),
+      ans:       optOrder.indexOf(q.ans)
     };
   });
 }
@@ -1195,11 +1197,12 @@ function saveRunToHistory(correct, total, dStats) {
       date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
       score: Math.round((correct/total)*100),
       correct, total,
-      dPct: {1:dStats[1].pct, 2:dStats[2].pct, 3:dStats[3].pct, 4:dStats[4].pct},
+      dPct: {1:dStats[1]?.pct||0, 2:dStats[2]?.pct||0, 3:dStats[3]?.pct||0, 4:dStats[4]?.pct||0, 5:dStats[5]?.pct||0},
       ts: Date.now(),
       // Full state for report replay
       elapsed: document.getElementById('timer').textContent,
-      qIndices: activeQuestions.map(q => questions.indexOf(q)),
+      qIndices: activeQuestions.map(q => q._origIdx ?? questions.indexOf(q)),
+      optOrders: activeQuestions.map(q => q._optOrder || [0,1,2,3]),
       answers:       answers.slice(),
       confidence:    confidence.slice(),
       questionTimes: questionTimes.slice(),
@@ -1618,6 +1621,7 @@ function showResults() {
       </div>
     </section>
 
+    <div class="rh-section-header">${ic('shield',13)} Exam Readiness</div>
     ${readinessHTML}
     ${slowDetails}
 
@@ -2517,7 +2521,19 @@ function showHistoryReport(histIdx) {
     if (!entry || !Array.isArray(entry.qIndices) || entry.qIndices.length === 0) return;
 
     // Reconstruct exam state from stored data
-    activeQuestions = entry.qIndices.map(i => questions[i]).filter(Boolean);
+    activeQuestions = entry.qIndices.map((origIdx, pos) => {
+      const q = questions[origIdx];
+      if (!q) return null;
+      const optOrder = (entry.optOrders && entry.optOrders[pos]) ? entry.optOrders[pos] : [0,1,2,3];
+      return {
+        ...q,
+        _origIdx:  origIdx,
+        _optOrder: optOrder,
+        opts:      optOrder.map(i => q.opts[i]),
+        wrongWhy:  optOrder.map(i => (q.wrongWhy ? q.wrongWhy[i] : null)),
+        ans:       optOrder.indexOf(q.ans)
+      };
+    }).filter(Boolean);
     answers         = entry.answers.slice();
     confidence      = (entry.confidence  || []).slice();
     questionTimes   = (entry.questionTimes || []).slice();
