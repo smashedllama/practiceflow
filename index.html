@@ -85,21 +85,21 @@
   .nav-link { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
   .nav-link:hover { color: var(--text); }
 
-  /* Hero */
   /* ── Hero split ── */
-  .hero-split-section { border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
-  .hero-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 340px; max-width: 1200px; margin: 0 auto; width: 100%; }
-  .hero-split-left { padding: 3.5rem 3rem 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; border-right: 1px solid var(--border); }
+  .hero-split-section { border-bottom: 1px solid var(--border); }
+  .hero-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
+  .hero-split-left { display: flex; align-items: center; justify-content: flex-end; border-right: 1px solid var(--border); padding: 4rem 3rem 4rem 2rem; }
+  .hero-left-inner { width: 100%; max-width: 460px; }
   .hero-kicker { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; opacity: 0.8; }
-  .hero-h1 { font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 900; color: var(--text); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 0.85rem; }
+  .hero-h1 { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--text); line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 1rem; }
   .hero-exam-span { color: var(--accent); }
-  .hero-cursor { display: inline-block; width: 3px; height: clamp(1.8rem, 2.8vw, 2.4rem); background: var(--accent); vertical-align: middle; margin-left: 3px; animation: heroBlink 0.75s step-end infinite; }
+  .hero-cursor { display: inline-block; width: 3px; height: clamp(2rem, 3vw, 2.8rem); background: var(--accent); vertical-align: middle; margin-left: 3px; animation: heroBlink 0.75s step-end infinite; }
   @keyframes heroBlink { 0%,100%{opacity:1} 50%{opacity:0} }
-  .hero-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.75rem; max-width: 340px; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 700; padding: 0.65rem 1.25rem; border-radius: 8px; align-self: flex-start; text-decoration: none; transition: opacity 0.15s; }
+  .hero-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin-bottom: 2rem; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 700; padding: 0.7rem 1.35rem; border-radius: 8px; text-decoration: none; transition: opacity 0.15s; }
   .hero-cta:hover { opacity: 0.88; }
-  .hero-split-right { padding: 2rem; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--surface); }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.6; }
+  .hero-split-right { display: flex; align-items: center; justify-content: flex-start; padding: 3rem 2rem 3rem 3rem; position: relative; overflow: hidden; background: var(--surface); }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.5; }
   /* Result card */
   .hrc { width: 100%; max-width: 300px; position: relative; z-index: 1; }
   .hrc-inner { background: var(--bg); border-radius: 14px; padding: 1.25rem; border: 1px solid var(--border); transition: border-color 0.6s ease, box-shadow 0.6s ease; }
@@ -130,8 +130,9 @@
   @keyframes hrcIn  { from { opacity:0; transform: translateX(16px) scale(0.97); } to { opacity:1; transform: translateX(0) scale(1); } }
   @media (max-width: 860px) {
     .hero-split { grid-template-columns: 1fr; }
-    .hero-split-left { padding: 2.5rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-split-right { padding: 2rem 1.5rem; min-height: 320px; }
+    .hero-split-left { align-items: flex-start; justify-content: center; padding: 2.5rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-left-inner { max-width: 100%; }
+    .hero-split-right { justify-content: center; padding: 2rem 1.5rem; min-height: 320px; }
   }
 
   /* Exams Grid */
@@ -355,7 +356,7 @@
 
 <nav>
   <a class="nav-brand" href="#">
-    <div class="nav-altflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="13,2 4,14 11,14 11,22 20,10 13,10" fill="#4CAF50"/></svg></div>
+    <div class="nav-altflow-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="13,2 4,14 11,14 11,22 20,10 13,10" fill="#4CAF50"/></svg></div>
     <div>
       <span class="nav-name">PracticeFlow</span>
       <span class="nav-by">by Altflow</span>
@@ -372,10 +373,12 @@
 <section class="hero-split-section">
   <div class="hero-split">
     <div class="hero-split-left">
-      <div class="hero-kicker">CompTIA &middot; Cisco &middot; AWS</div>
-      <h1 class="hero-h1">Study for<br><span class="hero-exam-span" id="hero-exam"></span><span class="hero-cursor"></span></h1>
-      <p class="hero-sub">Domain-weighted, fully explained. No account. No paywall. Just pass.</p>
-      <a href="#exams" class="hero-cta">Browse all 18 exams <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      <div class="hero-left-inner">
+        <div class="hero-kicker">CompTIA &middot; Cisco &middot; AWS</div>
+        <h1 class="hero-h1">Study for<br><span class="hero-exam-span" id="hero-exam"></span><span class="hero-cursor"></span></h1>
+        <p class="hero-sub">Domain-weighted, fully explained. No account. No paywall. Just pass.</p>
+        <a href="#exams" class="hero-cta">Browse all 18 exams <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
     </div>
     <div class="hero-split-right">
       <div class="hero-grid-bg"></div>
