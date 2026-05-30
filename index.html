@@ -91,46 +91,53 @@
   .nav-link:hover { color: var(--text); }
 
   /* Hero */
-  .hero {
-    padding: 5rem 2rem 4rem;
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
+  /* ── Hero split ── */
+  .hero-split-section { border-bottom: 1px solid var(--border); }
+  .hero-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 340px; }
+  .hero-split-left { padding: 3.5rem 3rem 3.5rem 5%; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
+  .hero-kicker { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; opacity: 0.8; }
+  .hero-h1 { font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 900; color: var(--text); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 0.85rem; }
+  .hero-exam-span { color: var(--accent); }
+  .hero-cursor { display: inline-block; width: 3px; height: clamp(1.8rem, 2.8vw, 2.4rem); background: var(--accent); vertical-align: middle; margin-left: 3px; animation: heroBlink 0.75s step-end infinite; }
+  @keyframes heroBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .hero-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.75rem; max-width: 340px; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #000; font-size: 0.85rem; font-weight: 700; padding: 0.65rem 1.25rem; border-radius: 8px; align-self: flex-start; text-decoration: none; transition: opacity 0.15s; }
+  .hero-cta:hover { opacity: 0.88; }
+  .hero-split-right { padding: 2rem; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--surface); }
+  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.6; }
+  /* Result card */
+  .hrc { width: 100%; max-width: 300px; position: relative; z-index: 1; }
+  .hrc-inner { background: var(--bg); border-radius: 14px; padding: 1.25rem; border: 1px solid var(--border); transition: border-color 0.6s ease, box-shadow 0.6s ease; }
+  .hrc-inner.glow-green { border-color: rgba(76,175,80,0.4);  box-shadow: 0 0 32px rgba(76,175,80,0.1); }
+  .hrc-inner.glow-amber { border-color: rgba(245,158,11,0.4); box-shadow: 0 0 32px rgba(245,158,11,0.1); }
+  .hrc-inner.glow-red   { border-color: rgba(239,68,68,0.4);  box-shadow: 0 0 32px rgba(239,68,68,0.1); }
+  .hrc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .hrc-name { font-size: 0.88rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+  .hrc-code { font-size: 0.6rem; color: var(--muted2); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .hrc-ring-wrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
+  .hrc-ring-wrap svg { transform: rotate(-90deg); }
+  .hrc-ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; line-height: 1; }
+  .hrc-domains { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+  .hrc-d-top { display: flex; justify-content: space-between; margin-bottom: 0.2rem; }
+  .hrc-d-name { font-size: 0.6rem; color: var(--muted); }
+  .hrc-d-pct  { font-size: 0.6rem; font-weight: 600; }
+  .hrc-d-track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .hrc-d-fill { height: 100%; border-radius: 99px; width: 0%; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); }
+  .hrc-footer { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border); padding-top: 0.75rem; }
+  .hrc-fval { font-size: 0.82rem; font-weight: 800; color: var(--text); line-height: 1; }
+  .hrc-flbl { font-size: 0.55rem; color: var(--muted2); margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .hrc-badge { background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.25); color: var(--accent); font-size: 0.6rem; font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 99px; transition: all 0.4s; transform: scale(0); opacity: 0; }
+  .hrc-badge.visible { transform: scale(1); opacity: 1; }
+  .hrc-badge.amber { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25); color: #f59e0b; }
+  .hrc-inner.slide-out { animation: hrcOut 0.32s ease forwards; }
+  .hrc-inner.slide-in  { animation: hrcIn  0.32s ease forwards; }
+  @keyframes hrcOut { to { opacity:0; transform: translateX(-16px) scale(0.97); } }
+  @keyframes hrcIn  { from { opacity:0; transform: translateX(16px) scale(0.97); } to { opacity:1; transform: translateX(0) scale(1); } }
+  @media (max-width: 860px) {
+    .hero-split { grid-template-columns: 1fr; }
+    .hero-split-left { padding: 3rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-split-right { padding: 2rem 1.5rem; min-height: 320px; }
   }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3);
-    color: var(--accent); font-size: 0.72rem; font-weight: 700;
-    padding: 0.3rem 0.8rem; border-radius: 99px;
-    text-transform: uppercase; letter-spacing: 0.07em;
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 900; line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.2rem;
-  }
-  .hero h1 span {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A, #4CAF50);
-    background-size: 200%;
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s linear infinite;
-  }
-  @keyframes shimmer { 0% { background-position: 0% } 100% { background-position: 200% } }
-  .hero p {
-    font-size: 1.05rem; color: var(--muted); line-height: 1.7;
-    max-width: 540px; margin: 0 auto;
-    text-wrap: balance;
-  }
-  .hero-stats {
-    display: flex; justify-content: center; gap: 2rem;
-    margin-top: 2.5rem; flex-wrap: wrap;
-  }
-  .hero-stat { text-align: center; }
-  .hero-stat-num { font-size: 1.6rem; font-weight: 900; color: var(--accent); display: block; }
-  .hero-stat-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
   /* Exams Grid */
   .exams-section {
@@ -326,8 +333,7 @@
     .hero { padding: 2.5rem 1rem 2rem; }
     .hero h1 { font-size: 1.85rem; }
     .hero p { font-size: 0.9rem; }
-    .hero-stats { gap: 1.25rem; flex-wrap: wrap; justify-content: center; }
-    .hero-stat-num { font-size: 1.3rem; }
+
     .section-label { margin-left: 1rem; }
     .exams-section { padding: 1.5rem 0.75rem 2rem; }
     .exam-card { padding: 1.1rem; }
@@ -371,18 +377,44 @@
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-badge">
-    <i data-lucide="zap" style="width:11px;height:11px"></i>
-    Free · No signup · No fluff
-  </div>
-  <h1>Practice like it's<br><span>exam day.</span></h1>
-  <p>Proportionally weighted, fully explained practice exams for CompTIA certifications. Built to help you pass, not sell you a course.</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><span class="hero-stat-num">18</span><span class="hero-stat-lbl">Exams</span></div>
-    <div class="hero-stat"><span class="hero-stat-num">2,000+</span><span class="hero-stat-lbl">Questions</span></div>
-    <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-lbl">Free</span></div>
-    <div class="hero-stat"><span class="hero-stat-num">0</span><span class="hero-stat-lbl">Signups</span></div>
+<section class="hero-split-section">
+  <div class="hero-split">
+    <div class="hero-split-left">
+      <div class="hero-kicker">CompTIA &middot; Cisco &middot; AWS</div>
+      <h1 class="hero-h1">Study for<br><span class="hero-exam-span" id="hero-exam"></span><span class="hero-cursor"></span></h1>
+      <p class="hero-sub">Domain-weighted, fully explained. No account. No paywall. Just pass.</p>
+      <a href="#exams" class="hero-cta">Browse all 18 exams <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+    </div>
+    <div class="hero-split-right">
+      <div class="hero-grid-bg"></div>
+      <div class="hrc">
+        <div class="hrc-inner" id="hrc-card">
+          <div class="hrc-head">
+            <div>
+              <div class="hrc-name" id="hrc-name">Security+</div>
+              <div class="hrc-code" id="hrc-code">SY0-701 &middot; 50 questions</div>
+            </div>
+            <div class="hrc-ring-wrap">
+              <svg width="56" height="56" viewBox="0 0 56 56">
+                <circle cx="28" cy="28" r="22" fill="none" stroke="var(--border)" stroke-width="5"/>
+                <circle id="hrc-arc" cx="28" cy="28" r="22" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="138.2" style="transition:stroke-dashoffset 0.9s cubic-bezier(0.4,0,0.2,1),stroke 0.4s ease"/>
+              </svg>
+              <div class="hrc-ring-pct" id="hrc-pct" style="color:var(--accent)">0%</div>
+            </div>
+          </div>
+          <div class="hrc-domains" id="hrc-domains"></div>
+          <div class="hrc-footer">
+            <div><div class="hrc-fval" id="hrc-correct">0</div><div class="hrc-flbl">Correct</div></div>
+            <div><div class="hrc-fval" id="hrc-wrong">0</div><div class="hrc-flbl">Missed</div></div>
+            <div><div class="hrc-fval" id="hrc-time">-</div><div class="hrc-flbl">Time</div></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.6rem;padding:0 0.15rem;">
+          <div class="hrc-badge" id="hrc-badge">Passing score &#10003;</div>
+          <div style="font-size:0.6rem;color:var(--muted2)" id="hrc-attempt"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1065,6 +1097,78 @@ function toggleFaq(el) {
 <script>
   if (window.lucide) lucide.createIcons();
   document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+
+// ── Hero: typewriter + morphing result card ──────────────────────────────
+(function() {
+  var heroExams = [
+    { name:'Security+',  code:'SY0-701 · 50 questions', score:84, correct:42, wrong:8,  time:'74m', attempt:'Attempt 3 of 3',
+      domains:[{n:'Threats & Attacks',p:88},{n:'Architecture',p:71},{n:'Implementation',p:84},{n:'Operations',p:60},{n:'Governance',p:79}] },
+    { name:'Network+',   code:'N10-009 · 50 questions', score:91, correct:46, wrong:4,  time:'62m', attempt:'Attempt 2 of 2',
+      domains:[{n:'Networking Concepts',p:94},{n:'Network Impl.',p:88},{n:'Operations',p:90},{n:'Security',p:85},{n:'Troubleshoot.',p:91}] },
+    { name:'CCNA',       code:'200-301 · 50 questions', score:73, correct:37, wrong:13, time:'88m', attempt:'Attempt 1 of 1',
+      domains:[{n:'Network Fundamentals',p:84},{n:'Network Access',p:66},{n:'IP Connectivity',p:78},{n:'IP Services',p:62},{n:'Automation',p:68}] },
+    { name:'Linux+',     code:'XK0-005 · 50 questions', score:88, correct:44, wrong:6,  time:'69m', attempt:'Attempt 2 of 2',
+      domains:[{n:'System Management',p:92},{n:'Security',p:85},{n:'Scripting',p:83},{n:'Troubleshooting',p:90}] },
+    { name:'CySA+',      code:'CS0-003 · 50 questions', score:79, correct:40, wrong:10, time:'77m', attempt:'Attempt 2 of 3',
+      domains:[{n:'Security Operations',p:85},{n:'Vulnerability Mgmt',p:77},{n:'Incident Response',p:74},{n:'Reporting',p:80}] },
+  ];
+  function dColor(p){ return p>=80?'var(--accent)':p>=68?'#f59e0b':'#ef4444'; }
+  function glowCls(s){ return s>=80?'glow-green':s>=68?'glow-amber':'glow-red'; }
+  var scoreIv=null;
+  function animScore(target,stroke){
+    var pEl=document.getElementById('hrc-pct'),aEl=document.getElementById('hrc-arc');
+    if(!pEl||!aEl)return;
+    if(scoreIv)clearInterval(scoreIv);
+    pEl.style.color=stroke;aEl.style.stroke=stroke;
+    aEl.style.strokeDashoffset=138.2-(138.2*target/100);
+    var n=0;scoreIv=setInterval(function(){if(n>=target){clearInterval(scoreIv);return;}pEl.textContent=(++n)+'%';},14);
+  }
+  function renderCard(idx,anim){
+    var e=heroExams[idx],card=document.getElementById('hrc-card');
+    var stroke=e.score>=80?'var(--accent)':e.score>=68?'#f59e0b':'#ef4444';
+    function fill(){
+      document.getElementById('hrc-name').textContent=e.name;
+      document.getElementById('hrc-code').textContent=e.code;
+      document.getElementById('hrc-correct').textContent=e.correct;
+      document.getElementById('hrc-wrong').textContent=e.wrong;
+      document.getElementById('hrc-time').textContent=e.time;
+      document.getElementById('hrc-attempt').textContent=e.attempt;
+      var b=document.getElementById('hrc-badge');
+      b.className='hrc-badge'+(e.score<78?' amber':'');
+      b.textContent=e.score>=78?'Passing score ✓':'Keep studying';
+      setTimeout(function(){b.classList.add('visible');},600);
+      if(card)card.className='hrc-inner '+glowCls(e.score);
+      var dom=document.getElementById('hrc-domains');dom.innerHTML='';
+      e.domains.forEach(function(d,i){
+        var c=dColor(d.p),row=document.createElement('div');
+        row.innerHTML='<div class="hrc-d-top"><span class="hrc-d-name">'+d.n+'</span><span class="hrc-d-pct" style="color:'+c+'">'+d.p+'%</span></div><div class="hrc-d-track"><div class="hrc-d-fill" id="hdf-'+i+'" style="background:'+c+'"></div></div>';
+        dom.appendChild(row);
+        setTimeout(function(){var f=document.getElementById('hdf-'+i);if(f)f.style.width=d.p+'%';},80+i*100);
+      });
+      animScore(e.score,stroke);
+    }
+    if(anim&&card){
+      card.classList.add('slide-out');
+      setTimeout(function(){card.classList.remove('slide-out');fill();card.classList.add('slide-in');setTimeout(function(){card.classList.remove('slide-in');},320);},320);
+    } else {fill();}
+  }
+  var ei=0,ci=0,del=false,twEl=document.getElementById('hero-exam');
+  function tick(){
+    if(!twEl)return;
+    var name=heroExams[ei].name;
+    if(!del){
+      twEl.textContent=name.slice(0,++ci);
+      if(ci===name.length){del=true;renderCard(ei,ei!==0);setTimeout(tick,2200);return;}
+      setTimeout(tick,78);
+    } else {
+      twEl.textContent=name.slice(0,--ci);
+      if(ci===0){del=false;ei=(ei+1)%heroExams.length;setTimeout(tick,250);return;}
+      setTimeout(tick,44);
+    }
+  }
+  setTimeout(function(){renderCard(0,false);tick();},400);
+})();
+
 
   function equalizeCards() {
     const cards = [...document.querySelectorAll('.exam-card')];
