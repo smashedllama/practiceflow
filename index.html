@@ -38,7 +38,7 @@
     --muted2:      #9E9E9E;
     --shadow-card: 0 1px 4px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03);
     --shadow-lg:   0 8px 40px rgba(0,0,0,0.08);
-    --nav-bg:      rgba(255,255,255,0.88);
+    --nav-bg:      transparent;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -54,7 +54,7 @@
       --muted2:      #5A5A5A;
       --shadow-card: 0 1px 4px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.2);
       --shadow-lg:   0 8px 40px rgba(0,0,0,0.4);
-      --nav-bg:      rgba(14,14,14,0.88);
+      --nav-bg:      transparent;
     }
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,8 +71,6 @@
   nav {
     position: sticky; top: 0; z-index: 100;
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
     padding: 0 2rem;
     display: flex; align-items: center; justify-content: space-between;
     height: 58px;
@@ -300,8 +298,7 @@
   .footer-brand { }
   .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
   .footer-tagline { font-size: 0.75rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.75rem; }
-  .footer-exams { font-size: 0.72rem; color: var(--muted); line-height: 1.8; }
-  .footer-exams strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.2rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; }
+
 
   .footer-support { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
   .footer-support p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; max-width: 180px; }
@@ -1060,12 +1057,7 @@ function toggleFaq(el) {
     <div class="footer-brand">
       <div class="footer-logo">PracticeFlow</div>
       <div class="footer-tagline">Free, no-account practice exams for IT certification. Built by <a href="https://altflow.dev" target="_blank" style="color:var(--accent);text-decoration:none;">altflow.dev</a>.</div>
-      <div class="footer-exams">
-        <strong>Certifications covered</strong>
-        CompTIA A+ · Network+ · Security+ · Linux+ · Cloud+ · Server+<br>
-        CySA+ · PenTest+ · SecurityX · AI+ · DataSys+ · Data+ · Tech+ · ITF+ · Project+<br>
-        Cisco CCNA · AWS Solutions Architect Associate
-      </div>
+
     </div>
 
     <div class="footer-support">
@@ -1075,7 +1067,7 @@ function toggleFaq(el) {
   </div>
   <div class="footer-bottom">
     <span>CompTIA®, Cisco®, and AWS® are registered trademarks of their respective owners. PracticeFlow is not affiliated with or endorsed by any of them.</span>
-    <span>© 2025 PracticeFlow</span>
+    <span>© 2026 PracticeFlow</span>
   </div>
 </footer>
 
