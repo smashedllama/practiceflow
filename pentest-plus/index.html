@@ -1039,7 +1039,7 @@ function renderQuestion(idx) {
     <div class="q-card active">
       <div class="q-meta">
         <span class="q-num">Q${idx+1} of ${activeQuestions.length}</span>
-        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span class="domain-tag tag-d${q.d}">${q.topic}</span>
         ${answered && !notLearned && learningMode && userAns===q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--green)">${ic('check',12)} Correct</span>` : ''}
         ${answered && !notLearned && learningMode && userAns!==q.ans ? `<span style="font-size:0.73rem;font-weight:700;color:var(--red)">${ic('x',12)} Incorrect</span>` : ''}
         ${notLearned ? `<span style="font-size:0.73rem;font-weight:700;color:var(--yellow)">${ic('book-open',12)} Not Learned</span>` : ''}
@@ -1135,7 +1135,7 @@ function renderNavigator() {
     else if (answers[i] === -1)    cls += ' nav-nl';
     else if (answers[i] !== null)  cls += ' nav-ans';
     if (flagged[i] && i !== current) cls += ' nav-flag';
-    return `<button class="${cls}" onclick="navigate(${i})" title="Q${i+1}: ${q.tag}">${i+1}</button>`;
+    return `<button class="${cls}" onclick="navigate(${i})" title="Q${i+1}: ${q.topic}">${i+1}</button>`;
   }).join('');
 }
 
@@ -1230,7 +1230,7 @@ function buildRunHistory() {
         <td style="font-weight:800;color:${sc}">${h.score}%</td>
         <td>${h.correct}/${h.total}</td>
         <td>${trend}</td>
-        <td style="font-size:0.72rem;color:var(--muted)">${[1,2,3,4,5].map(d=>`D${d}:${h.dPct[d]}%`).join(' · ')}</td>
+        <td style="font-size:0.72rem;color:var(--muted)">${Object.keys(DOMAIN_SELECT).map(Number).map(d=>`D${d}:${h.dPct[d]??'—'}%`).join(' · ')}</td>
       </tr>`;
     }).join('');
     return `<div class="history-section">
@@ -1417,7 +1417,7 @@ function renderRetryQuestion(idx) {
       <span class="retry-badge">Q${idx+1} / ${retryQuestions.length}</span>
     </div>
     <div class="q-card active" style="margin-bottom:1rem">
-      <div class="q-meta"><span class="q-num">Q${idx+1} of ${retryQuestions.length}</span><span class="domain-tag tag-d${q.d}">${q.tag}</span></div>
+      <div class="q-meta"><span class="q-num">Q${idx+1} of ${retryQuestions.length}</span><span class="domain-tag tag-d${q.d}">${q.topic}</span></div>
       <div class="q-text">${q.q}</div>
       <div class="options">${optsHTML}</div>
       ${expHTML}
@@ -1509,7 +1509,7 @@ function showResults() {
   const attPct = attempted.length > 0 ? Math.round((correct.length/attempted.length)*100) : 0;
 
   // Domain stats
-  const domains = [1,2,3,4,5];
+  const domains = Object.keys(DOMAIN_SELECT).map(Number);
   const dStats = {};
   domains.forEach(d => {
     // Build list of indices in activeQuestions that belong to this domain
@@ -2008,7 +2008,7 @@ function getRelatedQuestionsHTML(q, gi) {
     return `<div class="related-q-item">${label}<span>Q${i+1}: ${preview}</span></div>`;
   }).join('');
   return `<div class="related-qs-box">
-    <div class="related-qs-header">${ic('git-branch',11)} Other ${q.tag} questions you missed (${related.length})</div>
+    <div class="related-qs-header">${ic('git-branch',11)} Other ${q.topic} questions you missed (${related.length})</div>
     ${items}
   </div>`;
 }
@@ -2055,7 +2055,7 @@ function buildMissedSection(wrong, notLearned) {
     return `<div class="missed-item" data-type="wrong" data-flagged="${isFlagged}">
       <div class="mi-meta">
         <span class="q-num">Q${gi+1}</span>
-        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span class="domain-tag tag-d${q.d}">${q.topic}</span>
         <span style="font-size:0.7rem;font-weight:700;color:var(--red)">${ic('x',12)} Incorrect</span>
         ${isFlagged ? `<span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged</span>` : ''}
         ${isConfidentWrong ? `<span class="conf-wrong-badge">${ic('zap',11)} Confident but Wrong</span>` : ''}
@@ -2087,7 +2087,7 @@ function buildMissedSection(wrong, notLearned) {
     return `<div class="missed-item not-learned-item" data-type="notlearned" data-flagged="${isFlagged}">
       <div class="mi-meta">
         <span class="q-num">Q${gi+1}</span>
-        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span class="domain-tag tag-d${q.d}">${q.topic}</span>
         <span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('book-open',12)} Not Learned Yet</span>
         ${isFlagged ? `<span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged</span>` : ''}
         ${isSlow ? `<span class="slow-badge">${ic('clock',11)} Slow (${Math.round((questionTimes[gi]||0)/1000)}s)</span>` : ''}
@@ -2114,7 +2114,7 @@ function buildMissedSection(wrong, notLearned) {
     .map(({ q, i }) => `<div class="missed-item" data-type="flaggedcorrect" data-flagged="true" style="display:none;border-color:var(--yellow-border);background:var(--yellow-bg)">
       <div class="mi-meta">
         <span class="q-num">Q${i+1}</span>
-        <span class="domain-tag tag-d${q.d}">${q.tag}</span>
+        <span class="domain-tag tag-d${q.d}">${q.topic}</span>
         <span style="font-size:0.7rem;font-weight:700;color:var(--green)">${ic('check',12)} Correct</span>
         <span style="font-size:0.7rem;font-weight:700;color:var(--yellow)">${ic('flag',12)} Flagged for Review</span>
       </div>
@@ -2208,8 +2208,8 @@ function buildReadinessReport(dStats, correct, wrong, notLearned, total) {
   }
 
   // Strongest & weakest domain
-  const domainsByScore = [1,2,3,4,5].sort((a,b) => dStats[a].pct - dStats[b].pct);
-  const weakest = domainsByScore[0]; const strongest = domainsByScore[3];
+  const domainsByScore = Object.keys(dStats).map(Number).filter(d=>dStats[d]&&dStats[d].total>0).sort((a,b)=>dStats[a].pct-dStats[b].pct);
+  const weakest = domainsByScore[0]; const strongest = domainsByScore[domainsByScore.length-1];
 
   // Bar geometry (100–900 scale)
   const barPct     = ((estScore - 100) / 800) * 100;
@@ -2299,7 +2299,7 @@ function buildAIPrompt(dStats, wrong, notLearned, correct, total) {
     const ua = answers[gi];
     const why = q.wrongWhy && q.wrongWhy[ua] ? q.wrongWhy[ua] : null;
     return [
-      `  ${i+1}. [${q.tag}] ${q.q}`,
+      `  ${i+1}. [${q.topic}] ${q.q}`,
       `     ✗ My answer:  "${q.opts[ua]}"`,
       why ? `     Why wrong:   ${why}` : null,
       `     ✓ Correct:    "${q.opts[q.ans]}"`,
@@ -2309,7 +2309,7 @@ function buildAIPrompt(dStats, wrong, notLearned, correct, total) {
 
   const nlLines = notLearned.length === 0 ? '  None' : notLearned.map((q, i) => {
     return [
-      `  ${i+1}. [${q.tag}] ${q.q}`,
+      `  ${i+1}. [${q.topic}] ${q.q}`,
       `     ✓ Correct answer: "${q.opts[q.ans]}"`,
       `     Explanation: ${q.exp}`,
     ].join('\n');
