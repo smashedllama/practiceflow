@@ -1299,10 +1299,9 @@ function buildDomainTrends() {
 // ── Radar Chart ────────────────────────────────────────────────────────────
 function buildRadarChart(dStats) {
   const cx=170, cy=160, r=100;
-  const dNames = ['Networking\nConcepts 23%','Net. Impl.\n19%','Net. Ops\n17%','Net. Security\n20%','Troubleshooting\n21%'];
-  const dColors = ['#3b82f6','#22c55e','#f97316','#a855f7','#14b8a6'];
-  // 5 axes
-  const angles = [0,1,2,3,4].map(i => i/5*2*Math.PI - Math.PI/2);
+  const dKeys = Object.keys(domainInfo).map(Number);
+  const n = dKeys.length;
+  const angles = dKeys.map((_,i) => i/n*2*Math.PI - Math.PI/2);
 
   const rings = [25,50,75,100].map(pct => {
     const pts = angles.map(a => `${cx+r*pct/100*Math.cos(a)},${cy+r*pct/100*Math.sin(a)}`).join(' ');
@@ -1311,7 +1310,7 @@ function buildRadarChart(dStats) {
 
   const passRing = angles.map(a => `${cx+r*0.78*Math.cos(a)},${cy+r*0.78*Math.sin(a)}`).join(' ');
   const scorePts = angles.map((a,i) => {
-    const pct = dStats[i+1].pct/100;
+    const pct = (dStats[dKeys[i]]||{pct:0}).pct/100;
     return `${cx+r*pct*Math.cos(a)},${cy+r*pct*Math.sin(a)}`;
   }).join(' ');
   const axes = angles.map(a =>
@@ -1319,14 +1318,18 @@ function buildRadarChart(dStats) {
   ).join('');
 
   const dots = angles.map((a,i) => {
-    const pct = (dStats[i+1]||{pct:0}).pct/100;
+    const d = dKeys[i];
+    const info = domainInfo[d];
+    const pct = (dStats[d]||{pct:0}).pct/100;
     const dx = cx+r*pct*Math.cos(a), dy = cy+r*pct*Math.sin(a);
     const lx = cx+(r+32)*Math.cos(a), ly = cy+(r+32)*Math.sin(a);
     const anchor = Math.cos(a)>0.2?'start':Math.cos(a)<-0.2?'end':'middle';
-    const [l1,l2] = dNames[i].split('\n');
-    return `<circle cx="${dx}" cy="${dy}" r="5" fill="${dColors[i]}" stroke="var(--card)" stroke-width="1.5"/>
-      <text x="${lx}" y="${ly-7}" text-anchor="${anchor}" fill="var(--muted)" font-size="10" font-family="system-ui">${l1}</text>
-      <text x="${lx}" y="${ly+5}" text-anchor="${anchor}" fill="${dColors[i]}" font-size="11" font-weight="bold" font-family="system-ui">${dStats[i+1].pct}%</text>`;
+    const words = info.name.split(' ');
+    const shortName = words.length>2 ? words.slice(0,2).join(' ') : info.name;
+    const wPct = info.pct || Math.round(100/n);
+    return `<circle cx="${dx}" cy="${dy}" r="5" fill="${info.color}" stroke="var(--card)" stroke-width="1.5"/>
+      <text x="${lx}" y="${ly-7}" text-anchor="${anchor}" fill="var(--muted)" font-size="10" font-family="system-ui">${shortName}</text>
+      <text x="${lx}" y="${ly+5}" text-anchor="${anchor}" fill="${info.color}" font-size="11" font-weight="bold" font-family="system-ui">${wPct}%</text>`;
   }).join('');
 
   const pRingLabelX = cx + r*0.78*Math.cos(-Math.PI/2) - 25;
@@ -1350,40 +1353,50 @@ function buildRadarChart(dStats) {
 function buildPriorityMatrix(dStats) {
   const W=340, H=260, padL=44, padR=14, padT=14, padB=36;
   const plotW=W-padL-padR, plotH=H-padT-padB;
-  const dInfo=[{d:1,name:'Net. Concepts',w:23,c:'#3b82f6'},{d:2,name:'Net. Impl.',w:19,c:'#22c55e'},{d:3,name:'Net. Ops',w:17,c:'#f97316'},{d:4,name:'Net. Security',w:20,c:'#a855f7'},{d:5,name:'Troubleshoot',w:21,c:'#14b8a6'}];
-  const xMin=20,xMax=33,yMin=0,yMax=100;
+  const dKeys = Object.keys(domainInfo).map(Number);
+  const n = dKeys.length;
+  const allW = dKeys.map(d => domainInfo[d].pct || Math.round(100/n));
+  const xMin = Math.max(5, Math.min(...allW) - 5);
+  const xMax = Math.max(...allW) + 5;
+  const yMin=0, yMax=100;
   const toX=w=>padL+(w-xMin)/(xMax-xMin)*plotW;
   const toY=s=>padT+plotH-(s-yMin)/(yMax-yMin)*plotH;
-  const qx=toX(20), qy=toY(70);
+  const midW = (xMin+xMax)/2;
+  const qx=toX(midW), qy=toY(70);
 
-  const bubbles = dInfo.map(({d,name,w,c})=>{
-    const s=dStats[d].pct, x=toX(w), y=toY(s);
+  const bubbles = dKeys.map(d => {
+    const info = domainInfo[d];
+    const w = info.pct || Math.round(100/n);
+    const c = info.color;
+    const words = info.name.split(' ');
+    const name = words.length > 2 ? words.slice(0,2).join(' ') : info.name;
+    const s = (dStats[d]||{pct:0}).pct, x=toX(w), y=toY(s);
     return `<circle cx="${x}" cy="${y}" r="24" fill="${c}" opacity="0.13" stroke="${c}" stroke-width="1.5"/>
       <text x="${x}" y="${y-2}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-weight="bold" font-size="12" font-family="system-ui">${s}%</text>
       <text x="${x}" y="${y+12}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-size="9" font-family="system-ui">${name}</text>`;
   }).join('');
 
   return `<div class="rh-card">
-    <p class="pmatrix-sub" style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">High exam weight + low score = highest study ROI. Bottom-right = focus area.</p>
+    <p class="pmatrix-sub" style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">High exam weight + low score = highest priority study area</p>
     <div class="pmatrix-wrap">
       <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
         <rect x="${padL}" y="${padT}" width="${qx-padL}" height="${qy-padT}" fill="rgba(234,179,8,0.05)" rx="3"/>
         <rect x="${qx}" y="${padT}" width="${W-padR-qx}" height="${qy-padT}" fill="rgba(76,175,80,0.05)" rx="3"/>
         <rect x="${padL}" y="${qy}" width="${qx-padL}" height="${H-padB-qy}" fill="rgba(156,163,175,0.04)" rx="3"/>
         <rect x="${qx}" y="${qy}" width="${W-padR-qx}" height="${H-padB-qy}" fill="rgba(239,68,68,0.07)" rx="3"/>
-        <text x="${(padL+qx)/2}" y="${padT+9}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Light review</text>
+        <text x="${(padL+qx)/2}" y="${padT+9}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Light weight</text>
         <text x="${(qx+W-padR)/2}" y="${padT+9}" text-anchor="middle" fill="#22c55e" font-size="8" font-family="system-ui">✓ Maintain</text>
         <text x="${(padL+qx)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low priority</text>
         <text x="${(qx+W-padR)/2}" y="${H-padB-7}" text-anchor="middle" fill="var(--red)" font-size="8" font-family="system-ui">🔴 Focus here</text>
         <line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
         <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H-padB}" stroke="var(--border)" stroke-width="1.5"/>
-        <line x1="${qx}" y1="${padT}" x2="${qx}" y2="${H-padB}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-        <line x1="${padL}" y1="${qy}" x2="${W-padR}" y2="${qy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <line x1="${qx}" y1="${padT}" x2="${qx}" y2="${H-padB}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+        <line x1="${padL}" y1="${qy}" x2="${W-padR}" y2="${qy}" stroke="var(--border)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
         <text x="${padL-4}" y="${toY(100)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">100%</text>
         <text x="${padL-4}" y="${toY(70)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">70%</text>
         <text x="${padL-4}" y="${toY(0)}" text-anchor="end" dominant-baseline="middle" fill="var(--muted)" font-size="8" font-family="system-ui">0%</text>
-        <text x="${toX(16)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low weight</text>
-        <text x="${toX(25)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">High weight</text>
+        <text x="${toX(xMin+2)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">Low wt.</text>
+        <text x="${toX(xMax-2)}" y="${H-padB+11}" text-anchor="middle" fill="var(--muted)" font-size="8" font-family="system-ui">High wt.</text>
         ${bubbles}
       </svg>
     </div>
@@ -1543,13 +1556,13 @@ function showResults() {
   else { verdict="Foundation Building Needed"; verdictColor="#f87171"; verdictSub="That's exactly why you do a diagnostic first. Use the AI prompt below to build a targeted study guide around exactly what you missed."; }
 
   // Build domain cards
-  const domainNames = {1:"Networking Concepts",2:"Net. Implementation",3:"Network Operations",4:"Net. Security",5:"Troubleshooting"};
+  const domainNames = {1:"Operating Systems",2:"Security",3:"SW Troubleshooting",4:"Operational Proc."};
   const drCards = domains.map(d => {
     const s = dStats[d]; const di = domainInfo[d];
     const barColor = s.pct>=80?"#22c55e":s.pct>=60?"#eab308":"#ef4444";
     const hint = s.notLearned>0 ? `${s.notLearned} not learned yet` : s.pct>=80?"Strong" : s.pct>=60?"Needs review":"Focus area";
     return `<div class="dr-card">
-      <div class="dr-domain" style="color:${di.color}">${domainNames[d]} (${d===1?'12%':d===2?'22%':d===3?'18%':d===4?'28%':'20%'})</div>
+      <div class="dr-domain" style="color:${di.color}">${domainNames[d]} (${domainInfo[d]?.pct||Math.round(100/domains.length)}%)</div>
       <div class="dr-score" style="color:${barColor}">${s.pct}%</div>
       <div class="dr-counts">${s.correct}/${s.total} correct${s.notLearned>0?` · ${s.notLearned} not learned`:''}</div>
       <div class="dr-bar-track"><div class="dr-bar-fill" style="width:${s.pct}%;background:${barColor}"></div></div>
@@ -2170,8 +2183,8 @@ function filterMissed(type, btn) {
 }
 // ── Readiness Report ───────────────────────────────────────────────────────
 function buildReadinessReport(dStats, correct, wrong, notLearned, total) {
-  const weights = {1:0.12, 2:0.22, 3:0.18, 4:0.28, 5:0.20};
-  const domainNames = {1:'Networking Concepts',2:'Net. Implementation',3:'Network Operations',4:'Net. Security',5:'Troubleshooting'};
+  const weights = {1:0.31, 2:0.25, 3:0.22, 4:0.22};
+  const domainNames = {1:'Operating Systems',2:'Security',3:'SW Troubleshooting',4:'Operational Proc.'};
 
   // Domain-weighted performance → CompTIA 100–900 scale (675 = passing)
   // Apply a conservative 5% real-exam adjustment (practice tests tend to overestimate)
