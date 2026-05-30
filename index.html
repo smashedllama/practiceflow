@@ -261,6 +261,19 @@
   .fi-title { font-size: 0.82rem; font-weight: 800; margin-bottom: 0.2rem; }
   .fi-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
 
+  /* FAQ Section */
+  .faq-section { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .faq-title { text-align: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .faq-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2.5rem; }
+  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 0.6rem; overflow: hidden; transition: border-color 0.15s; }
+  .faq-item.open { border-color: var(--accent); }
+  .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; cursor: pointer; font-size: 0.9rem; font-weight: 700; gap: 1rem; user-select: none; }
+  .faq-q:hover { background: var(--surface); }
+  .faq-chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--muted); transition: transform 0.25s; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
+  .faq-a { display: none; padding: 0 1.25rem 1rem; font-size: 0.83rem; color: var(--muted); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 0.85rem; }
+  .faq-item.open .faq-a { display: block; }
+
   /* Footer */
   footer {
     text-align: center; padding: 2.5rem 1rem;
@@ -323,6 +336,7 @@
   <div class="nav-links">
     <a class="nav-link" href="#exams">Exams</a>
     <a class="nav-link" href="#features">Features</a>
+    <a class="nav-link" href="#faq">FAQ</a>
     <a class="nav-link" href="https://altflow.dev" target="_blank">altflow.dev ↗</a>
   </div>
 </nav>
@@ -873,9 +887,100 @@
         <div class="fi-title">AI Study Guide Prompt</div>
         <div class="fi-desc">Generates a personalised prompt to paste into any AI for a custom study guide based on your gaps.</div>
       </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="layers" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Flashcard Generator</div>
+        <div class="fi-desc">Turns your missed and not-learned questions into printable flashcards — 1-up full size or 4-up duplex-ready.</div>
+      </div>
+      <div class="feature-item">
+        <div class="fi-icon"><i data-lucide="save" style="width:16px;height:16px"></i></div>
+        <div class="fi-title">Auto-Save &amp; Pause</div>
+        <div class="fi-desc">Refresh mid-exam and pick up exactly where you left off. Pause freezes the timer and hides questions.</div>
+      </div>
     </div>
   </div>
 </section>
+
+<section style="border-top:1px solid var(--border);background:var(--surface)">
+  <div class="faq-section" id="faq">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq-sub">Everything you might want to know before you start.</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is PracticeFlow free?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">Yes, completely. No subscription, no account, no credit card. All 18 exams and every feature — weighted randomisation, score history, flashcard generator, AI study prompts — are free forever. The only ask is a coffee if it helps you pass.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Are these the real exam questions?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">No — and that's intentional. Real exam questions are proprietary and brain-dumps are both unethical and ineffective. Every question on PracticeFlow was written from scratch to test the same concepts, weighted to the same domain percentages as the official exam. The goal is to make sure you understand the material, not memorise answers.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Do I need to create an account?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">No account required. Your score history, notes, and exam progress are saved locally in your browser using localStorage. Nothing is sent to a server. If you clear your browser data, your history clears too — so if you want to keep a record, use the Print Full Report button after completing an exam.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does it save my progress if I close the tab?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">Yes. Every answer you select is automatically saved to your browser. If you refresh, close the tab, or hit the back button mid-exam, you'll see a "Resume Where I Left Off" banner when you return — with your answered count and elapsed time. You can also use the ⏸ Pause button to freeze the timer and hide the questions while you take a break.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How accurate is the pass score indicator?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">It's a diagnostic, not a guarantee. The 78% threshold mirrors CompTIA's passing score on most exams (750/900), and the domain weighting matches the official exam objectives. A strong score here is a good signal, but the real exam tests in different formats and under time pressure — use this to identify gaps, not to predict the exact result.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What's the difference between Exam Mode and Learning Mode?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">Exam Mode hides all answer feedback until you submit at the end — just like the real exam. You can change your answer at any time before submitting. Learning Mode shows the correct answer and a full explanation immediately after each question, making it better for active study. You can switch modes at the start of each attempt.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What are flashcards and how do I use them?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">After completing an exam, a "📇 Study Flashcards" button appears in your results. You can generate cards from your missed questions, your not-learned questions, or both. Cards flip to reveal the correct answer and explanation. You can also print them — choose between full-page (one card per sheet, front and back) or 4-per-page duplex layout that auto-aligns fronts and backs for double-sided printing.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does PracticeFlow track me or show ads?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a">No tracking, no ads, no analytics. PracticeFlow is a static site hosted on GitHub Pages. There is no backend, no database, and no third-party trackers. Your data stays in your browser.</div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
 
 <footer>
   <div class="footer-logo">PracticeFlow</div>
