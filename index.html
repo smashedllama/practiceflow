@@ -77,12 +77,7 @@
     display: flex; align-items: center; justify-content: space-between;
     height: 58px;
   }
-  .nav-altflow-icon {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .nav-altflow-icon { display: flex; align-items: center; flex-shrink: 0; }
   .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
   .nav-name { font-weight: 800; font-size: 1rem; color: var(--text); display: block; }
   .nav-by { font-size: 0.7rem; color: var(--muted); display: block; }
@@ -300,16 +295,13 @@
 
   /* Footer */
   footer { border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
-  .footer-main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2.5rem; align-items: start; }
+  .footer-main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: start; }
   .footer-brand { }
   .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
   .footer-tagline { font-size: 0.75rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.75rem; }
   .footer-exams { font-size: 0.72rem; color: var(--muted); line-height: 1.8; }
   .footer-exams strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.2rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; }
-  .footer-links-col { }
-  .footer-links-col strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; }
-  .footer-links-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.78rem; line-height: 2; }
-  .footer-links-col a:hover { color: var(--text); }
+
   .footer-support { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
   .footer-support p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; max-width: 180px; }
   .bmac-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: #FFDD00; color: #000; font-size: 0.75rem; font-weight: 700; padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none; white-space: nowrap; }
@@ -363,7 +355,7 @@
 
 <nav>
   <a class="nav-brand" href="#">
-    <div class="nav-altflow-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="13,2 4,14 11,14 11,22 20,10 13,10" fill="#4CAF50"/></svg></div>
+    <div class="nav-altflow-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="13,2 4,14 11,14 11,22 20,10 13,10" fill="#4CAF50"/></svg></div>
     <div>
       <span class="nav-name">PracticeFlow</span>
       <span class="nav-by">by Altflow</span>
@@ -1072,17 +1064,7 @@ function toggleFaq(el) {
         Cisco CCNA · AWS Solutions Architect Associate
       </div>
     </div>
-    <div class="footer-links-col">
-      <strong>Exams</strong>
-      <a href="/aplus-core1">A+ Core 1</a>
-      <a href="/aplus-core2">A+ Core 2</a>
-      <a href="/network-plus">Network+</a>
-      <a href="/security-plus">Security+</a>
-      <a href="/linux-plus">Linux+</a>
-      <a href="/cysa">CySA+</a>
-      <a href="/ccna">CCNA</a>
-      <a href="/aws-saa">AWS SAA</a>
-    </div>
+
     <div class="footer-support">
       <p>Free forever. If it helps you pass, a coffee keeps it going.</p>
       <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener" class="bmac-btn">☕ Buy me a coffee</a>
