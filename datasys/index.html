@@ -2290,22 +2290,22 @@ function buildReadinessReport(dStats, correct, wrong, notLearned, total) {
 // ── AI Study Guide Prompt ─────────────────────────────────────────────────
 function buildAIPrompt(dStats, wrong, notLearned, correct, total) {
   const dNames = {
-    1:'Domain 1: PM Concepts (33% of exam)',
-    2:'Domain 2: Life Cycle Phases (30% of exam)',
-    3:'Domain 3: Tools & Docs (19% of exam)',
-    4:'Domain 4: IT & Governance (18% of exam)'
+    1:'Domain 1: Database Fundamentals (22% of exam)',
+    2:'Domain 2: Database Deployment (25% of exam)',
+    3:'Domain 3: Database Management (27% of exam)',
+    4:'Domain 4: Data & Database Security (26% of exam)'
   };
   const score    = Math.round((correct.length / total) * 100);
   const daysLeft = examDate ? Math.ceil((new Date(examDate+'T12:00:00') - new Date()) / 864e5) : null;
 
-  const domainLines = [1,2,3,4,5].map(d => {
+  const domainLines = Object.keys(DOMAIN_SELECT).map(Number).map(d => {
     const s = dStats[d];
     const flag = s.pct < 60 ? ' ← HIGH PRIORITY' : s.pct < 78 ? ' ← needs review' : ' ✓ solid';
     return `  • ${dNames[d]}: ${s.pct}% (${s.correct}/${s.total} correct${s.notLearned>0?', '+s.notLearned+' skipped':''})${flag}`;
   }).join('\n');
 
-  const highPri = [1,2,3,4,5].filter(d => dStats[d].pct < 60 || dStats[d].notLearned >= 3).map(d => `Domain ${d}`);
-  const medPri  = [1,2,3,4,5].filter(d => dStats[d].pct >= 60 && dStats[d].pct < 78 && dStats[d].notLearned < 3).map(d => `Domain ${d}`);
+  const highPri = Object.keys(DOMAIN_SELECT).map(Number).filter(d => dStats[d] && (dStats[d].pct < 60 || dStats[d].notLearned >= 3)).map(d => `Domain ${d}`);
+  const medPri  = Object.keys(DOMAIN_SELECT).map(Number).filter(d => dStats[d] && dStats[d].pct >= 60 && dStats[d].pct < 78 && dStats[d].notLearned < 3).map(d => `Domain ${d}`);
 
   const wrongLines = wrong.length === 0 ? '  None' : wrong.map((q, i) => {
     const gi = activeQuestions.indexOf(q);
