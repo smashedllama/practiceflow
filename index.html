@@ -292,14 +292,27 @@
   }
 
   /* Footer */
-  footer {
-    text-align: center; padding: 2.5rem 1rem;
-    font-size: 0.78rem; color: var(--muted);
-    border-top: 1px solid var(--border);
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
+  footer { border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); }
+  .footer-main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 2.5rem; align-items: start; }
+  .footer-brand { }
   .footer-logo { font-weight: 900; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
+  .footer-tagline { font-size: 0.75rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.75rem; }
+  .footer-exams { font-size: 0.72rem; color: var(--muted); line-height: 1.8; }
+  .footer-exams strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.2rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .footer-links-col { }
+  .footer-links-col strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; }
+  .footer-links-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.78rem; line-height: 2; }
+  .footer-links-col a:hover { color: var(--text); }
+  .footer-support { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .footer-support p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; max-width: 180px; }
+  .bmac-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: #FFDD00; color: #000; font-size: 0.75rem; font-weight: 700; padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none; white-space: nowrap; }
+  .bmac-btn:hover { opacity: 0.9; }
+  .footer-bottom { border-top: 1px solid var(--border); padding: 0.9rem 2rem; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.7rem; color: var(--muted); opacity: 0.7; flex-wrap: wrap; }
+  @media (max-width: 760px) {
+    .footer-main { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 1.25rem; }
+    .footer-support { align-items: flex-start; }
+    .footer-bottom { padding: 0.9rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  }
 
   /* ── Mobile responsive ─────────────────────────────── */
   @media (max-width: 900px) {
@@ -1016,14 +1029,37 @@ function toggleFaq(el) {
 </script>
 
 <footer>
-  <div class="footer-logo">PracticeFlow</div>
-  <div>by <a href="https://altflow.dev" target="_blank">altflow.dev</a> · Free forever · No tracking · No accounts</div>
-  <div style="margin-top:0.75rem;">
-    <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;background:#FFDD00;color:#000;font-size:0.78rem;font-weight:700;padding:0.4rem 0.9rem;border-radius:6px;text-decoration:none;transition:opacity 0.15s;">
-      ☕ Buy me a coffee
-    </a>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-logo">PracticeFlow</div>
+      <div class="footer-tagline">Free, no-account practice exams for IT certification. Built by <a href="https://altflow.dev" target="_blank" style="color:var(--accent);text-decoration:none;">altflow.dev</a>.</div>
+      <div class="footer-exams">
+        <strong>Certifications covered</strong>
+        CompTIA A+ · Network+ · Security+ · Linux+ · Cloud+ · Server+<br>
+        CySA+ · PenTest+ · SecurityX · AI+ · DataSys+ · Data+ · Tech+ · ITF+ · Project+<br>
+        Cisco CCNA · AWS Solutions Architect Associate
+      </div>
+    </div>
+    <div class="footer-links-col">
+      <strong>Exams</strong>
+      <a href="/aplus-core1">A+ Core 1</a>
+      <a href="/aplus-core2">A+ Core 2</a>
+      <a href="/network-plus">Network+</a>
+      <a href="/security-plus">Security+</a>
+      <a href="/linux-plus">Linux+</a>
+      <a href="/cysa">CySA+</a>
+      <a href="/ccna">CCNA</a>
+      <a href="/aws-saa">AWS SAA</a>
+    </div>
+    <div class="footer-support">
+      <p>Free forever. If it helps you pass, a coffee keeps it going.</p>
+      <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener" class="bmac-btn">☕ Buy me a coffee</a>
+    </div>
   </div>
-  <div style="margin-top:0.6rem;font-size:0.7rem;opacity:0.6">CompTIA® is a registered trademark. PracticeFlow is not affiliated with or endorsed by CompTIA.</div>
+  <div class="footer-bottom">
+    <span>CompTIA®, Cisco®, and AWS® are registered trademarks of their respective owners. PracticeFlow is not affiliated with or endorsed by any of them.</span>
+    <span>© 2025 PracticeFlow</span>
+  </div>
 </footer>
 
 <script>
