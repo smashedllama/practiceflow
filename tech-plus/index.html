@@ -602,6 +602,12 @@
     .rh-dname { width: 90px; }
   }
 
+
+  .rh-toggle { cursor: pointer; user-select: none; }
+  .rh-toggle:hover { opacity: 0.75; }
+  .rh-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 0.5rem; box-shadow: var(--shadow-card); }
+  .rh-card .radar-wrap, .rh-card .pmatrix-wrap { display: flex; justify-content: center; }
+
 </style>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
@@ -685,7 +691,7 @@
 <!-- Flashcard: pick mode -->
 <div id="fc-pick" class="fc-overlay" onclick="if(event.target===this)this.style.display='none'">
   <div class="fc-dialog">
-    <h3>📇 Study Flashcards</h3>
+    <h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg> Study Flashcards</h3>
     <p>Choose which questions to turn into flashcards</p>
     <button class="fc-choice-btn" id="fc-btn-missed" onclick="openFlashcards('missed')">
       ✗ Missed Questions <span class="fc-choice-count" id="fc-count-missed">0</span>
@@ -705,7 +711,7 @@
   <div class="fc-header">
     <button class="fc-header-btn" onclick="closeFlashcards()">← Back</button>
     <span class="fc-counter" id="fc-counter">1 / 1</span>
-    <button class="fc-header-btn" onclick="showFCPrint()">🖨 Print All</button>
+    <button class="fc-header-btn" onclick="showFCPrint()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print All</button>
   </div>
   <div class="fc-scene" onclick="flipFC()" title="Click to flip">
     <div class="fc-card-inner" id="fc-inner">
@@ -723,14 +729,14 @@
 <!-- Flashcard: print options -->
 <div id="fc-print" class="fc-overlay" onclick="if(event.target===this)this.style.display='none'">
   <div class="fc-dialog">
-    <h3>🖨 Print Flashcards</h3>
+    <h3><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print Flashcards</h3>
     <p>How do you want them laid out?</p>
     <button class="fc-choice-btn" onclick="doPrint('1up')">
-      📄 One card per page
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> One card per page
       <span class="fc-choice-count">Full size, front/back</span>
     </button>
     <button class="fc-choice-btn" onclick="doPrint('4up')">
-      ⊞ Four cards per page
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Two per page
       <span class="fc-choice-count">Duplex-ready, auto-aligned</span>
     </button>
     <button class="fc-choice-btn" style="margin-top:0.4rem;opacity:0.6;font-weight:600;font-size:0.82rem" onclick="document.getElementById('fc-print').style.display='none'">Cancel</button>
@@ -1313,8 +1319,7 @@ function buildRadarChart(dStats) {
   const pRingLabelX = cx + r*0.78*Math.cos(-Math.PI/2) - 25;
   const pRingLabelY = cy + r*0.78*Math.sin(-Math.PI/2) - 7;
 
-  return `<div class="radar-section">
-    <h3>${ic('activity',15)} Domain Coverage Radar</h3>
+  return `<div class="rh-card">
     <div class="radar-wrap">
       <svg width="340" height="310" viewBox="0 0 340 310" xmlns="http://www.w3.org/2000/svg">
         ${rings}
@@ -1345,9 +1350,8 @@ function buildPriorityMatrix(dStats) {
       <text x="${x}" y="${y+12}" text-anchor="middle" dominant-baseline="middle" fill="${c}" font-size="9" font-family="system-ui">${name}</text>`;
   }).join('');
 
-  return `<div class="pmatrix-box">
-    <h3>${ic('target',15)} Study Priority Matrix</h3>
-    <p class="pmatrix-sub">High exam weight + low your score = highest ROI for study time. Focus bottom-right first.</p>
+  return `<div class="rh-card">
+    <p class="pmatrix-sub" style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">High exam weight + low score = highest study ROI. Bottom-right = focus area.</p>
     <div class="pmatrix-wrap">
       <svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
         <rect x="${padL}" y="${padT}" width="${qx-padL}" height="${qy-padT}" fill="rgba(234,179,8,0.05)" rx="3"/>
@@ -1621,13 +1625,17 @@ function showResults() {
     <div class="rh-section-header">${ic('grid',13)} Domain Breakdown</div>
     <div class="domain-results">${drCards}</div>
 
+    <div class="rh-section-header">${ic('activity',13)} Domain Coverage Radar</div>
     ${radarHTML}
+    <div class="rh-section-header">${ic('target',13)} Study Priority Matrix</div>
     ${matrixHTML}
 
-    <div class="rh-section-header" id="missed-header">
+    <div class="rh-section-header rh-toggle" id="missed-header" onclick="toggleSection('missed-collapsible','missed-chev')">
       ${ic('list',13)} Full Results Breakdown
       <span class="rsh-sub">${wrong.length} incorrect · ${notLearned.length} not learned</span>
+      <span id="missed-chev" style="margin-left:0.5rem;transition:transform 0.2s;flex-shrink:0">${ic('chevron-down',12)}</span>
     </div>
+    <div id="missed-collapsible" style="display:none">
     <div class="filter-tabs">
       <button class="filter-tab active" onclick="filterMissed('all',this)">All (${wrong.length+notLearned.length})</button>
       <button class="filter-tab" onclick="filterMissed('wrong',this)">${ic('x',13)} Incorrect (${wrong.length})</button>
@@ -1635,6 +1643,7 @@ function showResults() {
       <button class="filter-tab" onclick="filterMissed('flagged',this)">${ic('flag',13)} Flagged (${flagged.filter(Boolean).length})</button>
     </div>
     ${missedHTML}
+    </div>
 
     ${wrong.length + notLearned.length > 0 ? `
     <div class="retry-section" id="retry-section">
@@ -1672,7 +1681,7 @@ function showResults() {
     ${isViewingHistory ? `<button class="history-back-btn" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>` : ''}
     <div class="results-actions">
       <button class="btn btn-primary btn-lg" onclick="window.open('https://www.youtube.com/results?search_query=CompTIA+Tech+plus+FC0-U71+study+guide','_blank')">CompTIA Tech+ Study Resources →</button>
-      ${(wrong_cache.length + nl_cache.length > 0) ? `<button class="btn btn-secondary" onclick="showFlashcardOptions()">📇 Study Flashcards</button>` : ''}
+      ${(wrong_cache.length + nl_cache.length > 0) ? `<button class="btn btn-secondary" onclick="showFlashcardOptions()">${ic('layers',14)} Study Flashcards</button>` : ''}
       <button class="btn btn-primary btn-lg" onclick="window.print()">${ic('printer',14)} Print Full Report</button>
       ${isViewingHistory
         ? `<button class="btn btn-secondary" onclick="backToStart()">${ic('arrow-left',14)} Back to Start</button>`
@@ -2015,7 +2024,6 @@ function getStudyPanel(q, gi) {
   return `<div class="study-panel">
     <div class="study-chips-row">
       ${vidChip}
-      <a href="${messerURL}" target="_blank" class="messer-chip">${ic('play-circle',12)} Professor Messer</a>
     </div>
     ${conceptsHTML}
     ${mnemonicHTML}
@@ -2135,6 +2143,16 @@ function buildMissedSection(wrong, notLearned) {
     </div>` : '';
 
   return `<div class="missed-list" id="missed-list">${nlProgress}${emptyMsg}${wrongItemsHTML}${nlItemsHTML}${flaggedCorrectHTML}</div>`;
+}
+
+
+function toggleSection(id, chevId) {
+  const el = document.getElementById(id);
+  const chev = document.getElementById(chevId);
+  if (!el) return;
+  const open = el.style.display !== 'none';
+  el.style.display = open ? 'none' : 'block';
+  if (chev) chev.style.transform = open ? '' : 'rotate(180deg)';
 }
 
 function filterMissed(type, btn) {
@@ -2692,16 +2710,16 @@ function doPrint(fmt) {
     style += `
       @page{size:letter portrait;margin:0.4in}
       .pg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6mm;height:calc(100vh - 0.8in);page-break-after:always}
-      .card{border:1px solid #aaa;border-radius:8px;padding:8mm;display:flex;flex-direction:column;gap:3mm;overflow:hidden}
-      .side-lbl{font-size:5.5pt;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#888}
-      .qtext{font-size:7.5pt;font-weight:700;line-height:1.45;flex:1}
+      .card{border:1.5px solid #ccc;border-radius:10px;padding:8mm;display:flex;flex-direction:column;gap:3mm}
+      .side-lbl{font-size:7pt;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#888}
+      .qtext{font-size:9pt;font-weight:700;line-height:1.5;flex:1}
       .opts{display:flex;flex-direction:column;gap:1.5mm}
-      .opt{font-size:6.5pt;color:#555;line-height:1.4}
-      .ans{font-size:8pt;font-weight:800;color:#16a34a}
-      .your{font-size:6pt;color:#dc2626}
-      .exp{font-size:6.5pt;color:#333;line-height:1.5;flex:1;overflow:hidden}
-      .q-num{font-size:5.5pt;color:#ccc;text-align:right;margin-top:auto}
-      .empty{border:1px dashed #ddd;border-radius:8px}
+      .opt{font-size:8pt;color:#444;line-height:1.4}
+      .ans{font-size:10pt;font-weight:800;color:#16a34a}
+      .your{font-size:7.5pt;color:#dc2626}
+      .exp{font-size:8pt;color:#333;line-height:1.5;flex:1}
+      .q-num{font-size:6.5pt;color:#ccc;text-align:right;margin-top:auto}
+      .empty{border:1.5px dashed #ddd;border-radius:10px}
       @media print{.pg{page-break-after:always}}`;
 
     const cardFront = (c, i) => {
