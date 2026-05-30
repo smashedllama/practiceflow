@@ -263,26 +263,29 @@
 
 
   /* Why Section */
-  .why-section { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .why-section { max-width: 760px; margin: 0 auto; padding: 2.5rem 2rem 2rem; }
   .why-inner { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: start; }
   .why-bar { width: 3px; background: var(--accent); border-radius: 99px; align-self: stretch; flex-shrink: 0; }
   .why-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
   .why-heading { font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.35; }
-  .why-body { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
-  .why-body p + p { margin-top: 0.9rem; }
+  .why-body { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+  .why-body p + p { margin-top: 0.75rem; }
+  .why-support { margin-top: 1.1rem; font-size: 0.8rem; color: var(--muted); }
+  .why-support a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .why-support a:hover { text-decoration: underline; }
   @media (max-width: 640px) { .why-section { padding: 2rem 1rem; } .why-inner { gap: 1.25rem; } }
 
   /* FAQ Section */
-  .faq-section { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; }
-  .faq-title { text-align: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .faq-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2.5rem; }
-  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 0.6rem; overflow: hidden; transition: border-color 0.15s; }
+  .faq-section { max-width: 760px; margin: 0 auto; padding: 2rem 2rem; }
+  .faq-title { text-align: center; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .faq-sub { text-align: center; color: var(--muted); font-size: 0.83rem; margin-bottom: 1.25rem; }
+  .faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.35rem; overflow: hidden; transition: border-color 0.15s; }
   .faq-item.open { border-color: var(--accent); }
-  .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; cursor: pointer; font-size: 0.9rem; font-weight: 700; gap: 1rem; user-select: none; }
+  .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1rem; cursor: pointer; font-size: 0.83rem; font-weight: 700; gap: 1rem; user-select: none; }
   .faq-q:hover { background: var(--surface); }
   .faq-chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--muted); transition: transform 0.25s; }
   .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
-  .faq-a { display: none; padding: 0 1.25rem 1rem; font-size: 0.83rem; color: var(--muted); line-height: 1.65; border-top: 1px solid var(--border); padding-top: 0.85rem; }
+  .faq-a { display: none; padding: 0 1rem 0.75rem; font-size: 0.8rem; color: var(--muted); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 0.65rem; }
   .faq-item.open .faq-a { display: block; }
 
   /* Footer */
@@ -923,6 +926,7 @@
           <p>When I was working through CompTIA certifications, I kept running into the same problem with practice exams. Most were too short to tell you anything useful. The ones with real depth recycled the same questions on every attempt, so after a few runs you were memorising answer positions instead of learning the material.</p>
           <p>The sites that were well-made either locked your full results behind a paywall, pushed you toward a $200 course at every turn, or buried the actual content under so many ads that focusing felt like work before the work even started.</p>
           <p>I wanted a diagnostic that felt like the real thing: the right length, questions weighted to the actual domain percentages, a fresh shuffle every attempt so you couldn't game it, and a results report that told you exactly what to study next. No account, no paywall, no upsell. So I built it.</p>
+          <p class="why-support">If this helps you pass, consider <a href="https://buymeacoffee.com/erunyan" target="_blank" rel="noopener">buying me a coffee</a> to support further development.</p>
         </div>
       </div>
     </div>
