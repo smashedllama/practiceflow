@@ -245,7 +245,7 @@
   .features-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2.5rem; }
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
   }
   .feature-item {
@@ -260,6 +260,17 @@
   }
   .fi-title { font-size: 0.82rem; font-weight: 800; margin-bottom: 0.2rem; }
   .fi-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
+
+
+  /* Why Section */
+  .why-section { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; }
+  .why-inner { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: start; }
+  .why-bar { width: 3px; background: var(--accent); border-radius: 99px; align-self: stretch; flex-shrink: 0; }
+  .why-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+  .why-heading { font-size: 1.25rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.35; }
+  .why-body { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+  .why-body p + p { margin-top: 0.9rem; }
+  @media (max-width: 640px) { .why-section { padding: 2rem 1rem; } .why-inner { gap: 1.25rem; } }
 
   /* FAQ Section */
   .faq-section { max-width: 760px; margin: 0 auto; padding: 3.5rem 2rem; }
@@ -308,7 +319,7 @@
     .exam-stat .es-val { font-size: 1rem; }
     .exam-btn { font-size: 0.88rem; padding: 0.7rem 1rem; }
     .features-section { padding: 2rem 1rem; }
-    .features-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .features-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
     .feature-item { padding: 1rem; }
     footer { padding: 1.5rem 1rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     .footer-links { gap: 1rem; }
@@ -585,7 +596,7 @@
         <div class="exam-header">
           <div class="exam-cert-code" style="color:#fecdd3">PT0-003</div>
           <div class="exam-name">CompTIA PenTest+</div>
-          <div class="exam-tagline">Penetration testing across network, web, cloud and IoT — from recon to reporting.</div>
+          <div class="exam-tagline">Penetration testing across network, web, cloud and IoT, from recon to reporting.</div>
         </div>
         <span class="status-badge status-live">● Live</span>
       </div>
@@ -740,7 +751,7 @@
         <div class="exam-header">
           <div class="exam-cert-code" style="color:#fcd34d">FC0-U61</div>
           <div class="exam-name">CompTIA ITF+</div>
-          <div class="exam-tagline">Pre-career IT fundamentals — hardware, software, networking, security and database basics.</div>
+          <div class="exam-tagline">Pre-career IT fundamentals: hardware, software, networking, security and database basics.</div>
         </div>
         <span class="status-badge status-live">&#9679; Live</span>
       </div>
@@ -890,12 +901,29 @@
       <div class="feature-item">
         <div class="fi-icon"><i data-lucide="layers" style="width:16px;height:16px"></i></div>
         <div class="fi-title">Flashcard Generator</div>
-        <div class="fi-desc">Turns your missed and not-learned questions into printable flashcards — 1-up full size or 4-up duplex-ready.</div>
+        <div class="fi-desc">Turns your missed and not-learned questions into printable flashcards. Print 1-up full size or 4-up duplex-ready for double-sided printing.</div>
       </div>
       <div class="feature-item">
         <div class="fi-icon"><i data-lucide="save" style="width:16px;height:16px"></i></div>
         <div class="fi-title">Auto-Save &amp; Pause</div>
         <div class="fi-desc">Refresh mid-exam and pick up exactly where you left off. Pause freezes the timer and hides questions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--border)">
+  <div class="why-section">
+    <div class="why-inner">
+      <div class="why-bar"></div>
+      <div>
+        <div class="why-label">Why I built this</div>
+        <div class="why-heading">Because studying for these exams was more frustrating than it needed to be.</div>
+        <div class="why-body">
+          <p>When I was working through CompTIA certifications, I kept running into the same problem with practice exams. Most were too short to tell you anything useful. The ones with real depth recycled the same questions on every attempt, so after a few runs you were memorising answer positions instead of learning the material.</p>
+          <p>The sites that were well-made either locked your full results behind a paywall, pushed you toward a $200 course at every turn, or buried the actual content under so many ads that focusing felt like work before the work even started.</p>
+          <p>I wanted a diagnostic that felt like the real thing: the right length, questions weighted to the actual domain percentages, a fresh shuffle every attempt so you couldn't game it, and a results report that told you exactly what to study next. No account, no paywall, no upsell. So I built it.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -911,7 +939,7 @@
         Is PracticeFlow free?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">Yes, completely. No subscription, no account, no credit card. All 18 exams and every feature — weighted randomisation, score history, flashcard generator, AI study prompts — are free forever. The only ask is a coffee if it helps you pass.</div>
+      <div class="faq-a">Yes, completely. No subscription, no account, no credit card. All 18 exams and every feature are free forever: weighted randomisation, score history, flashcard generator, AI study prompts. The only ask is a coffee if it helps you pass.</div>
     </div>
 
     <div class="faq-item">
@@ -919,7 +947,7 @@
         Are these the real exam questions?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">No — and that's intentional. Real exam questions are proprietary and brain-dumps are both unethical and ineffective. Every question on PracticeFlow was written from scratch to test the same concepts, weighted to the same domain percentages as the official exam. The goal is to make sure you understand the material, not memorise answers.</div>
+      <div class="faq-a">No, and that's intentional. Real exam questions are proprietary and brain-dumps are both unethical and ineffective. Every question on PracticeFlow was written from scratch to test the same concepts, weighted to the same domain percentages as the official exam. The goal is to make sure you understand the material, not memorise answers.</div>
     </div>
 
     <div class="faq-item">
@@ -927,7 +955,7 @@
         Do I need to create an account?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">No account required. Your score history, notes, and exam progress are saved locally in your browser using localStorage. Nothing is sent to a server. If you clear your browser data, your history clears too — so if you want to keep a record, use the Print Full Report button after completing an exam.</div>
+      <div class="faq-a">No account required. Your score history, notes, and exam progress are saved locally in your browser. Nothing is sent to a server. If you clear your browser data, your history clears too, so if you want a permanent record use the Print Full Report button after completing an exam.</div>
     </div>
 
     <div class="faq-item">
@@ -935,7 +963,7 @@
         Does it save my progress if I close the tab?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">Yes. Every answer you select is automatically saved to your browser. If you refresh, close the tab, or hit the back button mid-exam, you'll see a "Resume Where I Left Off" banner when you return — with your answered count and elapsed time. You can also use the ⏸ Pause button to freeze the timer and hide the questions while you take a break.</div>
+      <div class="faq-a">Yes. Every answer you select is automatically saved to your browser. If you refresh, close the tab, or navigate away mid-exam, a "Resume Where I Left Off" banner appears when you return, showing your answered count and elapsed time. You can also use the Pause button to freeze the timer and hide the questions while you take a break.</div>
     </div>
 
     <div class="faq-item">
@@ -943,7 +971,7 @@
         How accurate is the pass score indicator?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">It's a diagnostic, not a guarantee. The 78% threshold mirrors CompTIA's passing score on most exams (750/900), and the domain weighting matches the official exam objectives. A strong score here is a good signal, but the real exam tests in different formats and under time pressure — use this to identify gaps, not to predict the exact result.</div>
+      <div class="faq-a">It's a diagnostic, not a guarantee. The 78% threshold mirrors CompTIA's passing score on most exams (750/900), and the domain weighting matches the official exam objectives. A strong score here is a good signal, but the real exam tests in different formats and under time pressure. Use this to identify gaps, not to predict the exact result.</div>
     </div>
 
     <div class="faq-item">
@@ -951,7 +979,7 @@
         What's the difference between Exam Mode and Learning Mode?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">Exam Mode hides all answer feedback until you submit at the end — just like the real exam. You can change your answer at any time before submitting. Learning Mode shows the correct answer and a full explanation immediately after each question, making it better for active study. You can switch modes at the start of each attempt.</div>
+      <div class="faq-a">Exam Mode hides all answer feedback until you submit at the end, just like the real exam. You can change your answer at any time before submitting. Learning Mode shows the correct answer and a full explanation immediately after each question, making it better for active study. You can switch modes at the start of each attempt.</div>
     </div>
 
     <div class="faq-item">
@@ -959,7 +987,7 @@
         What are flashcards and how do I use them?
         <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="faq-a">After completing an exam, a "📇 Study Flashcards" button appears in your results. You can generate cards from your missed questions, your not-learned questions, or both. Cards flip to reveal the correct answer and explanation. You can also print them — choose between full-page (one card per sheet, front and back) or 4-per-page duplex layout that auto-aligns fronts and backs for double-sided printing.</div>
+      <div class="faq-a">After completing an exam, a "Study Flashcards" button appears in your results. You can generate cards from your missed questions, your not-learned questions, or both. Cards flip to reveal the correct answer and explanation. You can also print them: choose between full-page (one card per sheet, front and back) or 4-per-page duplex layout that auto-aligns fronts and backs for double-sided printing.</div>
     </div>
 
     <div class="faq-item">
