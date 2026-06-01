@@ -362,6 +362,11 @@
   .pmatrix-box h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
   .pmatrix-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
   .pmatrix-wrap { display: flex; justify-content: center; }
+  /* ── Radar + Matrix side-by-side ── */
+  .radar-matrix-row { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; }
+  .radar-matrix-col { flex: 1; min-width: 0; }
+  .radar-matrix-col .rh-section-header { margin-top: 0; }
+  @media (max-width: 680px) { .radar-matrix-row { flex-direction: column; } }
 
   /* ── Run History ── */
   .history-section { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-card); }
@@ -1766,7 +1771,7 @@ function showResults() {
         ? `<span class="slow-ok">✓ Correct</span>`
         : `<span class="slow-tag">✗ Incorrect</span>`;
       const secs = Math.round((questionTimes[qi]||0)/1000);
-      return `<div class="slow-callout-item">${tag}<span>\${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">\${secs}s</span></div>`;
+      return `<div class="slow-callout-item">${tag}<span>${q.q.length>90?q.q.slice(0,90)+'…':q.q}</span><span style="color:var(--muted);font-size:0.68rem;flex-shrink:0">${secs}s</span></div>`;
     }).join('')}</div>
   </div>` : '';
 
@@ -1834,10 +1839,16 @@ function showResults() {
     <div class="rh-section-header">${ic('grid',13)} Domain Breakdown</div>
     <div class="domain-results">${drCards}</div>
 
-    <div class="rh-section-header">${ic('activity',13)} Domain Coverage Radar</div>
-    ${radarHTML}
-    <div class="rh-section-header">${ic('target',13)} Study Priority Matrix</div>
-    ${matrixHTML}
+    <div class="radar-matrix-row">
+      <div class="radar-matrix-col">
+        <div class="rh-section-header">${ic('activity',13)} Domain Coverage Radar</div>
+        ${radarHTML}
+      </div>
+      <div class="radar-matrix-col">
+        <div class="rh-section-header">${ic('target',13)} Study Priority Matrix</div>
+        ${matrixHTML}
+      </div>
+    </div>
 
     <div class="rh-section-header rh-toggle" id="missed-header" onclick="toggleSection('missed-collapsible','missed-chev')">
       ${ic('list',13)} Full Results Breakdown
