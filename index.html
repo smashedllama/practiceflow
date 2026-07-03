@@ -130,7 +130,7 @@
   @keyframes hrcIn  { from { opacity:0; transform: translateX(16px) scale(0.97); } to { opacity:1; transform: translateX(0) scale(1); } }
   @media (max-width: 860px) {
     .hero-split { grid-template-columns: 1fr; }
-    .hero-split-left { align-items: flex-start; justify-content: center; padding: 2.5rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-split-left { align-items: flex-start; justify-content: center; padding: 2.5rem 1.5rem 2rem; border-right: none; }
     .hero-left-inner { max-width: 100%; }
     .hero-split-right { justify-content: center; padding: 2rem 1.5rem; min-height: 320px; }
   }
@@ -317,6 +317,9 @@
   @media (max-width: 900px) {
     .exams-grid { grid-template-columns: repeat(2, 1fr); }
   }
+  @media (max-width: 780px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  }
   @media (max-width: 640px) {
     nav { padding: 0 1rem; height: 52px; }
     .nav-brand span { display: none; }
@@ -336,9 +339,9 @@
     .exam-stat .es-val { font-size: 1rem; }
     .exam-btn { font-size: 0.88rem; padding: 0.7rem 1rem; }
     .features-section { padding: 2rem 1rem; }
-    .features-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     .feature-item { padding: 1rem; }
-    footer { padding: 1.5rem 1rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    footer { padding: 1.5rem 1rem; flex-direction: column; gap: 0.5rem; }
     .footer-links { gap: 1rem; }
   }
   @media (max-width: 500px) {
