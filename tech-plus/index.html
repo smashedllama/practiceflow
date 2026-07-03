@@ -1879,7 +1879,7 @@ function showResults() {
       <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed.</p>
       <div class="apb-date-row">
         <label for="exam-date-input">${ic('calendar',14)} Exam date:</label>
-        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()">
+        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()" onchange="refreshAIPrompt()">
         <span class="apb-days-away" id="exam-days-away">${examDate ? '(' + Math.ceil((new Date(examDate + 'T12:00:00') - new Date()) / 864e5) + ' days away)' : ''}</span>
       </div>
       <div class="prompt-text" id="ai-prompt-text">${aiPromptText}</div>
@@ -2567,7 +2567,7 @@ Please produce a study guide with these four sections:
 
 ── SECTION 1: DAY-BY-DAY STUDY SCHEDULE ──
 Create a specific daily plan across my ${daysLeft||30} remaining days.
-- Assign specific topics to each day, ordered by domain weight (PM Concepts 33% and Life Cycle Phases 30% come first)
+- Assign specific topics to each day, ordered by domain weight (IT Concepts & Terminology (18%) and Infrastructure (22%) come first)
 - Reserve the final 1–2 days for full review and timed practice
 - Each day should cover 1–2 focused topics — not a data dump
 
