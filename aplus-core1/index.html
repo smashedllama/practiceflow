@@ -1221,7 +1221,7 @@ function renderQuestion(idx) {
 
   // Not-learned button
   const nlActive = notLearned ? 'active' : '';
-  const nlDisabled = answered && !notLearned ? 'disabled' : '';
+  const nlDisabled = '';
   const nlLabel = notLearned ? ic('check',13)+' Marked as Not Learned Yet' : ic('book-open',13)+' I haven\'t learned this yet';
 
   // Next / finish button
@@ -1271,13 +1271,12 @@ function selectAnswer(qIdx, optIdx) {
   if (learningMode && answers[qIdx] !== null && answers[qIdx] !== -1) return;
   if (answers[qIdx] === -1) return;
   if (questionStartMs) questionTimes[qIdx] = Date.now() - questionStartMs;
-  answers[qIdx] = optIdx;
+  answers[qIdx] = (!learningMode && answers[qIdx] === optIdx) ? null : optIdx;
   renderQuestion(qIdx);
   saveState();
 }
 
 function markNotLearned(idx) {
-  if (answers[idx] !== null && answers[idx] !== -1) return;
   if (questionStartMs) questionTimes[idx] = Date.now() - questionStartMs;
   answers[idx] = answers[idx] === -1 ? null : -1;
   renderQuestion(idx);
