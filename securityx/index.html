@@ -1872,7 +1872,7 @@ function showResults() {
       <p class="apb-sub">Copy this prompt and paste it into ChatGPT, Claude, Gemini, or any AI — it will generate a fully tailored study guide based on exactly what you missed.</p>
       <div class="apb-date-row">
         <label for="exam-date-input">${ic('calendar',14)} Exam date:</label>
-        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()">
+        <input type="date" id="exam-date-input" value="${examDate}" oninput="refreshAIPrompt()" onchange="refreshAIPrompt()">
         <span class="apb-days-away" id="exam-days-away">${examDate ? '(' + Math.ceil((new Date(examDate + 'T12:00:00') - new Date()) / 864e5) + ' days away)' : ''}</span>
       </div>
       <div class="prompt-text" id="ai-prompt-text">${aiPromptText}</div>
@@ -2521,7 +2521,7 @@ function buildAIPrompt(dStats, wrong, notLearned, correct, total) {
     ? `\nI have ${daysLeft} day${daysLeft===1?'':'s'} until exam day. Please build the study guide around this timeline.`
     : '';
 
-  return `I'm preparing for the CompTIA CySA+ CS0-003 exam. I just took a full diagnostic pre-exam and need a targeted, personalised study guide covering ONLY what I missed or haven't studied yet. Please ignore topics I already scored well on.${scheduleNote}
+  return `I'm preparing for the CompTIA SecurityX CAS-005 exam. I just took a full diagnostic pre-exam and need a targeted, personalised study guide covering ONLY what I missed or haven't studied yet. Please ignore topics I already scored well on.${scheduleNote}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
  MY DIAGNOSTIC RESULTS
@@ -2560,7 +2560,7 @@ Please produce a study guide with these four sections:
 
 ── SECTION 1: DAY-BY-DAY STUDY SCHEDULE ──
 Create a specific daily plan across my ${daysLeft||30} remaining days.
-- Assign specific topics to each day, ordered by domain weight (PM Concepts 33% and Life Cycle Phases 30% come first)
+- Assign specific topics to each day, ordered by domain weight (Security Architecture (26%) and Security Operations (33%) come first)
 - Reserve the final 1–2 days for full review and timed practice
 - Each day should cover 1–2 focused topics — not a data dump
 
